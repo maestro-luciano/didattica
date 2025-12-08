@@ -1,0 +1,1396 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abaco digitale interattivo di Maestro Luciano - Imparare i numeri giocando">
+    <meta name="theme-color" content="#2c3e50">
+    <title>L'abaco di maestro Luciano</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            overflow: hidden;
+            position: relative;
+            color: #ecf0f1;
+            padding-bottom: 80px;
+        }
+        
+        #fractal-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        h1 {
+            color: #ecf0f1;
+            margin: 10px 0 5px 0;
+            font-size: clamp(1.44rem, 4vw, 1.76rem); /* DIMENSIONE ORIGINALE */
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .instructions {
+            background: rgba(52, 73, 94, 0.9);
+            padding: 10px; /* DIMENSIONE ORIGINALE */
+            border-radius: 10px;
+            margin: 5px 20px;
+            text-align: center;
+            color: #ecf0f1;
+            font-size: clamp(1rem, 2.5vw, 1.1rem); /* DIMENSIONE ORIGINALE */
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        
+        .language-selector {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(44, 62, 80, 0.95);
+            padding: 10px;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 0;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .lang-btn {
+            padding: 8px 12px;
+            margin: 0 2px;
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
+            background: rgba(52, 73, 94, 0.8);
+            color: #ecf0f1;
+            border: 1px solid #7f8c8d;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background: #3498db;
+            border-color: #3498db;
+        }
+        
+        .main-container {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5px 15px;
+            gap: 20px;
+            align-items: flex-start;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        
+        .right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-y: auto;
+            max-height: calc(100vh - 180px);
+        }
+        
+        #abacus-container {
+            background: rgba(44, 62, 80, 0.95);
+            border-radius: 20px;
+            border: 3px solid #7f8c8d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            margin: 10px auto;
+            z-index: 10;
+            max-width: 100%;
+            width: 100%;
+        }
+        
+        #abacus {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+        }
+        
+        .rod {
+            width: 10px;
+            height: 380px;
+            background: linear-gradient(to right, #95a5a6, #bdc3c7, #95a5a6);
+            position: relative;
+            border-radius: 5px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+        
+        .balls-container {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 5px;
+            padding: 12px 0;
+        }
+        
+        .ball {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.5);
+            opacity: 0;
+            transform: scale(0);
+        }
+        
+        .ball.visible {
+            opacity: 1;
+            transform: scale(1);
+            animation: fallDown 0.5s ease-out;
+        }
+        
+        @keyframes fallDown {
+            0% {
+                transform: translateY(-300px) scale(0.5);
+                opacity: 0;
+            }
+            70% {
+                transform: translateY(10px) scale(1.05);
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .ball.unit { 
+            background: radial-gradient(circle at 30% 30%, #3498db, #2980b9);
+        }
+        .ball.ten { 
+            background: radial-gradient(circle at 30% 30%, #e74c3c, #c0392b);
+        }
+        .ball.hundred { 
+            background: radial-gradient(circle at 30% 30%, #27ae60, #229954);
+        }
+        .ball.thousand { 
+            background: radial-gradient(circle at 30% 30%, #ecf0f1, #bdc3c7);
+        }
+        
+        .column-label {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ecf0f1;
+            font-size: 16px;
+            text-align: center;
+            background: rgba(52, 73, 94, 0.8);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 2px solid #7f8c8d;
+            width: 120px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #number-display {
+            text-align: center;
+            margin: 15px 0;
+            padding: 12px; /* DIMENSIONE ORIGINALE */
+            background: rgba(52, 152, 219, 0.2);
+            border-radius: 15px;
+            border: 2px solid #3498db;
+        }
+        
+        #current-number {
+            font-size: clamp(3rem, 10vw, 4rem); /* AUMENTATO */
+            font-weight: bold;
+            color: #ecf0f1;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        #number-breakdown {
+            font-size: clamp(1rem, 2.5vw, 1.2rem); /* DIMENSIONE ORIGINALE */
+            color: #bdc3c7;
+            line-height: 1.6;
+        }
+        
+        #input-form {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        
+        #number-input {
+            padding: 10px 18px; /* Ripristinato da 12px 20px */
+            font-size: clamp(1.2rem, 3vw, 1.5rem); /* Ripristinato da clamp(1.5rem, 4vw, 2rem) */
+            border: 3px solid #3498db;
+            border-radius: 15px;
+            width: 250px; /* Ripristinato da 280px */
+            background: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        #number-input:focus {
+            outline: none;
+            border-color: #2980b9;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.3);
+            transform: scale(1.05);
+        }
+        
+        #number-input::placeholder {
+            color: #7f8c8d;
+        }
+        
+        button {
+            padding: 10px 20px; /* DIMENSIONE ORIGINALE */
+            font-size: clamp(1rem, 2.5vw, 1.2rem); /* DIMENSIONE ORIGINALE */
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.6);
+        }
+        
+        button:active {
+            transform: translateY(-1px);
+        }
+        
+        #voice-controls {
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        #voice-button {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            font-size: clamp(0.9rem, 2vw, 1.1rem); /* DIMENSIONE ORIGINALE */
+            padding: 8px 16px; /* DIMENSIONE ORIGINALE */
+        }
+        
+        #voice-button:hover {
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.6);
+        }
+        
+        .ball-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+        }
+        
+        .ball-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .ball-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 3px solid white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .ball-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .ball-btn.blue {
+            background: radial-gradient(circle at 30% 30%, #3498db, #2980b9);
+        }
+        
+        .ball-btn.red {
+            background: radial-gradient(circle at 30% 30%, #e74c3c, #c0392b);
+        }
+        
+        .ball-btn.green {
+            background: radial-gradient(circle at 30% 30%, #27ae60, #229954);
+        }
+        
+        .ball-btn.white {
+            background: radial-gradient(circle at 30% 30%, #ecf0f1, #bdc3c7);
+        }
+        
+        .ball-count {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ecf0f1;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .ball-label {
+            font-size: 13px;
+            color: #bdc3c7;
+            font-weight: bold;
+            width: 80px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .quick-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .quick-btn {
+            padding: 6px 10px; /* DIMENSIONE ORIGINALE */
+            font-size: clamp(0.8rem, 2vw, 1rem); /* DIMENSIONE ORIGINALE */
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .quick-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.6);
+        }
+        
+        .trash-zone {
+            width: 70px;
+            height: 70px;
+            background: rgba(231, 76, 60, 0.3);
+            border: 3px dashed #e74c3c;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: #e74c3c;
+            margin: 12px auto;
+            transition: all 0.3s ease;
+        }
+        
+        .trash-zone.drag-over {
+            background: rgba(231, 76, 60, 0.5);
+            transform: scale(1.1);
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+        
+        .number-words-container {
+            background: rgba(44, 62, 80, 0.95);
+            border-radius: 15px;
+            padding: 12px;
+            margin: 12px 0;
+            width: 100%;
+            border: 2px solid #7f8c8d;
+        }
+        
+        .number-words-title {
+            font-size: 1.1rem; /* DIMENSIONE ORIGINALE */
+            color: #ecf0f1;
+            margin-bottom: 8px;
+            text-align: center;
+            font-weight: bold;
+            width: 100%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .number-word-text {
+            font-size: 1.3rem; /* DIMENSIONE ORIGINALE */
+            color: #3498db;
+            text-align: center;
+            font-weight: bold;
+            padding: 8px; /* DIMENSIONE ORIGINALE */
+            background: rgba(52, 73, 94, 0.6);
+            border-radius: 8px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Stile per la scomposizione con caratteri più grandi */
+        #number-decomposition {
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem) !important; /* AUMENTATO */
+            color: #f39c12 !important;
+            margin-top: 12px !important;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                gap: 12px;
+                padding: 5px 10px;
+            }
+            
+            h1 {
+                font-size: clamp(1.5rem, 4vw, 1.8rem); /* DIMENSIONE ORIGINALE */
+                margin: 10px 5px;
+            }
+            
+            .instructions {
+                font-size: clamp(0.9rem, 2vw, 1rem); /* DIMENSIONE ORIGINALE */
+                margin: 5px;
+            }
+            
+            #abacus-container {
+                padding: 12px;
+                width: 95%;
+            }
+            
+            #abacus {
+                gap: 20px;
+            }
+            
+            .ball {
+                width: 34px;
+                height: 34px;
+            }
+            
+            .rod {
+                height: 340px;
+            }
+            
+            .ball-btn {
+                width: 48px;
+                height: 48px;
+            }
+            
+            .trash-zone {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .right-panel {
+                max-height: calc(100vh - 220px);
+            }
+            
+            .language-selector {
+                padding: 8px;
+            }
+            
+            .lang-btn {
+                padding: 6px 8px;
+                font-size: clamp(0.6rem, 1.8vw, 0.7rem);
+            }
+            
+            #current-number {
+                font-size: clamp(2.5rem, 8vw, 3.5rem); /* AUMENTATO */
+            }
+            
+            #number-breakdown {
+                font-size: clamp(1rem, 2.5vw, 1.2rem); /* DIMENSIONE ORIGINALE */
+            }
+            
+            #number-input {
+                font-size: clamp(1.3rem, 3vw, 1.8rem); /* AUMENTATO */
+                width: 250px;
+            }
+            
+            button {
+                font-size: clamp(1rem, 2.5vw, 1.2rem); /* DIMENSIONE ORIGINALE */
+            }
+            
+            #number-decomposition {
+                font-size: clamp(1.1rem, 3vw, 1.5rem) !important; /* AUMENTATO */
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg id="fractal-bg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <filter id="fractalFilter">
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="4" result="turbulence" seed="1"/>
+                <feColorMatrix in="turbulence" type="saturate" values="0"/>
+            </filter>
+        </defs>
+        <rect width="100%" height="100%" filter="url(#fractalFilter)" opacity="0.3" fill="#2c3e50"/>
+    </svg>
+    
+    <h1 id="main-title">L'abaco di maestro Luciano</h1>
+    
+    <div class="instructions" id="instructions">
+        🎯 Inserisci un numero da 0 a 9999 e guarda come si muovono le palline sull'abaco!
+    </div>
+    
+    <div class="main-container">
+        <div class="left-panel">
+            <div id="abacus-container">
+                <div id="abacus">
+                    <div class="column">
+                        <div class="rod">
+                            <div class="balls-container" id="thousands"></div>
+                        </div>
+                        <div class="column-label" id="label-thousands">Migliaia</div>
+                    </div>
+                    <div class="column">
+                        <div class="rod">
+                            <div class="balls-container" id="hundreds"></div>
+                        </div>
+                        <div class="column-label" id="label-hundreds">Centinaia</div>
+                    </div>
+                    <div class="column">
+                        <div class="rod">
+                            <div class="balls-container" id="tens"></div>
+                        </div>
+                        <div class="column-label" id="label-tens">Decine</div>
+                    </div>
+                    <div class="column">
+                        <div class="rod">
+                            <div class="balls-container" id="units"></div>
+                        </div>
+                        <div class="column-label" id="label-units">Unità</div>
+                    </div>
+                </div>
+                
+                <div class="trash-zone" id="trash-zone" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    🗑️
+                </div>
+                
+                <div class="quick-numbers">
+                    <button type="button" class="quick-btn" onclick="quickNumber(0)">0</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(10)">10</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(50)">50</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(100)">100</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(500)">500</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(1000)">1000</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <div id="number-display">
+                <div id="current-number">0</div>
+                <div id="number-breakdown">Zero unità</div>
+            </div>
+            
+            <div class="number-words-container">
+                <div class="number-words-title" id="number-words-title">Numero in lettere</div>
+                <div class="number-word-text" id="number-word-current">zero</div>
+            </div>
+            
+            <div class="ball-buttons">
+                <div class="ball-button">
+                    <div class="ball-btn white" data-color="thousand" data-value="1000" role="button" tabindex="0" aria-label="Aggiungi una migliaia"></div>
+                    <div class="ball-count" id="thousand-count">0</div>
+                    <div class="ball-label" id="label-thousand">Migliaia</div>
+                </div>
+                <div class="ball-button">
+                    <div class="ball-btn green" data-color="hundred" data-value="100" role="button" tabindex="0" aria-label="Aggiungi una centinaia"></div>
+                    <div class="ball-count" id="hundred-count">0</div>
+                    <div class="ball-label" id="label-hundred">Centinaia</div>
+                </div>
+                <div class="ball-button">
+                    <div class="ball-btn red" data-color="ten" data-value="10" role="button" tabindex="0" aria-label="Aggiungi una decina"></div>
+                    <div class="ball-count" id="ten-count">0</div>
+                    <div class="ball-label" id="label-ten">Decine</div>
+                </div>
+                <div class="ball-button">
+                    <div class="ball-btn blue" data-color="unit" data-value="1" role="button" tabindex="0" aria-label="Aggiungi una unità"></div>
+                    <div class="ball-count" id="unit-count">0</div>
+                    <div class="ball-label" id="label-unit">Unità</div>
+                </div>
+            </div>
+            
+            <form id="input-form">
+                <label for="number-input" class="sr-only">Inserisci un numero da 0 a 9999</label>
+                <input type="number" id="number-input" min="0" max="9999" placeholder="Scrivi un numero" required>
+                <button type="submit" id="submit-btn">Mostra sull'abaco</button>
+            </form>
+            
+            <div id="voice-controls">
+                <button id="voice-button" type="button" aria-label="Ascolta il numero pronunciato">🔊 <span id="voice-text">Ascolta il numero</span></button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="language-selector">
+        <button class="lang-btn active" onclick="changeLanguage('it')">🇮🇹 IT</button>
+        <button class="lang-btn" onclick="changeLanguage('en')">🇬🇧 EN</button>
+        <button class="lang-btn" onclick="changeLanguage('fr')">🇫🇷 FR</button>
+        <button class="lang-btn" onclick="changeLanguage('de')">🇩🇪 DE</button>
+        <button class="lang-btn" onclick="changeLanguage('es')">🇪🇸 ES</button>
+        <button class="lang-btn" onclick="changeLanguage('pt')">🇵🇹 PT</button>
+        <button class="lang-btn" onclick="changeLanguage('zh')">🇨🇳 ZH</button>
+        <button class="lang-btn" onclick="changeLanguage('ru')">🇷🇺 RU</button>
+        <button class="lang-btn" onclick="changeLanguage('hi')">🇮🇳 HI</button>
+    </div>
+    
+    <script>
+        const synth = window.speechSynthesis;
+        let currentNumber = 0;
+        let ballCounts = { unit: 0, ten: 0, hundred: 0, thousand: 0 };
+        let currentLanguage = 'it';
+        
+        const translations = {
+            it: {
+                title: "L'abaco di maestro Luciano",
+                instructions: "🎯 Inserisci un numero da 0 a 9999 e guarda come si muovono le palline sull'abaco!",
+                thousands: "Migliaia",
+                hundreds: "Centinaia",
+                tens: "Decine",
+                units: "Unità",
+                thousand: "Migliaia",
+                hundred: "Centinaia",
+                ten: "Decine",
+                unit: "Unità",
+                submit: "Mostra sull'abaco",
+                voice: "Ascolta il numero",
+                placeholder: "Scrivi un numero",
+                zero: "Zero",
+                breakdown: "Suddivisione",
+                trash: "Cestino per rimuovere palline",
+                speakLang: 'it-IT',
+                numberInWords: "Numero in lettere"
+            },
+            en: {
+                title: "Master Luciano's Abacus",
+                instructions: "🎯 Enter a number from 0 to 9999 and watch the beads move on the abacus!",
+                thousands: "Thousands",
+                hundreds: "Hundreds",
+                tens: "Tens",
+                units: "Units",
+                thousand: "Thousands",
+                hundred: "Hundreds",
+                ten: "Tens",
+                unit: "Units",
+                submit: "Show on abacus",
+                voice: "Listen to number",
+                placeholder: "Write a number",
+                zero: "Zero",
+                breakdown: "Breakdown",
+                trash: "Trash to remove beads",
+                speakLang: 'en-US',
+                numberInWords: "Number in words"
+            },
+            fr: {
+                title: "L'abaque de Maître Luciano",
+                instructions: "🎯 Entrez un nombre de 0 à 9999 et regardez les perles bouger sur l'abaque!",
+                thousands: "Milliers",
+                hundreds: "Centaines",
+                tens: "Dizaines",
+                units: "Unités",
+                thousand: "Milliers",
+                hundred: "Centaines",
+                ten: "Dizaines",
+                unit: "Unités",
+                submit: "Montrer sur l'abaque",
+                voice: "Écouter le nombre",
+                placeholder: "Écrire un nombre",
+                zero: "Zéro",
+                breakdown: "Décomposition",
+                trash: "Poubelle pour enlever les perles",
+                speakLang: 'fr-FR',
+                numberInWords: "Nombre en lettres"
+            },
+            de: {
+                title: "Meister Lucianos Abakus",
+                instructions: "🎯 Geben Sie eine Zahl von 0 bis 9999 ein und sehen Sie, wie sich die Perlen auf dem Abakus bewegen!",
+                thousands: "Tausende",
+                hundreds: "Hunderte",
+                tens: "Zehner",
+                units: "Einer",
+                thousand: "Tausende",
+                hundred: "Hunderte",
+                ten: "Zehner",
+                unit: "Einer",
+                submit: "Auf dem Abakus zeigen",
+                voice: "Zahl anhören",
+                placeholder: "Zahl schreiben",
+                zero: "Null",
+                breakdown: "Aufschlüsselung",
+                trash: "Mülleimer zum Entfernen von Perlen",
+                speakLang: 'de-DE',
+                numberInWords: "Zahl in Worten"
+            },
+            es: {
+                title: "El ábaco de Maestro Luciano",
+                instructions: "🎯 Ingrese un número del 0 al 9999 y observe cómo se mueven las cuentas en el ábaco!",
+                thousands: "Miles",
+                hundreds: "Centenas",
+                tens: "Decenas",
+                units: "Unidades",
+                thousand: "Miles",
+                hundred: "Centenas",
+                ten: "Decenas",
+                unit: "Unidades",
+                submit: "Mostrar en ábaco",
+                voice: "Escuchar número",
+                placeholder: "Escribir un número",
+                zero: "Cero",
+                breakdown: "Desglose",
+                trash: "Basura para quitar cuentas",
+                speakLang: 'es-ES',
+                numberInWords: "Número en letras"
+            },
+            pt: {
+                title: "O Ábaco do Mestre Luciano",
+                instructions: "🎯 Digite um número de 0 a 9999 e veja as bolinhas se moverem no ábaco!",
+                thousands: "Milhares",
+                hundreds: "Centenas",
+                tens: "Dezenas",
+                units: "Unidades",
+                thousand: "Milhares",
+                hundred: "Centena",
+                ten: "Dezenas",
+                unit: "Unidades",
+                submit: "Mostrar no ábaco",
+                voice: "Ouvir número",
+                placeholder: "Escreva um número",
+                zero: "Zero",
+                breakdown: "Divisão",
+                trash: "Lixeira para remover bolinhas",
+                speakLang: 'pt-BR',
+                numberInWords: "Número por extenso"
+            },
+            zh: {
+                title: "卢西亚诺老师的算盘",
+                instructions: "🎯 输入0到9999之间的数字，看看算盘上的珠子如何移动！",
+                thousands: "千",
+                hundreds: "百",
+                tens: "十",
+                units: "个",
+                thousand: "千",
+                hundred: "百",
+                ten: "十",
+                unit: "个",
+                submit: "在算盘上显示",
+                voice: "听数字",
+                placeholder: "写数字",
+                zero: "零",
+                breakdown: "分解",
+                trash: "移除珠子的垃圾桶",
+                speakLang: 'zh-CN',
+                numberInWords: "数字文字表示"
+            },
+            ru: {
+                title: "Абак учителя Лучано",
+                instructions: "🎯 Введите число от 0 до 9999 и посмотрите, как двигаются бусины на абаке!",
+                thousands: "Тысячи",
+                hundreds: "Сотни",
+                tens: "Десятки",
+                units: "Единицы",
+                thousand: "Тысячи",
+                hundred: "Сотни",
+                ten: "Десятки",
+                unit: "Единицы",
+                submit: "Показать на абаке",
+                voice: "Слушать число",
+                placeholder: "Написать число",
+                zero: "Ноль",
+                breakdown: "Разложение",
+                trash: "Мусор для удаления бусин",
+                speakLang: 'ru-RU',
+                numberInWords: "Число словами"
+            },
+            hi: {
+                title: "उस्ताद लूसियानो की अबेकस",
+                instructions: "🎯 0 से 9999 तक कोई संख्या दर्ज करें और देखें कि अबेकस पर मोती कैसे चलते हैं!",
+                thousands: "हजार",
+                hundreds: "सौ",
+                tens: "दहाई",
+                units: "इकाई",
+                thousand: "हजार",
+                hundred: "सौ",
+                ten: "दहाई",
+                unit: "इकाई",
+                submit: "अबेकस पर दिखाएं",
+                voice: "संख्या सुनें",
+                placeholder: "संख्या लिखें",
+                zero: "शून्य",
+                breakdown: "विभाजन",
+                trash: "मोती हटाने के लिए कूड़ेदान",
+                speakLang: 'hi-IN',
+                numberInWords: "शब्दों में संख्या"
+            }
+        };
+        
+        const numberToWords = {
+            it: function(number) {
+                if (number === 0) return 'zero';
+                
+                const units = ['', 'uno', 'due', 'tre', 'quattro', 'cinque', 'sei', 'sette', 'otto', 'nove'];
+                const teens = ['dieci', 'undici', 'dodici', 'tredici', 'quattordici', 'quindici', 'sedici', 'diciassette', 'diciotto', 'diciannove'];
+                const tens = ['', '', 'venti', 'trenta', 'quaranta', 'cinquanta', 'sessanta', 'settanta', 'ottanta', 'novanta'];
+                const hundreds = ['', 'cento', 'duecento', 'trecento', 'quattrocento', 'cinquecento', 'seicento', 'settecento', 'ottocento', 'novecento'];
+                
+                let words = '';
+                
+                if (number >= 1000) {
+                    const thousands = Math.floor(number / 1000);
+                    if (thousands === 1) {
+                        words += 'mille';
+                    } else {
+                        words += units[thousands] + 'mila';
+                    }
+                    number %= 1000;
+                }
+                
+                if (number >= 100) {
+                    const hundred = Math.floor(number / 100);
+                    words += hundreds[hundred];
+                    number %= 100;
+                }
+                
+                if (number > 0) {
+                    if (number < 10) {
+                        words += units[number];
+                    } else if (number < 20) {
+                        words += teens[number - 10];
+                    } else {
+                        const ten = Math.floor(number / 10);
+                        const unit = number % 10;
+                        words += tens[ten];
+                        if (unit > 0) {
+                            words += units[unit];
+                        }
+                    }
+                }
+                
+                return words;
+            },
+            
+            en: function(number) {
+                if (number === 0) return 'zero';
+                
+                const units = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+                const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+                const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+                
+                let words = '';
+                
+                if (number >= 1000) {
+                    const thousands = Math.floor(number / 1000);
+                    words += units[thousands] + ' thousand';
+                    number %= 1000;
+                    if (number > 0) words += ' ';
+                }
+                
+                if (number >= 100) {
+                    const hundred = Math.floor(number / 100);
+                    words += units[hundred] + ' hundred';
+                    number %= 100;
+                    if (number > 0) words += ' ';
+                }
+                
+                if (number > 0) {
+                    if (number < 10) {
+                        words += units[number];
+                    } else if (number < 20) {
+                        words += teens[number - 10];
+                    } else {
+                        const ten = Math.floor(number / 10);
+                        const unit = number % 10;
+                        words += tens[ten];
+                        if (unit > 0) {
+                            words += '-' + units[unit];
+                        }
+                    }
+                }
+                
+                return words;
+            },
+            
+            fr: function(number) {
+                if (number === 0) return 'zéro';
+                
+                const units = ['', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf'];
+                const teens = ['dix', 'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize', 'dix-sept', 'dix-huit', 'dix-neuf'];
+                const tens = ['', '', 'vingt', 'trente', 'quarante', 'cinquante', 'soixante', 'soixante-dix', 'quatre-vingt', 'quatre-vingt-dix'];
+                
+                let words = '';
+                
+                if (number >= 1000) {
+                    const thousands = Math.floor(number / 1000);
+                    if (thousands === 1) {
+                        words += 'mille';
+                    } else {
+                        words += units[thousands] + ' mille';
+                    }
+                    number %= 1000;
+                }
+                
+                if (number >= 100) {
+                    const hundred = Math.floor(number / 100);
+                    if (hundred === 1) {
+                        words += 'cent';
+                    } else {
+                        words += units[hundred] + ' cent';
+                    }
+                    number %= 100;
+                }
+                
+                if (number > 0) {
+                    if (number < 10) {
+                        words += units[number];
+                    } else if (number < 20) {
+                        words += teens[number - 10];
+                    } else {
+                        const ten = Math.floor(number / 10);
+                        const unit = number % 10;
+                        words += tens[ten];
+                        if (unit > 0) {
+                            words += '-' + units[unit];
+                        }
+                    }
+                }
+                
+                return words;
+            },
+            
+            de: function(number) { 
+                if (number === 0) return 'null';
+                return number.toString() + ' (deutsch)'; 
+            },
+            es: function(number) { 
+                if (number === 0) return 'cero';
+                return number.toString() + ' (español)'; 
+            },
+            pt: function(number) { 
+                if (number === 0) return 'zero';
+                return number.toString() + ' (português)'; 
+            },
+            zh: function(number) { 
+                if (number === 0) return '零';
+                return number.toString() + ' (中文)'; 
+            },
+            ru: function(number) { 
+                if (number === 0) return 'ноль';
+                return number.toString() + ' (русский)'; 
+            },
+            hi: function(number) { 
+                if (number === 0) return 'शून्य';
+                return number.toString() + ' (हिन्दी)'; 
+            }
+        };
+        
+        // FUNZIONE PER GESTIRE IL RIPORTO DECIMALE
+        function handleCarryOver() {
+            let carry = false;
+            
+            if (ballCounts.unit >= 10) {
+                ballCounts.ten += Math.floor(ballCounts.unit / 10);
+                ballCounts.unit = ballCounts.unit % 10;
+                carry = true;
+            }
+            
+            if (ballCounts.ten >= 10) {
+                ballCounts.hundred += Math.floor(ballCounts.ten / 10);
+                ballCounts.ten = ballCounts.ten % 10;
+                carry = true;
+            }
+            
+            if (ballCounts.hundred >= 10) {
+                ballCounts.thousand += Math.floor(ballCounts.hundred / 10);
+                ballCounts.hundred = ballCounts.hundred % 10;
+                carry = true;
+            }
+            
+            if (ballCounts.thousand > 9) {
+                ballCounts.thousand = 9;
+            }
+            
+            return carry;
+        }
+        
+        function updateNumberWords(number) {
+            document.getElementById('number-word-current').textContent = numberToWords[currentLanguage](number);
+        }
+        
+        function updateFractal(lang) {
+            const fractalBg = document.getElementById('fractal-bg');
+            const seeds = {
+                it: 1, en: 2, fr: 3, de: 4, es: 5, 
+                pt: 6, zh: 8, ru: 9, hi: 10
+            };
+            
+            const saturations = {
+                it: 0, en: 0.2, fr: 0.4, de: 0.6, es: 0.8, 
+                pt: 1.0, zh: 1.4, ru: 1.6, hi: 1.8
+            };
+            
+            const seed = seeds[lang] || 1;
+            const saturation = saturations[lang] || 0;
+            
+            fractalBg.innerHTML = `
+                <defs>
+                    <filter id="fractalFilter">
+                        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="4" result="turbulence" seed="${seed}"/>
+                        <feColorMatrix in="turbulence" type="saturate" values="${saturation}"/>
+                    </filter>
+                </defs>
+                <rect width="100%" height="100%" filter="url(#fractalFilter)" opacity="0.3" fill="#2c3e50"/>
+            `;
+        }
+        
+        function createBalls() {
+            const containers = ['units', 'tens', 'hundreds', 'thousands'];
+            const classes = ['unit', 'ten', 'hundred', 'thousand'];
+            
+            containers.forEach((containerId, index) => {
+                const container = document.getElementById(containerId);
+                for (let i = 0; i < 9; i++) {
+                    const ball = document.createElement('div');
+                    ball.className = `ball ${classes[index]}`;
+                    ball.draggable = true;
+                    ball.ondragstart = (e) => {
+                        e.dataTransfer.setData("text", classes[index]);
+                    };
+                    container.appendChild(ball);
+                }
+            });
+        }
+        
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const t = translations[lang];
+            
+            document.getElementById('main-title').textContent = t.title;
+            document.getElementById('instructions').textContent = t.instructions;
+            document.getElementById('label-thousands').textContent = t.thousands;
+            document.getElementById('label-hundreds').textContent = t.hundreds;
+            document.getElementById('label-tens').textContent = t.tens;
+            document.getElementById('label-units').textContent = t.units;
+            document.getElementById('label-thousand').textContent = t.thousand;
+            document.getElementById('label-hundred').textContent = t.hundred;
+            document.getElementById('label-ten').textContent = t.ten;
+            document.getElementById('label-unit').textContent = t.unit;
+            document.getElementById('submit-btn').textContent = t.submit;
+            document.getElementById('voice-text').textContent = t.voice;
+            document.getElementById('number-input').placeholder = t.placeholder;
+            
+            document.getElementById('number-words-title').textContent = t.numberInWords;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            updateNumberDisplay(currentNumber, 
+                Math.floor(currentNumber / 1000),
+                Math.floor((currentNumber % 1000) / 100),
+                Math.floor((currentNumber % 100) / 10),
+                currentNumber % 10
+            );
+            
+            updateNumberWords(currentNumber);
+            updateFractal(lang);
+        }
+        
+        function quickNumber(num) {
+            document.getElementById('number-input').value = num;
+            updateAbacus(num);
+        }
+        
+        function updateAbacus(number) {
+            const num = Math.min(9999, Math.max(0, parseInt(number) || 0));
+            currentNumber = num;
+            
+            const thousands = Math.floor(num / 1000);
+            const hundreds = Math.floor((num % 1000) / 100);
+            const tens = Math.floor((num % 100) / 10);
+            const units = num % 10;
+            
+            updateColumn('thousands', thousands);
+            updateColumn('hundreds', hundreds);
+            updateColumn('tens', tens);
+            updateColumn('units', units);
+            
+            updateNumberDisplay(num, thousands, hundreds, tens, units);
+            updateBallCounts(units, tens, hundreds, thousands);
+            updateNumberWords(num);
+        }
+        
+        function updateColumn(columnId, count) {
+            const container = document.getElementById(columnId);
+            const balls = container.querySelectorAll('.ball');
+            
+            balls.forEach((ball, index) => {
+                if (index < count) {
+                    ball.classList.add('visible');
+                    setTimeout(() => {
+                        ball.classList.add('active');
+                    }, index * 100);
+                } else {
+                    ball.classList.remove('active');
+                    setTimeout(() => {
+                        ball.classList.remove('visible');
+                    }, 300);
+                }
+            });
+        }
+        
+        function updateNumberDisplay(num, thousands, hundreds, tens, units) {
+            document.getElementById('current-number').textContent = num;
+            
+            const t = translations[currentLanguage];
+            let breakdown = '';
+            if (num === 0) {
+                breakdown = t.zero;
+            } else {
+                const parts = [];
+                if (thousands > 0) parts.push(`${thousands} ${t.thousand}`);
+                if (hundreds > 0) parts.push(`${hundreds} ${t.hundred}`);
+                if (tens > 0) parts.push(`${tens} ${t.ten}`);
+                if (units > 0 || num === 0) parts.push(`${units} ${t.unit}`);
+                breakdown = parts.join(', ');
+            }
+            
+            document.getElementById('number-breakdown').textContent = breakdown;
+            
+            let decomposition = `${num}=`;
+            const decompositionParts = [];
+            if (thousands > 0) decompositionParts.push(`${thousands}k`);
+            if (hundreds > 0) decompositionParts.push(`${hundreds}h`);
+            if (tens > 0) decompositionParts.push(`${tens}da`);
+            if (units > 0) decompositionParts.push(`${units}u`);
+            
+            if (decompositionParts.length === 0) {
+                decomposition = '0=0k+0h+0da+0u';
+            } else {
+                decomposition += decompositionParts.join('+');
+            }
+            
+            let decompositionElement = document.getElementById('number-decomposition');
+            if (!decompositionElement) {
+                decompositionElement = document.createElement('div');
+                decompositionElement.id = 'number-decomposition';
+                decompositionElement.style.fontSize = 'clamp(1.3rem, 3.5vw, 1.8rem)';
+                decompositionElement.style.color = '#f39c12';
+                decompositionElement.style.marginTop = '12px';
+                decompositionElement.style.fontWeight = 'bold';
+                document.getElementById('number-display').appendChild(decompositionElement);
+            }
+            decompositionElement.textContent = decomposition;
+        }
+        
+        function updateBallCounts(units, tens, hundreds, thousands) {
+            ballCounts.unit = units;
+            ballCounts.ten = tens;
+            ballCounts.hundred = hundreds;
+            ballCounts.thousand = thousands;
+            
+            document.getElementById('unit-count').textContent = units;
+            document.getElementById('ten-count').textContent = tens;
+            document.getElementById('hundred-count').textContent = hundreds;
+            document.getElementById('thousand-count').textContent = thousands;
+        }
+        
+        function speakNumber() {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            
+            const thousands = Math.floor(currentNumber / 1000);
+            const hundreds = Math.floor((currentNumber % 1000) / 100);
+            const tens = Math.floor((currentNumber % 100) / 10);
+            const units = currentNumber % 10;
+            
+            const t = translations[currentLanguage];
+            let text = `${currentNumber}. `;
+            text += `${t.breakdown}: `;
+            
+            if (thousands > 0) {
+                text += `${thousands} ${t.thousand}. `;
+            }
+            if (hundreds > 0) {
+                text += `${hundreds} ${t.hundred}. `;
+            }
+            if (tens > 0) {
+                text += `${tens} ${t.ten}. `;
+            }
+            if (units > 0 || currentNumber === 0) {
+                text += `${units} ${t.unit}.`;
+            }
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = t.speakLang;
+            utterance.rate = 0.8;
+            synth.speak(utterance);
+        }
+        
+        // Gestione dei pulsanti palline con riporto decimale
+        document.querySelectorAll('.ball-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const color = this.dataset.color;
+                
+                if (color === 'unit') {
+                    ballCounts.unit++;
+                } else if (color === 'ten') {
+                    ballCounts.ten++;
+                } else if (color === 'hundred') {
+                    ballCounts.hundred++;
+                } else if (color === 'thousand') {
+                    ballCounts.thousand++;
+                }
+                
+                handleCarryOver();
+                
+                const newNumber = ballCounts.unit + ballCounts.ten * 10 + ballCounts.hundred * 100 + ballCounts.thousand * 1000;
+                
+                document.getElementById('number-input').value = newNumber;
+                updateAbacus(newNumber);
+            });
+        });
+        
+        document.getElementById('input-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = document.getElementById('number-input');
+            const btn = e.target.querySelector('button[type=submit]');
+            btn.disabled = true;
+            updateAbacus(input.value);
+            setTimeout(()=> btn.disabled = false, 800);
+            setTimeout(speakNumber, 800);
+        });
+        
+        document.getElementById('voice-button').addEventListener('click', speakNumber);
+        
+        function allowDrop(ev) {
+            ev.preventDefault();
+            document.getElementById('trash-zone').classList.add('drag-over');
+        }
+        
+        function drop(ev) {
+            ev.preventDefault();
+            const color = ev.dataTransfer.getData("text");
+            document.getElementById('trash-zone').classList.remove('drag-over');
+            
+            // Gestione rimozione con "prendere in prestito"
+            if (color === 'unit' && ballCounts.unit === 0) {
+                if (ballCounts.ten > 0) {
+                    ballCounts.ten--;
+                    ballCounts.unit = 9;
+                }
+            } else if (color === 'unit' && ballCounts.unit > 0) {
+                ballCounts.unit--;
+            } else if (color === 'ten' && ballCounts.ten === 0) {
+                if (ballCounts.hundred > 0) {
+                    ballCounts.hundred--;
+                    ballCounts.ten = 9;
+                }
+            } else if (color === 'ten' && ballCounts.ten > 0) {
+                ballCounts.ten--;
+            } else if (color === 'hundred' && ballCounts.hundred === 0) {
+                if (ballCounts.thousand > 0) {
+                    ballCounts.thousand--;
+                    ballCounts.hundred = 9;
+                }
+            } else if (color === 'hundred' && ballCounts.hundred > 0) {
+                ballCounts.hundred--;
+            } else if (color === 'thousand' && ballCounts.thousand > 0) {
+                ballCounts.thousand--;
+            }
+            
+            const newNumber = ballCounts.unit + ballCounts.ten * 10 + ballCounts.hundred * 100 + ballCounts.thousand * 1000;
+            document.getElementById('number-input').value = newNumber;
+            updateAbacus(newNumber);
+        }
+        
+        // Inizializzazione
+        createBalls();
+        updateAbacus(0);
+        
+        window.addEventListener('load', function() {
+            setTimeout(speakNumber, 1500);
+        });
+        
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:text/javascript,' + encodeURIComponent(`
+                self.addEventListener('install', e => {
+                    e.waitUntil(
+                        caches.open('abacus-v1').then(cache => {
+                            return cache.addAll(['/']);
+                        })
+                    );
+                });
+                self.addEventListener('fetch', e => {
+                    e.respondWith(
+                        caches.match(e.request).then(response => {
+                            return response || fetch(e.request);
+                        })
+                    );
+                });
+            `)).catch(() => {});
+        }
+    </script>
+</body>
+</html>
