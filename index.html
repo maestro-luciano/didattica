@@ -13,6 +13,12 @@
             box-sizing: border-box;
         }
 
+        html {
+            height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling su iOS */
+        }
+
         :root {
             --primary-dark: #1a1a2e;
             --secondary-dark: #16213e;
@@ -34,6 +40,8 @@
             min-height: 100vh;
             letter-spacing: 0.5px;
             word-spacing: 1px;
+            display: flex;
+            flex-direction: column;
             overflow-x: hidden; /* Previene scroll orizzontale */
         }
 
@@ -44,9 +52,10 @@
             line-height: 1.9;
         }
 
-        /* CONTENITORE CENTRALE - CORRETTO */
+        /* CONTENITORE CENTRALE - CORRETTO PER CHROME */
         .container-centrale {
             max-width: 1400px;
+            width: 100%;
             margin: 0 auto;
             padding: 0 20px;
             background: 
@@ -58,7 +67,7 @@
             border-right: 2px solid var(--border-color);
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
             position: relative;
-            /* RIMOSSO overflow: hidden; - ERA IL PROBLEMA PRINCIPALE */
+            flex: 1 0 auto; /* Permette al contenitore di espandersi */
             min-height: 100vh;
         }
 
@@ -95,7 +104,7 @@
             z-index: 1;
             border: 2px solid var(--border-color);
             border-radius: 0 0 20px 20px;
-            margin: 2rem 2rem 0 2rem;
+            margin-top: 2rem;
         }
 
         h1 {
@@ -121,7 +130,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin: 3rem 2rem;
+            margin: 3rem 0;
             position: relative;
             z-index: 1;
         }
@@ -213,16 +222,17 @@
             transform: scale(1.2);
         }
 
-        /* FOOTER - CORRETTO */
+        /* FOOTER */
         footer {
             background: linear-gradient(135deg, #0f172a 0%, var(--secondary-dark) 100%);
             color: var(--text-light);
             padding: 3.5rem 2rem;
-            margin: 4rem 2rem 2rem 2rem;
+            margin: 4rem 0 3rem 0;
             border: 2px solid var(--border-color);
             border-radius: 20px 20px 0 0;
             position: relative;
             z-index: 1;
+            flex-shrink: 0; /* Previene che il footer si comprima */
         }
 
         .valori {
@@ -254,24 +264,31 @@
             padding: 0 1rem;
         }
 
-        /* SCROLLBAR PERSONALIZZATA */
+        /* SCROLLBAR PERSONALIZZATA - FUNZIONA SU CHROME/EDGE */
         ::-webkit-scrollbar {
-            width: 12px;
+            width: 14px;
+            height: 14px;
         }
 
         ::-webkit-scrollbar-track {
             background: var(--secondary-dark);
-            border-radius: 6px;
+            border-radius: 0;
         }
 
         ::-webkit-scrollbar-thumb {
             background: var(--accent-blue);
-            border-radius: 6px;
+            border-radius: 0;
             border: 3px solid var(--secondary-dark);
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent-purple);
+        }
+
+        /* Per Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-blue) var(--secondary-dark);
         }
 
         /* RESPONSIVE DESIGN */
@@ -282,6 +299,11 @@
                 padding: 0 15px;
                 border-left: none;
                 border-right: none;
+            }
+            
+            header, footer {
+                margin-left: 15px;
+                margin-right: 15px;
             }
         }
 
@@ -296,7 +318,7 @@
             
             .risorse {
                 grid-template-columns: 1fr;
-                margin: 2rem 1rem;
+                margin: 2rem 0;
                 gap: 25px;
             }
             
@@ -305,8 +327,8 @@
             }
             
             header, footer {
-                margin-left: 1rem;
-                margin-right: 1rem;
+                margin-left: 10px;
+                margin-right: 10px;
             }
         }
 
@@ -332,12 +354,17 @@
             }
             
             header, footer {
-                margin: 1rem;
+                margin-left: 5px;
+                margin-right: 5px;
                 padding: 2.5rem 1rem;
             }
             
             .risorse {
-                margin: 2rem 0.5rem;
+                margin: 2rem 0;
+            }
+            
+            .container-centrale {
+                padding: 0 10px;
             }
         }
 
@@ -371,7 +398,7 @@
             }
             
             .container-centrale {
-                padding: 0 10px;
+                padding: 0 8px;
             }
         }
 
@@ -418,16 +445,24 @@
             color: #ffff00 !important;
         }
         
-        /* CORREZIONE PER SCROLL VERTICALE */
-        html {
-            overflow-y: scroll;
-        }
-        
-        /* Assicura che il contenuto sia sempre visibile */
-        main {
+        /* FIX PER CHROME: Assicura che il contenuto sia sempre scrollabile */
+        .content-wrapper {
             position: relative;
             z-index: 1;
-            padding-bottom: 2rem;
+            min-height: calc(100vh - 200px); /* Altezza minima per garantire scroll */
+        }
+        
+        /* Chrome specific fix */
+        @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+            .container-centrale {
+                display: block;
+                height: auto;
+            }
+            
+            body {
+                overflow-y: auto;
+                position: relative;
+            }
         }
     </style>
 </head>
@@ -438,7 +473,7 @@
             <p class="sottotitolo">Risorse didattiche inclusive, utilizzabili e modificabili in totale libertà</p>
         </header>
         
-        <main>
+        <main class="content-wrapper">
             <div class="risorse">
                 <section class="sezione matematica fractal-bg">
                     <h2>Matematica</h2>
@@ -505,17 +540,32 @@
                 }
             });
             
-            // Assicura che il body abbia l'altezza corretta
-            document.body.style.height = 'auto';
-            
-            // Debug: mostra se c'è overflow nascosto
-            console.log('Altezza body:', document.body.scrollHeight);
-            console.log('Altezza viewport:', window.innerHeight);
+            // Fix specifico per Chrome: forza il calcolo corretto dell'altezza
+            if (navigator.userAgent.indexOf('Chrome') > -1) {
+                document.body.style.height = 'auto';
+                document.body.style.overflowY = 'visible';
+                
+                // Piccolo ritardo per assicurarsi che il DOM sia completamente caricato
+                setTimeout(() => {
+                    const container = document.querySelector('.container-centrale');
+                    if (container) {
+                        container.style.minHeight = '100vh';
+                    }
+                }, 100);
+            }
         });
         
-        // Assicura che la pagina sia scrollabile
+        // Fix per Chrome su resize
         window.addEventListener('resize', function() {
+            if (navigator.userAgent.indexOf('Chrome') > -1) {
+                document.body.style.overflowY = 'auto';
+            }
+        });
+        
+        // Assicura che la pagina sia sempre scrollabile
+        window.addEventListener('load', function() {
             document.body.style.overflowY = 'auto';
+            document.documentElement.style.overflowY = 'auto';
         });
     </script>
 </body>
