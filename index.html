@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maestro Luciano - Risorse Didattiche Inclusive</title>
+    <title>Maestro Luciano - Risorse Didattiche Inclusive per la Scuola Primaria</title>
+    <meta name="description" content="Risorse didattiche gratuite e inclusive per matematica, scienze, tecnologia, coding, robotica e strumenti poliglotti per la scuola primaria ed elementare.">
+    <meta name="keywords" content="risorse didattiche, materiale didattico, matematica, scienze, tecnologia, coding, opensource, conoscenza, condivisione, inclusione plurilingue, strumenti poliglotti, maestro luciano, scuola primaria, scuola elementare, abaco, robotica, didattica inclusiva, free software, BES, DSA">
+    <meta name="author" content="Maestro Luciano">
+    <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Dyslexic:wght@400;700&family=Comic+Neue:wght@400;700&display=swap">
     <style>
         /* RESET E IMPOSTAZIONI BASE */
@@ -37,12 +41,18 @@
             line-height: 1.8;
             color: var(--text-light);
             background-color: var(--primary-dark);
-            min-height: 100vh;
             letter-spacing: 0.5px;
             word-spacing: 1px;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden; /* Previene scroll orizzontale */
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* FIX PER SCROLL SU TUTTI I BROWSER */
+        html, body {
+            overflow-y: auto !important;
+            height: auto !important;
         }
 
         /* FONT PER DISLESSIA */
@@ -52,7 +62,7 @@
             line-height: 1.9;
         }
 
-        /* CONTENITORE CENTRALE - CORRETTO PER CHROME */
+        /* CONTENITORE CENTRALE - CORRETTO PER TUTTI I BROWSER */
         .container-centrale {
             max-width: 1400px;
             width: 100%;
@@ -67,8 +77,8 @@
             border-right: 2px solid var(--border-color);
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
             position: relative;
-            flex: 1 0 auto; /* Permette al contenitore di espandersi */
-            min-height: 100vh;
+            min-height: auto;
+            height: auto;
         }
 
         /* EFFETTO FRATTALE PER SFONDI */
@@ -222,6 +232,21 @@
             transform: scale(1.2);
         }
 
+        /* SEZIONE PLURILINGUE E STRUMENTI POLIGLOTTI */
+        .sezione.plurilingue {
+            margin-top: 2rem;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
+            border-color: #f59e0b;
+        }
+
+        .sezione.plurilingue h2 {
+            border-color: #f59e0b;
+        }
+
+        .sezione.plurilingue a::before {
+            content: "🌍";
+        }
+
         /* FOOTER */
         footer {
             background: linear-gradient(135deg, #0f172a 0%, var(--secondary-dark) 100%);
@@ -232,7 +257,6 @@
             border-radius: 20px 20px 0 0;
             position: relative;
             z-index: 1;
-            flex-shrink: 0; /* Previene che il footer si comprima */
         }
 
         .valori {
@@ -445,49 +469,36 @@
             color: #ffff00 !important;
         }
         
-        /* FIX PER CHROME: Assicura che il contenuto sia sempre scrollabile */
+        /* CONTENITORE PER IL CONTENUTO PRINCIPALE */
         .content-wrapper {
             position: relative;
             z-index: 1;
-            min-height: calc(100vh - 200px); /* Altezza minima per garantire scroll */
-        }
-        
-        /* Chrome specific fix */
-        @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
-            .container-centrale {
-                display: block;
-                height: auto;
-            }
-            
-            body {
-                overflow-y: auto;
-                position: relative;
-            }
         }
     </style>
 </head>
 <body class="dyslexia-friendly">
     <div class="container-centrale fractal-bg">
         <header class="fractal-bg">
-            <h1>Maestro Luciano</h1>
-            <p class="sottotitolo">Risorse didattiche inclusive, utilizzabili e modificabili in totale libertà</p>
+            <h1>Maestro Luciano - Risorse Didattiche Inclusive</h1>
+            <p class="sottotitolo">Materiale didattico gratuito per matematica, scienze, tecnologia, coding, robotica, abaco e strumenti poliglotti per la scuola primaria</p>
         </header>
         
         <main class="content-wrapper">
             <div class="risorse">
                 <section class="sezione matematica fractal-bg">
-                    <h2>Matematica</h2>
+                    <h2>Matematica e Abaco</h2>
                     <ul>
                         <li><a href="#" tabindex="0">Schede operative sulle quattro operazioni</a></li>
                         <li><a href="#" tabindex="0">Giochi interattivi per le tabelline</a></li>
                         <li><a href="#" tabindex="0">Esercizi di logica e problem solving</a></li>
                         <li><a href="#" tabindex="0">Unità di apprendimento sulla geometria</a></li>
                         <li><a href="#" tabindex="0">Materiale per BES e DSA sulla matematica</a></li>
+                        <li><a href="#" tabindex="0">Utilizzo dell'abaco per il calcolo mentale</a></li>
                     </ul>
                 </section>
                 
                 <section class="sezione scienze fractal-bg">
-                    <h2>Scienze</h2>
+                    <h2>Scienze e Ambiente</h2>
                     <ul>
                         <li><a href="#" tabindex="0">Schede sul corpo umano e i cinque sensi</a></li>
                         <li><a href="#" tabindex="0">Esperimenti scientifici per la scuola primaria</a></li>
@@ -498,13 +509,25 @@
                 </section>
                 
                 <section class="sezione tecnologia fractal-bg">
-                    <h2>Tecnologia</h2>
+                    <h2>Tecnologia, Coding e Robotica</h2>
                     <ul>
                         <li><a href="#" tabindex="0">Introduzione al coding con Scratch</a></li>
                         <li><a href="#" tabindex="0">Schede sui componenti del computer</a></li>
                         <li><a href="#" tabindex="0">Percorsi su internet e sicurezza online</a></li>
                         <li><a href="#" tabindex="0">Attività con robotica educativa</a></li>
                         <li><a href="#" tabindex="0">Materiali sulla stampa 3D per bambini</a></li>
+                        <li><a href="#" tabindex="0">Progetti di robotica per la scuola primaria</a></li>
+                    </ul>
+                </section>
+
+                <section class="sezione plurilingue fractal-bg">
+                    <h2>Inclusione Plurilingue e Strumenti Poliglotti</h2>
+                    <ul>
+                        <li><a href="#" tabindex="0">Materiali didattici in più lingue</a></li>
+                        <li><a href="#" tabindex="0">Schede per l'apprendimento dell'italiano L2</a></li>
+                        <li><a href="#" tabindex="0">Strumenti per alunni stranieri</a></li>
+                        <li><a href="#" tabindex="0">Risorse per il bilinguismo e plurilinguismo</a></li>
+                        <li><a href="#" tabindex="0">Giochi linguistici interculturali</a></li>
                     </ul>
                 </section>
             </div>
@@ -512,7 +535,7 @@
         
         <footer class="fractal-bg">
             <div class="valori">
-                <h3>Il Valore della Conoscenza Condivisa</h3>
+                <h3>Open Source e Condivisione della Conoscenza</h3>
                 <div class="testo-valori">
                     <p>La condivisione gratuita del sapere è un pilastro fondamentale per una società equa e democratica. L'open source e il free software rappresentano non solo strumenti tecnici, ma soprattutto valori etici: trasparenza, collaborazione, libertà di studio, modifica e distribuzione.</p>
                     <p>Queste filosofie promuovono l'accesso universale alla conoscenza, consentendo a chiunque di apprendere, adattare e migliorare risorse secondo le proprie necessità. Nel contesto educativo, questo si traduce in materiali didattici inclusivi, personalizzabili e sempre aggiornati dalla comunità, che superano barriere economiche e geografiche.</p>
@@ -540,29 +563,17 @@
                 }
             });
             
-            // Fix specifico per Chrome: forza il calcolo corretto dell'altezza
-            if (navigator.userAgent.indexOf('Chrome') > -1) {
-                document.body.style.height = 'auto';
-                document.body.style.overflowY = 'visible';
-                
-                // Piccolo ritardo per assicurarsi che il DOM sia completamente caricato
-                setTimeout(() => {
-                    const container = document.querySelector('.container-centrale');
-                    if (container) {
-                        container.style.minHeight = '100vh';
-                    }
-                }, 100);
-            }
+            // Assicura che la pagina sia sempre scrollabile su tutti i browser
+            document.body.style.overflowY = 'auto';
+            document.documentElement.style.overflowY = 'auto';
         });
         
-        // Fix per Chrome su resize
+        // Fix per il resize della finestra
         window.addEventListener('resize', function() {
-            if (navigator.userAgent.indexOf('Chrome') > -1) {
-                document.body.style.overflowY = 'auto';
-            }
+            document.body.style.overflowY = 'auto';
         });
         
-        // Assicura che la pagina sia sempre scrollabile
+        // Assicura che la pagina sia sempre scrollabile al caricamento completo
         window.addEventListener('load', function() {
             document.body.style.overflowY = 'auto';
             document.documentElement.style.overflowY = 'auto';
