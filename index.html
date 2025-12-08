@@ -34,6 +34,7 @@
             min-height: 100vh;
             letter-spacing: 0.5px;
             word-spacing: 1px;
+            overflow-x: hidden; /* Previene scroll orizzontale */
         }
 
         /* FONT PER DISLESSIA */
@@ -43,7 +44,7 @@
             line-height: 1.9;
         }
 
-        /* CONTENITORE CENTRALE */
+        /* CONTENITORE CENTRALE - CORRETTO */
         .container-centrale {
             max-width: 1400px;
             margin: 0 auto;
@@ -57,13 +58,13 @@
             border-right: 2px solid var(--border-color);
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
             position: relative;
-            overflow: hidden;
+            /* RIMOSSO overflow: hidden; - ERA IL PROBLEMA PRINCIPALE */
+            min-height: 100vh;
         }
 
         /* EFFETTO FRATTALE PER SFONDI */
         .fractal-bg {
             position: relative;
-            overflow: hidden;
         }
 
         .fractal-bg::before {
@@ -212,7 +213,7 @@
             transform: scale(1.2);
         }
 
-        /* FOOTER */
+        /* FOOTER - CORRETTO */
         footer {
             background: linear-gradient(135deg, #0f172a 0%, var(--secondary-dark) 100%);
             color: var(--text-light);
@@ -279,6 +280,8 @@
                 max-width: 100%;
                 margin: 0;
                 padding: 0 15px;
+                border-left: none;
+                border-right: none;
             }
         }
 
@@ -299,6 +302,11 @@
             
             .sezione {
                 padding: 1.8rem;
+            }
+            
+            header, footer {
+                margin-left: 1rem;
+                margin-right: 1rem;
             }
         }
 
@@ -326,6 +334,10 @@
             header, footer {
                 margin: 1rem;
                 padding: 2.5rem 1rem;
+            }
+            
+            .risorse {
+                margin: 2rem 0.5rem;
             }
         }
 
@@ -356,6 +368,10 @@
             
             a {
                 font-size: 1rem;
+            }
+            
+            .container-centrale {
+                padding: 0 10px;
             }
         }
 
@@ -397,9 +413,25 @@
             background-color: #000000 !important;
             border-color: #ffffff !important;
         }
+        
+        .high-contrast a {
+            color: #ffff00 !important;
+        }
+        
+        /* CORREZIONE PER SCROLL VERTICALE */
+        html {
+            overflow-y: scroll;
+        }
+        
+        /* Assicura che il contenuto sia sempre visibile */
+        main {
+            position: relative;
+            z-index: 1;
+            padding-bottom: 2rem;
+        }
     </style>
 </head>
-<body class="dyslexia-friendly fractal-bg">
+<body class="dyslexia-friendly">
     <div class="container-centrale fractal-bg">
         <header class="fractal-bg">
             <h1>Maestro Luciano</h1>
@@ -460,6 +492,7 @@
         document.addEventListener('keydown', function(e) {
             if (e.altKey && e.key === 'c') {
                 document.body.classList.toggle('high-contrast');
+                document.querySelector('.container-centrale').classList.toggle('high-contrast');
             }
         });
 
@@ -471,6 +504,18 @@
                     link.setAttribute('tabindex', '0');
                 }
             });
+            
+            // Assicura che il body abbia l'altezza corretta
+            document.body.style.height = 'auto';
+            
+            // Debug: mostra se c'è overflow nascosto
+            console.log('Altezza body:', document.body.scrollHeight);
+            console.log('Altezza viewport:', window.innerHeight);
+        });
+        
+        // Assicura che la pagina sia scrollabile
+        window.addEventListener('resize', function() {
+            document.body.style.overflowY = 'auto';
         });
     </script>
 </body>
