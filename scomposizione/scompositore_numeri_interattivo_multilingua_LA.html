@@ -1,0 +1,1524 @@
+﻿<!DOCTYPE html>
+<html lang="it" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<title>Dallo zero alle migliaia by Maestro Luciano</title>
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(90deg, #1b5e20, #a5d6a7);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    overflow: auto;
+  }
+  
+  /* Font per lingue specifiche */
+  .hindi, .devanagari {
+    font-family: 'Segoe UI', 'Nirmala UI', 'Mangal', 'Kokila', 'Utsaah', sans-serif;
+  }
+  
+  .chinese {
+    font-family: 'Segoe UI', 'Microsoft YaHei', 'SimHei', sans-serif;
+  }
+  
+  #stage {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    margin: 10px 0;
+    font-size: 2.2em;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  #number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0;
+    font-size: 3.5em;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  #number span {
+    background: #fff;
+    border: 4px solid #0288d1;
+    border-radius: 15px;
+    padding: 0 15px;
+    min-width: 70px;
+    color: #01579b;
+    text-shadow: none;
+  }
+  
+  #visualization-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+    margin: 10px 0;
+  }
+  
+  .visualization-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    padding: 15px 0;
+  }
+  
+  .row-label {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+  }
+  
+  .elements-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 95vw;
+    padding: 10px 0;
+  }
+  
+  .thousand, .hundred, .bag {
+    border: 3px solid #f57c00;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    padding: 25px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background: #ffb74d;
+    margin: 5px 0;
+  }
+  
+  .thousand {
+    display: grid;
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 3px;
+    justify-items: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .hundred {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 6px;
+    justify-items: center;
+    align-items: center;
+  }
+  
+  .bag {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 12px;
+    justify-items: center;
+    align-items: center;
+  }
+  
+  .thousand::after {
+    content: '1000';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #bf360c;
+    background: white;
+    padding: 4px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  .hundred::after {
+    content: '100';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #bf360c;
+    background: white;
+    padding: 4px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  .bag::after {
+    content: '10';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #bf360c;
+    background: white;
+    padding: 4px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  .dot {
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  .thousand-dot {
+    background: #000;
+  }
+  
+  .hundred-dot {
+    background: #2e7d32;
+  }
+  
+  .ten-dot {
+    background: #d32f2f;
+  }
+  
+  .unit-dot {
+    background: #1976d2;
+  }
+  
+  .units-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    max-width: 95vw;
+    min-height: 80px;
+    padding: 15px 0;
+  }
+  
+  #input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  #number-input {
+    font-size: 1.6em;
+    width: 160px;
+    padding: 8px 12px;
+    border: 2px solid #0288d1;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  #apply-btn {
+    font-size: 1.3em;
+    padding: 8px 18px;
+    background: #0288d1;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  #apply-btn:hover {
+    background: #0277bd;
+  }
+  
+  #decomposition-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-size: 1.4em;
+    color: #01579b;
+    font-weight: bold;
+  }
+  
+  #clouds {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin: 20px 0;
+  }
+  
+  .cloud {
+    font-size: 1.9em;
+    background: #fff;
+    border: 2px solid #81d4fa;
+    border-radius: 25px;
+    padding: 12px 25px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .cloud:hover {
+    background: #e1f5fe;
+    transform: scale(1.05);
+  }
+  
+  #controls {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 20px 0 30px;
+  }
+  
+  button {
+    font-size: 2.4em;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50%;
+    background: #0288d1;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  button:hover {
+    background: #0277bd;
+    transform: scale(1.05);
+  }
+
+
+  #language-selector {
+    margin: 20px 0;
+    padding: 19px; /* Ridotto del 5% rispetto a 20px */
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    border: 2px solid #e8f5e9;
+  }
+
+
+  #language-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+
+  .lang-btn {
+    padding: 10px 18px;
+    border: 2px solid #5d8a82;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    color: #1b5e20;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    font-weight: 600;
+    min-width: 90px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+
+
+  .lang-btn:hover {
+    background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    border-color: #2e7d32;
+  }
+
+
+  .lang-btn.active {
+    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    color: #ffffff;
+    border-color: #1b5e20;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(-1px);
+  }
+
+
+  /* Stili per lingue RTL */
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+
+  .rtl-text {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: embed;
+  }
+
+
+  /* Miglioramenti per i testi delle lingue complesse */
+  .hindi {
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+
+
+  .chinese {
+    font-size: 1.3em;
+    font-weight: 600;
+  }
+
+
+  .browser-warning {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <h1 id="main-title">Dallo zero alle migliaia by Maestro Luciano</h1>
+  
+  <div id="number">
+    <span id="mil">0</span>
+    <span id="cen">0</span>
+    <span id="dec">0</span>
+    <span id="uni">0</span>
+  </div>
+
+
+  <div id="visualization-container">
+    <!-- I contenitori per migliaia, centinaia, decine e unità verranno popolati dinamicamente -->
+  </div>
+
+
+  <div id="input-container">
+    <label id="input-label" for="number-input">Inserisci numero:</label>
+    <input type="number" id="number-input" min="0" max="9999" value="0">
+    <button id="apply-btn" onclick="applicaNumero()">Applica</button>
+  </div>
+
+
+  <div id="decomposition-container">
+    <span id="decomposition-text">0 = 0k + 0h + 0da + 0u</span>
+  </div>
+
+
+  <div id="clouds">
+    <div class="cloud" onclick="cambiaNumero(-1)" id="back-btn">Indietro -1</div>
+    <div class="cloud" onclick="cambiaNumero(1)" id="forward-btn">Avanti +1</div>
+  </div>
+
+
+  <div id="controls">
+    <button onclick="parla()" title="Riascolta" id="speak-btn">🔊</button>
+    <button onclick="togglePlay()" id="playBtn" title="Play/Pausa">⏸</button>
+  </div>
+
+
+  <div id="language-selector">
+    <div style="font-size: 1.3em; margin-bottom: 15px; font-weight: bold; color: #1b5e20;">🌍 Seleziona Lingua / Select Language</div>
+    <div id="language-buttons">
+      <button class="lang-btn" onclick="cambiaLingua('en')">English</button>
+      <button class="lang-btn active" onclick="cambiaLingua('it')">Italiano</button>
+      <button class="lang-btn" onclick="cambiaLingua('fr')">Français</button>
+      <button class="lang-btn" onclick="cambiaLingua('de')">Deutsch</button>
+      <button class="lang-btn" onclick="cambiaLingua('es')">Español</button>
+      <button class="lang-btn" onclick="cambiaLingua('pt')">Português</button>
+      <button class="lang-btn" onclick="cambiaLingua('fil')">Filipino</button>
+      <button class="lang-btn hindi" onclick="cambiaLingua('hi')">हिन्दी</button>
+      <button class="lang-btn" onclick="cambiaLingua('ru')">Русский</button>
+      <button class="lang-btn chinese" onclick="cambiaLingua('zh')">中文</button>
+    </div>
+    <div class="browser-warning">
+      💡 <strong>Suggerimento:</strong> Per la migliore esperienza vocale in tutte le lingue, usa Google Chrome
+    </div>
+  </div>
+</div>
+
+
+<script>
+let N = 0;
+let playing = true;
+const maxDots = 9999;
+let currentLang = 'it';
+
+
+// Traduzioni per tutte le lingue con numeri scritti in lettere
+const translations = {
+  en: {
+    title: "From zero to thousands by Maestro Luciano",
+    inputLabel: "Enter number:",
+    apply: "Apply",
+    back: "Back -1",
+    forward: "Forward +1",
+    listen: "Listen again",
+    play: "Play/Pause",
+    thousands: "THOUSANDS",
+    hundreds: "HUNDREDS", 
+    tens: "TENS",
+    units: "UNITS",
+    decomposition: "Decomposition:",
+    direction: "ltr",
+    speak: (n, thousands, hundreds, tens, units) => {
+      const numberWords = {
+        0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five',
+        6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten',
+        11: 'eleven', 12: 'twelve', 13: 'thirteen', 14: 'fourteen', 15: 'fifteen',
+        16: 'sixteen', 17: 'seventeen', 18: 'eighteen', 19: 'nineteen', 20: 'twenty',
+        30: 'thirty', 40: 'forty', 50: 'fifty', 60: 'sixty', 70: 'seventy', 
+        80: 'eighty', 90: 'ninety'
+      };
+      
+      function numberToWords(num) {
+        if (num <= 20 || (num < 100 && num % 10 === 0)) {
+          return numberWords[num];
+        } else if (num < 100) {
+          return numberWords[Math.floor(num/10)*10] + '-' + numberWords[num%10];
+        } else if (num < 1000) {
+          const hundreds = Math.floor(num/100);
+          const remainder = num % 100;
+          return numberWords[hundreds] + ' hundred' + (remainder > 0 ? ' ' + numberToWords(remainder) : '');
+        } else {
+          const thousands = Math.floor(num/1000);
+          const remainder = num % 1000;
+          return numberWords[thousands] + ' thousand' + (remainder > 0 ? ' ' + numberToWords(remainder) : '');
+        }
+      }
+
+
+      let phrase = numberToWords(n) + " decomposes into ";
+      if (thousands === 1) phrase += "one thousand";
+      else if (thousands > 1) phrase += numberToWords(thousands) + " thousands";
+      
+      if (thousands > 0 && (hundreds > 0 || tens > 0 || units > 0)) phrase += ", ";
+      
+      if (hundreds === 1) phrase += "one hundred";
+      else if (hundreds > 1) phrase += numberToWords(hundreds) + " hundreds";
+      
+      if (hundreds > 0 && (tens > 0 || units > 0)) phrase += ", ";
+      
+      if (tens === 1) phrase += "one ten";
+      else if (tens > 1) phrase += numberToWords(tens) + " tens";
+      
+      if (tens > 0 && units > 0) phrase += " and ";
+      
+      if (units === 1) phrase += "one unit";
+      else if (units > 1) phrase += numberToWords(units) + " units";
+      
+      if (thousands === 0 && hundreds === 0 && tens === 0 && units === 0) phrase = "zero units";
+      
+      return phrase + ".";
+    }
+  },
+  it: {
+    title: "Dallo zero alle migliaia by Maestro Luciano",
+    inputLabel: "Inserisci numero:",
+    apply: "Applica",
+    back: "Indietro -1",
+    forward: "Avanti +1",
+    listen: "Riascolta",
+    play: "Play/Pausa",
+    thousands: "MIGLIAIA",
+    hundreds: "CENTINAIA",
+    tens: "DECINE",
+    units: "UNITÀ",
+    decomposition: "Scomposizione:",
+    direction: "ltr",
+    speak: (n, migliaia, centinaia, decine, unita) => {
+      const numberWords = {
+        0: 'zero', 1: 'uno', 2: 'due', 3: 'tre', 4: 'quattro', 5: 'cinque',
+        6: 'sei', 7: 'sette', 8: 'otto', 9: 'nove', 10: 'dieci',
+        11: 'undici', 12: 'dodici', 13: 'tredici', 14: 'quattordici', 15: 'quindici',
+        16: 'sedici', 17: 'diciassette', 18: 'diciotto', 19: 'diciannove', 20: 'venti',
+        30: 'trenta', 40: 'quaranta', 50: 'cinquanta', 60: 'sessanta', 70: 'settanta', 
+        80: 'ottanta', 90: 'novanta'
+      };
+      
+      function numberToWords(num) {
+        if (num <= 20 || (num < 100 && num % 10 === 0)) {
+          return numberWords[num];
+        } else if (num < 100) {
+          if (num % 10 === 1 || num % 10 === 8) {
+            return numberWords[Math.floor(num/10)*10].slice(0, -1) + numberWords[num%10];
+          }
+          return numberWords[Math.floor(num/10)*10] + numberWords[num%10];
+        } else if (num < 1000) {
+          const centinaia = Math.floor(num/100);
+          const resto = num % 100;
+          let centStr = centinaia === 1 ? "cento" : numberWords[centinaia] + "cento";
+          return centStr + (resto > 0 ? numberToWords(resto) : '');
+        } else {
+          const migliaia = Math.floor(num/1000);
+          const resto = num % 1000;
+          let milStr = migliaia === 1 ? "mille" : numberWords[migliaia] + "mila";
+          return milStr + (resto > 0 ? numberToWords(resto) : '');
+        }
+      }
+
+
+      let frase = numberToWords(n) + " si scompone in ";
+      if (migliaia === 1) frase += "un migliaio";
+      else if (migliaia > 1) frase += numberToWords(migliaia) + " migliaia";
+      
+      if (migliaia > 0 && (centinaia > 0 || decine > 0 || unita > 0)) frase += ", ";
+      
+      if (centinaia === 1) frase += "un centinaio";
+      else if (centinaia > 1) frase += numberToWords(centinaia) + " centinaia";
+      
+      if (centinaia > 0 && (decine > 0 || unita > 0)) frase += ", ";
+      
+      if (decine === 1) frase += "una decina";
+      else if (decine > 1) frase += numberToWords(decine) + " decine";
+      
+      if (decine > 0 && unita > 0) frase += " e ";
+      
+      if (unita === 1) frase += "una unità";
+      else if (unita > 1) frase += numberToWords(unita) + " unità";
+      
+      if (migliaia === 0 && centinaia === 0 && decine === 0 && unita === 0) frase = "zero unità";
+      
+      return frase + ".";
+    }
+  },
+  fr: {
+    title: "De zéro aux milliers by Maestro Luciano",
+    inputLabel: "Entrez le nombre:",
+    apply: "Appliquer",
+    back: "Retour -1",
+    forward: "Avant +1",
+    listen: "Réécouter",
+    play: "Play/Pause",
+    thousands: "MILLIERS",
+    hundreds: "CENTAINES",
+    tens: "DIZAINES",
+    units: "UNITÉS",
+    decomposition: "Décomposition:",
+    direction: "ltr",
+    speak: (n, milliers, centaines, dizaines, unites) => {
+      const numberWords = {
+        0: 'zéro', 1: 'un', 2: 'deux', 3: 'trois', 4: 'quatre', 5: 'cinq',
+        6: 'six', 7: 'sept', 8: 'huit', 9: 'neuf', 10: 'dix',
+        11: 'onze', 12: 'douze', 13: 'treize', 14: 'quatorze', 15: 'quinze',
+        16: 'seize', 20: 'vingt', 30: 'trente', 40: 'quarante', 50: 'cinquante',
+        60: 'soixante', 70: 'soixante-dix', 80: 'quatre-vingt', 90: 'quatre-vingt-dix'
+      };
+      
+      function numberToWords(num) {
+        if (num <= 16 || (num < 100 && num % 10 === 0)) {
+          return numberWords[num];
+        } else if (num < 20) {
+          return 'dix-' + numberWords[num-10];
+        } else if (num < 100) {
+          const tens = Math.floor(num/10)*10;
+          const units = num % 10;
+          if (units === 0) return numberWords[tens];
+          return numberWords[tens] + '-' + numberWords[units];
+        } else if (num < 1000) {
+          const hundreds = Math.floor(num/100);
+          const remainder = num % 100;
+          let hundredStr = hundreds === 1 ? "cent" : numberWords[hundreds] + " cents";
+          return hundredStr + (remainder > 0 ? ' ' + numberToWords(remainder) : '');
+        } else {
+          const thousands = Math.floor(num/1000);
+          const remainder = num % 1000;
+          let thousandStr = thousands === 1 ? "mille" : numberWords[thousands] + " mille";
+          return thousandStr + (remainder > 0 ? ' ' + numberToWords(remainder) : '');
+        }
+      }
+
+
+      let phrase = numberToWords(n) + " se décompose en ";
+      if (milliers === 1) phrase += "un millier";
+      else if (milliers > 1) phrase += numberToWords(milliers) + " milliers";
+      
+      if (milliers > 0 && (centaines > 0 || dizaines > 0 || unites > 0)) phrase += ", ";
+      
+      if (centaines === 1) phrase += "une centaine";
+      else if (centaines > 1) phrase += numberToWords(centaines) + " centaines";
+      
+      if (centaines > 0 && (dizaines > 0 || unites > 0)) phrase += ", ";
+      
+      if (dizaines === 1) phrase += "une dizaine";
+      else if (dizaines > 1) phrase += numberToWords(dizaines) + " dizaines";
+      
+      if (dizaines > 0 && unites > 0) phrase += " et ";
+      
+      if (unites === 1) phrase += "une unité";
+      else if (unites > 1) phrase += numberToWords(unites) + " unités";
+      
+      if (milliers === 0 && centaines === 0 && dizaines === 0 && unites === 0) phrase = "zéro unité";
+      
+      return phrase + ".";
+    }
+  },
+  de: {
+    title: "Von null zu Tausenden by Maestro Luciano",
+    inputLabel: "Zahl eingeben:",
+    apply: "Anwenden",
+    back: "Zurück -1",
+    forward: "Vorwärts +1",
+    listen: "Nochmal hören",
+    play: "Play/Pause",
+    thousands: "TAUSENDER",
+    hundreds: "HUNDERTER",
+    tens: "ZEHNER",
+    units: "EINER",
+    decomposition: "Zerlegung:",
+    direction: "ltr",
+    speak: (n, tausender, hunderter, zehner, einer) => {
+      const numberWords = {
+        0: 'null', 1: 'eins', 2: 'zwei', 3: 'drei', 4: 'vier', 5: 'fünf',
+        6: 'sechs', 7: 'sieben', 8: 'acht', 9: 'neun', 10: 'zehn',
+        11: 'elf', 12: 'zwölf', 13: 'dreizehn', 14: 'vierzehn', 15: 'fünfzehn',
+        16: 'sechzehn', 17: 'siebzehn', 18: 'achtzehn', 19: 'neunzehn', 20: 'zwanzig',
+        30: 'dreißig', 40: 'vierzig', 50: 'fünfzig', 60: 'sechzig', 70: 'siebzig', 
+        80: 'achtzig', 90: 'neunzig'
+      };
+      
+      function numberToWords(num) {
+        if (num <= 20 || (num < 100 && num % 10 === 0)) {
+          return numberWords[num];
+        } else if (num < 100) {
+          const units = num % 10;
+          const tens = Math.floor(num/10)*10;
+          return numberWords[units] + 'und' + numberWords[tens];
+        } else if (num < 1000) {
+          const hundreds = Math.floor(num/100);
+          const remainder = num % 100;
+          let hundredStr = hundreds === 1 ? "einhundert" : numberWords[hundreds] + "hundert";
+          return hundredStr + (remainder > 0 ? numberToWords(remainder) : '');
+        } else {
+          const thousands = Math.floor(num/1000);
+          const remainder = num % 1000;
+          let thousandStr = thousands === 1 ? "eintausend" : numberToWords(thousands) + "tausend";
+          return thousandStr + (remainder > 0 ? numberToWords(remainder) : '');
+        }
+      }
+
+
+      let phrase = numberToWords(n) + " zerlegt sich in ";
+      if (tausender === 1) phrase += "einen Tausender";
+      else if (tausender > 1) phrase += numberToWords(tausender) + " Tausender";
+      
+      if (tausender > 0 && (hunderter > 0 || zehner > 0 || einer > 0)) phrase += ", ";
+      
+      if (hunderter === 1) phrase += "einen Hunderter";
+      else if (hunderter > 1) phrase += numberToWords(hunderter) + " Hunderter";
+      
+      if (hunderter > 0 && (zehner > 0 || einer > 0)) phrase += ", ";
+      
+      if (zehner === 1) phrase += "einen Zehner";
+      else if (zehner > 1) phrase += numberToWords(zehner) + " Zehner";
+      
+      if (zehner > 0 && einer > 0) phrase += " und ";
+      
+      if (einer === 1) phrase += "einen Einer";
+      else if (einer > 1) phrase += numberToWords(einer) + " Einer";
+      
+      if (tausender === 0 && hunderter === 0 && zehner === 0 && einer === 0) phrase = "null Einer";
+      
+      return phrase + ".";
+    }
+  },
+  es: {
+    title: "De cero a miles by Maestro Luciano",
+    inputLabel: "Ingresa el número:",
+    apply: "Aplicar",
+    back: "Atrás -1",
+    forward: "Adelante +1",
+    listen: "Escuchar de nuevo",
+    play: "Play/Pausa",
+    thousands: "MILLARES",
+    hundreds: "CENTENAS",
+    tens: "DECENAS",
+    units: "UNIDADES",
+    decomposition: "Descomposición:",
+    direction: "ltr",
+    speak: (n, millares, centenas, decenas, unidades) => {
+      const numberWords = {
+        0: 'cero', 1: 'uno', 2: 'dos', 3: 'tres', 4: 'cuatro', 5: 'cinco',
+        6: 'seis', 7: 'siete', 8: 'ocho', 9: 'nueve', 10: 'diez',
+        11: 'once', 12: 'doce', 13: 'trece', 14: 'catorce', 15: 'quince',
+        16: 'dieciséis', 20: 'veinte', 30: 'treinta', 40: 'cuarenta', 50: 'cincuenta',
+        60: 'sesenta', 70: 'setenta', 80: 'ochenta', 90: 'noventa'
+      };
+      
+      function numberToWords(num) {
+        if (num <= 15 || num === 20 || (num < 100 && num % 10 === 0)) {
+          return numberWords[num];
+        } else if (num < 20) {
+          return 'dieci' + numberWords[num-10];
+        } else if (num < 30) {
+          return 'veinti' + numberWords[num-20];
+        } else if (num < 100) {
+          const tens = Math.floor(num/10)*10;
+          const units = num % 10;
+          return numberWords[tens] + ' y ' + numberWords[units];
+        } else if (num < 1000) {
+          const hundreds = Math.floor(num/100);
+          const remainder = num % 100;
+          let hundredStr = hundreds === 1 ? "cien" : numberWords[hundreds] + "cientos";
+          return hundredStr + (remainder > 0 ? ' ' + numberToWords(remainder) : '');
+        } else {
+          const thousands = Math.floor(num/1000);
+          const remainder = num % 1000;
+          let thousandStr = thousands === 1 ? "mil" : numberToWords(thousands) + " mil";
+          return thousandStr + (remainder > 0 ? ' ' + numberToWords(remainder) : '');
+        }
+      }
+
+
+      let frase = numberToWords(n) + " se descompone en ";
+      if (millares === 1) frase += "un millar";
+      else if (millares > 1) frase += numberToWords(millares) + " millares";
+      
+      if (millares > 0 && (centenas > 0 || decenas > 0 || unidades > 0)) frase += ", ";
+      
+      if (centenas === 1) frase += "una centena";
+      else if (centenas > 1) frase += numberToWords(centenas) + " centenas";
+      
+      if (centenas > 0 && (decenas > 0 || unidades > 0)) frase += ", ";
+      
+      if (decenas === 1) frase += "una decena";
+      else if (decenas > 1) frase += numberToWords(decenas) + " decenas";
+      
+      if (decenas > 0 && unidades > 0) frase += " y ";
+      
+      if (unidades === 1) frase += "una unidad";
+      else if (unidades > 1) frase += numberToWords(unidades) + " unidades";
+      
+      if (millares === 0 && centenas === 0 && decenas === 0 && unidades === 0) frase = "cero unidades";
+      
+      return frase + ".";
+    }
+  },
+  pt: {
+    title: "Do zero aos milhares by Maestro Luciano",
+    inputLabel: "Insira o número:",
+    apply: "Aplicar",
+    back: "Voltar -1",
+    forward: "Avançar +1",
+    listen: "Ouvir novamente",
+    play: "Play/Pausa",
+    thousands: "MILHARES",
+    hundreds: "CENTENAS",
+    tens: "DEZENAS",
+    units: "UNIDADES",
+    decomposition: "Decomposição:",
+    direction: "ltr",
+    speak: (n, milhares, centenas, dezenas, unidades) => {
+      const numberWords = {
+        0: 'zero', 1: 'um', 2: 'dois', 3: 'três', 4: 'quatro', 5: 'cinco',
+        6: 'seis', 7: 'sete', 8: 'oito', 9: 'nove', 10: 'dez',
+        11: 'onze', 12: 'doze', 13: 'treze', 14: 'catorze', 15: 'quinze',
+        16: 'dezesseis', 17: 'dezessete', 18: 'dezoito', 19: 'dezenove', 20: 'vinte',
+        30: 'trinta', 40: 'quarenta', 50: 'cinquenta', 60: 'sessenta', 70: 'setenta', 
+        80: 'oitenta', 90: 'noventa'
+      };
+      
+      function numberToWords(num) {
+        if (num <= 19 || (num < 100 && num % 10 === 0)) {
+          return numberWords[num];
+        } else if (num < 100) {
+          const tens = Math.floor(num/10)*10;
+          const units = num % 10;
+          return numberWords[tens] + ' e ' + numberWords[units];
+        } else if (num < 1000) {
+          const hundreds = Math.floor(num/100);
+          const remainder = num % 100;
+          let hundredStr = hundreds === 1 ? "cento" : numberWords[hundreds] + "centos";
+          return hundredStr + (remainder > 0 ? ' e ' + numberToWords(remainder) : '');
+        } else {
+          const thousands = Math.floor(num/1000);
+          const remainder = num % 1000;
+          let thousandStr = thousands === 1 ? "mil" : numberToWords(thousands) + " mil";
+          return thousandStr + (remainder > 0 ? ' e ' + numberToWords(remainder) : '');
+        }
+      }
+
+
+      let frase = numberToWords(n) + " decompõe-se em ";
+      if (milhares === 1) frase += "um milhar";
+      else if (milhares > 1) frase += numberToWords(milhares) + " milhares";
+      
+      if (milhares > 0 && (centenas > 0 || dezenas > 0 || unidades > 0)) frase += ", ";
+      
+      if (centenas === 1) frase += "uma centena";
+      else if (centenas > 1) frase += numberToWords(centenas) + " centenas";
+      
+      if (centenas > 0 && (dezenas > 0 || unidades > 0)) frase += ", ";
+      
+      if (dezenas === 1) frase += "uma dezena";
+      else if (dezenas > 1) frase += numberToWords(dezenas) + " dezenas";
+      
+      if (dezenas > 0 && unidades > 0) frase += " e ";
+      
+      if (unidades === 1) frase += "uma unidade";
+      else if (unidades > 1) frase += numberToWords(unidades) + " unidades";
+      
+      if (milhares === 0 && centenas === 0 && dezenas === 0 && unidades === 0) frase = "zero unidades";
+      
+      return frase + ".";
+    }
+  },
+  fil: {
+    title: "Mula sa zero hanggang libu-libo by Maestro Luciano",
+    inputLabel: "Ilagay ang numero:",
+    apply: "Ilapat",
+    back: "Bumalik -1",
+    forward: "Pasulong +1",
+    listen: "Pakinggan muli",
+    play: "Play/Pause",
+    thousands: "LIBU-LIBO",
+    hundreds: "DAAN-DAAN",
+    tens: "SAMPU-SAMPU",
+    units: "YUNIT",
+    decomposition: "Pagkabulok:",
+    direction: "ltr",
+    speak: (n, libo, daan, sampu, yunit) => {
+      const numberWords = {
+        0: 'sero', 1: 'isa', 2: 'dalawa', 3: 'tatlo', 4: 'apat', 5: 'lima',
+        6: 'anim', 7: 'pito', 8: 'walo', 9: 'siyam', 10: 'sampu'
+      };
+      
+      function numberToWords(num) {
+        if (num <= 10) {
+          return numberWords[num];
+        } else if (num < 20) {
+          return 'labing' + (num > 10 ? numberWords[num-10] : '');
+        } else if (num < 100) {
+          const tens = Math.floor(num/10);
+          const units = num % 10;
+          return numberWords[tens] + 'napu' + (units > 0 ? "'t " + numberWords[units] : '');
+        } else if (num < 1000) {
+          const hundreds = Math.floor(num/100);
+          const remainder = num % 100;
+          return numberWords[hundreds] + 'daan' + (remainder > 0 ? ' ' + numberToWords(remainder) : '');
+        } else {
+          const thousands = Math.floor(num/1000);
+          const remainder = num % 1000;
+          return numberWords[thousands] + 'libo' + (remainder > 0 ? ' ' + numberToWords(remainder) : '');
+        }
+      }
+
+
+      let phrase = numberToWords(n) + " ay nabubulok sa ";
+      if (libo === 1) phrase += "isang libo";
+      else if (libo > 1) phrase += numberToWords(libo) + " na libo";
+      
+      if (libo > 0 && (daan > 0 || sampu > 0 || yunit > 0)) phrase += ", ";
+      
+      if (daan === 1) phrase += "isang daan";
+      else if (daan > 1) phrase += numberToWords(daan) + " na daan";
+      
+      if (daan > 0 && (sampu > 0 || yunit > 0)) phrase += ", ";
+      
+      if (sampu === 1) phrase += "isang sampu";
+      else if (sampu > 1) phrase += numberToWords(sampu) + " na sampu";
+      
+      if (sampu > 0 && yunit > 0) phrase += " at ";
+      
+      if (yunit === 1) phrase += "isang yunit";
+      else if (yunit > 1) phrase += numberToWords(yunit) + " na yunit";
+      
+      if (libo === 0 && daan === 0 && sampu === 0 && yunit === 0) phrase = "serong yunit";
+      
+      return phrase + ".";
+    }
+  },
+  hi: {
+    title: "मास्टरो लुसियानो द्वारा शून्य से हजारों तक",
+    inputLabel: "संख्या दर्ज करें:",
+    apply: "लागू करें",
+    back: "पीछे -1",
+    forward: "आगे +1",
+    listen: "फिर से सुनें",
+    play: "प्ले/पॉज़",
+    thousands: "हजारों",
+    hundreds: "सैकड़ों",
+    tens: "दहाई",
+    units: "इकाइयाँ",
+    decomposition: "विघटन:",
+    direction: "ltr",
+    speak: (n, हज़ार, सैकड़े, दहाई, इकाइयाँ) => {
+      // Per l'hindi manteniamo i numeri in cifre
+      let frase = n + " में विघटित होता है ";
+      if (हज़ार === 1) frase += "1 हज़ार";
+      else if (हज़ार > 1) frase += हज़ार + " हज़ार";
+      
+      if (हज़ार > 0 && (सैकड़े > 0 || दहाई > 0 || इकाइयाँ > 0)) frase += ", ";
+      
+      if (सैकड़े === 1) frase += "1 सैकड़ा";
+      else if (सैकड़े > 1) frase += सैकड़े + " सैकड़े";
+      
+      if (सैकड़े > 0 && (दहाई > 0 || इकाइयाँ > 0)) frase += ", ";
+      
+      if (दहाई === 1) frase += "1 दहाई";
+      else if (दहाई > 1) frase += दहाई + " दहाई";
+      
+      if (दहाई > 0 && इकाइयाँ > 0) frase += " और ";
+      
+      if (इकाइयाँ === 1) frase += "1 इकाई";
+      else if (इकाइयाँ > 1) frase += इकाइयाँ + " इकाइयाँ";
+      
+      if (हज़ार === 0 && सैकड़े === 0 && दहाई === 0 && इकाइयाँ === 0) frase = "0 इकाई";
+      
+      return frase + "।";
+    }
+  },
+  ru: {
+    title: "От нуля до тысяч от Маэстро Лучано",
+    inputLabel: "Введите число:",
+    apply: "Применить",
+    back: "Назад -1",
+    forward: "Вперед +1",
+    listen: "Прослушать снова",
+    play: "Плей/Пауза",
+    thousands: "ТЫСЯЧИ",
+    hundreds: "СОТНИ",
+    tens: "ДЕСЯТКИ",
+    units: "ЕДИНИЦЫ",
+    decomposition: "Разложение:",
+    direction: "ltr",
+    speak: (n, тысячи, сотни, десятки, единицы) => {
+      const numberWords = {
+        0: 'ноль', 1: 'один', 2: 'два', 3: 'три', 4: 'четыре', 5: 'пять',
+        6: 'шесть', 7: 'семь', 8: 'восемь', 9: 'девять', 10: 'десять',
+        11: 'одиннадцать', 12: 'двенадцать', 13: 'тринадцать', 14: 'четырнадцать', 15: 'пятнадцать',
+        20: 'двадцать', 30: 'тридцать', 40: 'сорок', 50: 'пятьдесят',
+        60: 'шестьдесят', 70: 'семьдесят', 80: 'восемьдесят', 90: 'девяносто'
+      };
+      
+      function numberToWords(num) {
+        if (num <= 15 || (num < 100 && num % 10 === 0)) {
+          return numberWords[num];
+        } else if (num < 20) {
+          return numberWords[num] || numberWords[10] + numberWords[num-10];
+        } else if (num < 100) {
+          const tens = Math.floor(num/10)*10;
+          const units = num % 10;
+          return numberWords[tens] + ' ' + numberWords[units];
+        } else if (num < 1000) {
+          const hundreds = Math.floor(num/100);
+          const remainder = num % 100;
+          let hundredStr = '';
+          if (hundreds === 1) hundredStr = "сто";
+          else if (hundreds === 2) hundredStr = "двести";
+          else if (hundreds === 3) hundredStr = "триста";
+          else if (hundreds === 4) hundredStr = "четыреста";
+          else hundredStr = numberWords[hundreds] + "сот";
+          return hundredStr + (remainder > 0 ? ' ' + numberToWords(remainder) : '');
+        } else {
+          const thousands = Math.floor(num/1000);
+          const remainder = num % 1000;
+          let thousandStr = numberToWords(thousands) + " тысяча";
+          return thousandStr + (remainder > 0 ? ' ' + numberToWords(remainder) : '');
+        }
+      }
+
+
+      let phrase = numberToWords(n) + " раскладывается на ";
+      if (тысячи === 1) phrase += "одну тысячу";
+      else if (тысячи > 1) phrase += numberToWords(тысячи) + " тысяч";
+      
+      if (тысячи > 0 && (сотни > 0 || десятки > 0 || единицы > 0)) phrase += ", ";
+      
+      if (сотни === 1) phrase += "одну сотню";
+      else if (сотни > 1) phrase += numberToWords(сотни) + " сотен";
+      
+      if (сотни > 0 && (десятки > 0 || единицы > 0)) phrase += ", ";
+      
+      if (десятки === 1) phrase += "один десяток";
+      else if (десятки > 1) phrase += numberToWords(десятки) + " десятков";
+      
+      if (десятки > 0 && единицы > 0) phrase += " и ";
+      
+      if (единицы === 1) phrase += "одну единицу";
+      else if (единицы > 1) phrase += numberToWords(единицы) + " единиц";
+      
+      if (тысячи === 0 && сотни === 0 && десятки === 0 && единицы === 0) phrase = "ноль единиц";
+      
+      return phrase + ".";
+    }
+  },
+  zh: {
+    title: "从零到数千 by Maestro Luciano",
+    inputLabel: "输入数字:",
+    apply: "应用",
+    back: "后退 -1",
+    forward: "前进 +1",
+    listen: "重新听",
+    play: "播放/暂停",
+    thousands: "千位",
+    hundreds: "百位",
+    tens: "十位",
+    units: "个位",
+    decomposition: "分解:",
+    direction: "ltr",
+    speak: (n, 千位, 百位, 十位, 个位) => {
+      const numberWords = {
+        0: '零', 1: '一', 2: '二', 3: '三', 4: '四', 5: '五',
+        6: '六', 7: '七', 8: '八', 9: '九', 10: '十'
+      };
+      
+      function numberToWords(num) {
+        if (num <= 10) {
+          return numberWords[num];
+        } else if (num < 20) {
+          return '十' + (num > 10 ? numberWords[num-10] : '');
+        } else if (num < 100) {
+          const tens = Math.floor(num/10);
+          const units = num % 10;
+          return numberWords[tens] + '十' + (units > 0 ? numberWords[units] : '');
+        } else if (num < 1000) {
+          const hundreds = Math.floor(num/100);
+          const remainder = num % 100;
+          return numberWords[hundreds] + '百' + (remainder > 0 ? numberToWords(remainder) : '');
+        } else {
+          const thousands = Math.floor(num/1000);
+          const remainder = num % 1000;
+          return numberWords[thousands] + '千' + (remainder > 0 ? numberToWords(remainder) : '');
+        }
+      }
+
+
+      let phrase = numberToWords(n) + " 分解为 ";
+      if (千位 === 1) phrase += "一个千";
+      else if (千位 > 1) phrase += numberToWords(千位) + "个千";
+      
+      if (千位 > 0 && (百位 > 0 || 十位 > 0 || 个位 > 0)) phrase += ", ";
+      
+      if (百位 === 1) phrase += "一个百";
+      else if (百位 > 1) phrase += numberToWords(百位) + "个百";
+      
+      if (百位 > 0 && (十位 > 0 || 个位 > 0)) phrase += ", ";
+      
+      if (十位 === 1) phrase += "一个十";
+      else if (十位 > 1) phrase += numberToWords(十位) + "个十";
+      
+      if (十位 > 0 && 个位 > 0) phrase += " 和 ";
+      
+      if (个位 === 1) phrase += "一个一";
+      else if (个位 > 1) phrase += numberToWords(个位) + "个一";
+      
+      if (千位 === 0 && 百位 === 0 && 十位 === 0 && 个位 === 0) phrase = "零个一";
+      
+      return phrase + "。";
+    }
+  }
+};
+
+
+// Codici lingua per sintesi vocale
+const langCodes = {
+  en: 'en-US',
+  it: 'it-IT',
+  fr: 'fr-FR',
+  de: 'de-DE',
+  es: 'es-ES',
+  pt: 'pt-PT',
+  fil: 'fil-PH',
+  hi: 'hi-IN',
+  ru: 'ru-RU',
+  zh: 'zh-CN'
+};
+
+
+// Funzione per verificare il supporto vocale
+function aggiornaStatoSupportoVocale() {
+  const voices = speechSynthesis.getVoices();
+  const langSupported = voices.some(voice => voice.lang.startsWith(currentLang));
+  
+  const speakBtn = document.getElementById('speak-btn');
+  if (['hi'].includes(currentLang) && !langSupported) {
+    speakBtn.style.opacity = '0.7';
+    speakBtn.title = 'Sintesi vocale limitata per questa lingua - Prova con Chrome';
+  } else {
+    speakBtn.style.opacity = '1';
+    const t = translations[currentLang];
+    speakBtn.title = t.listen;
+  }
+}
+
+
+function inizializzaLingua() {
+  currentLang = 'it';
+  // Imposta il pulsante italiano come attivo
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.textContent === 'Italiano') {
+      btn.classList.add('active');
+    }
+  });
+  
+  // Applica le traduzioni italiane
+  const t = translations.it;
+  document.getElementById('main-title').textContent = t.title;
+  document.getElementById('input-label').textContent = t.inputLabel;
+  document.getElementById('apply-btn').textContent = t.apply;
+  document.getElementById('back-btn').textContent = t.back;
+  document.getElementById('forward-btn').textContent = t.forward;
+  document.getElementById('speak-btn').title = t.listen;
+  document.getElementById('playBtn').title = t.play;
+  document.body.setAttribute('dir', t.direction);
+}
+
+
+function cambiaLingua(lang) {
+  currentLang = lang;
+  
+  // Aggiorna i pulsanti della lingua
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  event.target.classList.add('active');
+  
+  // Aggiorna il testo dell'interfaccia
+  const t = translations[lang];
+  document.getElementById('main-title').textContent = t.title;
+  document.getElementById('input-label').textContent = t.inputLabel;
+  document.getElementById('apply-btn').textContent = t.apply;
+  document.getElementById('back-btn').textContent = t.back;
+  document.getElementById('forward-btn').textContent = t.forward;
+  document.getElementById('speak-btn').title = t.listen;
+  document.getElementById('playBtn').title = t.play;
+  document.body.setAttribute('dir', t.direction);
+  
+  // Aggiorna stato supporto vocale
+  setTimeout(aggiornaStatoSupportoVocale, 500);
+  
+  // Riaggiorna la vista per tradurre le etichette
+  aggiornaVista();
+}
+
+
+function aggiornaDecomposizione() {
+  const migliaia = Math.floor(N/1000);
+  const centinaia = Math.floor((N % 1000)/100);
+  const decine = Math.floor((N % 100)/10);
+  const unita  = N % 10;
+  
+  // Determina se ci sono zeri interni
+  const hasInternalZeros = 
+    (migliaia > 0 && (centinaia === 0 || decine === 0 || unita === 0)) ||
+    (centinaia > 0 && (decine === 0 || unita === 0)) ||
+    (decine > 0 && unita === 0);
+  
+  // Se ci sono zeri interni, mostra tutti i periodi
+  // Altrimenti mostra solo i periodi non zero
+  let decompositionParts = [];
+  
+  if (hasInternalZeros || migliaia > 0) {
+    decompositionParts.push(`${migliaia}k`);
+  }
+  if (hasInternalZeros || centinaia > 0) {
+    decompositionParts.push(`${centinaia}h`);
+  }
+  if (hasInternalZeros || decine > 0) {
+    decompositionParts.push(`${decine}da`);
+  }
+  if (hasInternalZeros || unita > 0) {
+    decompositionParts.push(`${unita}u`);
+  }
+  
+  // Se tutti i periodi sono zero, mostra solo le unità
+  if (decompositionParts.length === 0) {
+    decompositionParts.push('0u');
+  }
+  
+  const decompositionText = `${N} = ${decompositionParts.join(' + ')}`;
+  document.getElementById('decomposition-text').textContent = decompositionText;
+}
+
+
+function aggiornaVista(){
+  const migliaia = Math.floor(N/1000);
+  const centinaia = Math.floor((N % 1000)/100);
+  const decine = Math.floor((N % 100)/10);
+  const unita  = N % 10;
+
+
+  document.getElementById('mil').textContent = migliaia;
+  document.getElementById('cen').textContent = centinaia;
+  document.getElementById('dec').textContent = decine;
+  document.getElementById('uni').textContent = unita;
+  
+  document.getElementById('number-input').value = N;
+
+
+  // Aggiorna la scomposizione
+  aggiornaDecomposizione();
+
+
+  const container = document.getElementById('visualization-container');
+  container.innerHTML = '';
+  
+  const t = translations[currentLang];
+  
+  const bagDotSize = '45px';
+  const hundredDotSize = '25px';
+  const thousandDotSize = '10px';
+  const unitDotSize = N < 100 ? '50px' : '30px';
+  
+  const bagWidth = '320px';
+  const bagHeight = '150px';
+  const hundredWidth = '350px';
+  const hundredHeight = '350px';
+  const thousandWidth = '1400px';
+  const thousandHeight = '160px';
+
+
+  if (migliaia > 0) {
+    const row = document.createElement('div');
+    row.className = 'visualization-row';
+    
+    const label = document.createElement('div');
+    label.className = 'row-label';
+    label.textContent = t.thousands + ' (' + migliaia + ')';
+    row.appendChild(label);
+    
+    const containerDiv = document.createElement('div');
+    containerDiv.className = 'elements-container';
+    
+    for(let i=0; i<migliaia; i++){
+      const thousand = document.createElement('div');
+      thousand.className = 'thousand';
+      thousand.style.width = thousandWidth;
+      thousand.style.height = thousandHeight;
+      
+      const cols = 100;
+      const rows = 10;
+      const totalDots = cols * rows;
+      
+      for(let d=0; d<totalDots; d++){
+        const dot = document.createElement('div');
+        dot.className = 'dot thousand-dot';
+        dot.style.width = thousandDotSize;
+        dot.style.height = thousandDotSize;
+        thousand.appendChild(dot);
+      }
+      containerDiv.appendChild(thousand);
+    }
+    
+    row.appendChild(containerDiv);
+    container.appendChild(row);
+  }
+  
+  if (centinaia > 0) {
+    const row = document.createElement('div');
+    row.className = 'visualization-row';
+    
+    const label = document.createElement('div');
+    label.className = 'row-label';
+    label.textContent = t.hundreds + ' (' + centinaia + ')';
+    row.appendChild(label);
+    
+    const containerDiv = document.createElement('div');
+    containerDiv.className = 'elements-container';
+    
+    for(let i=0; i<centinaia; i++){
+      const hundred = document.createElement('div');
+      hundred.className = 'hundred';
+      hundred.style.width = hundredWidth;
+      hundred.style.height = hundredHeight;
+      
+      for(let d=0; d<100; d++){
+        const dot = document.createElement('div');
+        dot.className = 'dot hundred-dot';
+        dot.style.width = hundredDotSize;
+        dot.style.height = hundredDotSize;
+        hundred.appendChild(dot);
+      }
+      containerDiv.appendChild(hundred);
+    }
+    
+    row.appendChild(containerDiv);
+    container.appendChild(row);
+  }
+  
+  if (decine > 0) {
+    const row = document.createElement('div');
+    row.className = 'visualization-row';
+    
+    const label = document.createElement('div');
+    label.className = 'row-label';
+    label.textContent = t.tens + ' (' + decine + ')';
+    row.appendChild(label);
+    
+    const containerDiv = document.createElement('div');
+    containerDiv.className = 'elements-container';
+    
+    for(let i=0; i<decine; i++){
+      const bag = document.createElement('div');
+      bag.className = 'bag';
+      bag.style.width = bagWidth;
+      bag.style.height = bagHeight;
+      
+      for(let d=0; d<10; d++){
+        const dot = document.createElement('div');
+        dot.className = 'dot ten-dot';
+        dot.style.width = bagDotSize;
+        dot.style.height = bagDotSize;
+        bag.appendChild(dot);
+      }
+      containerDiv.appendChild(bag);
+    }
+    
+    row.appendChild(containerDiv);
+    container.appendChild(row);
+  }
+  
+  const row = document.createElement('div');
+  row.className = 'visualization-row';
+  
+  const label = document.createElement('div');
+  label.className = 'row-label';
+  label.textContent = t.units + ' (' + unita + ')';
+  row.appendChild(label);
+  
+  const unitsContainer = document.createElement('div');
+  unitsContainer.className = 'units-container';
+  
+  for(let u=0; u<unita; u++){
+    const dot = document.createElement('div');
+    dot.className = 'dot unit-dot';
+    dot.style.width = unitDotSize;
+    dot.style.height = unitDotSize;
+    unitsContainer.appendChild(dot);
+  }
+  
+  row.appendChild(unitsContainer);
+  container.appendChild(row);
+
+
+  if(playing) parla();
+}
+
+
+function cambiaNumero(delta){
+  N = Math.max(0, Math.min(maxDots, N + delta));
+  aggiornaVista();
+}
+
+
+function applicaNumero(){
+  const inputValue = parseInt(document.getElementById('number-input').value);
+  if(!isNaN(inputValue) && inputValue >= 0 && inputValue <= maxDots){
+    N = inputValue;
+    aggiornaVista();
+  } else {
+    alert("Inserisci un numero valido tra 0 e " + maxDots);
+  }
+}
+
+
+function parla(){
+  if('speechSynthesis' in window){
+    speechSynthesis.cancel();
+    const migliaia = Math.floor(N/1000);
+    const centinaia = Math.floor((N % 1000)/100);
+    const decine = Math.floor((N % 100)/10);
+    const unita  = N % 10;
+    
+    const frase = translations[currentLang].speak(N, migliaia, centinaia, decine, unita);
+    
+    const msg = new SpeechSynthesisUtterance(frase);
+    msg.lang = langCodes[currentLang];
+    msg.rate = 0.8;
+    msg.pitch = 1;
+    
+    // Imposta una voce specifica se disponibile
+    const voices = speechSynthesis.getVoices();
+    const appropriateVoice = voices.find(voice => 
+      voice.lang.startsWith(currentLang) && voice.localService
+    );
+    
+    if (appropriateVoice) {
+      msg.voice = appropriateVoice;
+    }
+    
+    msg.onerror = function(event) {
+      console.warn('Sintesi vocale non ottimale per:', currentLang);
+    };
+    
+    setTimeout(() => {
+      speechSynthesis.speak(msg);
+    }, 100);
+    
+  } else {
+    console.warn('Speech synthesis not supported');
+  }
+}
+
+
+function togglePlay(){
+  playing = !playing;
+  document.getElementById('playBtn').textContent = playing ? '⏸' : '▶';
+}
+
+
+// Event listeners
+addEventListener('keydown', e=>{
+  if(e.key==='ArrowUp'||e.key==='ArrowRight') cambiaNumero(1);
+  if(e.key==='ArrowDown'||e.key==='ArrowLeft') cambiaNumero(-1);
+});
+
+
+document.getElementById('number-input').addEventListener('keypress', function(e){
+  if(e.key === 'Enter'){
+    applicaNumero();
+  }
+});
+
+
+// Inizializza il controllo delle voci
+speechSynthesis.onvoiceschanged = aggiornaStatoSupportoVocale;
+
+
+// Inizializza con la lingua italiana
+inizializzaLingua();
+aggiornaVista();
+</script>
+</body>
+</html>
