@@ -3,569 +3,472 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risorse Didattiche Inclusive - Condivisione del Sapere</title>
+    <title>Maestro Luciano - Risorse Didattiche Inclusive</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Dyslexic:wght@400;700&family=Comic+Neue:wght@400;700&display=swap">
     <style>
-        /* VARIABILI COLORI - TONI RILASSANTI */
-        :root {
-            --verde-chiaro: #e8f5e9;
-            --verde-medio: #a5d6a7;
-            --verde-scuro: #388e3c;
-            --azzurro-chiaro: #e3f2fd;
-            --azzurro-medio: #90caf9;
-            --grigio-chiaro: #fafafa;
-            --grigio-medio: #eeeeee;
-            --testo-scuro: #263238;
-            --bianco: #ffffff;
-        }
-
-        /* RESET E STILI BASE */
+        /* RESET E IMPOSTAZIONI BASE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--testo-scuro);
-            background: linear-gradient(135deg, var(--verde-chiaro) 0%, var(--azzurro-chiaro) 100%);
-            min-height: 100vh;
+        :root {
+            --primary-dark: #1a1a2e;
+            --secondary-dark: #16213e;
+            --accent-blue: #0ea5e9;
+            --accent-red: #ef4444;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --text-light: #f8fafc;
+            --text-muted: #cbd5e1;
+            --border-color: #334155;
+            --card-bg: rgba(30, 41, 59, 0.85);
         }
 
-        .container {
-            max-width: 1200px;
+        body {
+            font-family: 'Comic Neue', 'OpenDyslexic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: var(--text-light);
+            background-color: var(--primary-dark);
+            min-height: 100vh;
+            letter-spacing: 0.5px;
+            word-spacing: 1px;
+        }
+
+        /* FONT PER DISLESSIA */
+        .dyslexia-friendly {
+            font-family: 'OpenDyslexic', 'Comic Neue', sans-serif;
+            font-weight: 400;
+            line-height: 1.9;
+        }
+
+        /* CONTENITORE CENTRALE */
+        .container-centrale {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            background-color: var(--primary-dark);
+            border-left: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* EFFETTO FRATTALE PER SFONDI */
+        .fractal-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fractal-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(239, 68, 68, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 30%),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.01) 10px, rgba(255, 255, 255, 0.01) 20px);
+            pointer-events: none;
+            z-index: 0;
         }
 
         /* HEADER */
         header {
-            background-color: var(--bianco);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, #0f172a 100%);
+            color: var(--text-light);
             text-align: center;
-        }
-
-        .logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            background-color: var(--verde-medio);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
+            padding: 3.5rem 1rem;
+            border-bottom: 3px solid var(--accent-blue);
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+            border: 2px solid var(--border-color);
+            border-radius: 0 0 20px 20px;
+            margin: 2rem 2rem 0 2rem;
         }
 
         h1 {
-            color: var(--verde-scuro);
-            margin-bottom: 15px;
-            font-weight: 300;
-            font-size: 2.2em;
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: var(--text-light);
+            font-weight: 700;
+            line-height: 1.3;
         }
 
         .sottotitolo {
-            color: var(--testo-scuro);
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            font-weight: 300;
+            font-size: 1.6rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
-        /* SEZIONE PRINCIPI */
-        .principi-btn {
-            background-color: var(--verde-scuro);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            margin: 10px 0;
-        }
-
-        .principi-btn:hover {
-            background-color: #2c6b2f;
-            transform: translateY(-2px);
-        }
-
-        /* GALLERIA IMMAGINI */
-        .galleria {
+        /* SEZIONI RISORSE */
+        .risorse {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 3rem 2rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .immagine-item {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            height: 200px;
-            background-color: var(--grigio-medio);
-        }
-
-        .immagine-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .immagine-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* MENU MATERIE */
-        .menu-materie {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .materia-card {
-            background-color: var(--bianco);
+        .sezione {
+            background: var(--card-bg);
             border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border-left: 5px solid var(--verde-medio);
+            padding: 2.2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 2px solid var(--border-color);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
         }
 
-        .materia-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        .sezione:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
-        .materia-card h3 {
-            color: var(--verde-scuro);
-            margin-bottom: 15px;
-            font-size: 1.4em;
+        h2 {
+            color: var(--text-light);
+            border-bottom: 4px solid var(--accent-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 1.8rem;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
-        .materia-card p {
-            color: var(--testo-scuro);
-            margin-bottom: 15px;
+        .sezione.matematica h2 {
+            border-color: var(--accent-red);
         }
 
-        .btn-materia {
-            display: inline-block;
-            background-color: var(--azzurro-medio);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
+        .sezione.scienze h2 {
+            border-color: var(--accent-green);
+        }
+
+        .sezione.tecnologia h2 {
+            border-color: var(--accent-purple);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            padding: 1rem 0;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        li:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding-left: 10px;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        a {
+            color: var(--accent-blue);
             text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .btn-materia:hover {
-            background-color: #64b5f6;
-        }
-
-        /* SELEZIONE LINGUA */
-        .selezione-lingua {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .btn-lingua {
-            background: none;
-            border: 1px solid var(--verde-medio);
-            padding: 8px 15px;
-            margin: 0 5px;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-lingua.attiva {
-            background-color: var(--verde-medio);
-            color: white;
-        }
-
-        /* MODALE PRINCIPI */
-        .modale {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modale-contenuto {
-            background-color: var(--bianco);
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-        }
-
-        .modale-header {
+            font-weight: 600;
+            transition: all 0.3s ease;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            font-size: 1.1rem;
+            padding: 5px 0;
         }
 
-        .modale-header h2 {
-            color: var(--verde-scuro);
+        a:hover {
+            color: var(--text-light);
+            text-decoration: underline;
+            text-underline-offset: 4px;
         }
 
-        .chiudi-modale {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--testo-scuro);
+        a::before {
+            content: "📚";
+            margin-right: 15px;
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
         }
 
-        .principio-item {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--grigio-medio);
-        }
-
-        .principio-item h3 {
-            color: var(--verde-scuro);
-            margin-bottom: 10px;
+        a:hover::before {
+            transform: scale(1.2);
         }
 
         /* FOOTER */
         footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-            color: var(--testo-scuro);
-            font-size: 0.9em;
+            background: linear-gradient(135deg, #0f172a 0%, var(--secondary-dark) 100%);
+            color: var(--text-light);
+            padding: 3.5rem 2rem;
+            margin: 4rem 2rem 2rem 2rem;
+            border: 2px solid var(--border-color);
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            z-index: 1;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+        .valori {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .valori h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            border-bottom: 3px solid var(--accent-blue);
+            padding-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .testo-valori {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            text-align: justify;
+            color: var(--text-muted);
+        }
+
+        .testo-valori p {
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        /* SCROLLBAR PERSONALIZZATA */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-dark);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 6px;
+            border: 3px solid var(--secondary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-purple);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1200px) {
+            .container-centrale {
+                max-width: 100%;
+                margin: 0;
+                padding: 0 15px;
             }
-            
-            header {
-                padding: 20px;
-            }
-            
+        }
+
+        @media (max-width: 992px) {
             h1 {
-                font-size: 1.8em;
+                font-size: 2.8rem;
             }
             
-            .galleria {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            .sottotitolo {
+                font-size: 1.4rem;
             }
             
-            .menu-materie {
+            .risorse {
                 grid-template-columns: 1fr;
+                margin: 2rem 1rem;
+                gap: 25px;
             }
+            
+            .sezione {
+                padding: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .sottotitolo {
+                font-size: 1.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .valori h3 {
+                font-size: 1.8rem;
+            }
+            
+            .testo-valori {
+                font-size: 1.1rem;
+            }
+            
+            header, footer {
+                margin: 1rem;
+                padding: 2.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.9rem;
+            }
+            
+            .sottotitolo {
+                font-size: 1.1rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .valori h3 {
+                font-size: 1.6rem;
+            }
+            
+            .testo-valori {
+                font-size: 1rem;
+            }
+            
+            .sezione {
+                padding: 1.5rem;
+            }
+            
+            a {
+                font-size: 1rem;
+            }
+        }
+
+        /* SUPPORTO BROWSER MULTIPLO */
+        @supports not (backdrop-filter: blur(10px)) {
+            .sezione {
+                background: rgba(30, 41, 59, 0.95);
+            }
+        }
+
+        /* ANIMAZIONI SOTTILI */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sezione {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .sezione:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .sezione:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        /* FOCUS VISIBILE PER ACCESSIBILITÀ */
+        a:focus,
+        button:focus {
+            outline: 3px solid var(--accent-blue);
+            outline-offset: 3px;
+        }
+
+        /* ALTO CONTRASTO PER IPOVEDENTI */
+        .high-contrast {
+            color: #ffffff !important;
+            background-color: #000000 !important;
+            border-color: #ffffff !important;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <div class="logo">📚</div>
-            <h1 id="titolo-principale">Risorse Didattiche Inclusive</h1>
-            <p class="sottotitolo" id="sottotitolo">Materiali gratuiti per matematica, scienze, tecnologia, informatica, coding e robotica</p>
-            <p id="descrizione">Risorse studiate per l'inclusione e disponibili in più lingue per supportare gli alunni NAI e favorire l'apprendimento di tutti</p>
-            
-            <button class="principi-btn" id="principi-btn">I nostri principi educativi</button>
-            
-            <div class="selezione-lingua">
-                <button class="btn-lingua attiva" data-lingua="it">Italiano</button>
-                <button class="btn-lingua" data-lingua="en">English</button>
-            </div>
+<body class="dyslexia-friendly fractal-bg">
+    <div class="container-centrale fractal-bg">
+        <header class="fractal-bg">
+            <h1>Maestro Luciano</h1>
+            <p class="sottotitolo">Risorse didattiche inclusive, utilizzabili e modificabili in totale libertà</p>
         </header>
-
-        <section class="galleria">
-            <!-- Aggiungi le tue immagini nella cartella "immagini-homepage" -->
-            <div class="immagine-item">
-                <img src="immagini-homepage/matematica-creativa.jpg" alt="Bambini che esplorano la matematica in modo creativo">
-            </div>
-            <div class="immagine-item">
-                <img src="immagini-homepage/scienze-esperimenti.jpg" alt="Esperimenti scientifici in classe">
-            </div>
-            <div class="immagine-item">
-                <img src="immagini-homepage/coding-bambini.jpg" alt="Bambini che imparano il coding">
-            </div>
-            <div class="immagine-item">
-                <img src="immagini-homepage/robotica-educativa.jpg" alt="Attività di robotica educativa">
-            </div>
-        </section>
-
-        <section class="menu-materie">
-            <div class="materia-card">
-                <h3 id="materia-matematica">Matematica</h3>
-                <p id="desc-matematica">Schede operative, giochi logici, problemi visuali, risorse multisensoriali</p>
-                <a href="matematica/index.html" class="btn-materia" id="btn-matematica">Esplora</a>
-            </div>
-            
-            <div class="materia-card">
-                <h3 id="materia-scienze">Scienze</h3>
-                <p id="desc-scienze">Esperimenti, osservazioni, schede di scienze della terra, biologia, fisica</p>
-                <a href="scienze/index.html" class="btn-materia" id="btn-scienze">Esplora</a>
-            </div>
-            
-            <div class="materia-card">
-                <h3 id="materia-tecnologia">Tecnologia</h3>
-                <p id="desc-tecnologia">Progetti maker, schede tecniche, attività con materiali di recupero</p>
-                <a href="tecnologia/index.html" class="btn-materia" id="btn-tecnologia">Esplora</a>
-            </div>
-            
-            <div class="materia-card">
-                <h3 id="materia-informatica">Informatica</h3>
-                <p id="desc-informatica">Pensiero computazionale, basi dell'informatica, attività unplugged</p>
-                <a href="informatica/index.html" class="btn-materia" id="btn-informatica">Esplora</a>
-            </div>
-            
-            <div class="materia-card">
-                <h3 id="materia-coding">Coding</h3>
-                <p id="desc-coding">Attività con Scratch, Blockly, risorse per programmazione a blocchi e testuale</p>
-                <a href="coding/index.html" class="btn-materia" id="btn-coding">Esplora</a>
-            </div>
-            
-            <div class="materia-card">
-                <h3 id="materia-robotica">Robotica</h3>
-                <p id="desc-robotica">Progetti con robot educativi, schede di montaggio, attività di problem solving</p>
-                <a href="robotica/index.html" class="btn-materia" id="btn-robotica">Esplora</a>
-            </div>
-        </section>
-
-        <!-- MODALE PRINCIPI -->
-        <div class="modale" id="modale-principi">
-            <div class="modale-contenuto">
-                <div class="modale-header">
-                    <h2 id="titolo-modale">I nostri principi educativi</h2>
-                    <button class="chiudi-modale" id="chiudi-modale">&times;</button>
-                </div>
-                
-                <div class="principio-item">
-                    <h3 id="principio1-titolo">Inclusività</h3>
-                    <p id="principio1-testo">Crediamo che ogni studente meriti risorse accessibili e inclusive. I nostri materiali sono progettati per diverse abilità e stili di apprendimento, con versioni in più lingue per supportare gli alunni NAI.</p>
-                </div>
-                
-                <div class="principio-item">
-                    <h3 id="principio2-titolo">Condivisione del Sapere</h3>
-                    <p id="principio2-testo">Il sapere è un bene comune che cresce quando condiviso. Ispirati dalla filosofia open source, crediamo che la condivisione tra docenti arricchisca tutti e migliori la qualità dell'educazione.</p>
-                </div>
-                
-                <div class="principio-item">
-                    <h3 id="principio3-titolo">Libertà di Utilizzo</h3>
-                    <p id="principio3-testo">Tutti i materiali sono gratuiti e liberamente utilizzabili, modificabili e distribuibili. Vogliamo eliminare le barriere economiche all'accesso a risorse didattiche di qualità.</p>
-                </div>
-                
-                <div class="principio-item">
-                    <h3 id="principio4-titolo">Collaborazione Docente</h3>
-                    <p id="principio4-testo">Invitiamo i colleghi insegnanti a contribuire, migliorare e adattare queste risorse. Insieme possiamo creare un patrimonio didattico condiviso che beneficia studenti e docenti.</p>
-                </div>
-            </div>
-        </div>
         
-        <footer>
-            <p id="testo-footer">Risorse didattiche gratuite - Creato con ❤️ per la comunità educativa</p>
+        <main>
+            <div class="risorse">
+                <section class="sezione matematica fractal-bg">
+                    <h2>Matematica</h2>
+                    <ul>
+                        <li><a href="#" tabindex="0">Schede operative sulle quattro operazioni</a></li>
+                        <li><a href="#" tabindex="0">Giochi interattivi per le tabelline</a></li>
+                        <li><a href="#" tabindex="0">Esercizi di logica e problem solving</a></li>
+                        <li><a href="#" tabindex="0">Unità di apprendimento sulla geometria</a></li>
+                        <li><a href="#" tabindex="0">Materiale per BES e DSA sulla matematica</a></li>
+                    </ul>
+                </section>
+                
+                <section class="sezione scienze fractal-bg">
+                    <h2>Scienze</h2>
+                    <ul>
+                        <li><a href="#" tabindex="0">Schede sul corpo umano e i cinque sensi</a></li>
+                        <li><a href="#" tabindex="0">Esperimenti scientifici per la scuola primaria</a></li>
+                        <li><a href="#" tabindex="0">Unità didattiche sull'ecologia e ambiente</a></li>
+                        <li><a href="#" tabindex="0">Materiali sul sistema solare e lo spazio</a></li>
+                        <li><a href="#" tabindex="0">Schede sugli animali e loro classificazione</a></li>
+                    </ul>
+                </section>
+                
+                <section class="sezione tecnologia fractal-bg">
+                    <h2>Tecnologia</h2>
+                    <ul>
+                        <li><a href="#" tabindex="0">Introduzione al coding con Scratch</a></li>
+                        <li><a href="#" tabindex="0">Schede sui componenti del computer</a></li>
+                        <li><a href="#" tabindex="0">Percorsi su internet e sicurezza online</a></li>
+                        <li><a href="#" tabindex="0">Attività con robotica educativa</a></li>
+                        <li><a href="#" tabindex="0">Materiali sulla stampa 3D per bambini</a></li>
+                    </ul>
+                </section>
+            </div>
+        </main>
+        
+        <footer class="fractal-bg">
+            <div class="valori">
+                <h3>Il Valore della Conoscenza Condivisa</h3>
+                <div class="testo-valori">
+                    <p>La condivisione gratuita del sapere è un pilastro fondamentale per una società equa e democratica. L'open source e il free software rappresentano non solo strumenti tecnici, ma soprattutto valori etici: trasparenza, collaborazione, libertà di studio, modifica e distribuzione.</p>
+                    <p>Queste filosofie promuovono l'accesso universale alla conoscenza, consentendo a chiunque di apprendere, adattare e migliorare risorse secondo le proprie necessità. Nel contesto educativo, questo si traduce in materiali didattici inclusivi, personalizzabili e sempre aggiornati dalla comunità, che superano barriere economiche e geografiche.</p>
+                    <p>Condividere liberamente il sapere significa investire nel futuro collettivo, perché la conoscenza cresce esponenzialmente quando viene donata, creando un circolo virtuoso di innovazione e progresso accessibile a tutti.</p>
+                </div>
+            </div>
         </footer>
     </div>
 
     <script>
-        // TRADUZIONI
-        const traduzioni = {
-            it: {
-                titolo: "Risorse Didattiche Inclusive",
-                sottotitolo: "Materiali gratuiti per matematica, scienze, tecnologia, informatica, coding e robotica",
-                descrizione: "Risorse studiate per l'inclusione e disponibili in più lingue per supportare gli alunni NAI e favorire l'apprendimento di tutti",
-                principiBtn: "I nostri principi educativi",
-                
-                // Materie
-                matematica: "Matematica",
-                descMatematica: "Schede operative, giochi logici, problemi visuali, risorse multisensoriali",
-                btnMatematica: "Esplora",
-                
-                scienze: "Scienze",
-                descScienze: "Esperimenti, osservazioni, schede di scienze della terra, biologia, fisica",
-                btnScienze: "Esplora",
-                
-                tecnologia: "Tecnologia",
-                descTecnologia: "Progetti maker, schede tecniche, attività con materiali di recupero",
-                btnTecnologia: "Esplora",
-                
-                informatica: "Informatica",
-                descInformatica: "Pensiero computazionale, basi dell'informatica, attività unplugged",
-                btnInformatica: "Esplora",
-                
-                coding: "Coding",
-                descCoding: "Attività con Scratch, Blockly, risorse per programmazione a blocchi e testuale",
-                btnCoding: "Esplora",
-                
-                robotica: "Robotica",
-                descRobotica: "Progetti con robot educativi, schede di montaggio, attività di problem solving",
-                btnRobotica: "Esplora",
-                
-                // Modale
-                titoloModale: "I nostri principi educativi",
-                principio1Titolo: "Inclusività",
-                principio1Testo: "Crediamo che ogni studente meriti risorse accessibili e inclusive. I nostri materiali sono progettati per diverse abilità e stili di apprendimento, con versioni in più lingue per supportare gli alunni NAI.",
-                principio2Titolo: "Condivisione del Sapere",
-                principio2Testo: "Il sapere è un bene comune che cresce quando condiviso. Ispirati dalla filosofia open source, crediamo che la condivisione tra docenti arricchisca tutti e migliori la qualità dell'educazione.",
-                principio3Titolo: "Libertà di Utilizzo",
-                principio3Testo: "Tutti i materiali sono gratuiti e liberamente utilizzabili, modificabili e distribuibili. Vogliamo eliminare le barriere economiche all'accesso a risorse didattiche di qualità.",
-                principio4Titolo: "Collaborazione Docente",
-                principio4Testo: "Invitiamo i colleghi insegnanti a contribuire, migliorare e adattare queste risorse. Insieme possiamo creare un patrimonio didattico condiviso che beneficia studenti e docenti.",
-                
-                // Footer
-                testoFooter: "Risorse didattiche gratuite - Creato con ❤️ per la comunità educativa"
-            },
-            en: {
-                titolo: "Inclusive Educational Resources",
-                sottotitolo: "Free materials for mathematics, science, technology, computer science, coding and robotics",
-                descrizione: "Resources designed for inclusion and available in multiple languages to support NAI students and enhance learning for everyone",
-                principiBtn: "Our Educational Principles",
-                
-                // Materie
-                matematica: "Mathematics",
-                descMatematica: "Worksheets, logic games, visual problems, multisensory resources",
-                btnMatematica: "Explore",
-                
-                scienze: "Science",
-                descScienze: "Experiments, observations, earth science, biology, physics worksheets",
-                btnScienze: "Explore",
-                
-                tecnologia: "Technology",
-                descTecnologia: "Maker projects, technical sheets, activities with recycled materials",
-                btnTecnologia: "Explore",
-                
-                informatica: "Computer Science",
-                descInformatica: "Computational thinking, computer basics, unplugged activities",
-                btnInformatica: "Explore",
-                
-                coding: "Coding",
-                descCoding: "Activities with Scratch, Blockly, block-based and text-based programming resources",
-                btnCoding: "Explore",
-                
-                robotica: "Robotics",
-                descRobotica: "Educational robot projects, assembly guides, problem solving activities",
-                btnRobotica: "Explore",
-                
-                // Modale
-                titoloModale: "Our Educational Principles",
-                principio1Titolo: "Inclusivity",
-                principio1Testo: "We believe every student deserves accessible and inclusive resources. Our materials are designed for different abilities and learning styles, with versions in multiple languages to support NAI students.",
-                principio2Titolo: "Knowledge Sharing",
-                principio2Testo: "Knowledge is a common good that grows when shared. Inspired by open source philosophy, we believe sharing among teachers enriches everyone and improves education quality.",
-                principio3Titolo: "Freedom of Use",
-                principio3Testo: "All materials are free and can be freely used, modified and distributed. We want to eliminate economic barriers to accessing quality educational resources.",
-                principio4Titolo: "Teacher Collaboration",
-                principio4Testo: "We invite fellow teachers to contribute, improve and adapt these resources. Together we can create a shared educational heritage that benefits students and teachers.",
-                
-                // Footer
-                testoFooter: "Free educational resources - Created with ❤️ for the educational community"
-            }
-        };
-
-        // GESTIONE LINGUA
-        document.querySelectorAll('.btn-lingua').forEach(button => {
-            button.addEventListener('click', function() {
-                const lingua = this.getAttribute('data-lingua');
-                
-                // Aggiorna bottoni attivi
-                document.querySelectorAll('.btn-lingua').forEach(btn => {
-                    btn.classList.remove('attiva');
-                });
-                this.classList.add('attiva');
-                
-                // Applica traduzioni
-                applicaLingua(lingua);
-            });
-        });
-
-        function applicaLingua(lingua) {
-            const trad = traduzioni[lingua];
-            
-            // Aggiorna tutti i testi
-            document.getElementById('titolo-principale').textContent = trad.titolo;
-            document.getElementById('sottotitolo').textContent = trad.sottotitolo;
-            document.getElementById('descrizione').textContent = trad.descrizione;
-            document.getElementById('principi-btn').textContent = trad.principiBtn;
-            
-            // Materie
-            document.getElementById('materia-matematica').textContent = trad.matematica;
-            document.getElementById('desc-matematica').textContent = trad.descMatematica;
-            document.getElementById('btn-matematica').textContent = trad.btnMatematica;
-            
-            document.getElementById('materia-scienze').textContent = trad.scienze;
-            document.getElementById('desc-scienze').textContent = trad.descScienze;
-            document.getElementById('btn-scienze').textContent = trad.btnScienze;
-            
-            document.getElementById('materia-tecnologia').textContent = trad.tecnologia;
-            document.getElementById('desc-tecnologia').textContent = trad.descTecnologia;
-            document.getElementById('btn-tecnologia').textContent = trad.btnTecnologia;
-            
-            document.getElementById('materia-informatica').textContent = trad.informatica;
-            document.getElementById('desc-informatica').textContent = trad.descInformatica;
-            document.getElementById('btn-informatica').textContent = trad.btnInformatica;
-            
-            document.getElementById('materia-coding').textContent = trad.coding;
-            document.getElementById('desc-coding').textContent = trad.descCoding;
-            document.getElementById('btn-coding').textContent = trad.btnCoding;
-            
-            document.getElementById('materia-robotica').textContent = trad.robotica;
-            document.getElementById('desc-robotica').textContent = trad.descRobotica;
-            document.getElementById('btn-robotica').textContent = trad.btnRobotica;
-            
-            // Modale
-            document.getElementById('titolo-modale').textContent = trad.titoloModale;
-            document.getElementById('principio1-titolo').textContent = trad.principio1Titolo;
-            document.getElementById('principio1-testo').textContent = trad.principio1Testo;
-            document.getElementById('principio2-titolo').textContent = trad.principio2Titolo;
-            document.getElementById('principio2-testo').textContent = trad.principio2Testo;
-            document.getElementById('principio3-titolo').textContent = trad.principio3Titolo;
-            document.getElementById('principio3-testo').textContent = trad.principio3Testo;
-            document.getElementById('principio4-titolo').textContent = trad.principio4Titolo;
-            document.getElementById('principio4-testo').textContent = trad.principio4Testo;
-            
-            // Footer
-            document.getElementById('testo-footer').textContent = trad.testoFooter;
-        }
-
-        // GESTIONE MODALE
-        document.getElementById('principi-btn').addEventListener('click', function() {
-            document.getElementById('modale-principi').style.display = 'flex';
-        });
-
-        document.getElementById('chiudi-modale').addEventListener('click', function() {
-            document.getElementById('modale-principi').style.display = 'none';
-        });
-
-        window.addEventListener('click', function(event) {
-            if (event.target === document.getElementById('modale-principi')) {
-                document.getElementById('modale-principi').style.display = 'none';
+        // Supporto per alto contrasto
+        document.addEventListener('keydown', function(e) {
+            if (e.altKey && e.key === 'c') {
+                document.body.classList.toggle('high-contrast');
             }
         });
 
-        // ACCESSIBILITÀ - Aggiungi attributi ARIA
+        // Ottimizzazione per lettori di schermo
         document.addEventListener('DOMContentLoaded', function() {
-            // Imposta lingua principale
-            document.documentElement.lang = 'it';
-            
-            // Aggiungi attributi ARIA per immagini
-            document.querySelectorAll('.immagine-item img').forEach(img => {
-                if (!img.hasAttribute('alt')) {
-                    img.setAttribute('alt', 'Immagine educativa');
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                if (!link.getAttribute('tabindex')) {
+                    link.setAttribute('tabindex', '0');
                 }
             });
         });
