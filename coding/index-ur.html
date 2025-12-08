@@ -1,0 +1,702 @@
+﻿<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشن کوڈنگ مع ماسٹر لوسیانو - پروگرامنگ میں ایک خلائی مہم</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>مشن کوڈنگ مع ماسٹر لوسیانو</h1>
+            <p class="subtitle">پروگرامنگ کی دنیا میں ایک خلائی مہم</p>
+            
+            <!-- زبانوں کا مینو -->
+            <div class="language-menu">
+                <a href="index-it.html" class="language-option" data-lang="it">
+                    <span class="flag">🇮🇹</span>
+                    <span class="language-name">Italiano</span>
+                </a>
+                <a href="index-en.html" class="language-option" data-lang="en">
+                    <span class="flag">🇬🇧</span>
+                    <span class="language-name">English</span>
+                </a>
+                <a href="index-fr.html" class="language-option" data-lang="fr">
+                    <span class="flag">🇫🇷</span>
+                    <span class="language-name">Français</span>
+                </a>
+                <a href="index-de.html" class="language-option" data-lang="de">
+                    <span class="flag">🇩🇪</span>
+                    <span class="language-name">Deutsch</span>
+                </a>
+                <a href="index-ar.html" class="language-option" data-lang="ar">
+                    <span class="flag">🇸🇦</span>
+                    <span class="language-name">العربية</span>
+                </a>
+                <a href="index-zh.html" class="language-option" data-lang="zh">
+                    <span class="flag">🇨🇳</span>
+                    <span class="language-name">中文</span>
+                </a>
+                <a href="index-hi.html" class="language-option" data-lang="hi">
+                    <span class="flag">🇮🇳</span>
+                    <span class="language-name">हिन्दी</span>
+                </a>
+                <a href="index-pa.html" class="language-option" data-lang="pa">
+                    <span class="flag">🇮🇳</span>
+                    <span class="language-name">ਪੰਜਾਬੀ</span>
+                </a>
+                <a href="index-es.html" class="language-option" data-lang="es">
+                    <span class="flag">🇪🇸</span>
+                    <span class="language-name">Español</span>
+                </a>
+                <a href="index-pt.html" class="language-option" data-lang="pt">
+                    <span class="flag">🇵🇹</span>
+                    <span class="language-name">Português</span>
+                </a>
+                <a href="index-ur.html" class="language-option current" data-lang="ur">
+                    <span class="flag">🇵🇰</span>
+                    <span class="language-name">اردو</span>
+                </a>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </header>
+        
+        <div class="content-area">
+            <!-- سیکشن 1: تعارف -->
+            <div class="section active" id="section1">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> پڑھیں
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> روکیں
+                    </button>
+                </div>
+                
+                <h2>خوش آمدید، نوجوان خلائی کھوجیو!</h2>
+                <p>ہیلو نوجوانو، میں ماسٹر لوسیانو ہوں، آپ کا خلائی انسٹرکٹر! میں آپ کو کوڈنگ کی دنیا میں ایک شاندار مہم پر لے جانے کے لیے یہاں ہوں، جہاں ہم کمپیوٹرز کو گیمز، حرکت پذیری اور خلائی مشنز بنانے کے لیے ہدایات دینا سیکھیں گے!</p>
+                
+                <div class="image-container">
+                    <img src="immagini/maestro-luciano.png" alt="ماسٹر لوسیانو، ایک مسکراتا ہوا خلائی انسٹرکٹر" class="content-image">
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>ماسٹر لوسیانو کا پیغام:</strong> "یاد رکھیں، خلا میں اور پروگرامنگ میں، ہر بڑا سفر ایک چھوٹے سے قدم سے شروع ہوتا ہے۔ ہم مل کر علم کی کہکشاؤں کو دریافت کریں گے!"</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>کیا آپ جانتے تھے؟</strong> کوڈنگ سب کے لیے ہے! <a href="https://it.wikipedia.org/wiki/Ada_Lovelace" class="wiki-link" target="_blank">ایڈا لولیس</a>، ایک زبردست ریاضی دان، تاریخ کی پہلی پروگرامر سمجھی جاتی ہیں۔ آج، <a href="https://it.wikipedia.org/wiki/Katie_Bouman" class="wiki-link" target="_blank">کیٹی بومین</a> جیسی خواتین، جنہوں نے بلیک ہول کی تصویر بنانے میں مدد کی، ٹیکنالوجی کی دنیا میں حیرت انگیز دریافتوں کو جاری رکھے ہوئے ہیں!</p>
+                </div>
+                
+                <p>ہماری مہم میں ہم دریافت کریں گے:</p>
+                <ul>
+                    <li>الگورتھم کیا ہیں <span class="mission-badge">مشن 1</span>۔</li>
+                    <li>کمپیوٹر کیسے کام کرتے ہیں <span class="mission-badge">مشن 2</span>۔</li>
+                    <li>بلاکس میں کوڈنگ <span class="mission-badge">مشن 3</span>۔</li>
+                    <li>پروگرامنگ کے بنیادی اصول <span class="mission-badge">مشن 4</span>۔</li>
+                    <li>سکریچ کے ساتھ پروجیکٹس کیسے بنائیں <span class="mission-badge">مشن 5</span>۔</li>
+                </ul>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ان میں سے کون سا الگورتھم کا تسلسل ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. دانت صاف کرنا: ٹوتھ برش لینا، ٹوتھ پیسٹ لگانا، برش کرنا، کلی کرنا۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. فٹبال کھیلنا: دوڑنا، کودنا، گانا، تیرنا۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. کتاب پڑھنا: کھولنا، بند کرنا، کھولنا، بند کرنا۔</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. تاریخ کی پہلی پروگرامر کسے سمجھا جاتا ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. ایڈا لولیس۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. چارلس بیبیج۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. ایلن ٹورنگ۔</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)" disabled>پیچھے</button>
+                    <button class="interactive-element" onclick="changeSection(1)">مشن شروع کریں!</button>
+                </div>
+            </div>
+            
+            <!-- سیکشن 2: حقیقی زندگی میں الگورتھم -->
+            <div class="section" id="section2">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> پڑھیں
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> روکیں
+                    </button>
+                </div>
+                
+                <h2>مشن 1: الگورتھم کیا ہیں؟</h2>
+                <p>الگورتھم کسی مسئلے کو حل کرنے یا کسی کام کو مکمل کرنے کے لیے مراحل کی ایک منظم ترتیب ہے۔ ہم انہیں روزانہ استعمال کرتے ہیں بغیر یہ جانے بھی!</p>
+                
+                <div class="luciano-message">
+                    <p><strong>ماسٹر لوسیانو کہتے ہیں:</strong> "الگورتھم کو ایسی چیک لسٹ سمجھیں جو میں ٹیک آف سے پہلے استعمال کرتا ہوں! کامیاب مشن کے لیے ہر قدم صحیح ترتیب سے انجام دینا ضروری ہے۔"</p>
+                </div>
+                
+                <h3>حقیقی زندگی سے مثالیں:</h3>
+                
+                <div class="example-box">
+                    <h4>گرم چاکلیٹ کا کپ تیار کرنا</h4>
+                    <div class="image-container">
+                        <img src="immagini/cioccolata-calda.png" alt="گرم چاکلیٹ تیار کرنے کا طریقہ" class="content-image">
+                    </div>
+                    <div class="algorithm-visualization">
+                        <div class="step" onmouseover="highlightStep(1)" onmouseout="unhighlightStep(1)">1</div>
+                        <div class="step" onmouseover="highlightStep(2)" onmouseout="unhighlightStep(2)">2</div>
+                        <div class="step" onmouseover="highlightStep(3)" onmouseout="unhighlightStep(3)">3</div>
+                        <div class="step" onmouseover="highlightStep(4)" onmouseout="unhighlightStep(4)">4</div>
+                        <div class="step" onmouseover="highlightStep(5)" onmouseout="unhighlightStep(5)">5</div>
+                    </div>
+                    <ol class="algorithm-steps">
+                        <li id="step1">ایک کپ لیں۔</li>
+                        <li id="step2">کوکو پاؤڈر ڈالیں۔</li>
+                        <li id="step3">گرم دودھ ڈالیں۔</li>
+                        <li id="step4">اچھی طرح ملالیں۔</li>
+                        <li id="step5">گرم چاکلیٹ سے لطف اٹھائیں۔</li>
+                    </ol>
+                    <p>جب ہم گرم چاکلیٹ تیار کرتے ہیں، تو ہم مخصوص مراحل پر عمل کرتے ہیں: کپ لینا، کوکو ڈالنا، گرم دودھ ڈالنا، ملالینا اور آخر میں لطف اٹھانا!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>اسکول جانا</h4>
+                    <div class="image-container">
+                        <img src="immagini/percorso-scuola.png" alt="اسکول جانے کا راستہ" class="content-image" style="width: 100%;">
+                    </div>
+                    <p>اسکول پہنچنے کا راستہ بھی ایک الگورتھم ہے: اٹھنا، کپڑے پہننا، ناشتہ کرنا، بیگ لینا اور اسکول تک راستہ اختیار کرنا۔</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ان میں سے کون سی ترتیب سینڈوچ تیار کرنے کے لیے صحیح الگورتھم ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. ڈبل روٹی کاٹنا، سینڈوچ کھانا، پنیر ڈالنا۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. ڈبل روٹی لیں، اجزاء ڈالیں، سینڈوچ بند کریں۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. سینڈوچ کھائیں، سینڈوچ تیار کریں، ڈبل روٹی خریدیں۔</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. الگورتھم میں مراحل کی ترتیب کیوں اہم ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. کیونکہ ورنہ کمپیوٹر ناراض ہو جاتا ہے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. کیونکہ کچھ مراحل پچھلے مراحل پر انحصار کرتے ہیں۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. کیونکہ یہ بصری طور پر زیادہ خوبصورت ہوتا ہے۔</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-algoritmi')">
+                        <div style="font-size: 2.5rem;">🔍</div>
+                        <h4>گہرائی میں جائیں</h4>
+                        <p>الگورتھم کی مزید مثالیں دریافت کریں۔</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-storia')">
+                        <div style="font-size: 2.5rem;">📚</div>
+                        <h4>تاریخ</h4>
+                        <p>الگورتھم کے موجدین کو جانیں۔</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">پیچھے</button>
+                    <button class="interactive-element" onclick="changeSection(1)">آگے!</button>
+                </div>
+            </div>
+            
+            <!-- سیکشن 3: کمپیوٹر سائنس میں الگورتھم -->
+            <div class="section" id="section3">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> پڑھیں
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> روکیں
+                    </button>
+                </div>
+                
+                <h2>مشن 2: کمپیوٹر سائنس میں الگورتھم</h2>
+                <p>کمپیوٹر سائنس میں، الگورتھم ہدایات کی ایک ایسی سیریز ہے جو ہم کمپیوٹر کو کسی مسئلے کو حل کرنے کے لیے چلانے کے لیے دیتے ہیں۔</p>
+                
+                <div class="luciano-message">
+                    <p><strong>ماسٹر لوسیانو کہتے ہیں:</strong> "کمپیوٹر فرمانبردار خلابازوں کی طرح ہیں: وہ بالکل وہی ہدایات پر عمل کرتے ہیں جو ہم انہیں دیتے ہیں۔ اسی لیے ہمیں بہت محتاط رہنا چاہیے!"</p>
+                </div>
+                
+                <h3>ڈیجیٹل دنیا سے مثالیں:</h3>
+                
+                <div class="example-box">
+                    <h4>فہرست میں سب سے بڑا نمبر تلاش کرنا</h4>
+                    <div class="image-container">
+                        <img src="immagini/numeri-lista.png" alt="نمبروں کی فہرست جس میں سب سے بڑا نمبر نمایاں کیا گیا ہے" class="content-image">
+                    </div>
+                    <div class="block-code">
+                        <div class="block blue">شروع کریں</div>
+                        <div class="block green">پہلا نمبر "زیادہ سے زیادہ" کے طور پر لیں</div>
+                        <div class="block yellow">فہرست میں ہر نمبر کے لیے:</div>
+                        <div class="block purple">اگر نمبر "زیادہ سے زیادہ" سے بڑا ہے</div>
+                        <div class="block green">"زیادہ سے زیادہ" کو اس نمبر سے اپ ڈیٹ کریں</div>
+                        <div class="block blue">ختم</div>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>کتابوں کو اونچائی کے لحاظ سے ترتیب دینا</h4>
+                    <div class="image-container">
+                        <img src="immagini/libri-ordinati.png" alt="اونچائی کے لحاظ سے ترتیب شدہ کتابیں" class="content-image">
+                    </div>
+                    <p>تصور کریں کہ آپ کو اپنی کتابوں کو چھوٹے سے بڑے تک ترتیب دینا ہے۔ آپ مخصوص مراحل پر عمل کریں گے، بالکل ویسے ہی جیسے کمپیوٹر کرے گا!</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>کیا آپ جانتے تھے کہ...</strong> <a href="https://it.wikipedia.org/wiki/Grace_Hopper" class="wiki-link" target="_blank">گریس ہاپر</a>، ایک زبردست سائنسدان، نے پہلا کمپائلر ایجاد کیا، ایک ایسا پروگرام جو انسانی زبان کو کمپیوٹر کی ہدایات میں ترجمہ کرتا ہے؟ ان کی دریافتیں آج ہم جس طرح کی پروگرامنگ جانتے ہیں اسے ممکن بناتی ہیں!</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ترتیب دینے والا الگورتھم کیا کرتا ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. غیر ضروری ڈیٹا کو حذف کرتا ہے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. ڈیٹا کو مخصوص ترتیب میں منظم کرتا ہے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. نئے بے ترتیب ڈیٹا بناتا ہے۔</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. کمپیوٹر پروگرام کرتے وقت الگورتھم کو درست کیوں ہونا چاہیے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. کیونکہ کمپیوٹر سست ہیں۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. کیونکہ کمپیوٹر بالکل وہی چلاتے ہیں جو کہا جاتا ہے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. کیونکہ کمپیوٹر آسانی سے بیزار ہو جاتے ہیں۔</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-compilatore')">
+                        <div style="font-size: 2.5rem;">⚙️</div>
+                        <h4>کمپائلر</h4>
+                        <p>کمپائلر کیسے کام کرتا ہے۔</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-donne-tech')">
+                        <div style="font-size: 2.5rem;">👩‍💻</div>
+                        <h4>ٹیک میں خواتین</h4>
+                        <p>ٹیکنالوجی میں دیگر اہم خواتین۔</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">پیچھے</button>
+                    <button class="interactive-element" onclick="changeSection(1)">آگے!</button>
+                </div>
+            </div>
+            
+            <!-- سیکشن 4: کمپیوٹر کیسے کام کرتے ہیں -->
+            <div class="section" id="section4">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> پڑھیں
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> روکیں
+                    </button>
+                </div>
+                
+                <h2>مشن 3: کمپیوٹر کیسے کام کرتے ہیں</h2>
+                <p>کمپیوٹر غیر معمولی مشینیں ہیں جو معلومات کو درست ہدایات پر عمل کرتے ہوئے پروسیس کرتی ہیں۔</p>
+                
+                <div class="luciano-message">
+                    <p><strong>ماسٹر لوسیانو کہتے ہیں:</strong> "کمپیوٹر کو ہمارے مشن کنٹرول سینٹر کی طرح سوچیں: یہ معلومات وصول کرتا ہے، انہیں پروسیس کرتا ہے اور نتائج پیدا کرتا ہے!"</p>
+                </div>
+                
+                <h3>کمپیوٹر کے اہم اجزاء:</h3>
+                
+                <div class="example-box">
+                    <h4>CPU - کمپیوٹر کا دماغ</h4>
+                    <div class="image-container">
+                        <img src="immagini/cpu.png" alt="CPU کی نمائندگی" class="content-image">
+                    </div>
+                    <p>CPU (سنٹرل پروسیسنگ یونٹ) کمپیوٹر کا دماغ ہے جو پروگراموں کی ہدایات کو چلاتا ہے۔</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>میموری - کام کی میز</h4>
+                    <div class="image-container">
+                        <img src="immagini/memoria.png" alt="کمپیوٹر میموری کی نمائندگی" class="content-image">
+                    </div>
+                    <p>RAM میموری ایک میز کی طرح ہے جہاں کمپیوٹر اس وقت استعمال ہونے والی معلومات رکھتا ہے۔</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. کمپیوٹر میں CPU کیا کرتا ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. اسکرین پر تصاویر دکھاتا ہے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. پروگراموں کی ہدایات چلاتا ہے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. فائلوں کو طویل مدتی طور پر محفوظ کرتا ہے۔</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. کمپیوٹر کون سا جزو کام کی میز کی طرح ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. ہارڈ ڈرائیو۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. RAM میموری۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. ویڈیو کارڈ۔</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">پیچھے</button>
+                    <button class="interactive-element" onclick="changeSection(1)">آگے!</button>
+                </div>
+            </div>
+            
+            <!-- سیکشن 5: بلاکوں میں پروگرامنگ -->
+            <div class="section" id="section5">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> پڑھیں
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> روکیں
+                    </button>
+                </div>
+                
+                <h2>مشن 4: بلاکوں میں پروگرامنگ</h2>
+                <p>بلاکوں میں پروگرامنگ پروگرامنگ سیکھنے کا ایک آسان اور بصری طریقہ ہے۔</p>
+                
+                <div class="luciano-message">
+                    <p><strong>ماسٹر لوسیانو کہتے ہیں:</strong> "بلاکس تعمیراتی بلاکس کی طرح ہیں: ہر ایک کی ایک مخصوص افادیت ہوتی ہے اور وہ مل کر حیرت انگیز چیزیں بنا سکتے ہیں!"</p>
+                </div>
+                
+                <h3>بلاکس کی اقسام:</h3>
+                
+                <div class="example-box">
+                    <h4>حرکت کے بلاکس</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-movimento.png" alt="سکریچ میں حرکت کے بلاکس" class="content-image">
+                    </div>
+                    <p>حرکت کے بلاکس اسکرین پر کرداروں کو منتقل کرنے کی اجازت دیتے ہیں۔</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>کنٹرول بلاکس</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-controllo.png" alt="سکریچ میں کنٹرول بلاکس" class="content-image">
+                    </div>
+                    <p>کنٹرول بلاکس طے کرتے ہیں کہ ہدایات کب اور کیسے چلائی جائیں گی۔</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. بلاکس میں پروگرامنگ کا کیا فائدہ ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. یہ متن والی پروگرامنگ سے زیادہ تیز ہے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. یہ ابتدائی افراد کے لیے سمجھنے میں آسان ہے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. یہ متن والی پروگرامنگ سے زیادہ طاقتور ہے۔</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. کنٹرول بلاکس کیا کرتے ہیں؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. بیک گراؤنڈ کا رنگ تبدیل کرتے ہیں۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. طے کرتے ہیں کہ ہدایات کب چلائی جائیں۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. پروجیکٹ میں آوازیں شامل کرتے ہیں۔</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">پیچھے</button>
+                    <button class="interactive-element" onclick="changeSection(1)">آگے!</button>
+                </div>
+            </div>
+            
+            <!-- سیکشن 6: شرطی ہدایات -->
+            <div class="section" id="section6">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> پڑھیں
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> روکیں
+                    </button>
+                </div>
+                
+                <h2>مشن 5: شرطی ہدایات</h2>
+                <p>شرطی ہدایات کمپیوٹر کو مخصوص شرائط کی بنیاد پر فیصلے کرنے کی اجازت دیتی ہیں۔</p>
+                
+                <div class="luciano-message">
+                    <p><strong>ماسٹر لوسیانو کہتے ہیں:</strong> "شرائط ایک کھوج کے دوران سڑک کے چوراہے کی طرح ہیں: اس بات پر منحصر ہے کہ آپ کیا ملتے ہیں، آپ فیصلہ کرتے ہیں کہ کون سا راستہ اختیار کریں!"</p>
+                </div>
+                
+                <h3>شرائط کی مثالیں:</h3>
+                
+                <div class="example-box">
+                    <h4>اگر... تو...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora.png" alt="اگر-تو شرط کی مثال" class="content-image">
+                    </div>
+                    <p>اگر بارش ہو رہی ہے، تو میں چھتری لیتا ہوں۔ یہ ایک سادہ شرط ہے جسے ہم روزانہ استعمال کرتے ہیں!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>اگر... تو... ورنہ...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora-altrimenti.png" alt="اگر-تو-ورنہ شرط کی مثال" class="content-image">
+                    </div>
+                    <p>اگر مجھے بھوک لگی ہے، تو میں کھاتا ہوں، ورنہ میں کھیلتا رہتا ہوں۔ اس شرط کے دو ممکنہ نتائج ہیں۔</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. شرطی ہدایت کیا کرتی ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. ہمیشہ ایک جیسی کارروائیاں کرتی ہے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. ایک شرط کی بنیاد پر فیصلہ کرتی ہے کہ کون سی کارروائی کرنی ہے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. ایک کارروائی کو کئی بار دہراتی ہے۔</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. ان میں سے کون سی "اگر-تو-ورنہ" شرط کی ایک مثال ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. اگر بارش ہو رہی ہے، تو میں چھتری لیتا ہوں۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. اگر بارش ہو رہی ہے، تو میں چھتری لیتا ہوں، ورنہ میں دھوپ کے چشمے لگاتا ہوں۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. میں چھتری لیتا ہوں اور دھوپ کے چشمے لگاتا ہوں۔</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">پیچھے</button>
+                    <button class="interactive-element" onclick="changeSection(1)">آگے!</button>
+                </div>
+            </div>
+            
+            <!-- سیکشن 7: لوپ اور تکرار -->
+            <div class="section" id="section7">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> پڑھیں
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> روکیں
+                    </button>
+                </div>
+                
+                <h2>مشن 6: لوپ اور تکرار</h2>
+                <p>لوپ ایک کارروائی کو کئی بار دہرانے کی اجازت دیتے ہیں بغیر اسے ہر بار دوبارہ لکھنے کی ضرورت کے۔</p>
+                
+                <div class="luciano-message">
+                    <p><strong>ماسٹر لوسیانو کہتے ہیں:</strong> "لوپ خلائی جہاز کے انجن کی طرح ہیں: ایک بار شروع ہونے پر، وہ تب تک کام کرتے رہتے ہیں جب تک آپ انہیں نہیں روکتے!"</p>
+                </div>
+                
+                <h3>لوپ کی اقسام:</h3>
+                
+                <div class="example-box">
+                    <h4>"کے لیے دہرائیں" لوپ</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-per.png" alt="کے لیے دہرائیں لوپ کی مثال" class="content-image">
+                    </div>
+                    <p>10 بار دہرائیں: کودیں۔ یہ لوپ کودنے کی کارروائی کو بالکل 10 بار چلائے گا۔</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>"جب تک دہرائیں" لوپ</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-finche.png" alt="جب تک دہرائیں لوپ کی مثال" class="content-image">
+                    </div>
+                    <p>جب تک آپ کام ختم نہیں کر لیتے دہرائیں: پڑھائی کریں۔ یہ لوپ تب تک جاری رہے گا جب تک شرط پوری نہیں ہو جاتی۔</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ہم پروگرامنگ میں لوپ کیوں استعمال کرتے ہیں؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. کیونکہ وہ دیکھنے میں زیادہ خوبصورت ہیں۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. ایک ہی کوڈ کو کئی بار دہرانے سے بچنے کے لیے۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. کیونکہ کمپیوٹر انہیں ترجیح دیتے ہیں۔</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. کون سا لوپ مخصوص تعداد میں بار دہراتا ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. کے لیے دہرائیں۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. جب تک دہرائیں۔</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. ہمیشہ دہرائیں۔</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">پیچھے</button>
+                    <button class="interactive-element" onclick="changeSection(1)">آگے!</button>
+                </div>
+            </div>
+            
+            <!-- سیکشن 8: آخری مشن -->
+            <div class="section" id="section8">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> پڑھیں
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> روکیں
+                    </button>
+                </div>
+                
+                <h2>آخری مشن: آپ کا کوڈنگ میں سفر جاری ہے!</h2>
+                <p>بہت اچھے خلائی کیڈٹ! آپ نے کوڈنگ میں اپنی بنیادی تربیت کامیابی سے مکمل کر لی ہے۔ لیکن یہ صرف آپ کے سفر کا آغاز ہے!</p>
+                
+                <div class="image-container">
+                    <img src="immagini/missione-finale.png" alt="کوڈنگ کا سفر لامحدود کی طرف جاری ہے" class="content-image">
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>ماسٹر لوسیانو کہتے ہیں:</strong> "اب آپ کی باری ہے! ایک حقیقی خلاباز کی طرح، آپ کو اپنے خلائی جہاز کا کنٹرول سنبھالنا ہوگا اور پروگرامنگ کی کہکشاؤں کی کھوج جاری رکھنی ہوگی۔ تجسس آپ کا ایندھن ہوگا!"</p>
+                </div>
+                
+                <h3>آپ کے اگلے مقامات:</h3>
+                
+                <div class="example-box">
+                    <h4>سکریچ - تخلیقیت کا سیارہ</h4>
+                    <p>بلاکس میں پروگرامنگ کے ساتھ انٹرایکٹو کہانیاں، گیمز اور حرکت پذیری بنانے کے لیے <a href="https://scratch.mit.edu" target="_blank" class="wiki-link">سکریچ</a> پر جائیں۔ یہ آپ کی مہم شروع کرنے کے لیے بہترین جگہ ہے!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Code.org - سیکھنے کا ستارہ</h4>
+                    <p>مفت کورسز اور سرگرمیاں دریافت کرنے کے لیے <a href="https://code.org" target="_blank" class="wiki-link">Code.org</a> کو دریافت کریں جو آپ کو کوڈنگ کی دنیا میں قدم بہ قدم رہنمائی کریں گے۔</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>اشتراک کی روح:</strong> پوری دنیا میں بہت سے لوگوں نے آپ کو سیکھنے میں مدد کرنے کے لیے مفت وسائل بنانے کے لیے کام کیا ہے۔ یہ <strong>اوپن سورس</strong> اور <strong>فری سافٹ ویئر</strong> کی روح ہے - سب کی بھلائی کے لیے علم کا اشتراک!</p>
+                </div>
+                
+                <h3>ڈیجیٹل کائنات میں محفوظ طور پر نیویگیٹ کرنا:</h3>
+                
+                <div class="example-box">
+                    <h4>انٹرنیٹ کے دو رخ</h4>
+                    <div class="image-container">
+                        <img src="immagini/doppia-faccia-internet.png" alt="انٹرنیٹ کے دو رخ: مثبت اور منفی" class="content-image">
+                    </div>
+                    <p>انٹرنیٹ دو رخ والی کائنات کی طرح ہے: یہ سیکھنے اور بڑھنے کے لیے ایک حیرت انگیز جگہ ہو سکتی ہے، لیکن اگر عقلمندی سے استعمال نہ کیا جائے تو خطرناک بھی ہو سکتی ہے۔</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>درست ویب سائٹ کیسے پہچانیں:</h4>
+                  
+                    <p>✅ تعلیمی اداروں (اسکولوں، یونیورسٹیوں، عجائب گھروں) کی سرکاری سائٹس تلاش کریں</p>
+                    <p>✅ چیک کریں کہ ویب ایڈریس "https://" سے شروع ہوتا ہے ("s" کا مطلب ہے محفوظ)</p>
+                    <p>✅ تصدیق کریں کہ معلومات اپ ڈیٹ ہیں (اشاعت کی تاریخ تلاش کریں)</p>
+                    <p>✅ معلومات کا موازنہ کرنے کے لیے اپنی مادری زبان اور اردو میں سائٹس تلاش کریں</p>
+                    <p>❌ بہت زیادہ اشتہارات یا ذاتی ڈیٹا کی درخواستوں والی سائٹس پر شک کریں</p>
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>ہمیشہ یاد رکھیں:</strong> جب آپ انٹرنیٹ پر نیویگیٹ کرتے ہیں، تو ہمیشہ کسی قابل اعتماد بالغ کی نگرانی میں کریں۔ ان کے ساتھ اپنی دریافتوں کا اشتراک کریں اور جب کچھ آپ کو قائل نہ کرے تو مدد طلب کریں!</p>
+                </div>
+                
+                <h3>علم کے لیے حتمی الگورتھم:</h3>
+                
+                <div class="algorithm-visualization">
+                    <div class="step" onmouseover="highlightStepFinal(1)" onmouseout="unhighlightStepFinal(1)">1</div>
+                    <div class="step" onmouseover="highlightStepFinal(2)" onmouseout="unhighlightStepFinal(2)">2</div>
+                    <div class="step" onmouseover="highlightStepFinal(3)" onmouseout="unhighlightStepFinal(3)">3</div>
+                    <div class="step" onmouseover="highlightStepFinal(4)" onmouseout="unhighlightStepFinal(4)">4</div>
+                    <div class="step" onmouseover="highlightStepFinal(5)" onmouseout="unhighlightStepFinal(5)">5</div>
+                </div>
+                
+                <ol class="algorithm-steps">
+                    <li id="stepFinal1">متجسس رہیں: ہر اس چیز کے بارے میں سوالات کریں جو آپ کو دلچسپ لگتی ہے</li>
+                    <li id="stepFinal2">وسائل تلاش کریں: معلومات تلاش کرنے کے لیے انٹرنیٹ کو محفوظ طریقے سے استعمال کریں</li>
+                    <li id="stepFinal3">تجربہ کریں: آزمائیں، غلطی کریں، سیکھیں اور پھر سے آزمائیں</li>
+                    <li id="stepFinal4">اشتراک کریں: دوسروں کو بتائیں کہ آپ نے کیا دریافت کیا ہے</li>
+                    <li id="stepFinal5">سیکھتے رہیں: علم کا سفر کبھی ختم نہیں ہوتا!</li>
+                </ol>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">کوڈنگ کے سفر میں آپ کا اگلا قدم کیا ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">A. میں کسی بالغ کی مدد سے سکریچ اور Code.org کو دریافت کروں گا!</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">B. میں تجسس اور توجہ سے سیکھتا رہوں گا!</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">C. میں اپنے دوستوں کے ساتھ جو کچھ سیکھا ہے اس کا اشتراک کروں گا!</div>
+                    <div class="inclusion-message">
+                        <p><strong>نوٹ:</strong> اس مشن میں، تمام جوابات درست ہیں! اہم بات یہ ہے کہ آپ سیکھنے کے اپنے سفر کو جاری رکھیں۔</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">پیچھے</button>
+                    <button class="interactive-element" onclick="restartJourney()">سفر دوبارہ شروع کریں!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- گہرائی کے لیے مودیول -->
+    <div id="modal-algoritmi" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-algoritmi')">&times;</span>
+            <h2>الگورتھم کی دیگر مثالیں</h2>
+            <div class="image-container">
+                <img src="immagini/esempi-algoritmi.png" alt="روزمرہ زندگی میں مختلف الگورتھم کی مثالیں" class="content-image">
+            </div>
+            <p>یہاں روزمرہ زندگی میں استعمال ہونے والے الگورتھم کی دیگر مثالیں ہیں:</p>
+            <ul>
+                <li><strong>سینڈوچ تیار کرنا:</strong> ڈبل روٹی لیں، پنیر، سبزیاں ڈالیں، مصالحہ ڈالیں اور بند کریں۔</li>
+                <li><strong>برتن دھونا:</strong> سنک بھریں، ڈٹرجنٹ ڈالیں، دھوئیں، کلی کریں، خشک کریں۔</li>
+                <li><strong>ڈرائنگ بنانا:</strong> رنگ منتخب کریں، خاکہ بنائیں، رنگ بھریں، تفصیلات شامل کریں۔</li>
+            </ul>
+            <div class="luciano-message">
+                <p><strong>ماسٹر لوسیانو کہتے ہیں:</strong> "اپنی روزمرہ کی کارروائیوں پر غور کریں: آپ کو پتہ چلے گا کہ آپ کے بہت سے رویے مخصوص الگورتھم پر عمل کرتے ہیں!"</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-storia" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-storia')">&times;</span>
+            <h2>الگورتھم کی تاریخ</h2>
+            <div class="image-container">
+                <img src="immagini/storia-algoritmi.png" alt="الگورتھم کی تاریخی نمائندگی" class="content-image">
+            </div>
+            <p>لفظ "الگورتھم" فارسی ریاضی دان <a href="https://it.wikipedia.org/wiki/Al-Khwarizmi" class="wiki-link" target="_blank">الخوارزمی</a> کے نام سے ماخوذ ہے، جو نویں صدی میں رہتے تھے۔ ان کی کتابوں نے ہندوستانی نمبر (جو آج ہم استعمال کرتے ہیں) اور مساوات کو حل کرنے کے طریقے متعارف کرائے۔</p>
+            <p>صدیوں کے دوران، بہت سے ریاضی دانوں نے الگورتھم کی ترقی میں حصہ ڈالا، لیکن یہ کمپیوٹرز کی آمد کے ساتھ ہے کہ الگورتھم ہماری روزمرہ زندگی کے لیے بنیادی ہو گئے۔</p>
+            <div class="inclusion-message">
+                <p><strong>تجسس:</strong> پہلا کمپیوٹر الگورتھم <a href="https://it.wikipedia.org/wiki/Ada_Lovelace" class="wiki-link" target="_blank">ایڈا لولیس</a> نے <a href="https://it.wikipedia.org/wiki/Charles_Babbage" class="wiki-link" target="_blank">چارلس بیبیج</a> کی اینالیٹیکل انجن کے لیے 1843 میں لکھا تھا، جدید کمپیوٹرز کے وجود میں آنے سے بہت پہلے!</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-compilatore" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-compilatore')">&times;</span>
+            <h2>کمپائلر کیسے کام کرتا ہے</h2>
+            <div class="image-container">
+                <img src="immagini/compilatore.png" alt="کمپائلر کیسے کام کرتا ہے اس کی نمائندگی" class="content-image">
+            </div>
+            <p>کمپائلر ایک خاص پروگرام ہے جو کسی پروگرامنگ زبان (جیسے پائتھون یا جاوا) میں لکھے گئے کوڈ کو مشین زبان میں ترجمہ کرتا ہے، جسے کمپیوٹر براہ راست سمجھ اور چلا سکتا ہے۔</p>
+            <p>کمپائلن کا عمل مختلف مراحل میں ہوتا ہے:</p>
+            <ol>
+                <li>لغوی تجزیہ: کوڈ کو "ٹوکنز" (کلیدی الفاظ، شناخت کار وغیرہ) میں تقسیم کیا جاتا ہے۔</li>
+                <li>نحوی تجزیہ: تصدیق کرتا ہے کہ ٹوکنز زبان کے قواعد کے مطابق صحیح طریقے سے منظم ہیں۔</li>
+                <li>معنوی تجزیہ: تصدیق کرتا ہے کہ کوڈ کا منطقی معنی ہے۔</li>
+                <li>کوڈ کی تخلیق: مشین زبان میں کوڈ تیار کرتا ہے۔</li>
+            </ol>
+            <div class="luciano-message">
+                <p><strong>ماسٹر لوسیانو کہتے ہیں:</strong> "کمپائلر کو ایک آفاقی مترجم سمجھیں جو آپ کے خیالات کو کمپیوٹر کی سمجھ میں آنے والی زبان میں ترجمہ کرتا ہے!"</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-donne-tech" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-donne-tech')">&times;</span>
+            <h2>ٹیکنالوجی میں اہم خواتین</h2>
+            <div class="image-container">
+                <img src="immagini/donne-tech.png" alt="ٹیکنالوجی کے میدان میں اہم خواتین" class="content-image">
+            </div>
+            <p>ایڈا لولیس اور گریس ہاپر کے علاوہ، بہت سی دیگر خواتین نے کمپیوٹنگ اور ٹیکنالوجی میں بنیادی شراکتیں دی ہیں:</p>
+            <ul>
+                <li><strong><a href="https://it.wikipedia.org/wiki/Hedy_Lamarr" class="wiki-link" target="_blank">ہیڈی لیمار</a></strong>: اداکارہ اور موجد، انہوں نے ایک ٹیکنالوجی تیار کی جو وائی فائی اور بلوٹوتھ کی بنیاد ہے۔</li>
+                <li><strong><a href="https://it.wikipedia.org/wiki/Radia_Perlman" class="wiki-link" target="_blank">ریڈیا پرلمان</a></strong>: "انٹرنیٹ کی ماں" کے نام سے مشہور، انہوں نے اسپیننگ ٹری پروٹوکول ایجاد کیا۔</li>
+                <li><strong><a href="https://it.wikipedia.org/wiki/Anita_Borg" class="wiki-link" target="_blank">انیٹا بورگ</a></strong>: انہوں نے انسٹی ٹیوٹ فار ویمن اینڈ ٹیکنالوجی اور گریس ہاپر سیلبریشن کی بنیاد رکھی۔</li>
+                <li><strong><a href="https://it.wikipedia.org/wiki/Margaret_Hamilton_(scienziata)" class="wiki-link" target="_blank">مارگریٹ ہیملٹن</a></strong>: انہوں نے ناسا کے اپولو پروگرام کے لیے سافٹ ویئر کی ترقی کی نگرانی کی۔</li>
+            </ul>
+            <div class="inclusion-message">
+                <p><strong>کیا آپ جانتے تھے؟</strong> خواتین کمپیوٹنگ کی ترقی میں شروع سے ہی بنیادی رہی ہیں، اور وہ ٹیکنالوجی کے تمام شعبوں میں انقلابی دریافتیں کرتی رہتی ہیں!</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

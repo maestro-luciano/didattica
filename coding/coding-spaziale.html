@@ -1,0 +1,1378 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missione Coding con Maestro Luciano - Un'avventura spaziale nella programmazione</title>
+    <style>
+        :root {
+            --primary: #3D8BF2; /* Blu più acceso per contrasto */
+            --secondary: #0D6EFD; /* Blu più scuro */
+            --accent: #0DCAF0; /* Ciano per accenti */
+            --light: #f8f9fa; /* Bianco sporco per leggibilità */
+            --dark: #212529; /* Quasi nero per testo */
+            --success: #198754; /* Verde più acceso */
+            --warning: #FD7E14; /* Arancione vivace */
+            --space: #0A1428; /* Blu scuro spaziale */
+            --text-dark: #212529; /* Testo scuro ad alto contrasto */
+            --text-light: #f8f9fa; /* Testo chiaro */
+            --card-bg: rgba(255, 255, 255, 0.95); /* Sfondo carte più opaco */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Font ad alta leggibilità per dislessici */
+            font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: var(--space);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: url('immagini/sfondo-stelle.png');
+            background-size: cover;
+            line-height: 1.6; /* Migliore spaziatura per leggibilità */
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to right, var(--warning), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s infinite alternate;
+            font-weight: 700; /* Peso maggiore per migliore leggibilità */
+            letter-spacing: 0.5px; /* Leggera spaziatura per distinguere lettere */
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, var(--accent), var(--warning));
+            border-radius: 10px;
+            transition: width 0.7s ease;
+            box-shadow: 0 0 10px rgba(13, 202, 240, 0.7);
+        }
+        
+        .content-area {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dark); /* Testo scuro su sfondo chiaro */
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin: 15px 0;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        p {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, rgba(61, 139, 242, 0.1), rgba(13, 110, 253, 0.1));
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid var(--success);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            color: var(--text-dark);
+        }
+        
+        .example-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .interactive-element {
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(13, 202, 240, 0.4);
+            font-weight: 600;
+        }
+        
+        .interactive-element:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(13, 202, 240, 0.7);
+        }
+        
+        .interactive-element:active {
+            transform: translateY(1px);
+        }
+        
+        .speech-button {
+            background: linear-gradient(to right, var(--success), #2E8B57);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(25, 135, 84, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        
+        .speech-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(25, 135, 84, 0.7);
+        }
+        
+        .speech-button.stop {
+            background: linear-gradient(to right, #dc3545, #c82333);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .visual-element {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .algorithm-visualization {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .step {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        
+        .step:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .algorithm-steps {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .algorithm-steps li {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .algorithm-steps li.highlight {
+            color: var(--warning);
+            font-weight: bold;
+        }
+        
+        .block-code {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .block {
+            background-color: var(--primary);
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: white;
+            cursor: move;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .block:hover {
+            transform: scale(1.05);
+        }
+        
+        .block.blue { background-color: #2962ff; }
+        .block.green { background-color: var(--success); }
+        .block.yellow { background-color: var(--warning); color: var(--dark); }
+        .block.purple { background-color: #7B1FA2; }
+        
+        .inclusion-message {
+            background: linear-gradient(135deg, rgba(13, 202, 240, 0.1), rgba(13, 110, 253, 0.1));
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            color: var(--text-dark);
+        }
+        
+        .quiz-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-dark);
+        }
+        
+        .quiz-question {
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        .quiz-option {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .quiz-option:hover {
+            background-color: rgba(61, 139, 242, 0.1);
+        }
+        
+        .quiz-option.correct {
+            background-color: rgba(25, 135, 84, 0.2);
+            border-left: 5px solid var(--success);
+        }
+        
+        .quiz-option.incorrect {
+            background-color: rgba(220, 53, 69, 0.2);
+            border-left: 5px solid #dc3545;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .content-image {
+            max-width: 90%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+        
+        .content-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .explore-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .explore-card {
+            background: linear-gradient(135deg, rgba(61, 139, 242, 0.1), rgba(13, 110, 253, 0.1));
+            border-radius: 15px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-dark);
+        }
+        
+        .explore-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .explore-card i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .luciano-message {
+            background: linear-gradient(135deg, rgba(253, 126, 20, 0.1), rgba(253, 126, 20, 0.1));
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 5px solid var(--warning);
+            position: relative;
+            padding-left: 70px;
+            color: var(--text-dark);
+        }
+        
+        .luciano-message:before {
+            content: "💡";
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            font-size: 2rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 10px rgba(253, 126, 20, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(13, 202, 240, 0.7); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .mission-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--warning));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 0 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+        }
+        
+        .wiki-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dotted var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .wiki-link:hover {
+            color: var(--primary);
+            border-bottom: 1px solid var(--primary);
+        }
+        
+        .speech-controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 2.0rem; }
+            h3 { font-size: 1.6rem; }
+            p { font-size: 1.15rem; }
+            .content-area { padding: 20px; }
+            .algorithm-visualization { justify-content: center; }
+            .explore-card { width: 100%; }
+            .content-image {
+                max-width: 95%;
+            }
+            .nav-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .nav-buttons button {
+                width: 100%;
+            }
+            .speech-controls {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.6rem; }
+            .content-image {
+                max-width: 100%;
+            }
+        }
+
+
+        /* Stili per i modali */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background: var(--card-bg);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .modal-content h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+        
+        .modal-content p, .modal-content li {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .modal-content ul, .modal-content ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Missione Coding con Maestro Luciano</h1>
+            <p class="subtitle">Un'avventura spaziale nel mondo della programmazione</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </header>
+        
+        <div class="content-area">
+            <!-- Sezione 1: Introduzione -->
+            <div class="section active" id="section1">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leggi
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Stop
+                    </button>
+                </div>
+                
+                <h2>Benvenuti, Giovani Esploratori Spaziali!</h2>
+                <p>Ciao giovani, sono il Maestro Luciano, il vostro istrutture spaziale! Sono qui per guidarvi in un'avventura straordinaria nel mondo del coding, dove impareremo a dare istruzioni ai computer per creare giochi, animazioni e missioni spaziali!</p>
+                
+                <div class="image-container">
+                    <img src="immagini/maestro-luciano.png" alt="Maestro Luciano, un istrutture spaziale sorridente" class="content-image">
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>Messaggio del Maestro Luciano:</strong> "Ricordate, nello spazio come nella programmazione, ogni grande viaggio inizia con un piccolo passo. Insieme esploreremo galassie di conoscenza!"</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>Lo sapevi?</strong> Il coding è per tutti! <a href="https://it.wikipedia.org/wiki/Ada_Lovelace" class="wiki-link" target="_blank">Ada Lovelace</a>, una matematica brillante, è considerata la prima programmatrice della storia. Oggi, donne come <a href="https://it.wikipedia.org/wiki/Katie_Bouman" class="wiki-link" target="_blank">Katie Bouman</a>, che ha contribuito a fotografare un buco nero, continuano a fare scoperte incredibili nel mondo della tecnologia!</p>
+                </div>
+                
+                <p>Nella nostra missione esploreremo:</p>
+                <ul>
+                    <li>Cosa sono gli algoritmi <span class="mission-badge">Missione 1</span>.</li>
+                    <li>Come funzionano i computer <span class="mission-badge">Missione 2</span>.</li>
+                    <li>Il coding a blocchi <span class="mission-badge">Missione 3</span>.</li>
+                    <li>I principi base della programmazione <span class="mission-badge">Missione 4</span>.</li>
+                    <li>Come creare progetti con Scratch <span class="mission-badge">Missione 5</span>.</li>
+                </ul>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Quale di queste è una sequenza di algoritmi?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. Lavarsi i denti: prendere lo spazzolino, mettere il dentifricio, spazzolare, sciacquare.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. Giocare a calcio: correre, saltare, cantare, nuotare.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Leggere un libro: aprire, chiudere, aprire, chiudere.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Chi è considerata la prima programmatrice della storia?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. Ada Lovelace.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. Charles Babbage.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Alan Turing.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)" disabled>Indietro</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Inizia Missione!</button>
+                </div>
+            </div>
+            
+            <!-- Sezione 2: Algoritmi nella vita reale -->
+            <div class="section" id="section2">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leggi
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Stop
+                    </button>
+                </div>
+                
+                <h2>Missione 1: Cosa sono gli Algoritmi?</h2>
+                <p>Un algoritmo è una serie di passaggi ordinati per risolvere un problema o completare un'attività. Li usiamo ogni giorno senza nemmeno accorgercene!</p>
+                
+                <div class="luciano-message">
+                    <p><strong>Maestro Luciano dice:</strong> "Pensa a un algoritmo come alla lista di controllo che uso prima del decollo! Ogni passo deve essere eseguito nell'ordine giusto per una missione di successo."</p>
+                </div>
+                
+                <h3>Esempi dalla vita reale:</h3>
+                
+                <div class="example-box">
+                    <h4>Preparare una tazza di cioccolata calda</h4>
+                    <div class="image-container">
+                        <img src="immagini/cioccolata-calda.png" alt="Procedimento per preparare una cioccolata calda" class="content-image">
+                    </div>
+                    <div class="algorithm-visualization">
+                        <div class="step" onmouseover="highlightStep(1)" onmouseout="unhighlightStep(1)">1</div>
+                        <div class="step" onmouseover="highlightStep(2)" onmouseout="unhighlightStep(2)">2</div>
+                        <div class="step" onmouseover="highlightStep(3)" onmouseout="unhighlightStep(3)">3</div>
+                        <div class="step" onmouseover="highlightStep(4)" onmouseout="unhighlightStep(4)">4</div>
+                        <div class="step" onmouseover="highlightStep(5)" onmouseout="unhighlightStep(5)">5</div>
+                    </div>
+                    <ol class="algorithm-steps">
+                        <li id="step1">Prendere una tazza.</li>
+                        <li id="step2">Aggiungere il cacao in polvere.</li>
+                        <li id="step3">Versare il latte caldo.</li>
+                        <li id="step4">Mescolare bene.</li>
+                        <li id="step5">Gustare la cioccolata calda.</li>
+                    </ol>
+                    <p>Quando prepariamo una cioccolata calda, seguiamo dei passaggi precisi: prendere una tazza, aggiungere il cacao, versare il latte caldo, mescolare e infine gustare!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Andare a scuola</h4>
+                    <div class="image-container">
+                        <img src="immagini/percorso-scuola.png" alt="Percorso per andare a scuola" class="content-image" style="width: 100%;">
+                    </div>
+                    <p>Anche il percorso per arrivare a scuola è un algoritmo: svegliarsi, vestirsi, fare colazione, prendere lo zaino e seguire il percorso fino a scuola.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Quale di queste sequenze rappresenta un algoritmo corretto per preparare un panino?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Tagliare il pane, mangiare il panino, mettere il formaggio.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Prendere il pane, aggiungere gli ingredienti, chiudere il panino.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Mangiare il panino, preparare il panino, comprare il pane.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Perché l'ordine dei passaggi è importante in un algoritmo?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Perché altrimenti il computer si arrabbia.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Perché alcuni passaggi dipendono da quelli precedenti.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Perché è più bello esteticamente.</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-algoritmi')">
+                        <div style="font-size: 2.5rem;">🔍</div>
+                        <h4>Approfondisci</h4>
+                        <p>Scopri altri esempi di algoritmi.</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-storia')">
+                        <div style="font-size: 2.5rem;">📚</div>
+                        <h4>La Storia</h4>
+                        <p>Conosci gli inventori degli algoritmi.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Indietro</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Avanti!</button>
+                </div>
+            </div>
+            
+            <!-- Sezione 3: Algoritmi in informatica -->
+            <div class="section" id="section3">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leggi
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Stop
+                    </button>
+                </div>
+                
+                <h2>Missione 2: Algoritmi in Informatica</h2>
+                <p>In informatica, un algoritmo è una serie di istruzioni che diciamo al computer di eseguire per risolvere un problema.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>Maestro Luciano dice:</strong> "I computer sono come astronauti obbedienti: seguono esattamente le istruzioni che gli diamo. Per questo dobbiamo essere molto precisi!"</p>
+                </div>
+                
+                <h3>Esempi dal mondo digitale:</h3>
+                
+                <div class="example-box">
+                    <h4>Trovare il numero più grande in una lista</h4>
+                    <div class="image-container">
+                        <img src="immagini/numeri-lista.png" alt="Lista di numeri con il più grande evidenziato" class="content-image">
+                    </div>
+                    <div class="block-code">
+                        <div class="block blue">Inizia</div>
+                        <div class="block green">Prendi il primo numero come "massimo"</div>
+                        <div class="block yellow">Per ogni numero nella lista:</div>
+                        <div class="block purple">Se il numero è maggiore del "massimo"</div>
+                        <div class="block green">Aggiorna "massimo" con questo numero</div>
+                        <div class="block blue">Fine</div>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Ordinare libri per altezza</h4>
+                    <div class="image-container">
+                        <img src="immagini/libri-ordinati.png" alt="Libri ordinati per altezza" class="content-image">
+                    </div>
+                    <p>Immagina di dover ordinare i tuoi libri dal più piccolo al più grande. Seguiresti dei passaggi precisi, proprio come farebbe un computer!</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>Sapevi che...</strong> <a href="https://it.wikipedia.org/wiki/Grace_Hopper" class="wiki-link" target="_blank">Grace Hopper</a>, una brillante scienziata, ha inventato il primo compilatore, un programma che traduce il linguaggio umano in istruzioni per il computer? Le sue scoperte hanno reso possibile la programmazione come la conosciamo oggi!</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Cosa fa un algoritmo di ordinamento?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Cancella i dati inutili.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Organizza i dati in un ordine specifico.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Crea nuovi dati casuali.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Perché gli algoritmi devono essere precisi quando si programmano i computer?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Perché i computer sono lenti.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Perché i computer eseguono esattamente ciò che viene detto.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Perché i computer si annoiano facilmente.</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-compilatore')">
+                        <div style="font-size: 2.5rem;">⚙️</div>
+                        <h4>Compilatore</h4>
+                        <p>Come funziona un compilatore.</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-donne-tech')">
+                        <div style="font-size: 2.5rem;">👩‍💻</div>
+                        <h4>Donne nella Tech</h4>
+                        <p>Altre donne importanti nella tecnologia.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Indietro</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Avanti!</button>
+                </div>
+            </div>
+            
+            <!-- Sezione 4: Come funzionano i computer -->
+            <div class="section" id="section4">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leggi
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Stop
+                    </button>
+                </div>
+                
+                <h2>Missione 3: Come funzionano i computer</h2>
+                <p>I computer sono macchine straordinarie che elaborano informazioni seguendo precise istruzioni.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>Maestro Luciano dice:</strong> "Pensa al computer come al nostro centro di controllo missione: riceve informazioni, le elabora e produce risultati!"</p>
+                </div>
+                
+                <h3>Componenti principali di un computer:</h3>
+                
+                <div class="example-box">
+                    <h4>CPU - Il cervello del computer</h4>
+                    <div class="image-container">
+                        <img src="immagini/cpu.png" alt="Rappresentazione della CPU" class="content-image">
+                    </div>
+                    <p>La CPU (Unità di Elaborazione Centrale) è il cervello del computer che esegue les istruzioni dei programmi.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Memoria - La scrivania di lavoro</h4>
+                    <div class="image-container">
+                        <img src="immagini/memoria.png" alt="Rappresentazione della memoria del computer" class="content-image">
+                    </div>
+                    <p>La memoria RAM è come una scrivania dove il computer tiene le informazioni che sta usando in quel momento.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Cosa fa la CPU in un computer?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Mostra le immagini sullo schermo.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Esegue le istruzioni dei programmi.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Memorizza i file a lungo termine.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Quale componente del computer è come una scrivania di lavoro?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Il disco rigido.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. La memoria RAM.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. La scheda video.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Indietro</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Avanti!</button>
+                </div>
+            </div>
+            
+            <!-- Sezione 5: Programmazione a blocchi -->
+            <div class="section" id="section5">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leggi
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Stop
+                    </button>
+                </div>
+                
+                <h2>Missione 4: Programmazione a blocchi</h2>
+                <p>La programmazione a blocchi è un modo semplice e visivo per imparare a programmare.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>Maestro Luciano dice:</strong> "I blocchi sono come i mattoncini delle costruzioni: ognuno ha una funzione specifica e insieme possono creare cose incredibili!"</p>
+                </div>
+                
+                <h3>Tipi di blocchi:</h3>
+                
+                <div class="example-box">
+                    <h4>Blocchi di movimento</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-movimento.png" alt="Blocchi di movimento in Scratch" class="content-image">
+                    </div>
+                    <p>I blocchi di movimento permettono di far spostare i personaggi sullo schermo.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Blocchi di controllo</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-controllo.png" alt="Blocchi di controllo in Scratch" class="content-image">
+                    </div>
+                    <p>I blocchi di controllo determinano quando e come vengono eseguite le istruzioni.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Qual è il vantaggio della programmazione a blocchi?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. È più veloce della programmazione testuale.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. È più facile da comprendere per i principianti.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. È più potente della programmazione testuale.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Cosa fanno i blocchi di controllo?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Cambiano il colore dello sfondo.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Determinano quando eseguire le istruzioni.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Aggiungono suoni al progetto.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Indietro</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Avanti!</button>
+                </div>
+            </div>
+            
+            <!-- Sezione 6: Istruzioni condizionali -->
+            <div class="section" id="section6">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leggi
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Stop
+                    </button>
+                </div>
+                
+                <h2>Missione 5: Istruzioni condizionali</h2>
+                <p>Le istruzioni condizionali permettono al computer di prendere decisioni in base a determinate condizioni.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>Maestro Luciano dice:</strong> "Le condizioni sono come i bivi durante un'esplorazione: a seconda di quello che incontri, decidi quale strada prendere!"</p>
+                </div>
+                
+                <h3>Esempi di condizioni:</h3>
+                
+                <div class="example-box">
+                    <h4>Se... allora...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora.png" alt="Esempio di condizione se-allora" class="content-image">
+                    </div>
+                    <p>Se piove, allora prendo l'ombrello. Questa è una condizione semplice che usiamo ogni giorno!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Se... allora... altrimenti...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora-altrimenti.png" alt="Esempio di condizione se-allora-altrimenti" class="content-image">
+                    </div>
+                    <p>Se ho fame, allora mangio, altrimenti continuo a giocare. Questa condizione ha due possibili risultati.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Cosa fa un'istruzione condizionale?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Esegue sempre le stesse azioni.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Decide quale azione eseguire in base a una condizione.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Ripete un'azione molte volte.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Quale di queste è un esempio di condizione "se-allora-altrimenti"?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Se piove, prendo l'ombrello.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Se piove, prendo l'ombrello, altrimenti metto gli occhiali da sole.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Prendo l'ombrello e metto gli occhiali da sole.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Indietro</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Avanti!</button>
+                </div>
+            </div>
+            
+            <!-- Sezione 7: Cicli e ripetizioni -->
+            <div class="section" id="section7">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leggi
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Stop
+                    </button>
+                </div>
+                
+                <h2>Missione 6: Cicli e ripetizioni</h2>
+                <p>I cicli permettono di ripetere un'azione più volte senza doverla riscrivere ogni volta.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>Maestro Luciano dice:</strong> "I cicli sono come il motore di un'astronave: una volta avviati, continuano a funzionare finché non li fermi!"</p>
+                </div>
+                
+                <h3>Tipi di cicli:</h3>
+                
+                <div class="example-box">
+                    <h4>Ciclo "ripeti per"</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-per.png" alt="Esempio di ciclo ripeti per" class="content-image">
+                    </div>
+                    <p>Ripeti per 10 volte: salta. Questo ciclo eseguirà l'azione di saltare esattamente 10 volte.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Ciclo "ripeti finché"</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-finche.png" alt="Esempio di ciclo ripeti finché" class="content-image">
+                    </div>
+                    <p>Ripeti finché non hai finito i compiti: studia. Questo ciclo continuerà finché la condizione non sarà soddisfatta.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Perché usiamo i cicli nella programmazione?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Perché sono più belli da vedere.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Per evitare di ripetere lo stesso codice molte volte.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Perché i computer li preferiscono.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Quale ciclo se ripete un numero specifico di volte?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. Ripeti per.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. Ripeti finché.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Ripeti sempre.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Indietro</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Avanti!</button>
+                </div>
+            </div>
+            
+            <!-- Sezione 8: Missione Finale -->
+            <div class="section" id="section8">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leggi
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Stop
+                    </button>
+                </div>
+                
+                <h2>Missione Finale: Il Tuo Viaggio Nel Coding Continua!</h2>
+                <p>Bravo cadetto spaziale! Hai completato con successo la tua formazione base nel coding. Ma questo è solo l'inizio del tuo viaggio!</p>
+                
+                <div class="image-container">
+                    <img src="immagini/missione-finale.png" alt="Viaggio nel coding che continua verso l'infinito" class="content-image">
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>Maestro Luciano dice:</strong> "Ora tocca a te! Come un vero astronauta, devi prendere il controllo della tua navicella e continuare ad esplorare le galassie della programmazione. La curiosità sarà il tuo carburante!"</p>
+                </div>
+                
+                <h3>Le tue prossime destinazioni:</h3>
+                
+                <div class="example-box">
+                    <h4>Scratch - Il pianeta della creatività</h4>
+                    <p>Visita <a href="https://scratch.mit.edu" target="_blank" class="wiki-link">Scratch</a> per creare storie interattive, giochi e animazioni con la programmazione a blocchi. È il luogo perfetto per iniziare la tua avventura!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Code.org - La stella dell'apprendimento</h4>
+                    <p>Esplora <a href="https://code.org" target="_blank" class="wiki-link">Code.org</a> per scoprire corsi gratuiti e attività che ti guideranno passo dopo passo nel mondo del coding.</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>Lo spirito della condivisione:</strong> Molte persone in tutto il mondo hanno lavorato per creare risorse gratuite per aiutarti a imparare. Questo è lo spirito dell'<strong>open source</strong> e del <strong>free software</strong> - la condivisione della conoscenza per il bene di tutti!</p>
+                </div>
+                
+                <h3>Navigare sicuri nell'universo digitale:</h3>
+                
+                <div class="example-box">
+                    <h4>Le due facce di Internet</h4>
+                    <div class="image-container">
+                        <img src="immagini/doppia-faccia-internet.png" alt="Le due facce di Internet: quella positiva e quella negativa" class="content-image">
+                    </div>
+                    <p>Internet è come un universo con due facce: può essere un posto meraviglioso per imparare e crescere, ma anche pericoloso se non usato con saggezza.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Come riconoscere un sito valido:</h4>
+                  
+                        <p>✅ Cerca siti ufficiali di istituzioni educative (scuole, università, musei)</p>
+                        <p>✅ Controlla che l'indirizzo web inizi con "https://" (la "s" significa sicuro)</p>
+                        <p>✅ Verifica che le informazioni siano aggiornate (cerca la data di pubblicazione)</p>
+                        <p>✅ Cerca siti nella tua lingua d'origine e in italiano per confrontare le informazioni</p>
+                        <p>❌ Diffida di siti con troppi annunci pubblicitari o richieste di dati personali</p>
+
+
+               </div>
+                
+                <div class="luciano-message">
+                    <p><strong>Ricorda sempre:</strong> Quando navighi in Internet, fallo sempre sotto la supervisione di un adulto di cui ti fidi. Condividi con loro le tue scoperte e chiedi aiuto quando qualcosa non ti convince!</p>
+                </div>
+                
+                <h3>L'algoritmo definitivo per la conoscenza:</h3>
+                
+                <div class="algorithm-visualization">
+                    <div class="step" onmouseover="highlightStepFinal(1)" onmouseout="unhighlightStepFinal(1)">1</div>
+                    <div class="step" onmouseover="highlightStepFinal(2)" onmouseout="unhighlightStepFinal(2)">2</div>
+                    <div class="step" onmouseover="highlightStepFinal(3)" onmouseout="unhighlightStepFinal(3)">3</div>
+                    <div class="step" onmouseover="highlightStepFinal(4)" onmouseout="unhighlightStepFinal(4)">4</div>
+                    <div class="step" onmouseover="highlightStepFinal(5)" onmouseout="unhighlightStepFinal(5)">5</div>
+                </div>
+                
+                <ol class="algorithm-steps">
+                    <li id="stepFinal1">Sii curioso: fai domande su tutto ciò che ti interessa</li>
+                    <li id="stepFinal2">Cerca risorse: usa Internet in modo sicuro per trovare informazioni</li>
+                    <li id="stepFinal3">Sperimenta: prova, sbaglia, impara e riprova</li>
+                    <li id="stepFinal4">Condividi: racconta agli altri ciò che hai scoperto</li>
+                    <li id="stepFinal5">Continua ad imparare: il viaggio della conoscenza non finisce mai!</li>
+                </ol>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">Qual è il tuo prossimo passo nel viaggio del coding?</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">A. Esplorerò Scratch e Code.org con l'aiuto di un adulto!</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">B. Continuerò a imparare con curiosità e attenzione!</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">C. Condividerò ciò che ho imparato con i miei amici!</div>
+                    <div class="inclusion-message">
+                        <p><strong>Nota:</strong> In questa missione, tutte le risposte sono giuste! L'importante è che tu continui il tuo viaggio nell'apprendimento.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Indietro</button>
+                    <button class="interactive-element" onclick="restartJourney()">Ricomincia il Viaggio!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modali per approfondimenti -->
+    <div id="modal-algoritmi" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-algoritmi')">&times;</span>
+            <h2>Altri Esempi di Algoritmi</h2>
+            <div class="image-container">
+                <img src="immagini/esempi-algoritmi.png" alt="Diversi esempi di algoritmi nella vita quotidiana" class="content-image">
+            </div>
+            <p>Ecco altri esempi di algoritmi che usiamo ogni giorno:</p>
+            <ul>
+                <li><strong>Preparare un panino:</strong> Prendere il pane, aggiungere il formaggio, la verdura, condire e chiudere.</li>
+                <li><strong>Lavare i piatti:</strong> Riempire il lavandino, aggiungere il detersivo, lavare, risciacquare, asciugare.</li>
+                <li><strong>Fare un disegno:</strong> Scegliere i colori, disegnare il contorno, colorare, aggiungere dettagli.</li>
+            </ul>
+            <div class="luciano-message">
+                <p><strong>Maestro Luciano dice:</strong> "Osserva le tue azioni quotidiane: scoprirai che molti dei tuoi comportamenti seguono algoritmi precisi!"</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-storia" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-storia')">&times;</span>
+            <h2>La Storia degli Algoritmi</h2>
+            <div class="image-container">
+                <img src="immagini/storia-algoritmi.png" alt="Rappresentazione storica degli algoritmi" class="content-image">
+            </div>
+            <p>La parola "algoritmo" deriva dal nome del matematico persiano <a href="https://it.wikipedia.org/wiki/Al-Khwarizmi" class="wiki-link" target="_blank">Al-Khwarizmi</a>, che visse nel IX secolo. I suoi libri introdussero i numeri indiani (quelli che usiamo oggi) e i metodi per risolvere equazioni.</p>
+            <p>Nel corso dei secoli, molti matematici hanno contribuito allo sviluppo degli algoritmi, ma è con l'avvento dei computer che gli algoritmi sono diventati fondamentali per la nostra vita quotidiana.</p>
+            <div class="inclusion-message">
+                <p><strong>Curiosità:</strong> Il primo algoritmo informatico è stato scritto da <a href="https://it.wikipedia.org/wiki/Ada_Lovelace" class="wiki-link" target="_blank">Ada Lovelace</a> nel 1843 per la Macchina Analitica di <a href="https://it.wikipedia.org/wiki/Charles_Babbage" class="wiki-link" target="_blank">Charles Babbage</a>, molto prima che esistessero i computer moderni!</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-compilatore" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-compilatore')">&times;</span>
+            <h2>Come funziona un compilatore</h2>
+            <div class="image-container">
+                <img src="immagini/compilatore.png" alt="Rappresentazione di come funziona un compilatore" class="content-image">
+            </div>
+            <p>Un compilatore è un programma speciale che traduce il codice scritto in un linguaggio di programmazione (come Python o Java) in linguaggio macchina, che il computer può comprendere ed eseguire direttamente.</p>
+            <p>Il processo di compilazione avviene in diverse fasi:</p>
+            <ol>
+                <li>Analisi lessicale: il codice viene scomposto in "token" (parole chiave, identificatori, ecc.).</li>
+                <li>Analisi sintattica: verifica che i token siano organizzati correttamente secondo le regole del linguaggio.</li>
+                <li>Analisi semantica: verifica che il codice abbia un significato logico.</li>
+                <li>Generazione del codice: produce il codice in linguaggio macchina.</li>
+            </ol>
+            <div class="luciano-message">
+                <p><strong>Maestro Luciano dice:</strong> "Pensa al compilatore come a un traduttore universale che traduce le tue idee in un linguaggio che il computer può capire!"</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-donne-tech" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-donne-tech')">&times;</span>
+            <h2>Donne importanti nella tecnologia</h2>
+            <div class="image-container">
+                <img src="immagini/donne-tech.png" alt="Donne importanti nel campo della tecnologia" class="content-image">
+            </div>
+            <p>Oltre ad Ada Lovelace e Grace Hopper, molte altre donne hanno dato contributi fondamentali all'informatica e alla tecnologia:</p>
+            <ul>
+                <li><strong><a href="https://it.wikipedia.org/wiki/Hedy_Lamarr" class="wiki-link" target="_blank">Hedy Lamarr</a></strong>: Attrice e inventrice, ha sviluppato una tecnologia che è alla base del Wi-Fi e Bluetooth.</li>
+                <li><strong><a href="https://it.wikipedia.org/wiki/Radia_Perlman" class="wiki-link" target="_blank">Radia Perlman</a></strong>: Conosciuta come "la madre di Internet", ha inventato lo spanning-tree protocol.</li>
+                <li><strong><a href="https://it.wikipedia.org/wiki/Anita_Borg" class="wiki-link" target="_blank">Anita Borg</a></strong>: Ha fondato l'Istitute for Women and Technology e la Grace Hopper Celebration.</li>
+                <li><strong><a href="https://it.wikipedia.org/wiki/Margaret_Hamilton_(scienziata)" class="wiki-link" target="_blank">Margaret Hamilton</a></strong>: Ha diretto lo sviluppo del software per il programma Apollo della NASA.</li>
+            </ul>
+            <div class="inclusion-message">
+                <p><strong>Lo sapevi?</strong> Le donne sono state fondamentali nello sviluppo dell'informatica fin dai suoi inizi, e continuano a fare scoperte rivoluzionarie in tutti i campi della tecnologia!</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let currentSection = 1;
+        const totalSections = 8;
+        let speechSynthesis = window.speechSynthesis;
+        let currentUtterance = null;
+        
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+        
+        function changeSection(direction) {
+            // Ferma la sintesi vocale se è in riproduzione
+            stopSpeech();
+            
+            // Nasconde la sezione corrente
+            document.getElementById(`section${currentSection}`).classList.remove('active');
+            
+            // Calcola la nuova sezione
+            currentSection += direction;
+            
+            // Assicurati che la sezione sia nell'intervallo valido
+            if (currentSection < 1) currentSection = 1;
+            if (currentSection > totalSections) currentSection = totalSections;
+            
+            // Mostra la nuova sezione
+            document.getElementById(`section${currentSection}`).classList.add('active');
+            
+            // Aggiorna la barra di progresso
+            updateProgress();
+            
+            // Scorri verso l'alto
+            window.scrollTo(0, 0);
+        }
+        
+        function checkAnswer(element, isCorrect) {
+            // Ferma qualsiasi sintesi vocale in corso
+            stopSpeech();
+            
+            // Rimuovi tutte le classi di risposta precedenti
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+            
+            // Aggiungi la classe corretta
+            if (isCorrect) {
+                element.classList.add('correct');
+                // Sintesi vocale per risposta corretta
+                speakText("Bravo cadetto spaziale! Il coding è con te!");
+            } else {
+                element.classList.add('incorrect');
+                // Sintesi vocale per risposta errata
+                speakText("Non ti preoccupare, inizia il viaggio nel mondo del coding, se lo vorrai, diventerai un esperto!!");
+                
+                // Trova la risposta corretta e evidenziala
+                options.forEach(opt => {
+                    if (opt.onclick && opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+        }
+        
+        function checkAnswerFinal(element, isCorrect) {
+            // In questa missione tutte le risposte sono giuste!
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+            
+            element.classList.add('correct');
+            speakText("Esatto! Qualunque sia la tua scelta, l'importante è continuare a esplorare e imparare. Il coding ti aspetta!");
+        }
+        
+        function restartJourney() {
+            changeSection(-currentSection + 1);
+        }
+        
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Chiudi il modal cliccando fuori dal contenuto
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = 'none';
+                }
+            }
+        }
+        
+        // Sintesi vocale
+        function readCurrentSection() {
+            const section = document.getElementById(`section${currentSection}`);
+            // Escludiamo i controlli della sintesi vocale dal testo da leggere
+            const speechControls = section.querySelector('.speech-controls');
+            if (speechControls) {
+                speechControls.style.display = 'none';
+            }
+            
+            const text = section.innerText;
+            
+            // Ripristina i controlli della sintesi vocale
+            if (speechControls) {
+                speechControls.style.display = 'flex';
+            }
+            
+            speakText(text);
+        }
+        
+        function speakText(text) {
+            // Ferma qualsiasi sintesi vocale in corso
+            stopSpeech();
+            
+            currentUtterance = new SpeechSynthesisUtterance();
+            currentUtterance.text = text;
+            currentUtterance.lang = 'it-IT';
+            currentUtterance.rate = 0.9;
+            currentUtterance.pitch = 1;
+            
+            speechSynthesis.speak(currentUtterance);
+        }
+        
+        function stopSpeech() {
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
+        }
+        
+        // Inizializza la barra di progresso
+        updateProgress();
+        
+        // Aggiungi interattività ai blocchi
+        document.addEventListener('DOMContentLoaded', function() {
+            const blocks = document.querySelectorAll('.block');
+            blocks.forEach(block => {
+                block.addEventListener('mousedown', function(e) {
+                    // Crea un effetto di trascinamento semplice
+                    this.style.transform = 'scale(0.95)';
+                });
+                
+                block.addEventListener('mouseup', function(e) {
+                    this.style.transform = 'scale(1)';
+                });
+                
+                block.addEventListener('mouseleave', function(e) {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+        
+        // Funzioni per evidenziare i passaggi dell'algoritmo della cioccolata
+        function highlightStep(stepNumber) {
+            const stepElement = document.getElementById(`step${stepNumber}`);
+            if (stepElement) {
+                stepElement.classList.add('highlight');
+            }
+        }
+        
+        function unhighlightStep(stepNumber) {
+            const stepElement = document.getElementById(`step${stepNumber}`);
+            if (stepElement) {
+                stepElement.classList.remove('highlight');
+            }
+        }
+        
+        // Funzioni per evidenziare i passaggi dell'algoritmo finale
+        function highlightStepFinal(stepNumber) {
+            const stepElement = document.getElementById(`stepFinal${stepNumber}`);
+            if (stepElement) {
+                stepElement.classList.add('highlight');
+            }
+        }
+        
+        function unhighlightStepFinal(stepNumber) {
+            const stepElement = document.getElementById(`stepFinal${stepNumber}`);
+            if (stepElement) {
+                stepElement.classList.remove('highlight');
+            }
+        }
+    </script>
+</body>
+</html>

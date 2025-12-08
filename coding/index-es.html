@@ -1,0 +1,702 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misión de Programación con el Maestro Luciano - Una aventura espacial en la programación</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Misión de Programación con el Maestro Luciano</h1>
+            <p class="subtitle">Una aventura espacial en el mundo de la programación</p>
+            
+            <!-- Menú de idiomas -->
+            <div class="language-menu">
+                <a href="index-it.html" class="language-option" data-lang="it">
+                    <span class="flag">🇮🇹</span>
+                    <span class="language-name">Italiano</span>
+                </a>
+                <a href="index-en.html" class="language-option" data-lang="en">
+                    <span class="flag">🇬🇧</span>
+                    <span class="language-name">English</span>
+                </a>
+                <a href="index-fr.html" class="language-option" data-lang="fr">
+                    <span class="flag">🇫🇷</span>
+                    <span class="language-name">Français</span>
+                </a>
+                <a href="index-de.html" class="language-option" data-lang="de">
+                    <span class="flag">🇩🇪</span>
+                    <span class="language-name">Deutsch</span>
+                </a>
+                <a href="index-ar.html" class="language-option" data-lang="ar">
+                    <span class="flag">🇸🇦</span>
+                    <span class="language-name">العربية</span>
+                </a>
+                <a href="index-zh.html" class="language-option" data-lang="zh">
+                    <span class="flag">🇨🇳</span>
+                    <span class="language-name">中文</span>
+                </a>
+                <a href="index-hi.html" class="language-option" data-lang="hi">
+                    <span class="flag">🇮🇳</span>
+                    <span class="language-name">हिन्दी</span>
+                </a>
+                <a href="index-pa.html" class="language-option" data-lang="pa">
+                    <span class="flag">🇮🇳</span>
+                    <span class="language-name">ਪੰਜਾਬੀ</span>
+                </a>
+                <a href="index-es.html" class="language-option current" data-lang="es">
+                    <span class="flag">🇪🇸</span>
+                    <span class="language-name">Español</span>
+                </a>
+                <a href="index-pt.html" class="language-option" data-lang="pt">
+                    <span class="flag">🇵🇹</span>
+                    <span class="language-name">Português</span>
+                </a>
+                <a href="index-ur.html" class="language-option" data-lang="ur">
+                    <span class="flag">🇵🇰</span>
+                    <span class="language-name">اردو</span>
+                </a>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </header>
+        
+        <div class="content-area">
+            <!-- Sección 1: Introducción -->
+            <div class="section active" id="section1">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leer
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Detener
+                    </button>
+                </div>
+                
+                <h2>¡Bienvenidos, Jóvenes Exploradores Espaciales!</h2>
+                <p>Hola jóvenes, soy el Maestro Luciano, ¡vuestro instructor espacial! Estoy aquí para guiaros en una aventura extraordinaria en el mundo de la programación, donde aprenderemos a dar instrucciones a los ordenadores para crear juegos, animaciones y misiones espaciales.</p>
+                
+                <div class="image-container">
+                    <img src="immagini/maestro-luciano.png" alt="Maestro Luciano, un instructor espacial sonriente" class="content-image">
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>Mensaje del Maestro Luciano:</strong> "Recordad, en el espacio como en la programación, todo gran viaje comienza con un pequeño paso. ¡Juntos exploraremos galaxias de conocimiento!"</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>¿Sabías?</strong> ¡La programación es para todos! <a href="https://es.wikipedia.org/wiki/Ada_Lovelace" class="wiki-link" target="_blank">Ada Lovelace</a>, una matemática brillante, es considerada la primera programadora de la historia. Hoy, mujeres como <a href="https://es.wikipedia.org/wiki/Katie_Bouman" class="wiki-link" target="_blank">Katie Bouman</a>, que contribuyó a fotografiar un agujero negro, ¡continúan haciendo descubrimientos increíbles en el mundo de la tecnología!</p>
+                </div>
+                
+                <p>En nuestra misión exploraremos:</p>
+                <ul>
+                    <li>Qué son los algoritmos <span class="mission-badge">Misión 1</span>.</li>
+                    <li>Cómo funcionan los ordenadores <span class="mission-badge">Misión 2</span>.</li>
+                    <li>La programación por bloques <span class="mission-badge">Misión 3</span>.</li>
+                    <li>Los principios básicos de la programación <span class="mission-badge">Misión 4</span>.</li>
+                    <li>Cómo crear proyectos con Scratch <span class="mission-badge">Misión 5</span>.</li>
+                </ul>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ¿Cuál de estas es una secuencia de algoritmos?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. Lavarse los dientes: coger el cepillo, poner pasta dental, cepillar, enjuagar.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. Jugar al fútbol: correr, saltar, cantar, nadar.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Leer un libro: abrir, cerrar, abrir, cerrar.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. ¿Quién es considerada la primera programadora de la historia?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. Ada Lovelace.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. Charles Babbage.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Alan Turing.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)" disabled>Atrás</button>
+                    <button class="interactive-element" onclick="changeSection(1)">¡Comenzar Misión!</button>
+                </div>
+            </div>
+            
+            <!-- Sección 2: Algoritmos en la vida real -->
+            <div class="section" id="section2">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leer
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Detener
+                    </button>
+                </div>
+                
+                <h2>Misión 1: ¿Qué son los Algoritmos?</h2>
+                <p>Un algoritmo es una serie de pasos ordenados para resolver un problema o completar una tarea. ¡Los usamos cada día sin siquiera darnos cuenta!</p>
+                
+                <div class="luciano-message">
+                    <p><strong>El Maestro Luciano dice:</strong> "Piensa en un algoritmo como la lista de verificación que uso antes del despegue. ¡Cada paso debe ejecutarse en el orden correcto para una misión exitosa!"</p>
+                </div>
+                
+                <h3>Ejemplos de la vida real:</h3>
+                
+                <div class="example-box">
+                    <h4>Preparar una taza de chocolate caliente</h4>
+                    <div class="image-container">
+                        <img src="immagini/cioccolata-calda.png" alt="Procedimiento para preparar chocolate caliente" class="content-image">
+                    </div>
+                    <div class="algorithm-visualization">
+                        <div class="step" onmouseover="highlightStep(1)" onmouseout="unhighlightStep(1)">1</div>
+                        <div class="step" onmouseover="highlightStep(2)" onmouseout="unhighlightStep(2)">2</div>
+                        <div class="step" onmouseover="highlightStep(3)" onmouseout="unhighlightStep(3)">3</div>
+                        <div class="step" onmouseover="highlightStep(4)" onmouseout="unhighlightStep(4)">4</div>
+                        <div class="step" onmouseover="highlightStep(5)" onmouseout="unhighlightStep(5)">5</div>
+                    </div>
+                    <ol class="algorithm-steps">
+                        <li id="step1">Coger una taza.</li>
+                        <li id="step2">Añadir el cacao en polvo.</li>
+                        <li id="step3">Verter la leche caliente.</li>
+                        <li id="step4">Mezclar bien.</li>
+                        <li id="step5">Disfrutar del chocolate caliente.</li>
+                    </ol>
+                    <p>Cuando preparamos un chocolate caliente, seguimos unos pasos precisos: coger una taza, añadir el cacao, verter la leche caliente, mezclar y ¡finalmente disfrutar!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Ir al colegio</h4>
+                    <div class="image-container">
+                        <img src="immagini/percorso-scuola.png" alt="Ruta para ir al colegio" class="content-image" style="width: 100%;">
+                    </div>
+                    <p>Incluso la ruta para llegar al colegio es un algoritmo: despertarse, vestirse, desayunar, coger la mochila y seguir el camino hasta el colegio.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ¿Cuál de estas secuencias representa un algoritmo correcto para preparar un sándwich?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Cortar el pan, comer el sándwich, poner el queso.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Coger el pan, añadir los ingredientes, cerrar el sándwich.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Comer el sándwich, preparar el sándwich, comprar el pan.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. ¿Por qué es importante el orden de los pasos en un algoritmo?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Porque si no, el ordenador se enfada.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Porque algunos pasos dependen de los anteriores.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Porque es más bonito estéticamente.</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-algoritmi')">
+                        <div style="font-size: 2.5rem;">🔍</div>
+                        <h4>Profundizar</h4>
+                        <p>Descubre otros ejemplos de algoritmos.</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-storia')">
+                        <div style="font-size: 2.5rem;">📚</div>
+                        <h4>La Historia</h4>
+                        <p>Conoce a los inventores de los algoritmos.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Atrás</button>
+                    <button class="interactive-element" onclick="changeSection(1)">¡Adelante!</button>
+                </div>
+            </div>
+            
+            <!-- Sección 3: Algoritmos en informática -->
+            <div class="section" id="section3">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leer
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Detener
+                    </button>
+                </div>
+                
+                <h2>Misión 2: Algoritmos en Informática</h2>
+                <p>En informática, un algoritmo es una serie de instrucciones que le decimos al ordenador que ejecute para resolver un problema.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>El Maestro Luciano dice:</strong> "Los ordenadores son como astronautas obedientes: siguen exactamente las instrucciones que les damos. ¡Por eso debemos ser muy precisos!"</p>
+                </div>
+                
+                <h3>Ejemplos del mundo digital:</h3>
+                
+                <div class="example-box">
+                    <h4>Encontrar el número más grande en una lista</h4>
+                    <div class="image-container">
+                        <img src="immagini/numeri-lista.png" alt="Lista de números con el más grande resaltado" class="content-image">
+                    </div>
+                    <div class="block-code">
+                        <div class="block blue">Comienza</div>
+                        <div class="block green">Coge el primer número como "máximo"</div>
+                        <div class="block yellow">Para cada número en la lista:</div>
+                        <div class="block purple">Si el número es mayor que "máximo"</div>
+                        <div class="block green">Actualiza "máximo" con este número</div>
+                        <div class="block blue">Fin</div>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Ordenar libros por altura</h4>
+                    <div class="image-container">
+                        <img src="immagini/libri-ordinati.png" alt="Libros ordenados por altura" class="content-image">
+                    </div>
+                    <p>Imagina que tienes que ordenar tus libros del más pequeño al más grande. ¡Seguirías unos pasos precisos, justo como lo haría un ordenador!</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>¿Sabías que...?</strong> <a href="https://es.wikipedia.org/wiki/Grace_Hopper" class="wiki-link" target="_blank">Grace Hopper</a>, una brillante científica, inventó el primer compilador, un programa que traduce el lenguaje humano en instrucciones para el ordenador. ¡Sus descubrimientos hicieron posible la programación como la conocemos hoy!</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ¿Qué hace un algoritmo de ordenación?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Borra los datos innecesarios.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Organiza los datos en un orden específico.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Crea nuevos datos aleatorios.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. ¿Por qué los algoritmos deben ser precisos al programar ordenadores?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Porque los ordenadores son lentos.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Porque los ordenadores ejecutan exactamente lo que se les dice.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Porque los ordenadores se aburren fácilmente.</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-compilatore')">
+                        <div style="font-size: 2.5rem;">⚙️</div>
+                        <h4>Compilador</h4>
+                        <p>Cómo funciona un compilador.</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-donne-tech')">
+                        <div style="font-size: 2.5rem;">👩‍💻</div>
+                        <h4>Mujeres en la Tecnología</h4>
+                        <p>Otras mujeres importantes en la tecnología.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Atrás</button>
+                    <button class="interactive-element" onclick="changeSection(1)">¡Adelante!</button>
+                </div>
+            </div>
+            
+            <!-- Sección 4: Cómo funcionan los ordenadores -->
+            <div class="section" id="section4">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leer
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Detener
+                    </button>
+                </div>
+                
+                <h2>Misión 3: Cómo funcionan los ordenadores</h2>
+                <p>Los ordenadores son máquinas extraordinarias que procesan información siguiendo instrucciones precisas.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>El Maestro Luciano dice:</strong> "Piensa en el ordenador como nuestro centro de control de misión: ¡recibe información, la procesa y produce resultados!"</p>
+                </div>
+                
+                <h3>Componentes principales de un ordenador:</h3>
+                
+                <div class="example-box">
+                    <h4>CPU - El cerebro del ordenador</h4>
+                    <div class="image-container">
+                        <img src="immagini/cpu.png" alt="Representación de la CPU" class="content-image">
+                    </div>
+                    <p>La CPU (Unidad Central de Procesamiento) es el cerebro del ordenador que ejecuta las instrucciones de los programas.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Memoria - El escritorio de trabajo</h4>
+                    <div class="image-container">
+                        <img src="immagini/memoria.png" alt="Representación de la memoria del ordenador" class="content-image">
+                    </div>
+                    <p>La memoria RAM es como un escritorio donde el ordenador guarda la información que está usando en ese momento.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ¿Qué hace la CPU en un ordenador?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Muestra las imágenes en la pantalla.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Ejecuta las instrucciones de los programas.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Almacena archivos a largo plazo.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. ¿Qué componente del ordenador es como un escritorio de trabajo?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. El disco duro.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. La memoria RAM.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. La tarjeta gráfica.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Atrás</button>
+                    <button class="interactive-element" onclick="changeSection(1)">¡Adelante!</button>
+                </div>
+            </div>
+            
+            <!-- Sección 5: Programación por bloques -->
+            <div class="section" id="section5">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leer
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Detener
+                    </button>
+                </div>
+                
+                <h2>Misión 4: Programación por bloques</h2>
+                <p>La programación por bloques es una forma sencilla y visual de aprender a programar.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>El Maestro Luciano dice:</strong> "Los bloques son como los ladrillos de construcción: ¡cada uno tiene una función específica y juntos pueden crear cosas increíbles!"</p>
+                </div>
+                
+                <h3>Tipos de bloques:</h3>
+                
+                <div class="example-box">
+                    <h4>Bloques de movimiento</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-movimento.png" alt="Bloques de movimiento en Scratch" class="content-image">
+                    </div>
+                    <p>Los bloques de movimiento permiten mover personajes por la pantalla.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Bloques de control</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-controllo.png" alt="Bloques de control en Scratch" class="content-image">
+                    </div>
+                    <p>Los bloques de control determinan cuándo y cómo se ejecutan las instrucciones.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ¿Cuál es la ventaja de la programación por bloques?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Es más rápida que la programación textual.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Es más fácil de entender para principiantes.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Es más potente que la programación textual.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. ¿Qué hacen los bloques de control?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Cambian el color del fondo.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Determinan cuándo ejecutar las instrucciones.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Añaden sonidos al proyecto.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Atrás</button>
+                    <button class="interactive-element" onclick="changeSection(1)">¡Adelante!</button>
+                </div>
+            </div>
+            
+            <!-- Sección 6: Instrucciones condicionales -->
+            <div class="section" id="section6">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leer
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Detener
+                    </button>
+                </div>
+                
+                <h2>Misión 5: Instrucciones condicionales</h2>
+                <p>Las instrucciones condicionales permiten al ordenador tomar decisiones basadas en ciertas condiciones.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>El Maestro Luciano dice:</strong> "Las condiciones son como las bifurcaciones durante una exploración: ¡dependiendo de lo que encuentres, decides qué camino tomar!"</p>
+                </div>
+                
+                <h3>Ejemplos de condiciones:</h3>
+                
+                <div class="example-box">
+                    <h4>Si... entonces...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora.png" alt="Ejemplo de condición si-entonces" class="content-image">
+                    </div>
+                    <p>Si llueve, entonces cojo el paraguas. ¡Esta es una condición simple que usamos cada día!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Si... entonces... si no...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora-altrimenti.png" alt="Ejemplo de condición si-entonces-si no" class="content-image">
+                    </div>
+                    <p>Si tengo hambre, entonces como, si no, sigo jugando. Esta condición tiene dos resultados posibles.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ¿Qué hace una instrucción condicional?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Siempre ejecuta las mismas acciones.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Decide qué acción ejecutar basándose en una condición.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Repite una acción muchas veces.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. ¿Cuál de estos es un ejemplo de condición "si-entonces-si no"?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Si llueve, cojo el paraguas.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Si llueve, cojo el paraguas, si no, me pongo gafas de sol.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Cojo el paraguas y me pongo gafas de sol.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Atrás</button>
+                    <button class="interactive-element" onclick="changeSection(1)">¡Adelante!</button>
+                </div>
+            </div>
+            
+            <!-- Sección 7: Bucles y repeticiones -->
+            <div class="section" id="section7">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leer
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Detener
+                    </button>
+                </div>
+                
+                <h2>Misión 6: Bucles y repeticiones</h2>
+                <p>Los bucles permiten repetir una acción varias veces sin tener que reescribirla cada vez.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>El Maestro Luciano dice:</strong> "Los bucles son como el motor de una nave espacial: ¡una vez iniciados, continúan funcionando hasta que los paras!"</p>
+                </div>
+                
+                <h3>Tipos de bucles:</h3>
+                
+                <div class="example-box">
+                    <h4>Bucle "repetir por"</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-per.png" alt="Ejemplo de bucle repetir por" class="content-image">
+                    </div>
+                    <p>Repetir por 10 veces: saltar. Este bucle ejecutará la acción de saltar exactamente 10 veces.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Bucle "repetir hasta que"</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-finche.png" alt="Ejemplo de bucle repetir hasta que" class="content-image">
+                    </div>
+                    <p>Repetir hasta que hayas terminado los deberes: estudiar. Este bucle continuará hasta que se cumpla la condición.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ¿Por qué usamos bucles en programación?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. Porque son más bonitos de ver.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. Para evitar repetir el mismo código muchas veces.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Porque los ordenadores los prefieren.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. ¿Qué bucle se repite un número específico de veces?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. Repetir por.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. Repetir hasta que.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. Repetir siempre.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Atrás</button>
+                    <button class="interactive-element" onclick="changeSection(1)">¡Adelante!</button>
+                </div>
+            </div>
+            
+            <!-- Sección 8: Misión Final -->
+            <div class="section" id="section8">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Leer
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Detener
+                    </button>
+                </div>
+                
+                <h2>Misión Final: ¡Tu Viaje en la Programación Continúa!</h2>
+                <p>¡Bravo, cadete espacial! Has completado con éxito tu formación básica en programación. ¡Pero esto es solo el comienzo de tu viaje!</p>
+                
+                <div class="image-container">
+                    <img src="immagini/missione-finale.png" alt="Viaje en la programación que continúa hacia el infinito" class="content-image">
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>El Maestro Luciano dice:</strong> "¡Ahora te toca a ti! Como un verdadero astronauta, debes tomar el control de tu nave y seguir explorando las galaxias de la programación. ¡La curiosidad será tu combustible!"</p>
+                </div>
+                
+                <h3>Tus próximos destinos:</h3>
+                
+                <div class="example-box">
+                    <h4>Scratch - El planeta de la creatividad</h4>
+                    <p>Visita <a href="https://scratch.mit.edu" target="_blank" class="wiki-link">Scratch</a> para crear historias interactivas, juegos y animaciones con programación por bloques. ¡Es el lugar perfecto para empezar tu aventura!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Code.org - La estrella del aprendizaje</h4>
+                    <p>Explora <a href="https://code.org" target="_blank" class="wiki-link">Code.org</a> para descubrir cursos gratuitos y actividades que te guiarán paso a paso en el mundo de la programación.</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>El espíritu de compartir:</strong> ¡Muchas personas en todo el mundo han trabajado para crear recursos gratuitos para ayudarte a aprender. Este es el espíritu del <strong>código abierto</strong> y del <strong>software libre</strong> - ¡compartir conocimiento para el bien de todos!</p>
+                </div>
+                
+                <h3>Navegar seguro en el universo digital:</h3>
+                
+                <div class="example-box">
+                    <h4>Las dos caras de Internet</h4>
+                    <div class="image-container">
+                        <img src="immagini/doppia-faccia-internet.png" alt="Las dos caras de Internet: la positiva y la negativa" class="content-image">
+                    </div>
+                    <p>Internet es como un universo con dos caras: puede ser un lugar maravilloso para aprender y crecer, pero también peligroso si no se usa con sabiduría.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Cómo reconocer un sitio válido:</h4>
+                  
+                    <p>✅ Busca sitios oficiales de instituciones educativas (colegios, universidades, museos)</p>
+                    <p>✅ Comprueba que la dirección web empiece con "https://" (la "s" significa seguro)</p>
+                    <p>✅ Verifica que la información esté actualizada (busca la fecha de publicación)</p>
+                    <p>✅ Busca sitios en tu idioma nativo y en español para comparar la información</p>
+                    <p>❌ Desconfía de sitios con demasiados anuncios o solicitudes de datos personales</p>
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>Recuerda siempre:</strong> Cuando navegues por Internet, hazlo siempre bajo la supervisión de un adulto de confianza. ¡Comparte con ellos tus descubrimientos y pide ayuda cuando algo no te convenza!</p>
+                </div>
+                
+                <h3>El algoritmo definitivo para el conocimiento:</h3>
+                
+                <div class="algorithm-visualization">
+                    <div class="step" onmouseover="highlightStepFinal(1)" onmouseout="unhighlightStepFinal(1)">1</div>
+                    <div class="step" onmouseover="highlightStepFinal(2)" onmouseout="unhighlightStepFinal(2)">2</div>
+                    <div class="step" onmouseover="highlightStepFinal(3)" onmouseout="unhighlightStepFinal(3)">3</div>
+                    <div class="step" onmouseover="highlightStepFinal(4)" onmouseout="unhighlightStepFinal(4)">4</div>
+                    <div class="step" onmouseover="highlightStepFinal(5)" onmouseout="unhighlightStepFinal(5)">5</div>
+                </div>
+                
+                <ol class="algorithm-steps">
+                    <li id="stepFinal1">Sé curioso: haz preguntas sobre todo lo que te interese</li>
+                    <li id="stepFinal2">Busca recursos: usa Internet de forma segura para encontrar información</li>
+                    <li id="stepFinal3">Experimenta: prueba, equivócate, aprende y vuelve a intentarlo</li>
+                    <li id="stepFinal4">Comparte: cuenta a los demás lo que has descubierto</li>
+                    <li id="stepFinal5">Sigue aprendiendo: ¡el viaje del conocimiento nunca termina!</li>
+                </ol>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">¿Cuál es tu próximo paso en el viaje de la programación?</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">A. ¡Exploraré Scratch y Code.org con la ayuda de un adulto!</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">B. ¡Seguiré aprendiendo con curiosidad y atención!</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">C. ¡Compartiré lo que he aprendido con mis amigos!</div>
+                    <div class="inclusion-message">
+                        <p><strong>Nota:</strong> ¡En esta misión, todas las respuestas son correctas! Lo importante es que continues tu viaje en el aprendizaje.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Atrás</button>
+                    <button class="interactive-element" onclick="restartJourney()">¡Reiniciar el Viaje!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modales para profundizar -->
+    <div id="modal-algoritmi" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-algoritmi')">&times;</span>
+            <h2>Otros Ejemplos de Algoritmos</h2>
+            <div class="image-container">
+                <img src="immagini/esempi-algoritmi.png" alt="Diferentes ejemplos de algoritmos en la vida diaria" class="content-image">
+            </div>
+            <p>Aquí tienes otros ejemplos de algoritmos que usamos cada día:</p>
+            <ul>
+                <li><strong>Preparar un sándwich:</strong> Coger el pan, añadir el queso, la verdura, aliñar y cerrar.</li>
+                <li><strong>Lavar los platos:</strong> Llenar el fregadero, añadir detergente, lavar, enjuagar, secar.</li>
+                <li><strong>Hacer un dibujo:</strong> Elegir los colores, dibujar el contorno, colorear, añadir detalles.</li>
+            </ul>
+            <div class="luciano-message">
+                <p><strong>El Maestro Luciano dice:</strong> "Observa tus acciones diarias: ¡descubrirás que muchos de tus comportamientos siguen algoritmos precisos!"</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-storia" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-storia')">&times;</span>
+            <h2>La Historia de los Algoritmos</h2>
+            <div class="image-container">
+                <img src="immagini/storia-algoritmi.png" alt="Representación histórica de los algoritmos" class="content-image">
+            </div>
+            <p>La palabra "algoritmo" viene del nombre del matemático persa <a href="https://es.wikipedia.org/wiki/Al-Juarismi" class="wiki-link" target="_blank">Al-Khwarizmi</a>, que vivió en el siglo IX. Sus libros introdujeron los números indios (los que usamos hoy) y los métodos para resolver ecuaciones.</p>
+            <p>A lo largo de los siglos, muchos matemáticos han contribuido al desarrollo de los algoritmos, pero es con la llegada de los ordenadores que los algoritmos se han vuelto fundamentales para nuestra vida diaria.</p>
+            <div class="inclusion-message">
+                <p><strong>Curiosidad:</strong> ¡El primer algoritmo informático fue escrito por <a href="https://es.wikipedia.org/wiki/Ada_Lovelace" class="wiki-link" target="_blank">Ada Lovelace</a> en 1843 para la Máquina Analítica de <a href="https://es.wikipedia.org/wiki/Charles_Babbage" class="wiki-link" target="_blank">Charles Babbage</a>, mucho antes de que existieran los ordenadores modernos!</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-compilatore" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-compilatore')">&times;</span>
+            <h2>Cómo funciona un compilador</h2>
+            <div class="image-container">
+                <img src="immagini/compilatore.png" alt="Representación de cómo funciona un compilador" class="content-image">
+            </div>
+            <p>Un compilador es un programa especial que traduce el código escrito en un lenguaje de programación (como Python o Java) a lenguaje máquina, que el ordenador puede entender y ejecutar directamente.</p>
+            <p>El proceso de compilación ocurre en varias fases:</p>
+            <ol>
+                <li>Análisis léxico: el código se descompone en "tokens" (palabras clave, identificadores, etc.).</li>
+                <li>Análisis sintáctico: verifica que los tokens estén organizados correctamente según las reglas del lenguaje.</li>
+                <li>Análisis semántico: verifica que el código tenga un significado lógico.</li>
+                <li>Generación del código: produce el código en lenguaje máquina.</li>
+            </ol>
+            <div class="luciano-message">
+                <p><strong>El Maestro Luciano dice:</strong> "¡Piensa en el compilador como un traductor universal que traduce tus ideas a un lenguaje que el ordenador puede entender!"</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-donne-tech" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-donne-tech')">&times;</span>
+            <h2>Mujeres importantes en la tecnología</h2>
+            <div class="image-container">
+                <img src="immagini/donne-tech.png" alt="Mujeres importantes en el campo de la tecnología" class="content-image">
+            </div>
+            <p>Además de Ada Lovelace y Grace Hopper, muchas otras mujeres han dado contribuciones fundamentales a la informática y la tecnología:</p>
+            <ul>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Hedy_Lamarr" class="wiki-link" target="_blank">Hedy Lamarr</a></strong>: Actriz e inventora, desarrolló una tecnología que es la base del Wi-Fi y Bluetooth.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Radia_Perlman" class="wiki-link" target="_blank">Radia Perlman</a></strong>: Conocida como "la madre de Internet", inventó el protocolo spanning-tree.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Anita_Borg" class="wiki-link" target="_blank">Anita Borg</a></strong>: Fundó el Institute for Women and Technology y la Grace Hopper Celebration.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Margaret_Hamilton_(cient%C3%ADfica)" class="wiki-link" target="_blank">Margaret Hamilton</a></strong>: Dirigió el desarrollo del software para el programa Apollo de la NASA.</li>
+            </ul>
+            <div class="inclusion-message">
+                <p><strong>¿Sabías?</strong> ¡Las mujeres han sido fundamentales en el desarrollo de la informática desde sus inicios, y continúan haciendo descubrimientos revolucionarios en todos los campos de la tecnología!</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

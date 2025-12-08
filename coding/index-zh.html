@@ -1,0 +1,692 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>与卢西亚诺导师一起编程任务 - 编程世界的太空冒险</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>与卢西亚诺导师一起编程任务</h1>
+            <p class="subtitle">编程世界的太空冒险</p>
+            
+            <!-- 语言菜单 -->
+            <div class="language-menu">
+                <a href="index-it.html" class="language-option" data-lang="it">
+                    <span class="flag">🇮🇹</span>
+                    <span class="language-name">Italiano</span>
+                </a>
+                <a href="index-en.html" class="language-option" data-lang="en">
+                    <span class="flag">🇬🇧</span>
+                    <span class="language-name">English</span>
+                </a>
+                <a href="index-fr.html" class="language-option" data-lang="fr">
+                    <span class="flag">🇫🇷</span>
+                    <span class="language-name">Français</span>
+                </a>
+                <a href="index-de.html" class="language-option" data-lang="de">
+                    <span class="flag">🇩🇪</span>
+                    <span class="language-name">Deutsch</span>
+                </a>
+                <a href="index-ar.html" class="language-option" data-lang="ar">
+                    <span class="flag">🇸🇦</span>
+                    <span class="language-name">العربية</span>
+                </a>
+                <a href="index-zh.html" class="language-option current" data-lang="zh">
+                    <span class="flag">🇨🇳</span>
+                    <span class="language-name">中文</span>
+                </a>
+                <a href="index-hi.html" class="language-option" data-lang="hi">
+                    <span class="flag">🇮🇳</span>
+                    <span class="language-name">हिन्दी</span>
+                </a>
+                <a href="index-pa.html" class="language-option" data-lang="pa">
+                    <span class="flag">🇮🇳</span>
+                    <span class="language-name">ਪੰਜਾਬੀ</span>
+                </a>
+                <a href="index-es.html" class="language-option" data-lang="es">
+                    <span class="flag">🇪🇸</span>
+                    <span class="language-name">Español</span>
+                </a>
+                <a href="index-pt.html" class="language-option" data-lang="pt">
+                    <span class="flag">🇵🇹</span>
+                    <span class="language-name">Português</span>
+                </a>
+                <a href="index-ur.html" class="language-option" data-lang="ur">
+                    <span class="flag">🇵🇰</span>
+                    <span class="language-name">اردو</span>
+                </a>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </header>
+        
+        <div class="content-area">
+            <!-- 第1部分：介绍 -->
+            <div class="section active" id="section1">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> 朗读
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> 停止
+                    </button>
+                </div>
+                
+                <h2>欢迎，年轻的太空探险家们！</h2>
+                <p>嗨，年轻的朋友们，我是卢西亚诺导师，你们的太空教练！我将在这里带领你们开启一场非凡的编程世界冒险，在这里我们将学习如何向计算机发出指令，来创建游戏、动画和太空任务！</p>
+                
+                <div class="image-container">
+                    <img src="immagini/maestro-luciano.png" alt="卢西亚诺导师，一位微笑的太空教练" class="content-image">
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>卢西亚诺导师留言：</strong>"记住，无论是在太空中还是在编程中，每一段伟大的旅程都始于一小步。我们将一起探索知识的银河！"</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>你知道吗？</strong> 编程适合所有人！<a href="https://zh.wikipedia.org/wiki/%E9%98%BF%E8%BE%BE%C2%B7%E6%B4%9B%E8%8A%99%E8%8E%B1%E6%96%AF" class="wiki-link" target="_blank">阿达·洛芙莱斯</a>，一位杰出的数学家，被认为是历史上的第一位程序员。今天，像<a href="https://zh.wikipedia.org/wiki/%E5%87%AF%E8%8A%9D%C2%B7%E9%9C%8D%E6%9B%BC" class="wiki-link" target="_blank">凯蒂·布曼</a>这样的女性，她为拍摄黑洞照片做出了贡献，继续在科技领域做出惊人的发现！</p>
+                </div>
+                
+                <p>在我们的任务中，我们将探索：</p>
+                <ul>
+                    <li>什么是算法 <span class="mission-badge">任务 1</span>。</li>
+                    <li>计算机如何工作 <span class="mission-badge">任务 2</span>。</li>
+                    <li>积木编程 <span class="mission-badge">任务 3</span>。</li>
+                    <li>编程基础原理 <span class="mission-badge">任务 4</span>。</li>
+                    <li>如何使用Scratch创建项目 <span class="mission-badge">任务 5</span>。</li>
+                </ul>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. 以下哪项是算法的序列？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. 刷牙：拿起牙刷，挤牙膏，刷牙，漱口。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. 踢足球：跑，跳，唱，游。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 读书：打开，合上，打开，合上。</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. 谁被认为是历史上的第一位程序员？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. 阿达·洛芙莱斯。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. 查尔斯·巴贝奇。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 艾伦·图灵。</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)" disabled>后退</button>
+                    <button class="interactive-element" onclick="changeSection(1)">开始任务！</button>
+                </div>
+            </div>
+            
+            <!-- 第2部分：现实生活中的算法 -->
+            <div class="section" id="section2">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> 朗读
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> 停止
+                    </button>
+                </div>
+                
+                <h2>任务 1：什么是算法？</h2>
+                <p>算法是为解决问题或完成任务而按顺序执行的一系列步骤。我们每天都在使用它们，甚至没有意识到！</p>
+                
+                <div class="luciano-message">
+                    <p><strong>卢西亚诺导师说：</strong>"可以把算法想象成我在起飞前使用的检查清单！每个步骤都必须按正确的顺序执行，任务才能成功。"</p>
+                </div>
+                
+                <h3>现实生活中的例子：</h3>
+                
+                <div class="example-box">
+                    <h4>准备一杯热巧克力</h4>
+                    <div class="image-container">
+                        <img src="immagini/cioccolata-calda.png" alt="准备热巧克力的步骤" class="content-image">
+                    </div>
+                    <div class="algorithm-visualization">
+                        <div class="step" onmouseover="highlightStep(1)" onmouseout="unhighlightStep(1)">1</div>
+                        <div class="step" onmouseover="highlightStep(2)" onmouseout="unhighlightStep(2)">2</div>
+                        <div class="step" onmouseover="highlightStep(3)" onmouseout="unhighlightStep(3)">3</div>
+                        <div class="step" onmouseover="highlightStep(4)" onmouseout="unhighlightStep(4)">4</div>
+                        <div class="step" onmouseover="highlightStep(5)" onmouseout="unhighlightStep(5)">5</div>
+                    </div>
+                    <ol class="algorithm-steps">
+                        <li id="step1">拿一个杯子。</li>
+                        <li id="step2">加入可可粉。</li>
+                        <li id="step3">倒入热牛奶。</li>
+                        <li id="step4">搅拌均匀。</li>
+                        <li id="step5">享用热巧克力。</li>
+                    </ol>
+                    <p>当我们准备热巧克力时，我们遵循特定的步骤：拿一个杯子，加入可可粉，倒入热牛奶，搅拌，最后享用！</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>去学校</h4>
+                    <div class="image-container">
+                        <img src="immagini/percorso-scuola.png" alt="去学校的路线" class="content-image" style="width: 100%;">
+                    </div>
+                    <p>去学校的路线也是一个算法：醒来，穿衣服，吃早餐，背书包，沿着路线走到学校。</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. 以下哪个序列代表了制作三明治的正确算法？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 切面包，吃三明治，放奶酪。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. 拿面包，添加配料，合上三明治。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 吃三明治，准备三明治，买面包。</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. 为什么在算法中步骤的顺序很重要？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 因为否则计算机会生气。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. 因为有些步骤依赖于前面的步骤。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 因为这样看起来更美观。</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-algoritmi')">
+                        <div style="font-size: 2.5rem;">🔍</div>
+                        <h4>深入学习</h4>
+                        <p>发现更多算法的例子。</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-storia')">
+                        <div style="font-size: 2.5rem;">📚</div>
+                        <h4>历史</h4>
+                        <p>了解算法的发明者。</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">后退</button>
+                    <button class="interactive-element" onclick="changeSection(1)">前进！</button>
+                </div>
+            </div>
+            
+            <!-- 第3部分：计算机科学中的算法 -->
+            <div class="section" id="section3">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> 朗读
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> 停止
+                    </button>
+                </div>
+                
+                <h2>任务 2：计算机科学中的算法</h2>
+                <p>在计算机科学中，算法是我们告诉计算机执行以解决问题的一系列指令。</p>
+                
+                <div class="luciano-message">
+                    <p><strong>卢西亚诺导师说：</strong>"计算机就像听话的宇航员：它们完全按照我们给出的指令执行。因此我们必须非常精确！"</p>
+                </div>
+                
+                <h3>数字世界的例子：</h3>
+                
+                <div class="example-box">
+                    <h4>在列表中找出最大的数字</h4>
+                    <div class="image-container">
+                        <img src="immagini/numeri-lista.png" alt="数字列表，最大的数字被高亮显示" class="content-image">
+                    </div>
+                    <div class="block-code">
+                        <div class="block blue">开始</div>
+                        <div class="block green">将第一个数字设为"最大值"</div>
+                        <div class="block yellow">对于列表中的每个数字：</div>
+                        <div class="block purple">如果这个数字大于"最大值"</div>
+                        <div class="block green">将"最大值"更新为此数字</div>
+                        <div class="block blue">结束</div>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>按高度排列书籍</h4>
+                    <div class="image-container">
+                        <img src="immagini/libri-ordinati.png" alt="按高度排列的书籍" class="content-image">
+                    </div>
+                    <p>想象一下你需要将你的书从最小到最大排列。你会遵循特定的步骤，就像计算机会做的那样！</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>你知道吗...</strong> <a href="https://zh.wikipedia.org/wiki/%E6%A0%BC%E9%9B%B7%E5%8F%B8%C2%B7%E9%9C%8D%E6%99%AE" class="wiki-link" target="_blank">格蕾丝·霍珀</a>，一位杰出的科学家，发明了第一个编译器，这是一个将人类语言翻译成计算机指令的程序。她的发现使得我们今天所知的编程成为可能！</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. 排序算法是做什么的？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 删除无用的数据。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. 按特定顺序组织数据。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 创建新的随机数据。</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. 为什么在给计算机编程时算法必须精确？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 因为计算机速度慢。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. 因为计算机会完全按照所说的执行。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 因为计算机很容易感到无聊。</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-compilatore')">
+                        <div style="font-size: 2.5rem;">⚙️</div>
+                        <h4>编译器</h4>
+                        <p>编译器如何工作。</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-donne-tech')">
+                        <div style="font-size: 2.5rem;">👩‍💻</div>
+                        <h4>科技领域的女性</h4>
+                        <p>其他在科技领域重要的女性。</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">后退</button>
+                    <button class="interactive-element" onclick="changeSection(1)">前进！</button>
+                </div>
+            </div>
+            
+            <!-- 第4部分：计算机如何工作 -->
+            <div class="section" id="section4">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> 朗读
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> 停止
+                    </button>
+                </div>
+                
+                <h2>任务 3：计算机如何工作</h2>
+                <p>计算机是遵循精确指令处理信息的非凡机器。</p>
+                
+                <div class="luciano-message">
+                    <p><strong>卢西亚诺导师说：</strong>"把计算机想象成我们的任务控制中心：它接收信息，处理信息，并产生结果！"</p>
+                </div>
+                
+                <h3>计算机的主要组件：</h3>
+                
+                <div class="example-box">
+                    <h4>CPU - 计算机的大脑</h4>
+                    <div class="image-container">
+                        <img src="immagini/cpu.png" alt="CPU的表示" class="content-image">
+                    </div>
+                    <p>CPU（中央处理单元）是执行程序指令的计算机大脑。</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>内存 - 工作台</h4>
+                    <div class="image-container">
+                        <img src="immagini/memoria.png" alt="计算机内存的表示" class="content-image">
+                    </div>
+                    <p>RAM内存就像一张桌子，计算机把当前正在使用的信息放在上面。</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. 计算机中的CPU是做什么的？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 在屏幕上显示图像。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. 执行程序的指令。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 长期存储文件。</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. 计算机的哪个组件像工作台？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 硬盘。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. RAM内存。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 显卡。</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">后退</button>
+                    <button class="interactive-element" onclick="changeSection(1)">前进！</button>
+                </div>
+            </div>
+            
+            <!-- 第5部分：积木编程 -->
+            <div class="section" id="section5">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> 朗读
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> 停止
+                    </button>
+                </div>
+                
+                <h2>任务 4：积木编程</h2>
+                <p>积木编程是一种学习编程的简单直观方式。</p>
+                
+                <div class="luciano-message">
+                    <p><strong>卢西亚诺导师说：</strong>"积木就像建筑积木：每个都有特定的功能，结合在一起可以创造出令人惊奇的东西！"</p>
+                </div>
+                
+                <h3>积木类型：</h3>
+                
+                <div class="example-box">
+                    <h4>运动积木</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-movimento.png" alt="Scratch中的运动积木" class="content-image">
+                    </div>
+                    <p>运动积木允许角色在屏幕上移动。</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>控制积木</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-controllo.png" alt="Scratch中的控制积木" class="content-image">
+                    </div>
+                    <p>控制积木决定何时以及如何执行指令。</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. 积木编程的优势是什么？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 它比文本编程更快。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. 对初学者来说更容易理解。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 它比文本编程更强大。</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. 控制积木是做什么的？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 改变背景颜色。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. 决定何时执行指令。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 为项目添加声音。</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">后退</button>
+                    <button class="interactive-element" onclick="changeSection(1)">前进！</button>
+                </div>
+            </div>
+            
+            <!-- 第6部分：条件语句 -->
+            <div class="section" id="section6">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> 朗读
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> 停止
+                    </button>
+                </div>
+                
+                <h2>任务 5：条件语句</h2>
+                <p>条件语句允许计算机根据特定条件做出决策。</p>
+                
+                <div class="luciano-message">
+                    <p><strong>卢西亚诺导师说：</strong>"条件就像探索过程中的岔路口：根据你遇到的情况，你决定走哪条路！"</p>
+                </div>
+                
+                <h3>条件示例：</h3>
+                
+                <div class="example-box">
+                    <h4>如果...那么...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora.png" alt="如果-那么条件的例子" class="content-image">
+                    </div>
+                    <p>如果下雨，那么我带伞。这是我们每天使用的简单条件！</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>如果...那么...否则...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora-altrimenti.png" alt="如果-那么-否则条件的例子" class="content-image">
+                    </div>
+                    <p>如果我饿了，那么我吃东西，否则我继续玩耍。这个条件有两种可能的结果。</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. 条件语句是做什么的？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 总是执行相同的操作。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. 根据条件决定执行哪个操作。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 多次重复一个操作。</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. 以下哪项是"如果-那么-否则"条件的例子？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 如果下雨，我带伞。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. 如果下雨，我带伞，否则我戴太阳镜。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 我带伞和戴太阳镜。</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">后退</button>
+                    <button class="interactive-element" onclick="changeSection(1)">前进！</button>
+                </div>
+            </div>
+            
+            <!-- 第7部分：循环和重复 -->
+            <div class="section" id="section7">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> 朗读
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> 停止
+                    </button>
+                </div>
+                
+                <h2>任务 6：循环和重复</h2>
+                <p>循环允许重复一个操作多次，而不必每次都重写它。</p>
+                
+                <div class="luciano-message">
+                    <p><strong>卢西亚诺导师说：</strong>"循环就像宇宙飞船的引擎：一旦启动，它们就会持续运行，直到你停止它们！"</p>
+                </div>
+                
+                <h3>循环类型：</h3>
+                
+                <div class="example-box">
+                    <h4>"重复...次"循环</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-per.png" alt="重复...次循环的例子" class="content-image">
+                    </div>
+                    <p>重复10次：跳跃。这个循环将执行跳跃动作恰好10次。</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>"重复直到"循环</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-finche.png" alt="重复直到循环的例子" class="content-image">
+                    </div>
+                    <p>重复直到完成作业：学习。这个循环将持续直到条件满足。</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. 为什么我们在编程中使用循环？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A. 因为它们看起来更漂亮。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B. 为了避免多次重复相同的代码。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 因为计算机更喜欢它们。</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. 哪个循环重复特定的次数？</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">A. 重复...次。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">B. 重复直到。</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C. 永远重复。</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">后退</button>
+                    <button class="interactive-element" onclick="changeSection(1)">前进！</button>
+                </div>
+            </div>
+            
+            <!-- 第8部分：最终任务 -->
+            <div class="section" id="section8">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> 朗读
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> 停止
+                    </button>
+                </div>
+                
+                <h2>最终任务：你的编程之旅继续！</h2>
+                <p>做得好，太空学员！你已经成功完成了编程基础培训。但这只是你旅程的开始！</p>
+                
+                <div class="image-container">
+                    <img src="immagini/missione-finale.png" alt="编程之旅继续向无限前进" class="content-image">
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>卢西亚诺导师说：</strong>"现在轮到你了！像真正的宇航员一样，你必须掌控你的飞船，继续探索编程的银河。好奇心将是你的燃料！"</p>
+                </div>
+                
+                <h3>你的下一个目的地：</h3>
+                
+                <div class="example-box">
+                    <h4>Scratch - 创意的星球</h4>
+                    <p>访问 <a href="https://scratch.mit.edu" target="_blank" class="wiki-link">Scratch</a>，用积木编程创建交互式故事、游戏和动画。这是开始你冒险的完美地方！</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Code.org - 学习的星星</h4>
+                    <p>探索 <a href="https://code.org" target="_blank" class="wiki-link">Code.org</a>，发现免费的课程和活动，它们将一步步引导你进入编程世界。</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>分享的精神：</strong> 全世界许多人努力创建免费资源来帮助你学习。这就是<strong>开源</strong>和<strong>自由软件</strong>的精神——为所有人的利益分享知识！</p>
+                </div>
+                
+                <h3>在数字宇宙中安全航行：</h3>
+                
+                <div class="example-box">
+                    <h4>互联网的两面性</h4>
+                    <div class="image-container">
+                        <img src="immagini/doppia-faccia-internet.png" alt="互联网的两面：积极的和消极的" class="content-image">
+                    </div>
+                    <p>互联网就像一个有两面的宇宙：它可以是一个学习和成长的绝妙之地，但如果使用不当，也可能很危险。</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>如何识别有效的网站：</h4>
+                  
+                    <p>✅ 寻找教育机构（学校、大学、博物馆）的官方网站</p>
+                    <p>✅ 检查网址是否以"https://"开头（"s"表示安全）</p>
+                    <p>✅ 验证信息是否及时更新（查找发布日期）</p>
+                    <p>✅ 寻找你的母语和中文的网站以比较信息</p>
+                    <p>❌ 警惕有太多广告或要求个人数据的网站</p>
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>永远记住：</strong> 当你在互联网上浏览时，一定要在你信任的成年人的监督下进行。与他们分享你的发现，当有事情让你不确定时寻求帮助！</p>
+                </div>
+                
+                <h3>知识的终极算法：</h3>
+                
+                <div class="algorithm-visualization">
+                    <div class="step" onmouseover="highlightStepFinal(1)" onmouseout="unhighlightStepFinal(1)">1</div>
+                    <div class="step" onmouseover="highlightStepFinal(2)" onmouseout="unhighlightStepFinal(2)">2</div>
+                    <div class="step" onmouseover="highlightStepFinal(3)" onmouseout="unhighlightStepFinal(3)">3</div>
+                    <div class="step" onmouseover="highlightStepFinal(4)" onmouseout="unhighlightStepFinal(4)">4</div>
+                    <div class="step" onmouseover="highlightStepFinal(5)" onmouseout="unhighlightStepFinal(5)">5</div>
+                </div>
+                
+                <ol class="algorithm-steps">
+                    <li id="stepFinal1">保持好奇心：对你感兴趣的一切提出问题</li>
+                    <li id="stepFinal2">寻找资源：安全地使用互联网查找信息</li>
+                    <li id="stepFinal3">实验：尝试，犯错，学习，再尝试</li>
+                    <li id="stepFinal4">分享：把你发现的东西告诉别人</li>
+                    <li id="stepFinal5">持续学习：知识的旅程永无止境！</li>
+                </ol>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">你在编程旅程中的下一步是什么？</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">A. 我将在成年人的帮助下探索Scratch和Code.org！</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">B. 我将继续带着好奇心和注意力学习！</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">C. 我将与朋友们分享我学到的东西！</div>
+                    <div class="inclusion-message">
+                        <p><strong>注意：</strong> 在这个任务中，所有答案都是正确的！重要的是你继续你的学习之旅。</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">后退</button>
+                    <button class="interactive-element" onclick="restartJourney()">重新开始旅程！</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 深入学习模态框 -->
+    <div id="modal-algoritmi" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-algoritmi')">&times;</span>
+            <h2>其他算法示例</h2>
+            <div class="image-container">
+                <img src="immagini/esempi-algoritmi.png" alt="日常生活中不同的算法示例" class="content-image">
+            </div>
+            <p>以下是我们每天使用的其他算法示例：</p>
+            <ul>
+                <li><strong>制作三明治：</strong> 拿面包，加奶酪，加蔬菜，调味，合上。</li>
+                <li><strong>洗碗：</strong> 装满水槽，加洗洁精，洗，冲洗，擦干。</li>
+                <li><strong>画画：</strong> 选择颜色，画轮廓，涂色，添加细节。</li>
+            </ul>
+            <div class="luciano-message">
+                <p><strong>卢西亚诺导师说：</strong>"观察你的日常行为：你会发现你的许多行为都遵循着精确的算法！"</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-storia" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-storia')">&times;</span>
+            <h2>算法的历史</h2>
+            <div class="image-container">
+                <img src="immagini/storia-algoritmi.png" alt="算法的历史表示" class="content-image">
+            </div>
+            <p>"算法"这个词来源于波斯数学家<a href="https://zh.wikipedia.org/wiki/%E8%8A%B1%E6%8B%89%E5%AD%90%E7%B1%B3" class="wiki-link" target="_blank">花拉子米</a>的名字，他生活在9世纪。他的著作引入了印度数字（我们今天使用的数字）和解方程的方法。</p>
+            <p>几个世纪以来，许多数学家为算法的发展做出了贡献，但随着计算机的出现，算法成为我们日常生活的基础。</p>
+            <div class="inclusion-message">
+                <p><strong>趣闻：</strong> 第一个计算机算法是由<a href="https://zh.wikipedia.org/wiki/%E9%98%BF%E8%BE%BE%C2%B7%E6%B4%9B%E8%8A%99%E8%8E%B1%E6%96%AF" class="wiki-link" target="_blank">阿达·洛芙莱斯</a>在1843年为<a href="https://zh.wikipedia.org/wiki/%E6%9F%A5%E5%88%97%E6%96%AF%C2%B7%E5%B7%B4%E8%B4%9D%E5%A5%87" class="wiki-link" target="_blank">查尔斯·巴贝奇</a>的分析机编写的，这远远早于现代计算机的出现！</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-compilatore" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-compilatore')">&times;</span>
+            <h2>编译器如何工作</h2>
+            <div class="image-container">
+                <img src="immagini/compilatore.png" alt="编译器工作方式的表示" class="content-image">
+            </div>
+            <p>编译器是一个特殊的程序，它将用编程语言（如Python或Java）编写的代码翻译成机器语言，计算机可以直接理解和执行。</p>
+            <p>编译过程分为几个阶段：</p>
+            <ol>
+                <li>词法分析：代码被分解成"标记"（关键字、标识符等）。</li>
+                <li>语法分析：检查标记是否按照语言规则正确组织。</li>
+                <li>语义分析：检查代码是否具有逻辑意义。</li>
+                <li>代码生成：生成机器语言代码。</li>
+            </ol>
+            <div class="luciano-message">
+                <p><strong>卢西亚诺导师说：</strong>"把编译器想象成一个通用翻译器，它将你的想法翻译成计算机能理解的语言！"</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-donne-tech" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-donne-tech')">&times;</span>
+            <h2>科技领域重要的女性</h2>
+            <div class="image-container">
+                <img src="immagini/donne-tech.png" alt="科技领域重要的女性" class="content-image">
+            </div>
+            <p>除了阿达·洛芙莱斯和格蕾丝·霍珀，还有许多其他女性为计算机科学和技术做出了根本性贡献：</p>
+            <ul>
+                <li><strong><a href="https://zh.wikipedia.org/wiki/%E8%B5%AB%E8%BF%AA%C2%B7%E6%8B%89%E9%A9%AC" class="wiki-link" target="_blank">海蒂·拉玛</a></strong>：演员和发明家，开发了Wi-Fi和蓝牙基础技术。</li>
+                <li><strong><a href="https://zh.wikipedia.org/wiki/%E6%8B%89%E8%BF%AA%E4%BA%9A%C2%B7%E4%BD%A9%E5%B0%94%E6%9B%BC" class="wiki-link" target="_blank">拉迪亚·珀尔曼</a></strong>：被称为"互联网之母"，发明了生成树协议。</li>
+                <li><strong><a href="https://zh.wikipedia.org/wiki/%E9%98%BF%E5%A6%AE%E5%A1%94%C2%B7%E4%BC%AF%E6%A0%BC" class="wiki-link" target="_blank">安妮塔·博格</a></strong>：创立了妇女与技术研究所和格蕾丝·霍珀庆祝会。</li>
+                <li><strong><a href="https://zh.wikipedia.org/wiki/%E9%A9%AC%E6%A0%BC%E4%B8%BD%E7%89%B9%C2%B7%E5%93%88%E5%AF%86%E5%B0%94%E9%A1%BF_(%E7%A7%91%E5%AD%A6%E5%AE%B6)" class="wiki-link" target="_blank">玛格丽特·汉密尔顿</a></strong>：指导了NASA阿波罗计划的软件开发。</li>
+            </ul>
+            <div class="inclusion-message">
+                <p><strong>你知道吗？</strong> 女性从计算机科学起步之初就对其发展至关重要，并且继续在科技各个领域做出革命性发现！</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

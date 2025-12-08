@@ -1,0 +1,702 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهمة البرمجة مع المعلم لوتشيانو - مغامرة فضائية في عالم البرمجة</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>مهمة البرمجة مع المعلم لوتشيانو</h1>
+            <p class="subtitle">مغامرة فضائية في عالم البرمجة</p>
+            
+            <!-- قائمة اللغات -->
+            <div class="language-menu">
+                <a href="index-it.html" class="language-option" data-lang="it">
+                    <span class="flag">🇮🇹</span>
+                    <span class="language-name">Italiano</span>
+                </a>
+                <a href="index-en.html" class="language-option" data-lang="en">
+                    <span class="flag">🇬🇧</span>
+                    <span class="language-name">English</span>
+                </a>
+                <a href="index-fr.html" class="language-option" data-lang="fr">
+                    <span class="flag">🇫🇷</span>
+                    <span class="language-name">Français</span>
+                </a>
+                <a href="index-de.html" class="language-option" data-lang="de">
+                    <span class="flag">🇩🇪</span>
+                    <span class="language-name">Deutsch</span>
+                </a>
+                <a href="index-ar.html" class="language-option current" data-lang="ar">
+                    <span class="flag">🇸🇦</span>
+                    <span class="language-name">العربية</span>
+                </a>
+                <a href="index-zh.html" class="language-option" data-lang="zh">
+                    <span class="flag">🇨🇳</span>
+                    <span class="language-name">中文</span>
+                </a>
+                <a href="index-hi.html" class="language-option" data-lang="hi">
+                    <span class="flag">🇮🇳</span>
+                    <span class="language-name">हिन्दी</span>
+                </a>
+                <a href="index-pa.html" class="language-option" data-lang="pa">
+                    <span class="flag">🇮🇳</span>
+                    <span class="language-name">ਪੰਜਾਬੀ</span>
+                </a>
+                <a href="index-es.html" class="language-option" data-lang="es">
+                    <span class="flag">🇪🇸</span>
+                    <span class="language-name">Español</span>
+                </a>
+                <a href="index-pt.html" class="language-option" data-lang="pt">
+                    <span class="flag">🇵🇹</span>
+                    <span class="language-name">Português</span>
+                </a>
+                <a href="index-ur.html" class="language-option" data-lang="ur">
+                    <span class="flag">🇵🇰</span>
+                    <span class="language-name">اردو</span>
+                </a>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </header>
+        
+        <div class="content-area">
+            <!-- القسم 1: المقدمة -->
+            <div class="section active" id="section1">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> اقرأ
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> توقف
+                    </button>
+                </div>
+                
+                <h2>مرحباً، أيها المستكشفون الفضائيون الصغار!</h2>
+                <p>مرحباً أيها الشباب، أنا المعلم لوتشيانو، مدربكم الفضائي! أنا هنا لأقودكم في مغامرة استثنائية في عالم البرمجة، حيث سنتعلم كيفية إعطاء تعليمات لأجهزة الكمبيوتر لإنشاء ألعاب ورسوم متحركة ومهام فضائية!</p>
+                
+                <div class="image-container">
+                    <img src="immagini/maestro-luciano.png" alt="المعلم لوتشيانو، مدرب فضائي مبتسم" class="content-image">
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>رسالة من المعلم لوتشيانو:</strong> "تذكروا، في الفضاء كما في البرمجة، كل رحلة عظيمة تبدأ بخطوة صغيرة. معاً سنستكشف مجرات المعرفة!"</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>هل تعلم؟</strong> البرمجة للجميع! <a href="https://ar.wikipedia.org/wiki/%D8%A2%D8%AF%D8%A7_%D9%84%D8%A7%D9%81%D9%84%D9%8A%D8%B3" class="wiki-link" target="_blank">آدا لوفلايس</a>، عالمة رياضيات بارعة، تعتبر أول مبرمجة في التاريخ. اليوم، تستمر نساء مثل <a href="https://ar.wikipedia.org/wiki/%D9%83%D8%A7%D8%AA%D9%8A_%D8%A8%D9%88%D9%85%D8%A7%D9%86" class="wiki-link" target="_blank">كاتي بومان</a>، التي ساهمت في تصوير ثقب أسود، في تحقيق اكتشافات مذهلة في عالم التكنولوجيا!</p>
+                </div>
+                
+                <p>في مهمتنا سنستكشف:</p>
+                <ul>
+                    <li>ما هي الخوارزميات <span class="mission-badge">المهمة 1</span>.</li>
+                    <li>كيف تعمل أجهزة الكمبيوتر <span class="mission-badge">المهمة 2</span>.</li>
+                    <li>البرمجة بالمربعات <span class="mission-badge">المهمة 3</span>.</li>
+                    <li>المبادئ الأساسية للبرمجة <span class="mission-badge">المهمة 4</span>.</li>
+                    <li>كيفية إنشاء مشاريع باستخدام سكراتش <span class="mission-badge">المهمة 5</span>.</li>
+                </ul>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. أي من هذه الأمثلة يمثل سلسلة خوارزمية؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">أ. تنظيف الأسنان: أخذ فرشاة الأسنان، وضع المعجون، التفريش، الشطف.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ب. لعب كرة القدم: الجري، القفز، الغناء، السباحة.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. قراءة كتاب: فتح، إغلاق، فتح، إغلاق.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. من تعتبر أول مبرمجة في التاريخ؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">أ. آدا لوفلايس.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ب. تشارلز باباج.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. آلان تورينج.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)" disabled>السابق</button>
+                    <button class="interactive-element" onclick="changeSection(1)">ابدأ المهمة!</button>
+                </div>
+            </div>
+            
+            <!-- القسم 2: الخوارزميات في الحياة الواقعية -->
+            <div class="section" id="section2">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> اقرأ
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> توقف
+                    </button>
+                </div>
+                
+                <h2>المهمة 1: ما هي الخوارزميات؟</h2>
+                <p>الخوارزمية هي سلسلة من الخطوات المرتبة لحل مشكلة أو إكمال مهمة. نستخدمها كل يوم دون أن نلاحظ ذلك!</p>
+                
+                <div class="luciano-message">
+                    <p><strong>يقول المعلم لوتشيانو:</strong> "فكر في الخوارزمية كقائمة مراجعة أستخدمها قبل الإقلاع! يجب تنفيذ كل خطوة بالترتيب الصحيح لنجاح المهمة."</p>
+                </div>
+                
+                <h3>أمثلة من الحياة الواقعية:</h3>
+                
+                <div class="example-box">
+                    <h4>تحضير فنجان من الشوكولاتة الساخنة</h4>
+                    <div class="image-container">
+                        <img src="immagini/cioccolata-calda.png" alt="خطوات تحضير الشوكولاتة الساخنة" class="content-image">
+                    </div>
+                    <div class="algorithm-visualization">
+                        <div class="step" onmouseover="highlightStep(1)" onmouseout="unhighlightStep(1)">1</div>
+                        <div class="step" onmouseover="highlightStep(2)" onmouseout="unhighlightStep(2)">2</div>
+                        <div class="step" onmouseover="highlightStep(3)" onmouseout="unhighlightStep(3)">3</div>
+                        <div class="step" onmouseover="highlightStep(4)" onmouseout="unhighlightStep(4)">4</div>
+                        <div class="step" onmouseover="highlightStep(5)" onmouseout="unhighlightStep(5)">5</div>
+                    </div>
+                    <ol class="algorithm-steps" dir="rtl">
+                        <li id="step1">خذ فنجاناً.</li>
+                        <li id="step2">أضف مسحوق الكاكاو.</li>
+                        <li id="step3">اسكب الحليب الساخن.</li>
+                        <li id="step4">اخلط جيداً.</li>
+                        <li id="step5">استمتع بالشوكولاتة الساخنة.</li>
+                    </ol>
+                    <p>عندما نحضر شوكولاتة ساخنة، نتبع خطوات محددة: أخذ فنجان، إضافة الكاكاو، سكب الحليب الساخن، الخلط، وأخيراً الاستمتاع!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>الذهاب إلى المدرسة</h4>
+                    <div class="image-container">
+                        <img src="immagini/percorso-scuola.png" alt="طريق الذهاب إلى المدرسة" class="content-image" style="width: 100%;">
+                    </div>
+                    <p>حتى طريق الذهاب إلى المدرسة هو خوارزمية: الاستيقاظ، ارتداء الملابس، تناول الفطور، أخذ الحقيبة، واتباع الطريق إلى المدرسة.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. أي من هذه السلاسل يمثل خوارزمية صحيحة لتحضير ساندويتش؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. قطع الخبز، أكل الساندويتش، وضع الجبن.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. أخذ الخبز، إضافة المكونات، غلق الساندويتش.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. أكل الساندويتش، تحضير الساندويتش، شراء الخبز.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. لماذا ترتيب الخطوات مهم في الخوارزمية؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. لأن الكمبيوتر سينزعج بخلاف ذلك.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. لأن بعض الخطوات تعتمد على سابقاتها.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. لأنها تبدو أجمل من الناحية الجمالية.</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-algoritmi')">
+                        <div style="font-size: 2.5rem;">🔍</div>
+                        <h4>تعمق أكثر</h4>
+                        <p>اكتشف أمثلة أخرى للخوارزميات.</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-storia')">
+                        <div style="font-size: 2.5rem;">📚</div>
+                        <h4>التاريخ</h4>
+                        <p>تعرف على مخترعي الخوارزميات.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">السابق</button>
+                    <button class="interactive-element" onclick="changeSection(1)">التالي!</button>
+                </div>
+            </div>
+            
+            <!-- القسم 3: الخوارزميات في علم الحاسوب -->
+            <div class="section" id="section3">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> اقرأ
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> توقف
+                    </button>
+                </div>
+                
+                <h2>المهمة 2: الخوارزميات في علم الحاسوب</h2>
+                <p>في علم الحاسوب، الخوارزمية هي سلسلة من التعليمات التي نعطيها للكمبيوتر لتنفيذها لحل مشكلة.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>يقول المعلم لوتشيانو:</strong> "أجهزة الكمبيوتر كرواد فضاء مطيعين: يتبعون التعليمات التي نعطيهم إياها بدقة. لذلك يجب أن نكون دقيقين جداً!"</p>
+                </div>
+                
+                <h3>أمثلة من العالم الرقمي:</h3>
+                
+                <div class="example-box">
+                    <h4>إيجاد أكبر عدد في قائمة</h4>
+                    <div class="image-container">
+                        <img src="immagini/numeri-lista.png" alt="قائمة أعداد مع إبراز أكبر عدد" class="content-image">
+                    </div>
+                    <div class="block-code">
+                        <div class="block blue">ابدأ</div>
+                        <div class="block green">خذ الرقم الأول كـ "الأكبر"</div>
+                        <div class="block yellow">لكل رقم في القائمة:</div>
+                        <div class="block purple">إذا كان الرقم أكبر من "الأكبر"</div>
+                        <div class="block green">حدّث "الأكبر" بهذا الرقم</div>
+                        <div class="block blue">انتهى</div>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>ترتيب الكتب حسب الارتفاع</h4>
+                    <div class="image-container">
+                        <img src="immagini/libri-ordinati.png" alt="كتب مرتبة حسب الارتفاع" class="content-image">
+                    </div>
+                    <p>تخيل أنك تريد ترتيب كتبك من الأصغر إلى الأكبر. ستتبع خطوات محددة، تماماً كما يفعل الكمبيوتر!</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>هل تعلم أن...</strong> <a href="https://ar.wikipedia.org/wiki/%D8%BA%D8%B1%D9%8A%D8%B3_%D9%87%D9%88%D8%A8%D8%B1" class="wiki-link" target="_blank">غريس هوبر</a>، عالمة بارعة، اخترعت أول مترجم، برنامج يترجم لغة البشر إلى تعليمات يفهمها الكمبيوتر؟ اكتشافاتها جعلت البرمجة كما نعرفها اليوم ممكنة!</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ماذا تفعل خوارزمية الترتيب؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. تحذف البيانات غير الضرورية.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. تنظم البيانات بترتيب محدد.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. تنشئ بيانات جديدة عشوائية.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. لماذا يجب أن تكون الخوارزميات دقيقة عند برمجة الكمبيوترات؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. لأن الكمبيوترات بطيئة.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. لأن الكمبيوترات تنفذ بالضبط ما يقال لها.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. لأن الكمبيوترات تشعر بالملل بسهولة.</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-compilatore')">
+                        <div style="font-size: 2.5rem;">⚙️</div>
+                        <h4>المترجم</h4>
+                        <p>كيف يعمل المترجم؟</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-donne-tech')">
+                        <div style="font-size: 2.5rem;">👩‍💻</div>
+                        <h4>النساء في التكنولوجيا</h4>
+                        <p>نساء مهمات أخريات في التكنولوجيا.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">السابق</button>
+                    <button class="interactive-element" onclick="changeSection(1)">التالي!</button>
+                </div>
+            </div>
+            
+            <!-- القسم 4: كيف تعمل أجهزة الكمبيوتر -->
+            <div class="section" id="section4">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> اقرأ
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> توقف
+                    </button>
+                </div>
+                
+                <h2>المهمة 3: كيف تعمل أجهزة الكمبيوتر</h2>
+                <p>أجهزة الكمبيوتر هي آلات استثنائية تعالج المعلومات باتباع تعليمات دقيقة.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>يقول المعلم لوتشيانو:</strong> "فكر في الكمبيوتر كمركز التحكم في مهمتنا: يتلقى المعلومات، يعالجها، ويخرج نتائج!"</p>
+                </div>
+                
+                <h3>المكونات الرئيسية للكمبيوتر:</h3>
+                
+                <div class="example-box">
+                    <h4>وحدة المعالجة المركزية - عقل الكمبيوتر</h4>
+                    <div class="image-container">
+                        <img src="immagini/cpu.png" alt="تمثيل لوحدة المعالجة المركزية" class="content-image">
+                    </div>
+                    <p>وحدة المعالجة المركزية هي عقل الكمبيوتر الذي ينفذ تعليمات البرامج.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>الذاكرة - مكتب العمل</h4>
+                    <div class="image-container">
+                        <img src="immagini/memoria.png" alt="تمثيل لذاكرة الكمبيوتر" class="content-image">
+                    </div>
+                    <p>ذاكرة الوصول العشوائي مثل مكتب عمل حيث يضع الكمبيوتر المعلومات التي يستخدمها في تلك اللحظة.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ماذا تفعل وحدة المعالجة المركزية في الكمبيوتر؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. تعرض الصور على الشاشة.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. تنفذ تعليمات البرامج.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. تخزن الملفات على المدى الطويل.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. أي مكون من مكونات الكمبيوتر يشبه مكتب العمل؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. القرص الصلب.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. ذاكرة الوصول العشوائي.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. بطاقة الرسومات.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">السابق</button>
+                    <button class="interactive-element" onclick="changeSection(1)">التالي!</button>
+                </div>
+            </div>
+            
+            <!-- القسم 5: البرمجة بالمربعات -->
+            <div class="section" id="section5">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> اقرأ
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> توقف
+                    </button>
+                </div>
+                
+                <h2>المهمة 4: البرمجة بالمربعات</h2>
+                <p>البرمجة بالمربعات هي طريقة بسيطة ومرئية لتعلم البرمجة.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>يقول المعلم لوتشيانو:</strong> "المربعات مثل قطع البناء: لكل منها وظيفة محددة، ومعاً يمكنها إنشاء أشياء مذهلة!"</p>
+                </div>
+                
+                <h3>أنواع المربعات:</h3>
+                
+                <div class="example-box">
+                    <h4>مربعات الحركة</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-movimento.png" alt="مربعات الحركة في سكراتش" class="content-image">
+                    </div>
+                    <p>مربعات الحركة تسمح بتحريك الشخصيات على الشاشة.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>مربعات التحكم</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-controllo.png" alt="مربعات التحكم في سكراتش" class="content-image">
+                    </div>
+                    <p>مربعات التحكم تحدد متى وكيف يتم تنفيذ التعليمات.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ما هي ميزة البرمجة بالمربعات؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. إنها أسرع من البرمجة النصية.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. إنها أسهل لفهمها للمبتدئين.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. إنها أقوى من البرمجة النصية.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. ماذا تفعل مربعات التحكم؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. تغير لون الخلفية.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. تحدد وقت تنفيذ التعليمات.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. تضيف أصواتاً للمشروع.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">السابق</button>
+                    <button class="interactive-element" onclick="changeSection(1)">التالي!</button>
+                </div>
+            </div>
+            
+            <!-- القسم 6: التعليمات الشرطية -->
+            <div class="section" id="section6">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> اقرأ
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> توقف
+                    </button>
+                </div>
+                
+                <h2>المهمة 5: التعليمات الشرطية</h2>
+                <p>التعليمات الشرطية تسمح للكمبيوتر باتخاذ قرارات بناءً على شروط معينة.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>يقول المعلم لوتشيانو:</strong> "الشروط مثل مفترق الطرق أثناء الاستكشاف: اعتماداً على ما تواجهه، تقرر أي طريق تسلك!"</p>
+                </div>
+                
+                <h3>أمثلة على الشروط:</h3>
+                
+                <div class="example-box">
+                    <h4>إذا... إذن...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora.png" alt="مثال على شرط إذا-إذن" class="content-image">
+                    </div>
+                    <p>إذا كانت تمطر، إذن آخذ المظلة. هذا شرط بسيط نستخدمه كل يوم!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>إذا... إذن... وإلا...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora-altrimenti.png" alt="مثال على شرط إذا-إذن-وإلا" class="content-image">
+                    </div>
+                    <p>إذا كنت جائعاً، إذن آكل، وإلا أستمر في اللعب. هذا الشرط له نتيجتان محتملتان.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. ماذا تفعل التعليمات الشرطية؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. تنفذ نفس الإجراءات دائماً.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. تقرر أي إجراء تنفذ بناءً على شرط.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. تكرر إجراءً عدة مرات.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. أي من هذه الأمثلة يمثل شرط "إذا-إذن-وإلا"؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. إذا كانت تمطر، آخذ المظلة.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. إذا كانت تمطر، آخذ المظلة، وإلا أضع النظارات الشمسية.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. آخذ المظلة وأضع النظارات الشمسية.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">السابق</button>
+                    <button class="interactive-element" onclick="changeSection(1)">التالي!</button>
+                </div>
+            </div>
+            
+            <!-- القسم 7: الحلقات والتكرارات -->
+            <div class="section" id="section7">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> اقرأ
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> توقف
+                    </button>
+                </div>
+                
+                <h2>المهمة 6: الحلقات والتكرارات</h2>
+                <p>الحلقات تسمح بتكرار إجراء عدة مرات دون الحاجة لإعادة كتابته كل مرة.</p>
+                
+                <div class="luciano-message">
+                    <p><strong>يقول المعلم لوتشيانو:</strong> "الحلقات مثل محرك مركبة فضائية: بمجرد تشغيلها، تستمر في العمل حتى تتوقفها!"</p>
+                </div>
+                
+                <h3>أنواع الحلقات:</h3>
+                
+                <div class="example-box">
+                    <h4>حلقة "كرّر لـ"</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-per.png" alt="مثال على حلقة كرّر لـ" class="content-image">
+                    </div>
+                    <p>كرّر لـ 10 مرات: اقفز. هذه الحلقة ستنفذ إجراء القفز بالضبط 10 مرات.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>حلقة "كرّر حتى"</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-finche.png" alt="مثال على حلقة كرّر حتى" class="content-image">
+                    </div>
+                    <p>كرّر حتى تنتهي من الواجبات: ادرس. هذه الحلقة ستستمر حتى يتحقق الشرط.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. لماذا نستخدم الحلقات في البرمجة؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">أ. لأنها تبدو أجمل.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">ب. لتجنب تكرار نفس الكود عدة مرات.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. لأن أجهزة الكمبيوتر تفضلها.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. أي حلقة تكرر نفسها عدداً محدداً من المرات؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">أ. كرّر لـ.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ب. كرّر حتى.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">ج. كرّر دائماً.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">السابق</button>
+                    <button class="interactive-element" onclick="changeSection(1)">التالي!</button>
+                </div>
+            </div>
+            
+            <!-- القسم 8: المهمة النهائية -->
+            <div class="section" id="section8">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> اقرأ
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> توقف
+                    </button>
+                </div>
+                
+                <h2>المهمة النهائية: رحلتك في البرمجة تستمر!</h2>
+                <p>أحسنت أيها الطالب الفضائي! لقد أكملت بنجاح تدريبك الأساسي في البرمجة. لكن هذه ليست سوى بداية رحلتك!</p>
+                
+                <div class="image-container">
+                    <img src="immagini/missione-finale.png" alt="رحلة في البرمجة تستمر إلى ما لا نهاية" class="content-image">
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>يقول المعلم لوتشيانو:</strong> "حان دورك الآن! كرائد فضاء حقيقي، يجب أن تسيطر على مركبتك الفضائية وتستمر في استكشاف مجرات البرمجة. الفضول سيكون وقودك!"</p>
+                </div>
+                
+                <h3>وجهاتك التالية:</h3>
+                
+                <div class="example-box">
+                    <h4>سكراتش - كوكب الإبداع</h4>
+                    <p>قم بزيارة <a href="https://scratch.mit.edu" target="_blank" class="wiki-link">سكراتش</a> لإنشاء قصص تفاعلية وألعاب ورسوم متحركة باستخدام البرمجة بالمربعات. إنه المكان المثالي لبدء مغامرتك!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Code.org - نجم التعلم</h4>
+                    <p>استكشف <a href="https://code.org" target="_blank" class="wiki-link">Code.org</a> لاكتشاف دورات مجانية وأنشطة ترشدك خطوة بخطوة في عالم البرمجة.</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>روح المشاركة:</strong> عمل العديد من الأشخاص حول العالم لإنشاء موارد مجانية لمساعدتك على التعلم. هذه هي روح <strong>المصدر المفتوح</strong> و<strong>البرمجيات الحرة</strong> - مشاركة المعرفة لصالح الجميع!</p>
+                </div>
+                
+                <h3>التصفح الآمن في الكون الرقمي:</h3>
+                
+                <div class="example-box">
+                    <h4>وجهان للإنترنت</h4>
+                    <div class="image-container">
+                        <img src="immagini/doppia-faccia-internet.png" alt="وجهان للإنترنت: الإيجابي والسلبي" class="content-image">
+                    </div>
+                    <p>الإنترنت ككون له وجهان: يمكن أن يكون مكاناً رائعاً للتعلم والنمو، ولكنه قد يكون خطيراً إذا لم يُستخدم بحكمة.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>كيفية التعرف على موقع ويب موثوق:</h4>
+                  
+                    <p>✅ ابحث عن مواقع المؤسسات التعليمية الرسمية (مدارس، جامعات، متاحف)</p>
+                    <p>✅ تحقق من أن عنوان الويب يبدأ بـ "https://" (حرف "s" يعني آمن)</p>
+                    <p>✅ تأكد من أن المعلومات محدثة (ابحث عن تاريخ النشر)</p>
+                    <p>✅ ابحث عن مواقع بلغتك الأم وبالعربية لمقارنة المعلومات</p>
+                    <p>❌ كن حذراً من المواقع التي تحتوي على الكثير من الإعلانات أو تطلب بيانات شخصية</p>
+                </div>
+                
+                <div class="luciano-message">
+                    <p><strong>تذكر دائماً:</strong> عندما تتصفح الإنترنت، افعل ذلك دائماً تحت إشراف شخص بالغ تثق به. شارك معه اكتشافاتك واطلب المساعدة عندما لا تكون متأكداً من شيء!</p>
+                </div>
+                
+                <h3>الخوارزمية النهائية للمعرفة:</h3>
+                
+                <div class="algorithm-visualization">
+                    <div class="step" onmouseover="highlightStepFinal(1)" onmouseout="unhighlightStepFinal(1)">1</div>
+                    <div class="step" onmouseover="highlightStepFinal(2)" onmouseout="unhighlightStepFinal(2)">2</div>
+                    <div class="step" onmouseover="highlightStepFinal(3)" onmouseout="unhighlightStepFinal(3)">3</div>
+                    <div class="step" onmouseover="highlightStepFinal(4)" onmouseout="unhighlightStepFinal(4)">4</div>
+                    <div class="step" onmouseover="highlightStepFinal(5)" onmouseout="unhighlightStepFinal(5)">5</div>
+                </div>
+                
+                <ol class="algorithm-steps" dir="rtl">
+                    <li id="stepFinal1">كن فضولياً: اسأل عن كل ما يهمك</li>
+                    <li id="stepFinal2">ابحث عن الموارد: استخدم الإنترنت بأمان للعثور على معلومات</li>
+                    <li id="stepFinal3">جرب: حاول، أخطئ، تعلم، وحاول مرة أخرى</li>
+                    <li id="stepFinal4">شارك: أخبر الآخرين بما اكتشفته</li>
+                    <li id="stepFinal5">استمر في التعلم: رحلة المعرفة لا تنتهي أبداً!</li>
+                </ol>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">ما هي خطوتك التالية في رحلة البرمجة؟</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">أ. سأستكشف سكراتش وCode.org بمساعدة شخص بالغ!</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">ب. سأستمر في التعلم بفضول وانتباه!</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">ج. سأشارك ما تعلمته مع أصدقائي!</div>
+                    <div class="inclusion-message">
+                        <p><strong>ملاحظة:</strong> في هذه المهمة، جميع الإجابات صحيحة! المهم أن تستمر في رحلة التعلم.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">السابق</button>
+                    <button class="interactive-element" onclick="restartJourney()">أعد الرحلة من جديد!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- نوافذ منبثقة للتعمق -->
+    <div id="modal-algoritmi" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-algoritmi')">&times;</span>
+            <h2>أمثلة أخرى للخوارزميات</h2>
+            <div class="image-container">
+                <img src="immagini/esempi-algoritmi.png" alt="أمثلة مختلفة للخوارزميات في الحياة اليومية" class="content-image">
+            </div>
+            <p>إليك أمثلة أخرى للخوارزميات التي نستخدمها كل يوم:</p>
+            <ul dir="rtl">
+                <li><strong>تحضير ساندويتش:</strong> أخذ الخبز، إضافة الجبن، الخضار، التتبيل، والغلق.</li>
+                <li><strong>غسل الأطباق:</strong> ملء الحوض، إضافة المنظف، الغسل، الشطف، التجفيف.</li>
+                <li><strong>رسم صورة:</strong> اختيار الألوان، رسم المخطط، التلوين، إضافة التفاصيل.</li>
+            </ul>
+            <div class="luciano-message">
+                <p><strong>يقول المعلم لوتشيانو:</strong> "راقب أفعالك اليومية: ستكتشف أن العديد من سلوكياتك تتبع خوارزميات دقيقة!"</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-storia" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-storia')">&times;</span>
+            <h2>تاريخ الخوارزميات</h2>
+            <div class="image-container">
+                <img src="immagini/storia-algoritmi.png" alt="تمثيل تاريخي للخوارزميات" class="content-image">
+            </div>
+            <p>كلمة "خوارزمية" مشتقة من اسم عالم الرياضيات الفارسي <a href="https://ar.wikipedia.org/wiki/%D9%85%D8%AD%D9%85%D8%AF_%D8%A8%D9%86_%D9%85%D9%88%D8%B3%D9%89_%D8%A7%D9%84%D8%AE%D9%88%D8%A7%D8%B1%D8%B2%D9%85%D9%8A" class="wiki-link" target="_blank">الخوارزمي</a>، الذي عاش في القرن التاسع الميلادي. قدمت كتبه الأرقام الهندية (التي نستخدمها اليوم) وطرق حل المعادلات.</p>
+            <p>على مر القرون، ساهم العديد من علماء الرياضيات في تطوير الخوارزميات، ولكن مع ظهور أجهزة الكمبيوتر أصبحت الخوارزميات أساسية في حياتنا اليومية.</p>
+            <div class="inclusion-message">
+                <p><strong>معلومة:</strong> أول خوارزمية حاسوبية كتبتها <a href="https://ar.wikipedia.org/wiki/%D8%A2%D8%AF%D8%A7_%D9%84%D8%A7%D9%81%D9%84%D9%8A%D8%B3" class="wiki-link" target="_blank">آدا لوفلايس</a> عام 1843 لآلة <a href="https://ar.wikipedia.org/wiki/%D8%AA%D8%B4%D8%A7%D8%B1%D9%84%D8%B2_%D8%A8%D8%A7%D8%A8%D8%A7%D8%AC" class="wiki-link" target="_blank">تشارلز باباج</a> التحليلية، قبل وقت طويل من وجود أجهزة الكمبيوتر الحديثة!</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-compilatore" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-compilatore')">&times;</span>
+            <h2>كيف يعمل المترجم</h2>
+            <div class="image-container">
+                <img src="immagini/compilatore.png" alt="تمثيل لكيفية عمل المترجم" class="content-image">
+            </div>
+            <p>المترجم هو برنامج خاص يترجم الكود المكتوب بلغة برمجة (مثل بايثون أو جافا) إلى لغة الآلة، التي يمكن للكمبيوتر فهمها وتنفيذها مباشرة.</p>
+            <p>تحدث عملية الترجمة في عدة مراحل:</p>
+            <ol dir="rtl">
+                <li>التحليل المعجمي: يتم تقسيم الكود إلى "وحدات" (كلمات مفتاحية، معرفات، إلخ).</li>
+                <li>التحليل النحوي: التحقق من أن الوحدات منظمة بشكل صحيح وفقاً لقواعد اللغة.</li>
+                <li>التحليل الدلالي: التحقق من أن الكود له معنى منطقي.</li>
+                <li>إنشاء الكود: إنتاج الكود بلغة الآلة.</li>
+            </ol>
+            <div class="luciano-message">
+                <p><strong>يقول المعلم لوتشيانو:</strong> "فكر في المترجم كمترجم عالمي يترجم أفكارك إلى لغة يفهمها الكمبيوتر!"</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-donne-tech" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-donne-tech')">&times;</span>
+            <h2>نساء مهمات في التكنولوجيا</h2>
+            <div class="image-container">
+                <img src="immagini/donne-tech.png" alt="نساء مهمات في مجال التكنولوجيا" class="content-image">
+            </div>
+            <p>بالإضافة إلى آدا لوفلايس وغريس هوبر، قدمت العديد من النساء الأخريات مساهمات أساسية في علوم الكمبيوتر والتكنولوجيا:</p>
+            <ul dir="rtl">
+                <li><strong><a href="https://ar.wikipedia.org/wiki/%D9%87%D9%8A%D8%AF%D9%8A_%D9%84%D8%A7%D9%85%D8%A7%D8%B1" class="wiki-link" target="_blank">هيدي لامار</a></strong>: ممثلة ومخترعة، طورت تقنية هي أساس الواي فاي والبلوتوث.</li>
+                <li><strong><a href="https://en.wikipedia.org/wiki/Radia_Perlman" class="wiki-link" target="_blank">راديا بيرلمان</a></strong>: تعرف باسم "أم الإنترنت"، اخترعت بروتوكول الشجرة الامتدادية.</li>
+                <li><strong><a href="https://en.wikipedia.org/wiki/Anita_Borg" class="wiki-link" target="_blank">أنيتا بورغ</a></strong>: أسست معهد المرأة والتكنولوجيا واحتفالية غريس هوبر.</li>
+                <li><strong><a href="https://ar.wikipedia.org/wiki/%D9%85%D8%A7%D8%B1%D8%BA%D8%A7%D8%B1%D9%8A%D8%AA_%D9%87%D8%A7%D9%85%D9%8A%D9%84%D8%AA%D9%88%D9%86" class="wiki-link" target="_blank">مارغريت هاميلتون</a></strong>: أشرفت على تطوير البرمجيات لبرنامج أبولو التابع لناسا.</li>
+            </ul>
+            <div class="inclusion-message">
+                <p><strong>هل تعلم؟</strong> كانت النساء أساسيات في تطوير علوم الكمبيوتر منذ بداياتها، ومستمرات في تحقيق اكتشافات ثورية في جميع مجالات التكنولوجيا!</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
