@@ -1,0 +1,706 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Миссия по программированию с наставниками Лучано и Кьярой - Космическое приключение в мире кода</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Миссия по программированию с наставниками Лучано и Кьярой</h1>
+            <p class="subtitle">Космическое приключение в мире программирования</p>
+            
+            <!-- Обновлённое языковое меню с русским -->
+            <div class="language-menu">
+                <a href="index-it.html" class="language-option" data-lang="it">
+                    <span class="flag">🇮🇹</span>
+                    <span class="language-name">Italiano</span>
+                </a>
+                <a href="index-en.html" class="language-option" data-lang="en">
+                    <span class="flag">🇬🇧</span>
+                    <span class="language-name">English</span>
+                </a>
+                <a href="index-fr.html" class="language-option" data-lang="fr">
+                    <span class="flag">🇫🇷</span>
+                    <span class="language-name">Français</span>
+                </a>
+                <a href="index-de.html" class="language-option" data-lang="de">
+                    <span class="flag">🇩🇪</span>
+                    <span class="language-name">Deutsch</span>
+                </a>
+                <a href="index-ar.html" class="language-option" data-lang="ar">
+                    <span class="flag">🇸🇦</span>
+                    <span class="language-name">العربية</span>
+                </a>
+                <a href="index-zh.html" class="language-option" data-lang="zh">
+                    <span class="flag">🇨🇳</span>
+                    <span class="language-name">中文</span>
+                </a>
+                <a href="index-hi.html" class="language-option" data-lang="hi">
+                    <span class="flag">🇮🇳</span>
+                    <span class="language-name">हिन्दी</span>
+                </a>
+                <a href="index-pa.html" class="language-option" data-lang="pa">
+                    <span class="flag">🇮🇳</span>
+                    <span class="language-name">ਪੰਜਾਬੀ</span>
+                </a>
+                <a href="index-es.html" class="language-option" data-lang="es">
+                    <span class="flag">🇪🇸</span>
+                    <span class="language-name">Español</span>
+                </a>
+                <a href="index-pt.html" class="language-option" data-lang="pt">
+                    <span class="flag">🇵🇹</span>
+                    <span class="language-name">Português</span>
+                </a>
+                <a href="index-ur.html" class="language-option" data-lang="ur">
+                    <span class="flag">🇵🇰</span>
+                    <span class="language-name">اردو</span>
+                </a>
+                <a href="index-ru.html" class="language-option current" data-lang="ru">
+                    <span class="flag">🇷🇺</span>
+                    <span class="language-name">Русский</span>
+                </a>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </header>
+        
+        <div class="content-area">
+            <!-- Раздел 1: Введение -->
+            <div class="section active" id="section1">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Читать
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Стоп
+                    </button>
+                </div>
+                
+                <h2>Добро пожаловать, юные космические исследователи!</h2>
+                <p>Привет, ребята! Мы — наставники Лучано и Кьяра, ваши космические инструкторы! Мы здесь, чтобы провести вас в удивительное приключение в мире программирования, где мы научимся давать инструкции компьютерам, чтобы создавать игры, анимации и космические миссии!</p>
+                
+                <div class="image-container">
+                    <img src="immagini/maestri-chiara-e-luciano.png" alt="Наставники Лучано и Кьяра, улыбающиеся космические инструкторы" class="content-image">
+                </div>
+                
+                <div class="teacher-message">
+                    <p><strong>Сообщение наставницы Кьяры:</strong> "Помните: и в космосе, и в программировании каждое большое путешествие начинается с маленького шага. Вместе мы исследуем галактики знаний!"</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>А вы знали?</strong> Программирование — для всех! <a href="https://ru.wikipedia.org/wiki/Лавлейс,_Ада" class="wiki-link" target="_blank">Ада Лавлейс</a>, блестящий математик, считается первым программистом в истории. Сегодня женщины, такие как <a href="https://ru.wikipedia.org/wiki/Боумен,_Кэти" class="wiki-link" target="_blank">Кэти Баумен</a>, которая помогла сфотографировать чёрную дыру, продолжают делать невероятные открытия в мире технологий!</p>
+                </div>
+                
+                <p>В нашей миссии мы исследуем:</p>
+                <ul>
+                    <li>Что такое алгоритмы <span class="mission-badge">Миссия 1</span>.</li>
+                    <li>Как работают компьютеры <span class="mission-badge">Миссия 2</span>.</li>
+                    <li>Визуальное программирование <span class="mission-badge">Миссия 3</span>.</li>
+                    <li>Основные принципы программирования <span class="mission-badge">Миссия 4</span>.</li>
+                    <li>Как создавать проекты в Scratch <span class="mission-badge">Миссия 5</span>.</li>
+                </ul>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Какая из этих последовательностей является алгоритмом?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">А. Почистить зубы: взять щётку, нанести пасту, чистить, прополоскать.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Б. Играть в футбол: бегать, прыгать, петь, плавать.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">В. Читать книгу: открыть, закрыть, открыть, закрыть.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Кого считают первым программистом в истории?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">А. Чарльза Бэббиджа.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Б. Аду Лавлейс.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">В. Алана Тьюринга.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)" disabled>Назад</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Начать миссию!</button>
+                </div>
+            </div>
+            
+            <!-- Раздел 2: Алгоритмы в реальной жизни -->
+            <div class="section" id="section2">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Читать
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Стоп
+                    </button>
+                </div>
+                
+                <h2>Миссия 1: Что такое алгоритмы?</h2>
+                <p>Алгоритм — это последовательность шагов для решения задачи или выполнения действия. Мы используем их каждый день, даже не замечая!</p>
+                
+                <div class="teacher-message">
+                    <p><strong>Наставник Лучано говорит:</strong> "Думайте об алгоритме как о контрольном списке, который я использую перед запуском! Каждый шаг должен быть выполнен в правильном порядке для успешной миссии."</p>
+                </div>
+                
+                <h3>Примеры из реальной жизни:</h3>
+                
+                <div class="example-box">
+                    <h4>Приготовить чашку горячего шоколада</h4>
+                    <div class="image-container">
+                        <img src="immagini/cioccolata-calda.png" alt="Процесс приготовления горячего шоколада" class="content-image">
+                    </div>
+                    <div class="algorithm-visualization">
+                        <div class="step" onmouseover="highlightStep(1)" onmouseout="unhighlightStep(1)">1</div>
+                        <div class="step" onmouseover="highlightStep(2)" onmouseout="unhighlightStep(2)">2</div>
+                        <div class="step" onmouseover="highlightStep(3)" onmouseout="unhighlightStep(3)">3</div>
+                        <div class="step" onmouseover="highlightStep(4)" onmouseout="unhighlightStep(4)">4</div>
+                        <div class="step" onmouseover="highlightStep(5)" onmouseout="unhighlightStep(5)">5</div>
+                    </div>
+                    <ol class="algorithm-steps">
+                        <li id="step1">Взять чашку.</li>
+                        <li id="step2">Добавить какао-порошок.</li>
+                        <li id="step3">Налить горячее молоко.</li>
+                        <li id="step4">Хорошо перемешать.</li>
+                        <li id="step5">Насладиться горячим шоколадом.</li>
+                    </ol>
+                    <p>Когда мы готовим горячий шоколад, мы следуем определённым шагам: взять чашку, добавить какао, налить горячее молоко, перемешать и наконец насладиться!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Дорога в школу</h4>
+                    <div class="image-container">
+                        <img src="immagini/percorso-scuola.png" alt="Маршрут в школу" class="content-image" style="width: 100%;">
+                    </div>
+                    <p>Даже путь в школу — это алгоритм: проснуться, одеться, позавтракать, взять рюкзак и следовать по маршруту до школы.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Какая из этих последовательностей представляет правильный алгоритм приготовления бутерброда?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">А. Нарезать хлеб, съесть бутерброд, положить сыр.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Б. Взять хлеб, добавить ингредиенты, закрыть бутерброд.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">В. Съесть бутерброд, приготовить бутерброд, купить хлеб.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Почему порядок шагов важен в алгоритме?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">А. Потому что иначе компьютер злится.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Б. Потому что так красивее.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">В. Потому что некоторые шаги зависят от предыдущих.</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-algoritmi')">
+                        <div style="font-size: 2.5rem;">🔍</div>
+                        <h4>Углубить знания</h4>
+                        <p>Откройте для себя другие примеры алгоритмов.</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-storia')">
+                        <div style="font-size: 2.5rem;">📚</div>
+                        <h4>История</h4>
+                        <p>Узнайте об изобретателях алгоритмов.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Назад</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Вперёд!</button>
+                </div>
+            </div>
+            
+            <!-- Раздел 3: Алгоритмы в информатике -->
+            <div class="section" id="section3">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Читать
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Стоп
+                    </button>
+                </div>
+                
+                <h2>Миссия 2: Алгоритмы в информатике</h2>
+                <p>В информатике алгоритм — это последовательность инструкций, которые мы даём компьютеру для выполнения, чтобы решить задачу.</p>
+                
+                <div class="teacher-message">
+                    <p><strong>Наставница Кьяра говорит:</strong> "Компьютеры — как послушные космонавты: они точно следуют инструкциям, которые мы им даём. Поэтому мы должны быть очень точными!"</p>
+                </div>
+                
+                <h3>Примеры из цифрового мира:</h3>
+                
+                <div class="example-box">
+                    <h4>Найти наибольшее число в списке</h4>
+                    <div class="image-container">
+                        <img src="immagini/numeri-lista.png" alt="Список чисел с выделенным наибольшим" class="content-image">
+                    </div>
+                    <div class="block-code">
+                        <div class="block blue">Начать</div>
+                        <div class="block green">Принять первое число как «максимум»</div>
+                        <div class="block yellow">Для каждого числа в списке:</div>
+                        <div class="block purple">Если число больше «максимума»</div>
+                        <div class="block green">Обновить «максимум» этим числом</div>
+                        <div class="block blue">Конец</div>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Сортировка книг по высоте</h4>
+                    <div class="image-container">
+                        <img src="immagini/libri-ordinati.png" alt="Книги, отсортированные по высоте" class="content-image">
+                    </div>
+                    <p>Представьте, что вам нужно расставить книги от самой маленькой до самой большой. Вы бы следовали точным шагам, как это сделал бы компьютер!</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>Знаете ли вы, что...</strong> <a href="https://ru.wikipedia.org/wiki/Хоппер,_Грейс" class="wiki-link" target="_blank">Грейс Хоппер</a>, блестящий учёный, изобрела первый компилятор — программу, которая переводит человеческий язык в инструкции для компьютера? Её открытия сделали возможным программирование в том виде, в каком мы знаем его сегодня!</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Что делает алгоритм сортировки?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">А. Удаляет ненужные данные.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Б. Создаёт новые случайные данные.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">В. Организует данные в определённом порядке.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Почему алгоритмы должны быть точными при программировании компьютеров?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">А. Потому что компьютеры выполняют именно то, что им сказано.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Б. Потому что компьютеры медленные.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">В. Потому что компьютерам легко становится скучно.</div>
+                </div>
+                
+                <div class="explore-options">
+                    <div class="explore-card" onclick="openModal('modal-compilatore')">
+                        <div style="font-size: 2.5rem;">⚙️</div>
+                        <h4>Компилятор</h4>
+                        <p>Как работает компилятор.</p>
+                    </div>
+                    <div class="explore-card" onclick="openModal('modal-donne-tech')">
+                        <div style="font-size: 2.5rem;">👩‍💻</div>
+                        <h4>Женщины в технологиях</h4>
+                        <p>Другие важные женщины в технологиях.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Назад</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Вперёд!</button>
+                </div>
+            </div>
+            
+            <!-- Раздел 4: Как работают компьютеры -->
+            <div class="section" id="section4">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Читать
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Стоп
+                    </button>
+                </div>
+                
+                <h2>Миссия 3: Как работают компьютеры</h2>
+                <p>Компьютеры — это удивительные машины, которые обрабатывают информацию, следуя точным инструкциям.</p>
+                
+                <div class="teacher-message">
+                    <p><strong>Наставник Лучано говорит:</strong> "Думайте о компьютере как о нашем центре управления полётами: он получает информацию, обрабатывает её и выдаёт результаты!"</p>
+                </div>
+                
+                <h3>Основные компоненты компьютера:</h3>
+                
+                <div class="example-box">
+                    <h4>CPU — Мозг компьютера</h4>
+                    <div class="image-container">
+                        <img src="immagini/cpu.png" alt="Изображение CPU" class="content-image">
+                    </div>
+                    <p>CPU (Центральный процессор) — это мозг компьютера, который выполняет инструкции программ.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Память — Рабочий стол</h4>
+                    <div class="image-container">
+                        <img src="immagini/memoria.png" alt="Изображение памяти компьютера" class="content-image">
+                    </div>
+                    <p>Оперативная память (RAM) — как рабочий стол, где компьютер хранит информацию, которую использует в данный момент.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Что делает CPU в компьютере?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">А. Выполняет инструкции программ.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Б. Показывает изображения на экране.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">В. Хранит файлы долгосрочно.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Какой компонент компьютера похож на рабочий стол?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">А. Жёсткий диск.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Б. Оперативная память (RAM).</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">В. Видеокарта.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Назад</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Вперёд!</button>
+                </div>
+            </div>
+            
+            <!-- Раздел 5: Визуальное программирование -->
+            <div class="section" id="section5">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Читать
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Стоп
+                    </button>
+                </div>
+                
+                <h2>Миссия 4: Визуальное программирование</h2>
+                <p>Визуальное программирование — это простой и наглядный способ научиться программировать.</p>
+                
+                <div class="teacher-message">
+                    <p><strong>Наставница Кьяра говорит:</strong> "Блоки — как кубики конструктора: у каждого есть определённая функция, и вместе они могут создавать невероятные вещи!"</p>
+                </div>
+                
+                <h3>Типы блоков:</h3>
+                
+                <div class="example-box">
+                    <h4>Блоки движения</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-movimento.png" alt="Блоки движения в Scratch" class="content-image">
+                    </div>
+                    <p>Блоки движения позволяют перемещать персонажей по экрану.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Блоки управления</h4>
+                    <div class="image-container">
+                        <img src="immagini/blocchi-controllo.png" alt="Блоки управления в Scratch" class="content-image">
+                    </div>
+                    <p>Блоки управления определяют, когда и как выполняются инструкции.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Какое преимущество у визуального программирования?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">А. Оно быстрее текстового программирования.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Б. Его легче понять новичкам.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">В. Оно мощнее текстового программирования.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Что делают блоки управления?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">А. Меняют цвет фона.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Б. Добавляют звуки в проект.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">В. Определяют, когда выполнять инструкции.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Назад</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Вперёд!</button>
+                </div>
+            </div>
+            
+            <!-- Раздел 6: Условные инструкции -->
+            <div class="section" id="section6">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Читать
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Стоп
+                    </button>
+                </div>
+                
+                <h2>Миссия 5: Условные инструкции</h2>
+                <p>Условные инструкции позволяют компьютеру принимать решения в зависимости от определённых условий.</p>
+                
+                <div class="teacher-message">
+                    <p><strong>Наставник Лучано говорит:</strong> "Условия — как развилки во время исследования: в зависимости от того, что вы встретите, вы решаете, какую дорогу выбрать!"</p>
+                </div>
+                
+                <h3>Примеры условий:</h3>
+                
+                <div class="example-box">
+                    <h4>Если... то...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora.png" alt="Пример условия если-то" class="content-image">
+                    </div>
+                    <p>Если идёт дождь, то я беру зонт. Это простое условие, которое мы используем каждый день!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Если... то... иначе...</h4>
+                    <div class="image-container">
+                        <img src="immagini/condizione-se-allora-altrimenti.png" alt="Пример условия если-то-иначе" class="content-image">
+                    </div>
+                    <p>Если я голоден, то я ем, иначе продолжаю играть. Это условие имеет два возможных результата.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Что делает условная инструкция?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">А. Всегда выполняет одни и те же действия.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Б. Повторяет действие много раз.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">В. Решает, какое действие выполнить в зависимости от условия.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Что из этого является примером условия "если-то-иначе"?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">А. Если идёт дождь, я беру зонт, иначе надеваю солнечные очки.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Б. Если идёт дождь, я беру зонт.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">В. Я беру зонт и надеваю солнечные очки.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Назад</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Вперёд!</button>
+                </div>
+            </div>
+            
+            <!-- Раздел 7: Циклы и повторения -->
+            <div class="section" id="section7">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Читать
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Стоп
+                    </button>
+                </div>
+                
+                <h2>Миссия 6: Циклы и повторения</h2>
+                <p>Циклы позволяют повторять действие несколько раз, не записывая его каждый раз заново.</p>
+                
+                <div class="teacher-message">
+                    <p><strong>Наставница Кьяра говорит:</strong> "Циклы — как двигатель космического корабля: однажды запущенные, они продолжают работать, пока вы их не остановите!"</p>
+                </div>
+                
+                <h3>Типы циклов:</h3>
+                
+                <div class="example-box">
+                    <h4>Цикл "повторить для"</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-per.png" alt="Пример цикла повторить для" class="content-image">
+                    </div>
+                    <p>Повторить 10 раз: подпрыгнуть. Этот цикл выполнит действие подпрыгивания ровно 10 раз.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Цикл "повторить пока"</h4>
+                    <div class="image-container">
+                        <img src="immagini/ciclo-ripeti-finche.png" alt="Пример цикла повторить пока" class="content-image">
+                    </div>
+                    <p>Повторять, пока не сделаешь уроки: учиться. Этот цикл будет продолжаться, пока условие не будет выполнено.</p>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">1. Зачем мы используем циклы в программировании?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">А. Чтобы избежать многократного повторения одного и того же кода.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Б. Потому что они красивее выглядят.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">В. Потому что компьютеры предпочитают их.</div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">2. Какой цикл повторяется определённое количество раз?</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">А. Повторить для.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Б. Повторить пока.</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">В. Повторять всегда.</div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Назад</button>
+                    <button class="interactive-element" onclick="changeSection(1)">Вперёд!</button>
+                </div>
+            </div>
+            
+            <!-- Раздел 8: Финальная миссия -->
+            <div class="section" id="section8">
+                <div class="speech-controls">
+                    <button class="speech-button" onclick="readCurrentSection()">
+                        <span>🔊</span> Читать
+                    </button>
+                    <button class="speech-button stop" onclick="stopSpeech()">
+                        <span>⏹️</span> Стоп
+                    </button>
+                </div>
+                
+                <h2>Финальная миссия: Твоё путешествие в мир программирования продолжается!</h2>
+                <p>Отлично, космический кадет! Ты успешно завершил базовую подготовку по программированию. Но это только начало твоего путешествия!</p>
+                
+                <div class="image-container">
+                    <img src="immagini/missione-finale.png" alt="Путешествие в программировании, продолжающееся в бесконечность" class="content-image">
+                </div>
+                
+                <div class="teacher-message">
+                    <p><strong>Наставник Лучано говорит:</strong> "Теперь твоя очередь! Как настоящий космонавт, ты должен взять управление своим кораблём и продолжать исследовать галактики программирования. Любознательность будет твоим топливом!"</p>
+                </div>
+                
+                <h3>Твои следующие цели:</h3>
+                
+                <div class="example-box">
+                    <h4>Scratch — Планета творчества</h4>
+                    <p>Посети <a href="https://scratch.mit.edu" target="_blank" class="wiki-link">Scratch</a>, чтобы создавать интерактивные истории, игры и анимации с помощью визуального программирования. Это идеальное место, чтобы начать своё приключение!</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Code.org — Звезда обучения</h4>
+                    <p>Исследуй <a href="https://code.org" target="_blank" class="wiki-link">Code.org</a>, чтобы открыть для себя бесплатные курсы и занятия, которые шаг за шагом проведут тебя в мир программирования.</p>
+                </div>
+                
+                <div class="inclusion-message">
+                    <p><strong>Дух обмена:</strong> Многие люди по всему миру работали над созданием бесплатных ресурсов, чтобы помочь тебе учиться. Это дух <strong>open source</strong> и <strong>free software</strong> — обмена знаниями на благо всех!</p>
+                </div>
+                
+                <h3>Безопасная навигация в цифровой вселенной:</h3>
+                
+                <div class="example-box">
+                    <h4>Две стороны Интернета</h4>
+                    <div class="image-container">
+                        <img src="immagini/doppia-faccia-internet.png" alt="Две стороны Интернета: позитивная и негативная" class="content-image">
+                    </div>
+                    <p>Интернет — как вселенная с двумя сторонами: это может быть чудесное место для обучения и роста, но и опасное, если использовать его неразумно.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Как распознать хороший сайт:</h4>
+                  
+                    <p>✅ Ищи официальные сайты образовательных учреждений (школы, университеты, музеи)</p>
+                    <p>✅ Проверь, начинается ли веб-адрес с "https://" (буква "s" означает безопасность)</p>
+                    <p>✅ Убедись, что информация актуальна (ищи дату публикации)</p>
+                    <p>✅ Ищи сайты на твоём родном языке и на русском для сравнения информации</p>
+                    <p>❌ Остерегайся сайтов с большим количеством рекламы или запросами личных данных</p>
+                </div>
+                
+                <div class="teacher-message">
+                    <p><strong>Помни всегда:</strong> Когда ты находишься в Интернете, делай это всегда под присмотром взрослого, которому ты доверяешь. Делись с ними своими открытиями и проси помощи, если что-то кажется тебе подозрительным!</p>
+                </div>
+                
+                <h3>Идеальный алгоритм для знаний:</h3>
+                
+                <div class="algorithm-visualization">
+                    <div class="step" onmouseover="highlightStepFinal(1)" onmouseout="unhighlightStepFinal(1)">1</div>
+                    <div class="step" onmouseover="highlightStepFinal(2)" onmouseout="unhighlightStepFinal(2)">2</div>
+                    <div class="step" onmouseover="highlightStepFinal(3)" onmouseout="unhighlightStepFinal(3)">3</div>
+                    <div class="step" onmouseover="highlightStepFinal(4)" onmouseout="unhighlightStepFinal(4)">4</div>
+                    <div class="step" onmouseover="highlightStepFinal(5)" onmouseout="unhighlightStepFinal(5)">5</div>
+                </div>
+                
+                <ol class="algorithm-steps">
+                    <li id="stepFinal1">Будь любознательным: задавай вопросы обо всём, что тебя интересует</li>
+                    <li id="stepFinal2">Ищи ресурсы: используй Интернет безопасно, чтобы находить информацию</li>
+                    <li id="stepFinal3">Экспериментируй: пробуй, ошибайся, учись и пробуй снова</li>
+                    <li id="stepFinal4">Делись: рассказывай другим о том, что ты открыл</li>
+                    <li id="stepFinal5">Продолжай учиться: путешествие знаний никогда не заканчивается!</li>
+                </ol>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">Каков твой следующий шаг в путешествии по программированию?</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">А. Я изучу Scratch и Code.org с помощью взрослого!</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">Б. Я продолжу учиться с любознательностью и вниманием!</div>
+                    <div class="quiz-option" onclick="checkAnswerFinal(this, true)">В. Я поделюсь тем, что узнал, с друзьями!</div>
+                    <div class="inclusion-message">
+                        <p><strong>Примечание:</strong> В этой миссии все ответы правильные! Важно, чтобы ты продолжал своё путешествие в обучении.</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="interactive-element" onclick="changeSection(-1)">Назад</button>
+                    <button class="interactive-element" onclick="restartJourney()">Начать путешествие заново!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Модальные окна для углубления знаний -->
+    <div id="modal-algoritmi" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-algoritmi')">&times;</span>
+            <h2>Другие примеры алгоритмов</h2>
+            <div class="image-container">
+                <img src="immagini/esempi-algoritmi.png" alt="Различные примеры алгоритмов в повседневной жизни" class="content-image">
+            </div>
+            <p>Вот другие примеры алгоритмов, которые мы используем каждый день:</p>
+            <ul>
+                <li><strong>Приготовить бутерброд:</strong> Взять хлеб, добавить сыр, овощи, заправить и закрыть.</li>
+                <li><strong>Помыть посуду:</strong> Наполнить раковину, добавить моющее средство, помыть, сполоснуть, высушить.</li>
+                <li><strong>Нарисовать рисунок:</strong> Выбрать цвета, нарисовать контур, раскрасить, добавить детали.</li>
+            </ul>
+            <div class="teacher-message">
+                <p><strong>Наставница Кьяра говорит:</strong> "Наблюдай за своими повседневными действиями: ты обнаружишь, что многие из них следуют точным алгоритмам!"</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-storia" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-storia')">&times;</span>
+            <h2>История алгоритмов</h2>
+            <div class="image-container">
+                <img src="immagini/storia-algoritmi.png" alt="Историческое изображение алгоритмов" class="content-image">
+            </div>
+            <p>Слово «алгоритм» происходит от имени персидского математика <a href="https://ru.wikipedia.org/wiki/Аль-Хорезми" class="wiki-link" target="_blank">Аль-Хорезми</a>, жившего в IX веке. Его книги познакомили мир с индийскими цифрами (теми, что мы используем сегодня) и методами решения уравнений.</p>
+            <p>На протяжении веков многие математики внесли вклад в развитие алгоритмов, но именно с появлением компьютеров алгоритмы стали фундаментальными для нашей повседневной жизни.</p>
+            <div class="inclusion-message">
+                <p><strong>Интересный факт:</strong> Первый компьютерный алгоритм был написан <a href="https://ru.wikipedia.org/wiki/Лавлейс,_Ада" class="wiki-link" target="_blank">Адой Лавлейс</a> в 1843 году для Аналитической машины <a href="https://ru.wikipedia.org/wiki/Бэббидж,_Чарльз" class="wiki-link" target="_blank">Чарльза Бэббиджа</a>, задолго до появления современных компьютеров!</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-compilatore" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-compilatore')">&times;</span>
+            <h2>Как работает компилятор</h2>
+            <div class="image-container">
+                <img src="immagini/compilatore.png" alt="Изображение того, как работает компилятор" class="content-image">
+            </div>
+            <p>Компилятор — это специальная программа, которая переводит код, написанный на языке программирования (таком как Python или Java), в машинный язык, который компьютер может понять и выполнить напрямую.</p>
+            <p>Процесс компиляции происходит в несколько этапов:</p>
+            <ol>
+                <li>Лексический анализ: код разбивается на «токены» (ключевые слова, идентификаторы и т.д.).</li>
+                <li>Синтаксический анализ: проверяется, правильно ли организованы токены согласно правилам языка.</li>
+                <li>Семантический анализ: проверяется, имеет ли код логический смысл.</li>
+                <li>Генерация кода: создаётся код на машинном языке.</li>
+            </ol>
+            <div class="teacher-message">
+                <p><strong>Наставник Лучано говорит:</strong> "Думай о компиляторе как о универсальном переводчике, который переводит твои идеи на язык, понятный компьютеру!"</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-donne-tech" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-donne-tech')">&times;</span>
+            <h2>Важные женщины в технологиях</h2>
+            <div class="image-container">
+                <img src="immagini/donne-tech.png" alt="Важные женщины в сфере технологий" class="content-image">
+            </div>
+            <p>Помимо Ады Лавлейс и Грейс Хоппер, многие другие женщины внесли фундаментальный вклад в информатику и технологии:</p>
+            <ul>
+                <li><strong><a href="https://ru.wikipedia.org/wiki/Ламарр,_Хеди" class="wiki-link" target="_blank">Хеди Ламарр</a></strong>: Актриса и изобретательница, разработала технологию, лежащую в основе Wi-Fi и Bluetooth.</li>
+                <li><strong><a href="https://ru.wikipedia.org/wiki/Перлман,_Радия" class="wiki-link" target="_blank">Радия Перлман</a></strong>: Известная как «мать Интернета», изобрела протокол остовного дерева (STP).</li>
+                <li><strong><a href="https://ru.wikipedia.org/wiki/Борг,_Анита" class="wiki-link" target="_blank">Анита Борг</a></strong>: Основала Институт для женщин и технологий и конференцию Grace Hopper Celebration.</li>
+                <li><strong><a href="https://ru.wikipedia.org/wiki/Гамильтон,_Маргарет_(учёный)" class="wiki-link" target="_blank">Маргарет Гамильтон</a></strong>: Руководила разработкой программного обеспечения для программы NASA «Аполлон».</li>
+            </ul>
+            <div class="inclusion-message">
+                <p><strong>А вы знали?</strong> Женщины были основополагающими в развитии информатики с самого начала и продолжают делать революционные открытия во всех областях технологий!</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

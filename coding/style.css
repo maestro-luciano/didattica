@@ -428,7 +428,7 @@ p {
 }
 
 
-.luciano-message {
+.teacher-message {
     background: linear-gradient(135deg, rgba(253, 126, 20, 0.1), rgba(253, 126, 20, 0.1));
     border-radius: 15px;
     padding: 15px;
@@ -440,7 +440,7 @@ p {
 }
 
 
-.luciano-message:before {
+.teacher-message:before {
     content: "💡";
     position: absolute;
     left: 15px;
