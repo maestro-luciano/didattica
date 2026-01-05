@@ -1,0 +1,1475 @@
+{
+  "metadata": {
+    "version": "1.1",
+    "lastUpdated": "2025-01-05",
+    "languages": {
+      "it": {
+        "name": "Italiano",
+        "nativeName": "Italiano",
+        "ttsCode": "it-IT",
+        "voicePriority": ["it-IT", "it"],
+        "direction": "ltr",
+        "fontFamily": "'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif"
+      },
+      "en": {
+        "name": "English",
+        "nativeName": "English",
+        "ttsCode": "en-US",
+        "voicePriority": ["en-US", "en-GB", "en"],
+        "direction": "ltr",
+        "fontFamily": "'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif"
+      },
+      "fr": {
+        "name": "Français",
+        "nativeName": "Français",
+        "ttsCode": "fr-FR",
+        "voicePriority": ["fr-FR", "fr-CA", "fr"],
+        "direction": "ltr",
+        "fontFamily": "'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif"
+      },
+      "es": {
+        "name": "Español",
+        "nativeName": "Español",
+        "ttsCode": "es-ES",
+        "voicePriority": ["es-ES", "es-MX", "es"],
+        "direction": "ltr",
+        "fontFamily": "'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif"
+      },
+      "pt": {
+        "name": "Português",
+        "nativeName": "Português",
+        "ttsCode": "pt-BR",
+        "voicePriority": ["pt-BR", "pt-PT", "pt"],
+        "direction": "ltr",
+        "fontFamily": "'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif"
+      },
+      "hi": {
+        "name": "हिन्दी",
+        "nativeName": "हिन्दी",
+        "ttsCode": "hi-IN",
+        "voicePriority": ["hi-IN", "hi"],
+        "direction": "ltr",
+        "fontFamily": "'Segoe UI', 'Nirmala UI', 'Mangal', sans-serif"
+      },
+      "ru": {
+        "name": "Русский",
+        "nativeName": "Русский",
+        "ttsCode": "ru-RU",
+        "voicePriority": ["ru-RU", "ru"],
+        "direction": "ltr",
+        "fontFamily": "'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif"
+      },
+      "zh": {
+        "name": "中文",
+        "nativeName": "中文",
+        "ttsCode": "zh-CN",
+        "voicePriority": ["zh-CN", "zh-TW", "zh"],
+        "direction": "ltr",
+        "fontFamily": "'Segoe UI', 'Microsoft YaHei', 'SimHei', sans-serif"
+      },
+      "ar": {
+        "name": "العربية",
+        "nativeName": "العربية",
+        "ttsCode": "ar-SA",
+        "voicePriority": ["ar-SA", "ar"],
+        "direction": "rtl",
+        "fontFamily": "'Segoe UI', 'Arial', sans-serif"
+      }
+    },
+    "speechSettings": {
+      "rate": 0.9,
+      "pitch": 1.0,
+      "volume": 1.0,
+      "preferredVoices": {
+        "it-IT": ["Google italiano", "Microsoft Elsa Desktop", "Alice"],
+        "en-US": ["Google US English", "Microsoft David Desktop", "Samantha"],
+        "fr-FR": ["Google français", "Microsoft Hortense Desktop", "Amélie"],
+        "es-ES": ["Google español", "Microsoft Helena Desktop", "Monica"],
+        "pt-BR": ["Google português do Brasil", "Microsoft Maria Desktop"],
+        "hi-IN": ["Google हिन्दी", "Microsoft Hemant"],
+        "ru-RU": ["Google русский", "Microsoft Irina Desktop"],
+        "zh-CN": ["Google 普通话（中国大陆）", "Microsoft Huihui Desktop"],
+        "ar-SA": ["Google العربية", "Microsoft Hoda Desktop"]
+      }
+    }
+  },
+  "translations": {
+    "it": { ... },
+    "en": { ... },
+    "fr": { ... },
+    "es": {
+      "page": {
+        "title": "¡El Ladrillo Invisible de TODO! El Átomo",
+        "subtitle": "Una lección interactiva para jóvenes científicos"
+      },
+      "languageSelector": {
+        "title": "🌍 Seleccionar Idioma",
+        "browserHint": "💡 <strong>Consejo:</strong> Para la mejor experiencia de voz en todos los idiomas, usa Google Chrome"
+      },
+      "sections": {
+        "introduzione": {
+          "title": "¡Hola Científicos en Misión!",
+          "content": [
+            "Hoy hablamos del secreto más pequeño y poderoso de todo el universo. Es tan pequeño que no podemos verlo, pero es como un <strong>superhéroe invisible</strong> que sostiene todo lo que nos rodea. Vamos a hablar del <strong>ÁTOMO</strong>.",
+            "Imagina que tienes que construir un castillo gigante con LEGO. ¿Por dónde empiezas? Por los <strong>ladrillos</strong>, ¿verdad? Pues bien, el átomo es el <strong>ladrillo más pequeño que existe</strong> para construir... ¡todo! Tu lápiz, el aire que respiras, tu helado favorito e incluso tú mismo. Estás hecho de miles de millones de estos ladrillos invisibles."
+          ]
+        },
+        "struttura-atomo": {
+          "title": "¿De qué está hecho un átomo? Una pequeña familia",
+          "intro": "Aunque es muy pequeño, dentro del átomo hay un mundo entero. Imagínalo como una <strong>pelota de baloncesto</strong> gigante (esa es toda la familia del átomo).",
+          "subsections": {
+            "nucleo": {
+              "title": "El Núcleo: El corazón de la casa",
+              "content": "En el centro de la pelota hay un puntito muy pequeño, como la cabeza de un alfiler. Ese es el <strong>núcleo</strong>. Es el <strong>jefe de la familia</strong> del átomo. Es pesado, siempre está en el centro y casi no se mueve. Es como el papá o la mamá sentados en el sofá, vigilando todo."
+            },
+            "protoni": {
+              "title": "Los Protones: Los padres con la \"etiqueta del nombre\"",
+              "content": "Dentro del núcleo están los <strong>PROTONES</strong>. Son muy importantes porque deciden <strong>qué tipo de átomo es</strong>. Son como el <strong>apellido de la familia</strong>. Si una familia se apellida \"Oxígeno\", todos saben que es la familia del aire. Si se apellida \"Carbono\", es la familia de la madera de tu lápiz. El número de protones nos dice el apellido del átomo."
+            },
+            "elettroni": {
+              "title": "Los Electrones: Los niños traviesos que juegan en el jardín",
+              "content": "Alrededor del núcleo, muy lejos, están los <strong>ELECTRONES</strong>. Son súper ligeros y se mueven muy rápido, ¡como niños llenos de energía corriendo alrededor de la casa! Su jardín es enorme comparado con el núcleo. Tienen un trabajo importante: cuando los átomos se acercan, los electrones se \"dan la mano\" para crear enlaces, como cuando tú tomas la mano de un amigo para formar un círculo."
+            },
+            "neutroni": {
+              "title": "Los Neutrones: Los padres \"súper\" que ayudan a mantener unida a la familia",
+              "content": "En el núcleo, junto con los protones, están los <strong>NEUTRONES</strong>. Su nombre significa \"neutro”, es decir, no se ponen del lado de nadie. Imagina que los protones (que tienen carga positiva) se repelen, como cuando acercas dos imanes por el mismo polo. Los neutrones son como <strong>abrazos</strong> que calman y mantienen unido al núcleo, evitando que los protones se separen."
+            }
+          }
+        },
+        "superpoteri-atomi": {
+          "title": "Los Superpoderes de los Átomos",
+          "intro": "¡Cada familia de átomos tiene su propio carácter y superpoderes!",
+          "subsections": {
+            "leggero-pesante": {
+              "title": "Superpoder 1: Ser ligeros o pesados",
+              "content": "Algunas familias de átomos son pequeñas y ligeras, como la familia del \"Hidrógeno” (¡la más pequeña de todas!). Otras son enormes y pesadas, como la familia del “Uranio”. ¡Es la diferencia entre una pluma y un diccionario! El peso depende de cuántos \"miembros de la familia” (protones y neutrones) haya en el núcleo."
+            },
+            "attrarsi-respingersi": {
+              "title": "Superpoder 2: Atraerse o repelerse",
+              "content": "¿Recuerdas a los electrones, los niños traviesos? Tienen carga eléctrica negativa. Los protones del núcleo tienen carga positiva.",
+              "metafora": "<strong>Metáfora de los imanes:</strong> ¡Es como tener imanes! Dos protones (++), como dos polos iguales de un imán, <strong>se repelen</strong>. Un protón (+) y un electrón (-), como polos opuestos, <strong>se atraen</strong>. ¡Por eso los electrones no se escapan: están \"atraídos” por el núcleo!"
+            },
+            "unirsi-molecole": {
+              "title": "Superpoder 3: Unirse para formar moléculas",
+              "content": "Un átomo solo es como un niño solo en el parque. Pero cuando se encuentra con otros átomos, tal vez de otra familia, ¡pueden unirse! Los electrones se \"dan la mano” y forman grupos súper fuertes llamados <strong>MOLÉCULAS</strong>.",
+              "metafora": "<strong>Metáfora de los LEGO:</strong>",
+              "legoExamples": [
+                "El átomo de <strong>Oxígeno</strong> (O) es un bloque rojo.",
+                "El átomo de <strong>Hidrógeno</strong> (H) es un bloque blanco.",
+                "Si tomas <strong>1 bloque rojo (O)</strong> y <strong>2 bloques blancos (H)</strong> y los conectas, ¿qué obtienes? <strong>H₂O</strong>... ¡que es una <strong>MOLÉCULA DE AGUA</strong>! Así se forma una gota de lluvia."
+              ]
+            }
+          }
+        },
+        "video": {
+          "title": "¡Los átomos! Un video que lo explica todo en 4 minutos",
+          "clickHint": "Haz clic en la imagen para ver el video de \"Facciamo Scienze\" en YouTube"
+        },
+        "periodica": {
+          "title": "¿Pero cuántos átomos hay?",
+          "content": [
+            "La tabla periódica es la lista de las \"familias” de los átomos, nos muestra 118 ladrillos diferentes (los elementos). Con esos 118 ladrillos, mezclándolos de distintas formas, se puede construir todo lo que existe en el mundo, ¡desde las nubes hasta las estrellas, desde tu lápiz hasta tu cuerpo!",
+            "La tabla periódica es como un álbum de calcomanías de todos los elementos que existen en el universo, desde el oxígeno que respiramos hasta el oro de las joyas. Cada elemento tiene su propia casilla con un símbolo y un número que nos cuenta cómo está hecho. ¡Al ordenarlos nos muestra cómo están \"emparentados” entre sí!"
+          ],
+          "button": "🔍 ¡Explora la Tabla Periódica Interactiva!",
+          "buttonHint": "¡Haz clic aquí para ver todos los elementos con juegos y curiosidades!"
+        },
+        "attivita-pratica": {
+          "title": "Actividad Práctica: ¡Construyamos un Átomo con Plastilina!",
+          "materials": "<strong>Materiales:</strong> Plastilina de tres colores distintos (p. ej. rojo, azul, verde) y un cartón.",
+          "steps": [
+            "<strong>Elige tu \"Apellido-Átomo\"</strong>: Hoy construiremos un átomo de <strong>Oxígeno</strong>, que tiene 8 protones.",
+            "<strong>Crea el Núcleo</strong>: Toma plastilina roja y azul. Haz 8 bolitas rojas (los protones) y 8 azules (los neutrones). Amásalas todas juntas para formar un solo núcleo pesado. Pégalo en el centro del cartón.",
+            "<strong>Agrega los Electrones</strong>: Toma plastilina verde. Haz 8 bolitas verdes más pequeñas (los electrones). Pégalo en el cartón formando un círculo grande (un \"anillo”) alrededor del núcleo."
+          ],
+          "conclusion": "¡Listo! Acabas de crear tu propio átomo de oxígeno."
+        }
+      },
+      "quiz": {
+        "title": "Quiz: ¿Eres un Experto en Átomos?",
+        "questions": {
+          "1": {
+            "text": "1. El átomo es como...",
+            "options": [
+              "a) Un gran castillo de arena.",
+              "b) El ladrillo LEGO más pequeño de todo.",
+              "c) Un supermercado lleno de cosas."
+            ]
+          },
+          "2": {
+            "text": "2. ¿Quién es el \"jefe de familia” que siempre está en el centro del átomo?",
+            "options": [
+              "a) Los electrones",
+              "b) El núcleo",
+              "c) Los neutrones"
+            ]
+          },
+          "3": {
+            "text": "3. Los protones son importantes porque...",
+            "options": [
+              "a) Corren súper rápido alrededor del núcleo.",
+              "b) Deciden el \"apellido” de la familia del átomo.",
+              "c) Son ligeros como una pluma."
+            ]
+          },
+          "4": {
+            "text": "4. ¿Qué hacen los electrones cuando los átomos se unen?",
+            "options": [
+              "a) Se esconden en el núcleo.",
+              "b) Empujan a todos los demás átomos.",
+              "c) Se \"dan la mano” para formar moléculas."
+            ]
+          },
+          "5": {
+            "text": "5. Si uno un bloque rojo (Oxígeno) y dos blancos (Hidrógeno), ¿qué obtengo?",
+            "options": [
+              "a) Aire",
+              "b) Agua (H₂O)",
+              "c) Madera"
+            ]
+          },
+          "6": {
+            "text": "6. Los neutrones sirven para...",
+            "options": [
+              "a) Hacer berrinches como niños traviesos.",
+              "b) Mantener unido al núcleo, como abrazos.",
+              "c) Decidir el apellido del átomo."
+            ]
+          }
+        },
+        "feedback": {
+          "correct": "¡Bravo! Respuesta correcta. Eres un verdadero científico.",
+          "incorrect": "No te preocupes. ¡Vuelve a intentarlo, aprender es una aventura!"
+        },
+        "checkButton": "Comprobar todas las respuestas",
+        "results": {
+          "title": "Respuestas correctas:",
+          "answers": [
+            "<strong>b)</strong> El ladrillo LEGO más pequeño de todo.",
+            "<strong>b)</strong> El núcleo.",
+            "<strong>b)</strong> Deciden el \"apellido” de la familia del átomo.",
+            "<strong>c)</strong> Se \"dan la mano” para formar moléculas.",
+            "<strong>b)</strong> Agua (H₂O).",
+            "<strong>b)</strong> Mantener unido al núcleo, como abrazos."
+          ],
+          "summary": {
+            "perfect": "¡Felicidades! Eres un experto en átomos.",
+            "good": "¡Bien hecho! Te estás convirtiendo en un verdadero científico.",
+            "average": "Sigue estudiando, ¡serás un gran científico!"
+          }
+        }
+      },
+      "storia-scienziati": {
+        "title": "La Máquina del Tiempo: La Historia del Átomo",
+        "intro": "El descubrimiento del átomo fue una larga y fantástica búsqueda del tesoro, llena de giros inesperados y mentes brillantes. ¡Aquí están las etapas principales!",
+        "scientists": {
+          "democrito": {
+            "name": "La Intuición: Demócrito (aprox. 400 a.C.)",
+            "period": "Grecia Antigua",
+            "description": [
+              "<strong>Quién fue:</strong> Un filósofo griego, algo así como un antiguo detective del pensamiento.",
+              "<strong>Su idea:</strong> Imaginó que todo estaba hecho de partículas <strong>INDIVISIBLES</strong>, a las que llamó \"átomos”. No tenía pruebas, ¡solo una gran intuición! Fue el <strong>primer paso</strong>."
+            ]
+          },
+          "dalton": {
+            "name": "El Padre de la Teoría Moderna: John Dalton (1803)",
+            "period": "Inglaterra, 1803",
+            "description": [
+              "<strong>Quién fue:</strong> Un maestro inglés al que le encantaba hacer experimentos.",
+              "<strong>Su descubrimiento:</strong> Con experimentos químicos, entendió que los átomos existen de verdad y que elementos distintos tienen átomos distintos. Fue quien dijo: \"Todo está hecho de átomos, ¡ellos son los verdaderos protagonistas!”. Fue el <strong>segundo paso</strong>, más seguro."
+            ]
+          },
+          "thomson": {
+            "name": "La Sorpresa: J.J. Thomson (1897)",
+            "period": "Inglaterra, 1897",
+            "description": [
+              "<strong>Quién fue:</strong> Un científico curioso que estudiaba la electricidad.",
+              "<strong>Su descubrimiento:</strong> Descubrió que dentro del átomo había partículas aún más pequeñas y con carga negativa: los <strong>ELECTRONES</strong>. ¡Eso significaba que el átomo <strong>NO</strong> era indivisible, sino que tenía partes! Su hallazgo fue un <strong>tercer paso que lo cambió todo</strong>. Imaginó el átomo como un \"budín con pasas” con los electrones como pasas dispersas dentro."
+            ]
+          },
+          "rutherford": {
+            "name": "El Núcleo en el Centro: Ernest Rutherford (1911)",
+            "period": "Nueva Zelanda/Inglaterra, 1911",
+            "description": [
+              "<strong>Quién fue:</strong> Un científico con un experimento genial.",
+              "<strong>Su descubrimiento:</strong> Disparó partículas microscópicas contra una lámina de oro. Esperaba que todas la atravesaran, como una bala atravesando una nube. ¡En cambio, algunas rebotaron! Gritó: \"¡Es como si hubiera disparado un cañón contra un pañuelo y la bala me hubiera regresado!”. Comprendió que debía haber un <strong>NÚCLEO</strong> pequeño, denso y positivo en el centro. ¡Fue un <strong>descubrimiento revolucionario</strong>!"
+            ]
+          },
+          "bohr": {
+            "name": "El Sistema Solar en Miniatura: Niels Bohr (1913)",
+            "period": "Dinamarca, 1913",
+            "description": [
+              "<strong>Quién fue:</strong> Un brillante científico danés que trabajó con Rutherford.",
+              "<strong>Su idea:</strong> Dijo: \"¡El modelo de Rutherford no es estable!”. Propuso que los electrones no giraran por cualquier lado, sino en <strong>órbitas precisas</strong>, como planetas alrededor del Sol. Este modelo, simple y claro, es el que usamos hoy para explicar lo básico. Fue un <strong>paso para hacerlo todo más claro</strong>."
+            ]
+          },
+          "quantistica": {
+            "name": "El Mundo Raro: La Mecánica Cuántica (años 20)",
+            "period": "Europa, años 20",
+            "description": [
+              "<strong>Quiénes fueron:</strong> Un grupo de científicos jóvenes y valientes como Heisenberg y Schrödinger.",
+              "<strong>Su descubrimiento:</strong> Fueron aún más profundo y descubrieron que en el mundo diminuto de los átomos ¡las reglas son... raras! Los electrones no son bolitas, sino que se comportan un poco como <strong>ondas</strong> y un poco como <strong>partículas</strong>. No están en un punto exacto, sino \"desmaterializados” en una <strong>nube de probabilidad</strong>. ¡Es como si el niño travieso ya no fuera un niño, sino una sombra mágica que puede estar en mil lugares del jardín al mismo tiempo! Fue la <strong>apertura a un mundo nuevo y fantástico</strong> que aún estudiamos."
+            ]
+          }
+        },
+        "conclusion": "Esta larga aventura nos enseña que la ciencia está hecha por muchas personas que, paso a paso, construyen juntas el castillo del conocimiento. ¡Y quién sabe qué descubrimientos harán USTEDES en el futuro!"
+      },
+      "footer": {
+        "line1": "Lección sobre los Átomos - Creada para alumnos de 5º de primaria",
+        "line2": "Diseño optimizado para alumnos con DSA y BES",
+        "line3": "🌍 Versión multilingüe con menú compacto"
+      },
+      "voiceButtons": {
+        "play": "🔊",
+        "stop": "⏹️",
+        "playTitle": "Escuchar esta sección",
+        "stopTitle": "Detener escucha"
+      }
+    },
+    "pt": {
+      "page": {
+        "title": "O Tijolinho Invisível de TUDO! O Átomo",
+        "subtitle": "Uma aula interativa para jovens cientistas"
+      },
+      "languageSelector": {
+        "title": "🌍 Selecionar Idioma",
+        "browserHint": "💡 <strong>Dica:</strong> Para a melhor experiência de voz em todos os idiomas, use o Google Chrome"
+      },
+      "sections": {
+        "introduzione": {
+          "title": "Olá Cientistas em Missão!",
+          "content": [
+            "Hoje falamos do segredo mais pequeno e poderoso de todo o universo. É tão pequeno que não conseguimos vê-lo, mas é como um <strong>super-herói invisível</strong> que sustenta tudo à nossa volta! Vamos falar do <strong>ÁTOMO</strong>.",
+            "Imagina que tens de construir um castelo gigante de LEGO. Por onde começas? Pelos <strong>tijolos</strong>, certo? Pois bem, o átomo é o <strong>tijolo mais pequeno que existe</strong> para construir... bem, TUDO! O teu lápis, o ar que respiras, o teu gelado favorito e até tu mesmo! És feito de milhares de milhões destes tijolos invisíveis."
+          ]
+        },
+        "struttura-atomo": {
+          "title": "De que é feito um átomo? Uma pequena família",
+          "intro": "Embora seja minúsculo, dentro do átomo há um mundo inteiro! Imagina-o como uma <strong>bola de basquete</strong> gigante (essa é a família-átomo inteira).",
+          "subsections": {
+            "nucleo": {
+              "title": "O Núcleo: O coração da casa",
+              "content": "No centro da bola há um pontinho minúsculo, como a cabeça de um alfinete. Esse é o <strong>núcleo</strong>. É o <strong>chefe da família</strong> do átomo. É pesado, fica sempre no centro e quase não se mexe. É como o pai ou a mãe sentados no sofá, a vigiar tudo."
+            },
+            "protoni": {
+              "title": "Os Prótons: Os pais com a \"etiqueta do nome\"",
+              "content": "Dentro do núcleo estão os <strong>PRÓTONS</strong>. São super importantes porque decidem <strong>que tipo de átomo é</strong>. São como o <strong>apelido da família</strong>. Se uma família se chama \"Oxigênio\", todos sabem que é a família do ar. Se se chama \"Carbono\", é a família da madeira do teu lápis. O número de prótons diz-nos o apelido do átomo."
+            },
+            "elettroni": {
+              "title": "Os Eletrões: As crianças energéticas que brincam no jardim",
+              "content": "À volta do núcleo, bem longe, estão os <strong>ELETRÕES</strong>. São super leves e movem-se muito rápido, como crianças cheias de energia a correr à volta da casa! O jardim deles é enorme comparado com o núcleo minúsculo. Têm um trabalho importante: quando os átomos se aproximam, os eletrões \"dão as mãos” para criar ligações, como quando tu pegas na mão de um amigo para formar um círculo."
+            },
+            "neutroni": {
+              "title": "Os Neutrões: Os pais \"super” que ajudam a manter a família unida",
+              "content": "No núcleo, junto com os prótons, estão os <strong>NEUTRÕES</strong>. O nome deles significa \"neutro”, ou seja, não tomam partido. Imagina que os prótons (que têm carga positiva) se repelem como quando tentas aproximar dois ímãs pelo mesmo polo. Os neutrões são como <strong>abraços</strong> que acalmam e mantêm o núcleo unido, impedindo que os prótons se afastem."
+            }
+          }
+        },
+        "superpoteri-atomi": {
+          "title": "Os Superpoderes dos Átomos",
+          "intro": "Cada família-átomo tem a sua personalidade e os seus superpoderes!",
+          "subsections": {
+            "leggero-pesante": {
+              "title": "Superpoder 1: Ser leves ou pesados",
+              "content": "Algumas famílias-átomo são pequenas e leves, como a família do \"Hidrogénio” (que é a mais pequena de todas!). Outras são enormes e pesadas, como a família do “Urânio”. É a diferença entre uma pluma e um dicionário! O peso depende de quantos \"membros da família” (prótons e neutrões) há no núcleo."
+            },
+            "attrarsi-respingersi": {
+              "title": "Superpoder 2: Atrair-se ou repelir-se",
+              "content": "Lembras-te dos eletrões, as crianças energéticas? Eles têm carga elétrica negativa. Os prótons do núcleo têm carga positiva.",
+              "metafora": "<strong>Metáfora dos Ímãs:</strong> É como ter ímãs! Dois prótons (++), como dois polos iguais de um ímã, <strong>repelem-se</strong>. Um próton (+) e um eletrão (-), como polos opostos, <strong>atraem-se</strong>. É por isso que os eletrões não fogem: estão \"atraídos” pelo núcleo!"
+            },
+            "unirsi-molecole": {
+              "title": "Superpoder 3: Unir-se para formar moléculas",
+              "content": "Um átomo sozinho é como uma criança sozinha no parque. Mas quando encontra outros átomos, talvez de outra família, podem unir-se! Os eletrões \"dão as mãos” e formam grupos super fortes chamados <strong>MOLÉCULAS</strong>.",
+              "metafora": "<strong>Metáfora das Construções LEGO:</strong>",
+              "legoExamples": [
+                "O átomo de <strong>Oxigénio</strong> (O) é um tijolo vermelho.",
+                "O átomo de <strong>Hidrogénio</strong> (H) é um tijolo branco.",
+                "Se pegares em <strong>1 tijolo vermelho (O)</strong> e <strong>2 tijolos brancos (H)</strong> e os unires, o que obténs? <strong>H₂O</strong>... que é uma <strong>MOLÉCULA DE ÁGUA</strong>! É assim que se forma uma gota de chuva."
+              ]
+            }
+          }
+        },
+        "video": {
+          "title": "Os átomos! Um vídeo que explica tudo em 4 minutos",
+          "clickHint": "Clica na imagem para ver o vídeo do canal \"Facciamo Scienze\" no YouTube"
+        },
+        "periodica": {
+          "title": "Mas quantos átomos há?",
+          "content": [
+            "A tabela periódica é a lista das \"famílias” dos átomos, mostra-nos 118 tijolos diferentes (os elementos). Com esses 118 tijolos, misturando-os de diferentes formas, pode-se construir tudo o que existe no mundo, desde as nuvens até às estrelas, desde o teu lápis até ao teu corpo!",
+            "A tabela periódica é como um álbum de autocolantes de todos os elementos que existem no universo, desde o oxigénio que respiramos até ao ouro das joias. Cada elemento tem a sua caixinha com um símbolo e um número que nos conta como é feito. Ao ordená-los, mostra-nos como estão \"aparentados” entre si!"
+          ],
+          "button": "🔍 Explora a Tabela Periódica Interativa!",
+          "buttonHint": "Clica aqui para ver todos os elementos com jogos e curiosidades!"
+        },
+        "attivita-pratica": {
+          "title": "Atividade Prática: Vamos Construir um Átomo com Massinha!",
+          "materials": "<strong>Materiais:</strong> Massinha de três cores diferentes (ex. vermelho, azul, verde) e um cartão.",
+          "steps": [
+            "<strong>Escolhe o teu \"Apelido-Átomo\"</strong>: Hoje vamos construir um átomo de <strong>Oxigénio</strong>, que tem 8 prótons.",
+            "<strong>Cria o Núcleo</strong>: Pega na massinha vermelha e azul. Faz 8 bolinhas vermelhas (os prótons) e 8 azuis (os neutrões). Amassa tudo junto para formar um único núcleo pesado. Cola-o no centro do cartão.",
+            "<strong>Adiciona os Eletrões</strong>: Pega na massinha verde. Faz 8 bolinhas verdes mais pequenas (os eletrões). Cola-as no cartão a formar um círculo grande (um \"anel”) à volta do núcleo."
+          ],
+          "conclusion": "Pronto! Acabaste de criar o teu próprio átomo de oxigénio."
+        }
+      },
+      "quiz": {
+        "title": "Quiz: És um Perito em Átomos?",
+        "questions": {
+          "1": {
+            "text": "1. O átomo é como...",
+            "options": [
+              "a) Um grande castelo de areia.",
+              "b) O tijolo LEGO mais pequeno de tudo.",
+              "c) Um supermercado cheio de coisas."
+            ]
+          },
+          "2": {
+            "text": "2. Quem é o \"chefe de família” que fica sempre no centro do átomo?",
+            "options": [
+              "a) Os eletrões",
+              "b) O núcleo",
+              "c) Os neutrões"
+            ]
+          },
+          "3": {
+            "text": "3. Os prótons são importantes porque...",
+            "options": [
+              "a) Correm super rápido à volta do núcleo.",
+              "b) Decidem o \"apelido” da família-átomo.",
+              "c) São leves como uma pena."
+            ]
+          },
+          "4": {
+            "text": "4. O que fazem os eletrões quando os átomos se unem?",
+            "options": [
+              "a) Escondem-se no núcleo.",
+              "b) Empurram todos os outros átomos.",
+              "c) \"Dão as mãos” para formar moléculas."
+            ]
+          },
+          "5": {
+            "text": "5. Se unir um tijolo vermelho (Oxigénio) e dois brancos (Hidrogénio), o que obtenho?",
+            "options": [
+              "a) Ar",
+              "b) Água (H₂O)",
+              "c) Madeira"
+            ]
+          },
+          "6": {
+            "text": "6. Os neutrões servem para...",
+            "options": [
+              "a) Fazer birras como crianças energéticas.",
+              "b) Manter o núcleo unido, como abraços.",
+              "c) Decidir o apelido do átomo."
+            ]
+          }
+        },
+        "feedback": {
+          "correct": "Bravo! Resposta correta! És um verdadeiro cientista!",
+          "incorrect": "Não te preocupes! Tenta outra vez, aprender é uma aventura!"
+        },
+        "checkButton": "Verificar todas as respostas",
+        "results": {
+          "title": "Respostas corretas:",
+          "answers": [
+            "<strong>b)</strong> O tijolo LEGO mais pequeno de tudo.",
+            "<strong>b)</strong> O núcleo.",
+            "<strong>b)</strong> Decidem o \"apelido” da família-átomo.",
+            "<strong>c)</strong> \"Dão as mãos” para formar moléculas.",
+            "<strong>b)</strong> Água (H₂O).",
+            "<strong>b)</strong> Manter o núcleo unido, como abraços."
+          ],
+          "summary": {
+            "perfect": "Parabéns! És um perito em átomos!",
+            "good": "Bem jogado! Estás a tornar-te um verdadeiro cientista!",
+            "average": "Continua a estudar, tornar-te-ás um grande cientista!"
+          }
+        }
+      },
+      "storia-scienziati": {
+        "title": "A Máquina do Tempo: A História do Átomo",
+        "intro": "A descoberta do átomo foi uma longa e fantástica caça ao tesouro, cheia de reviravoltas e mentes brilhantes. Aqui estão as etapas principais!",
+        "scientists": {
+          "democrito": {
+            "name": "A Intuição: Demócrito (aprox. 400 a.C.)",
+            "period": "Grécia Antiga",
+            "description": [
+              "<strong>Quem foi:</strong> Um filósofo grego, meio que como um antigo detetive do pensamento.",
+              "<strong>A sua ideia:</strong> Imaginou que tudo era feito de partículas <strong>INDIVISÍVEIS</strong>, a que chamou \"átomos”. Não tinha provas, só uma grande intuição! Foi o <strong>primeiro passo</strong>."
+            ]
+          },
+          "dalton": {
+            "name": "O Pai da Teoria Moderna: John Dalton (1803)",
+            "period": "Inglaterra, 1803",
+            "description": [
+              "<strong>Quem foi:</strong> Um professor inglês que adorava fazer experiências.",
+              "<strong>A sua descoberta:</strong> Com experiências químicas, percebeu que os átomos existem mesmo e que elementos diferentes têm átomos diferentes. Foi ele quem disse: \"Tudo é feito de átomos, são eles os verdadeiros protagonistas!”. Foi o <strong>segundo passo</strong>, mais seguro."
+            ]
+          },
+          "thomson": {
+            "name": "A Surpresa: J.J. Thomson (1897)",
+            "period": "Inglaterra, 1897",
+            "description": [
+              "<strong>Quem foi:</strong> Um cientista curioso que estudava a eletricidade.",
+              "<strong>A sua descoberta:</strong> Descobriu que dentro do átomo havia partículas ainda mais pequenas e com carga negativa: os <strong>ELETROES</strong>! Isso queria dizer que o átomo <strong>NÃO</strong> era indivisível, mas tinha partes. A sua descoberta foi um <strong>terceiro passo que mudou tudo</strong>. Imaginou o átomo como um \"pudim com passas” com os eletrões como passas espalhadas lá dentro."
+            ]
+          },
+          "rutherford": {
+            "name": "O Núcleo no Centro: Ernest Rutherford (1911)",
+            "period": "Nova Zelândia/Inglaterra, 1911",
+            "description": [
+              "<strong>Quem foi:</strong> Um científico com uma experiência genial.",
+              "<strong>A sua descoberta:</strong> Disparou partículas microscópicas contra uma folha de ouro. Esperava que todas a atravessassem, como uma bala atravessando uma nuvem. Em vez disso, algumas ressaltaram! Gritou: \"É como se tivesse disparado um canhão contra um lenço e a bala me tivesse voltado!”. Percebeu que tinha de haver um <strong>NUCLEO</strong> pequeno, denso e positivo no centro. Foi uma <strong>descoberta revolucionária</strong>!"
+            ]
+          },
+          "bohr": {
+            "name": "O Sistema Solar em Miniatura: Niels Bohr (1913)",
+            "period": "Dinamarca, 1913",
+            "description": [
+              "<strong>Quem foi:</strong> Um brilhante cientista dinamarquês que trabalhou com Rutherford.",
+              "<strong>A sua ideia:</strong> Disse: \"O modelo de Rutherford não é estável!”. Propôs que os eletrões não girassem por todo o lado, mas em <strong>óbitas precisas</strong>, como planetas à volta do Sol. Este modelo, simples e claro, é o que usamos ainda hoje para explicar o básico. Foi um <strong>passo para tornar tudo mais claro</strong>."
+            ]
+          },
+          "quantistica": {
+            "name": "O Mundo Estranho: A Mecânica Quântica (anos 20)",
+            "period": "Europa, anos 20",
+            "description": [
+              "<strong>Quem foram:</strong> Um grupo de cientistas jovens e corajosos como Heisenberg e Schrödinger.",
+              "<strong>A sua descoberta:</strong> Foram ainda mais fundo e descobriram que no mundo minúsculo dos átomos as regras são... estranhas! Os eletrões não são bolinhas, mas comportam-se um pouco como <strong>ondas</strong> e um pouco como <strong>partículas</strong>. Não estão num ponto preciso, mas estão \"desmaterializados” numa <strong>nuvem de probabilidade</strong>. É como se a criança energética já não fosse uma criança, mas uma sombra mágica que pode estar em mil sítios do jardim ao mesmo tempo! Foi a <strong>abertura para um mundo novo e fantástico</strong> que ainda hoje estudamos."
+            ]
+          }
+        },
+        "conclusion": "Esta longa aventura ensina-nos que a ciência é feita por muitas pessoas que, aos poucos, constroem juntas o castelo do conhecimento. E quem sabe quais descobertas vocês farão no futuro!"
+      },
+      "footer": {
+        "line1": "Lição sobre os Átomos - Criada para alunos do 5º ano do ensino primário",
+        "line2": "Design otimizado para alunos com DSA e BES",
+        "line3": "🌍 Versão multilingue com menu compacto"
+      },
+      "voiceButtons": {
+        "play": "🔊",
+        "stop": "⏹️",
+        "playTitle": "Ouvir esta secção",
+        "stopTitle": "Parar de ouvir"
+      }
+    },
+    "hi": {
+      "page": {
+        "title": "सब कुछ का अदृश्य बिल्डिंग ब्लॉक! परमाणु",
+        "subtitle": "युवा वैज्ञानिकों के लिए एक इंटरैक्टिव पाठ"
+      },
+      "languageSelector": {
+        "title": "🌍 भाषा चुनें",
+        "browserHint": "💡 <strong>सुझाव:</strong> सभी भाषाओं में सर्वोत्तम आवाज अनुभव के लिए Google Chrome का उपयोग करें"
+      },
+      "sections": {
+        "introduzione": {
+          "title": "मिशन पर हैलो वैज्ञानिकों!",
+          "content": [
+            "आज हम पूरे ब्रह्मांड के सबसे छोटे और सबसे शक्तिशाली रहस्य के बारे में बात कर रहे हैं। यह इतना छोटा है कि हम इसे देख नहीं सकते, लेकिन यह एक <strong>अदृश्य सुपरहीरो</strong> की तरह है जो हमारे आसपास की हर चीज को धारण करता है! हम <strong>परमाणु</strong> के बारे में बात करने जा रहे हैं।",
+            "कल्पना कीजिए कि आपको एक विशाल LEGO महल बनाना है। आप कहाँ से शुरू करेंगे? <strong>बिल्डिंग ब्लॉक्स</strong> से, है ना? खैर, परमाणु <strong>सबसे छोटा बिल्डिंग ब्लॉक है जो मौजूद है</strong> ... खैर, सब कुछ बनाने के लिए! आपकी पेंसिल, आप जो हवा में सांस लेते हैं, आपका पसंदीदा आइसक्रीम और यहां तक कि आप खुद! आप इन अदृश्य बिल्डिंग ब्लॉक्स के अरबों अरबों से बने हैं।"
+          ]
+        },
+        "struttura-atomo": {
+          "title": "एक परमाणु किससे बना होता है? एक छोटा सा परिवार",
+          "intro": "भले ही यह बहुत छोटा है, परमाणु के अंदर एक पूरी दुनिया है! इसे एक विशाल <strong>बास्केटबॉल</strong> की तरह समझो (यह पूरी परमाणु-परिवार है)।",
+          "subsections": {
+            "nucleo": {
+              "title": "नाभिक: घर का दिल",
+              "content": "बास्केटबॉल के बिल्कुल केंद्र में एक बहुत ही छोटा सा बिंदु है, जैसे सूई का सिरा। यह है <strong>नाभिक</strong>। यह परमाणु का <strong>परिवार प्रमुख</strong> है। यह भारी है, हमेशा केंद्र में रहता है और लगभग हिलता-डुलता नहीं है। यह सोफे पर बैठे मम्मी-पापा की तरह है, जो सब कुछ निगरानी कर रहे हैं।"
+            },
+            "protoni": {
+              "title": "प्रोटॉन: \"नाम टैग\" वाले माता-पिता",
+              "content": "नाभिक के अंदर <strong>प्रोटॉन</strong> होते हैं। प्रोटॉन बहुत महत्वपूर्ण हैं क्योंकि यह तय करते हैं कि <strong>यह किस प्रकार का परमाणु है</strong>। ये <strong>परिवार की उपनाम</strong> की तरह हैं। यदि किसी परिवार का उपनाम \"ऑक्सीजन\" है, तो सभी जानते हैं कि यह हवा का परिवार है। यदि उपनाम \"कार्बन\" है, तो यह आपकी पेंसिल की लकड़ी का परिवार है। प्रोटॉनों की संख्या हमें परमाणु का उपनाम बताती है।"
+            },
+            "elettroni": {
+              "title": "इलेक्ट्रॉन: बाग में खेलने वाले ऊर्जावान बच्चे",
+              "content": "नाभिक के चारों ओर, बहुत दूर, <strong>इलेक्ट्रॉन</strong> होते हैं। ये बहुत हल्के होते हैं और बहुत तेजी से घूमते हैं, जैसे ऊर्जा से भरे बच्चे घर के चारों ओर दौड़ रहे हों! उनका बगीचा नाभिक की तुलना में विशाल है। इनका एक महत्वपूर्ण काम है: जब परमाणु पास आते हैं, तो इलेक्ट्रॉन \"हाथ पकड़ते हैं\" बंध बनाने के लिए, जैसे जब आप दोस्त का हाथ पकड़ कर वृत्त बनाते हैं।"
+            },
+            "neutroni": {
+              "title": "न्यूट्रॉन: \"सुपर\" माता-पिता जो परिवार को एक साथ रखने में मदद करते हैं",
+              "content": "नाभिक के अंदर, प्रोटॉनों के साथ, <strong>न्यूट्रॉन</strong> होते हैं। इनका नाम \"तटस्थ\" का अर्थ है, यानी ये किसी का पक्ष नहीं लेते। कल्पना कीजिए कि प्रोटॉन (जो सभी धनात्मक आवेश वाले होते हैं) एक-दूसरे को धक्का देते हैं, जैसे जब आप दो चुंबकों को एक ही ध्रुव से पास लाते हैं। न्यूट्रॉन <strong>गले</strong> की तरह हैं जो शांति बनाए रखते हैं और नाभिक को एक साथ रखते हैं, प्रोटॉनों को अलग होने से रोकते हैं।"
+            }
+          }
+        },
+        "superpoteri-atomi": {
+          "title": "परमाणुओं की सुपरपॉवर",
+          "intro": "हर परमाणु-परिवार की अपनी विशेषता और सुपरपॉवर होती है!",
+          "subsections": {
+            "leggero-pesante": {
+              "title": "सुपरपॉवर 1: हल्के या भारी होना",
+              "content": "कुछ परमाणु-परिवार छोटे और हल्के होते हैं, जैसे \"हाइड्रोजन\" परिवार (जो सभी से सबसे छोटा है!)। अन्य विशाल और भारी होते हैं, जैसे \"यूरेनियम\" परिवार। यह पंख और शब्दकोश के बीच का अंतर है! वजन इस बात पर निर्भर करता है कि नाभिक में कितने \"परिवार के सदस्य\" (प्रोटॉन और न्यूट्रॉन) हैं।"
+            },
+            "attrarsi-respingersi": {
+              "title": "सुपरपॉवर 2: आकर्षित होना या रिपल होना",
+              "content": "याद है इलेक्ट्रॉन, उन ऊर्जावान बच्चों को? उनमें ऋणात्मक विद्युत आवेश होता है। नाभिक में प्रोटॉन धनात्मक आवेश वाले होते हैं।",
+              "metafora": "<strong>मैग्नेट की कल्पना:</strong> यह मैग्नेट रखने जैसा है! दो प्रोटॉन (++), जैसे मैग्नेट के एक ही ध्रुव, <strong>एक-दूसरे को धक्का देते हैं</strong>। एक प्रोटॉन (+) और एक इलेक्ट्रॉन (-), जैसे विपरीत ध्रुव, <strong>एक-दूसरे को खींचते हैं</strong>। इसीलिए इलेक्ट्रॉन भाग नहीं जाते: वे नाभिक से \"आकर्षित\" होते हैं!"
+            },
+            "unirsi-molecole": {
+              "title": "सुपरपॉवर 3: अणु बनाने के लिए एक साथ जुड़ना",
+              "content": "एक अकेला परमाणु पार्क में अकेले बच्चे की तरह है। लेकिन जब यह अन्य परमाणुओं से मिलता है, शायद किसी अन्य परिवार से, तो वे एक साथ जुड़ सकते हैं! इलेक्ट्रॉन \"हाथ पकड़ते हैं\" और सुपर मजबूत समूह बनाते हैं जिन्हें <strong>अणु</strong> कहा जाता है।",
+              "metafora": "<strong>LEGO निर्माण की कल्पना:</strong>",
+              "legoExamples": [
+                "<strong>ऑक्सीजन</strong> परमाणु (O) एक लाल LEGO ब्लॉक है।",
+                "<strong>हाइड्रोजन</strong> परमाणु (H) एक सफेद LEGO ब्लॉक है।",
+                "यदि आप <strong>1 लाल ब्लॉक (O)</strong> और <strong>2 सफेद ब्लॉक (H)</strong> लेकर उन्हें जोड़ते हैं, तो आपको क्या मिलता है? <strong>H₂O</strong>... जो एक <strong>पानी का अणु</strong> है! इसी तरह एक बारिश की बूंद बनती है!"
+              ]
+            }
+          }
+        },
+        "video": {
+          "title": "परमाणु! एक वीडियो जो सब कुछ 4 मिनट में समझाता है",
+          "clickHint": "YouTube पर \"Facciamo Scienze\" का वीडियो देखने के लिए चित्र पर क्लिक करें"
+        },
+        "periodica": {
+          "title": "लेकिन कितने परमाणु हैं?",
+          "content": [
+            "आवर्त सारणी परमाणुओं के \"परिवारों\" की सूची है, यह हमें 118 अलग-अलग बिल्डिंग ब्लॉक (तत्व) दिखाती है। इन 118 ब्लॉक्स को अलग-अलग तरीकों से मिला कर, आप दुनिया में मौजूद हर चीज़ का निर्माण कर सकते हैं, बादलों से लेकर तारों तक, आपकी पेंसिल से लेकर आपके शरीर तक!",
+            "आवर्त सारणी ब्रह्मांड में मौजूद सभी तत्वों की स्टिकर एल्बम की तरह है, जिसमें सांस लेने वाली ऑक्सीजन से लेकर गहनों के सोने तक सब कुछ है। हर तत्व का अपना एक प्रतीक और एक संख्या होती है जो बताती है कि वह किससे बना है। इन्हें क्रम में रखने पर यह दिखता है कि वे एक-दूसरे से कैसे \"संबंधित\" हैं!"
+          ],
+          "button": "🔍 इंटरैक्टिव आवर्त सारणी का अन्वेषण करें!",
+          "buttonHint": "खेलों और रोचक तथ्यों के साथ सभी तत्वों को देखने के लिए यहां क्लिक करें!"
+        },
+        "attivita-pratica": {
+          "title": "प्रैक्टिकल एक्टिविटी: प्ले-डो के साथ एक परमाणु बनाएं!",
+          "materials": "<strong>सामग्री:</strong> तीन अलग रंगों की प्ले-डो (जैसे लाल, नीला, हरा) और एक कार्डबोर्ड।",
+          "steps": [
+            "<strong>अपना \"परमाणु-उपनाम\" चुनें</strong>: आज हम ऑक्सीजन का परमाणु बनाएंगे, जिसमें 8 प्रोटॉन होते हैं।",
+            "<strong>नाभिक बनाएं</strong>: लाल और नीली प्ले-डो लें। 8 लाल गोलियां बनाएं (प्रोटॉन) और 8 नीली (न्यूट्रॉन)। सभी को एक साथ मिलाकर एक भारी नाभिक बनाएं। इसे कार्डबोर्ड के केंद्र में चिपकाएं।",
+            "<strong>इलेक्ट्रॉन जोड़ें</strong>: हरी प्ले-डो लें। 8 छोटी हरी गोलियां बनाएं (इलेक्ट्रॉन)। इन्हें कार्डबोर्ड पर नाभिक के चारों ओर एक बड़ा वृत्त (एक \"छल्ला\") बनाकर चिपकाएं।"
+          ],
+          "conclusion": "बस हो गया! आपने अभी-अभी अपना खुद का ऑक्सीजन परमाणु बनाया है।"
+        }
+      },
+      "quiz": {
+        "title": "क्विज: क्या आप एक परमाणु विशेषज्ञ हैं?",
+        "questions": {
+          "1": {
+            "text": "1. परमाणु इस तरह है...",
+            "options": [
+              "क) एक बड़ा रेत का महल।",
+              "ख) सब कुछ का सबसे छोटा LEGO बिल्डिंग ब्लॉक।",
+              "ग) चीजों से भरा एक सुपरमार्केट।"
+            ]
+          },
+          "2": {
+            "text": "2. परमाणु के केंद्र में हमेशा रहने वाला \"परिवार प्रमुख\" कौन है?",
+            "options": [
+              "क) इलेक्ट्रॉन",
+              "ख) नाभिक",
+              "ग) न्यूट्रॉन"
+            ]
+          },
+          "3": {
+            "text": "3. प्रोटॉन महत्वपूर्ण हैं क्योंकि...",
+            "options": [
+              "क) वे नाभिक के चारों ओर बहुत तेजी से दौड़ते हैं।",
+              "ख) वे परमाणु-परिवार की \"पहचान\" तय करते हैं।",
+              "ग) वे पंख की तरह हल्के होते हैं।"
+            ]
+          },
+          "4": {
+            "text": "4. जब परमाणु एक साथ जुड़ते हैं तो इलेक्ट्रॉन क्या करते हैं?",
+            "options": [
+              "क) वे नाभिक में छिप जाते हैं।",
+              "ख) वे सभी अन्य परमाणुओं को धक्का देते हैं।",
+              "ग) वे \"हाथ पकड़ते हैं\" ताकि अणु बन सकें।"
+            ]
+          },
+          "5": {
+            "text": "5. यदि मैं एक लाल ब्लॉक (ऑक्सीजन) और दो सफेद ब्लॉक (हाइड्रोजन) को जोड़ूं, तो मुझे क्या मिलेगा?",
+            "options": [
+              "क) हवा",
+              "ख) पानी (H₂O)",
+              "ग) लकड़ी"
+            ]
+          },
+          "6": {
+            "text": "6. न्यूट्रॉन किस लिए होते हैं...",
+            "options": [
+              "क) ऊर्जावान बच्चों की तरह झल्लाहट करने के लिए।",
+              "ख) नाभिक को एक साथ रखने के लिए, गले की तरह।",
+              "ग) परमाणु की पहचान तय करने के लिए।"
+            ]
+          }
+        },
+        "feedback": {
+          "correct": "बहुत बढ़िया! सही जवाब! आप एक सच्चे वैज्ञानिक हैं!",
+          "incorrect": "चिंता मत करो! फिर से कोशिश करो, सीखना एक साहसिक कार्य है!"
+        },
+        "checkButton": "सभी उत्तर जांचें",
+        "results": {
+          "title": "सही उत्तर:",
+          "answers": [
+            "<strong>ख)</strong> सब कुछ का सबसे छोटा LEGO बिल्डिंग ब्लॉक।",
+            "<strong>ख)</strong> नाभिक।",
+            "<strong>ख)</strong> वे परमाणु-परिवार की \"पहचान\" तय करते हैं।",
+            "<strong>ग)</strong> वे \"हाथ पकड़ते हैं\" ताकि अणु बन सकें।",
+            "<strong>ख)</strong> पानी (H₂O)।",
+            "<strong>ख)</strong> नाभिक को एक साथ रखने के लिए, गले की तरह।"
+          ],
+          "summary": {
+            "perfect": "बधाई हो! आप एक परमाणु विशेषज्ञ हैं!",
+            "good": "बहुत बढ़िया! आप एक सच्चे वैज्ञानिक बन रहे हैं!",
+            "average": "पढ़ाई जारी रखें, आप एक महान वैज्ञानिक बनेंगे!"
+          }
+        }
+      },
+      "storia-scienziati": {
+        "title": "टाइम मशीन: परमाणु का इतिहास",
+        "intro": "परमाणु की खोज एक लंबी और शानदार खजाना खोजने वाली साहसिक यात्रा थी, जिसमें उतार-चढ़ाव और प्रतिभाशाली दिमाग शामिल थे। यहां मुख्य चरण दिए गए हैं!",
+        "scientists": {
+          "democrito": {
+            "name": "अंतर्ज्ञान: डेमोक्रिटस (लगभग 400 ईसा पूर्व)",
+            "period": "प्राचीन ग्रीस",
+            "description": [
+              "<strong>वे कौन थे:</strong> एक ग्रीक दार्शनिक, कुछ-कुछ विचारों का प्राचीन जासूस।",
+              "<strong>उनका विचार:</strong> उन्होंने कल्पना की कि सब कुछ छोटे-छोटे <strong>अविभाज्य</strong> कणों से बना है, जिन्हें उन्होंने \"परमाणु\" कहा। उनके पास प्रमाण नहीं थे, बस एक बड़ा अंतर्ज्ञान! यह <strong>पहला कदम</strong> था।"
+            ]
+          },
+          "dalton": {
+            "name": "आधुनिक सिद्धांत के पिता: जॉन डाल्टन (1803)",
+            "period": "इंग्लैंड, 1803",
+            "description": [
+              "<strong>वे कौन थे:</strong> एक अंग्रेज़ अध्यापक जिसे प्रयोग करना पसंद था।",
+              "<strong>उनकी खोज:</strong> रासायनिक प्रयोगों से उन्होंने समझा कि परमाणु वास्तव में मौजूद हैं और अलग-अलग तत्वों के अलग-अलग परमाणु होते हैं। उन्होंने कहा: \"सब कुछ परमाणुओं से बना है, वे असली नायक हैं!\" यह <strong>दूसरा, अधिक सुरक्षित कदम</strong> था।"
+            ]
+          },
+          "thomson": {
+            "name": "आश्चर्य: जे.जे. थॉमसन (1897)",
+            "period": "इंग्लैंड, 1897",
+            "description": [
+              "<strong>वे कौन थे:</strong> एक जिज्ञासु वैज्ञानिक जो बिजली का अध्ययन करते थे।",
+              "<strong>उनकी खोज:</strong> उन्होंने खोजा कि परमाणु के अंदर और भी छोटे कण होते हैं जो ऋणात्मक आवेश वाले होते हैं: <strong>इलेक्ट्रॉन</strong>! इसका मतलब था कि परमाणु <strong>अविभाज्य नहीं</strong> था, बल्कि इसमें हिस्से थे। उनकी खोज ने <strong>सब कुछ बदल दिया</strong>। उन्होंने परमाणु को \"किशमिश वाले पुडिंग\" की तरह कल्पना की जिसमें इलेक्ट्रॉन किशमिश की तरह बिखरे हैं।"
+            ]
+          },
+          "rutherford": {
+            "name": "केंद्र में नाभिक: अर्नेस्ट रदरफोर्ड (1911)",
+            "period": "न्यूज़ीलैंड/इंग्लैंड, 1911",
+            "description": [
+              "<strong>वे कौन थे:</strong> एक प्रतिभाशाली प्रयोग वाले वैज्ञानिक।",
+              "<strong>उनकी खोज:</strong> उन्होंने सोने की पत्ती पर अति सूक्ष्म कण दागे। उन्हें उम्मीद थी कि सभी कण निकल जाएंगे, जैसे गोली बादल को भेद दे। लेकिन कुछ लौट आए! उन्होंने चिल्लाया: \"ऐसा है जैसे मैंने रूमाल पर तोप दागी और गोली वापस आ गई!\" उन्होंने समझा कि केंद्र में एक छोटा, घना और धनात्मक <strong>नाभिक</strong> होना चाहिए। यह एक <strong>क्रांतिकारी खोज</strong> थी!"
+            ]
+          },
+          "bohr": {
+            "name": "मिनी सौर प्रणाली: नील्स बोर (1913)",
+            "period": "डेनमार्क, 1913",
+            "description": [
+              "<strong>वे कौन थे:</strong> एक प्रतिभाशाली डेनिश वैज्ञानिक जिन्होंने रदरफोर्ड के साथ काम किया।",
+              "<strong>उनका विचार:</strong> उन्होंने कहा: \"रदरफोर्ड का मॉडल स्थिर नहीं है!\" उन्होंने प्रस्ताव दिया कि इलेक्ट्रॉन कहीं भी न घूमें, बल्कि <strong>निश्चित कक्षाओं</strong> में, सूर्य के चारों ओर ग्रहों की तरह। यह सरल और स्पष्ट मॉडल आज भी हमारे द्वारा बुनियादी बातें समझाने के लिए प्रयोग होता है। यह <strong>सब कुछ स्पष्ट बनाने का कदम</strong> था।"
+            ]
+          },
+          "quantistica": {
+            "name": "अजीब दुनिया: क्वांटम मैकेनिक्स (1920 के दशक)",
+            "period": "यूरोप, 1920 के दशक",
+            "description": [
+              "<strong>वे कौन थे:</strong> हाइज़ेनबर्ग और श्रोडिंगर जैसे युवा और साहसी वैज्ञानिकों का समूह।",
+              "<strong>उनकी खोज:</strong> वे और भी गहराई में गए और पता लगाया कि परमाणुओं की छोटी दुनिया में नियम... अजीब हैं! इलेक्ट्रॉन गेंद नहीं हैं, बल्कि थोड़े <strong>लहरों</strong> और थोड़े <strong>कणों</strong> जैसा व्यवहार करते हैं। वे किसी एक बिंदु पर नहीं होते, बल्कि एक <strong>संभावना के बादल</strong> में \"निराकार\" होते हैं। ऐसा है जैसे ऊर्जावान बच्चा अब बच्चा नहीं रहा, बल्कि एक जादुई परछाई है जो एक ही समय बगीचे के हजारों स्थानों पर हो सकती है! यह <strong>एक नई और शानदार दुनिया की ओर खुलाव</strong> था जिसे हम आज भी पढ़ते हैं।"
+            ]
+          }
+        },
+        "conclusion": "यह लंबा साहसिक कार्य हमें सिखाता है कि विज्ञान ऐसे कई लोगों से बना है जो टुकड़ा-टुकड़ा करके मिलकर ज्ञान का महल बनाते हैं। और कौन जाने आप भविष्य में क्या खोज करेंगे!"
+      },
+      "footer": {
+        "line1": "परमाणु पर पाठ - पांचवीं कक्षा के छात्रों के लिए बनाया गया",
+        "line2": "डीएसए और बीईएस छात्रों के लिए अनुकूलित डिज़ाइन",
+        "line3": "🌍 कॉम्पैक्ट मेनू के साथ बहुभाषी संस्करण"
+      },
+      "voiceButtons": {
+        "play": "🔊",
+        "stop": "⏹️",
+        "playTitle": "इस खंड को सुनें",
+        "stopTitle": "सुनना बंद करें"
+      }
+    },
+    "ru": {
+      "page": {
+        "title": "Невидимый Строительный Кирпичик ВСЕГО! Атом",
+        "subtitle": "Интерактивный урок для юных учёных"
+      },
+      "languageSelector": {
+        "title": "🌍 Выбрать Язык",
+        "browserHint": "💡 <strong>Совет:</strong> Для лучшего голосового воспроизведения на всех языках используйте Google Chrome"
+      },
+      "sections": {
+        "introduzione": {
+          "title": "Привет, Учёные на Задании!",
+          "content": [
+            "Сегодня мы говорим о самом маленьком и самом могущественном секрете всей Вселенной. Он настолько мал, что мы не можем его увидеть, но он словно <strong>невидимый супергерой</strong>, удерживающий всё вокруг нас! Мы собираемся поговорить об <strong>АТОМЕ</strong>.",
+            "Представь, что тебе нужно построить гигантский замок из LEGO. С чего начнёшь? С <strong>кирпичиков</strong>, правда? Атом — это <strong>самый маленький кирпичик, который существует</strong>, чтобы построить... ну, ВСЁ! Твой карандаш, воздух, которым ты дышишь, твоё любимое мороженое и даже ты сам! Ты состоишь из миллиардов и миллиардов этих невидимых кирпичиков."
+          ]
+        },
+        "struttura-atomo": {
+          "title": "Из чего сделан атом? Крошечная семья",
+          "intro": "Хоть он и крошечный, внутри атома — целый мир! Представь его как гигантский <strong>баскетбольный мяч</strong> (это вся атомная семья).",
+          "subsections": {
+            "nucleo": {
+              "title": "Ядро: Сердце дома",
+              "content": "В центре мяча есть крошечная точка, как головка булавки. Это <strong>ядро</strong>. Это <strong>глава семьи</strong> атома. Оно тяжёлое, всегда находится в центре и почти не двигается. Как мама или папа на диване, следящие за всем."
+            },
+            "protoni": {
+              "title": "Протоны: Родители с \"фамильной биркой\"",
+              "content": "Внутри ядра находятся <strong>ПРОТОНЫ</strong>. Они очень важны, потому что решают, <strong>что это за атом</strong>. Это как <strong>фамилия семьи</strong>. Если семья носит фамилию \"Кислород\", все знают — это семья воздуха. Если фамилия \"Углерод\" — это семья дерева твоего карандаша. Количество протонов говорит нам фамилию атома."
+            },
+            "elettroni": {
+              "title": "Электроны: Энергичные дети, играющие в саду",
+              "content": "Вокруг ядра, очень далеко, находятся <strong>ЭЛЕКТРОНЫ</strong>. Они очень лёгкие и двигаются очень быстро, как энергичные дети, бегающие вокруг дома! Их сад огромен по сравнению с крошечным ядром. У них важная работа: когда атомы приближаются, электроны \"держатся за руки\", чтобы создать связи, как ты держишь друга за руку, чтобы выстроиться в круг."
+            },
+            "neutroni": {
+              "title": "Нейтроны: \"Супер\" родители, помогающие держать семью вместе",
+              "content": "В ядре, вместе с протонами, находятся <strong>НЕЙТРОНЫ</strong>. Их название означает \"нейтральный\", то есть они ничью сторону не принимают. Представь, что протоны (у которых положительный заряд) отталкиваются друг от друга, как когда ты пытаешься соединить два магнита одинаковыми полюсами. Нейтроны — как <strong>объятия</strong>, которые удерживают мир и держат ядро вместе, не давая протонам разлететься."
+            }
+          }
+        },
+        "superpoteri-atomi": {
+          "title": "Суперспособности атомов",
+          "intro": "У каждой атомной семьи свой характер и суперспособности!",
+          "subsections": {
+            "leggero-pesante": {
+              "title": "Суперспособность 1: Быть лёгким или тяжёлым",
+              "content": "Некоторые атомные семьи маленькие и лёгкие, как семья \"Водорода\" (самая маленькая!). Другие огромные и тяжёлые, как семья \"Урана\". Это как разница между перышком и толстым словарём! Вес зависит от того, сколько \"членов семьи” (протонов и нейтронов) в ядре."
+            },
+            "attrarsi-respingersi": {
+              "title": "Суперспособность 2: Притягиваться или отталкиваться",
+              "content": "Помнишь электроны, энергичных детей? У них отрицательный электрический заряд. У протонов в ядре — положительный.",
+              "metafora": "<strong>Метафора магнитов:</strong> Это как будто у тебя есть магниты! Два протона (++), как два одинаковых полюса магнита, <strong>отталкиваются</strong>. Протон (+) и электрон (-), как противоположные полюса, <strong>притягиваются</strong>. Вот почему электроны не убегают: они \"притянуты” к ядру!"
+            },
+            "unirsi-molecole": {
+              "title": "Суперспособность 3: Объединяться, чтобы формировать молекулы",
+              "content": "Один атом — как ребёнок один в парке. Но когда он встречает другие атомы, может быть, из другой семьи, они могут объединиться! Электроны \"держатся за руки” и образуют суперсильные группы, называемые <strong>МОЛЕКУЛАМИ</strong>.",
+              "metafora": "<strong>Метафора LEGO:</strong>",
+              "legoExamples": [
+                "Атом <strong>Кислорода</strong> (O) — это красный кубик LEGO.",
+                "Атом <strong>Водорода</strong> (H) — это белый кубик LEGO.",
+                "Если ты возьмёшь <strong>1 красный кубик (O)</strong> и <strong>2 белых кубика (H)</strong> и соединишь их, что получится? <strong>H₂O</strong>... это <strong>МОЛЕКУЛА ВОДЫ</strong>! Вот как формируется капля дождя."
+              ]
+            }
+          }
+        },
+        "video": {
+          "title": "Атомы! Видео, которое объясняет всё за 4 минуты",
+          "clickHint": "Нажми на изображение, чтобы посмотреть видео канала \"Facciamo Scienze\" на YouTube"
+        },
+        "periodica": {
+          "title": "Но сколько же атомов существует?",
+          "content": [
+            "Периодическая таблица — это список \"семейств” атомов, она показывает нам 118 разных кирпичиков (элементов). Из этих 118 кирпичиков, смешивая их по-разному, можно построить всё, что существует в мире — от облаков до звёзд, от твоего карандаша до твоего тела!",
+            "Периодическая таблица — как альбом с наклейками всех элементов во Вселенной: от кислорода, которым мы дышим, до золота в украшениях. У каждого элемента есть свой символ и число, которые рассказывают, из чего он состоит. Расположив их по порядку, мы видим, как они \"родственны” друг другу!"
+          ],
+          "button": "🔍 Изучи интерактивную Периодическую таблицу!",
+          "buttonHint": "Нажми сюда, чтобы увидеть все элементы с играми и фактами!"
+        },
+        "attivita-pratica": {
+          "title": "Практическая активность: Давай построим атом из пластилина!",
+          "materials": "<strong>Материалы:</strong> Пластилин трёх разных цветов (например, красный, синий, зелёный) и картон.",
+          "steps": [
+            "<strong>Выбери своё \"Семейство-Атом\"</strong>: Сегодня мы построим атом <strong>Кислорода</strong>, у него 8 протонов.",
+            "<strong>Создай ядро</strong>: Возьми красный и синий пластилин. Сделай 8 красных шариков (протоны) и 8 синих (нейтроны). Смешай их вместе, чтобы получилось одно тяжёлое ядро. Прикрепи его в центре картона.",
+            "<strong>Добавь электроны</strong>: Возьми зелёный пластилин. Сделай 8 маленьких зелёных шариков (электроны). Прикрепи их на картоне в большом круге (\"орбите”) вокруг ядра."
+          ],
+          "conclusion": "Готово! Ты только что создал свой собственный атом кислорода."
+        }
+      },
+      "quiz": {
+        "title": "Викторина: Ты эксперт по атомам?",
+        "questions": {
+          "1": {
+            "text": "1. Атом похож на...",
+            "options": [
+              "а) Большой песочный замок.",
+              "б) Самый маленький LEGO-кирпичик.",
+              "в) Супермаркет, полный вещей."
+            ]
+          },
+          "2": {
+            "text": "2. Кто в семье атома всегда в центре?",
+            "options": [
+              "а) Электроны",
+              "б) Ядро",
+              "в) Нейтроны"
+            ]
+          },
+          "3": {
+            "text": "3. Протоны важны, потому что...",
+            "options": [
+              "а) Очень быстро бегают вокруг ядра.",
+              "б) Они решают, какой это атом по фамилии.",
+              "в) Они лёгкие, как перышко."
+            ]
+          },
+          "4": {
+            "text": "4. Что делают электроны, когда атомы объединяются?",
+            "options": [
+              "а) Прячутся в ядре.",
+              "б) Отталкивают другие атомы.",
+              "в) \"Держатся за руки”, чтобы образовать молекулы."
+            ]
+          },
+          "5": {
+            "text": "5. Если соединить красный кубик (Кислород) и два белых (Водород), что получится?",
+            "options": [
+              "а) Воздух",
+              "б) Вода (H₂O)",
+              "в) Дерево"
+            ]
+          },
+          "6": {
+            "text": "6. Нейтроны нужны, чтобы...",
+            "options": [
+              "а) Капризничать, как энергичные дети.",
+              "б) Держать ядро вместе, как объятия.",
+              "в) Решать фамилию атома."
+            ]
+          }
+        },
+        "feedback": {
+          "correct": "Отлично! Правильный ответ! Ты настоящий учёный!",
+          "incorrect": "Не переживай! Попробуй ещё раз, учиться — это приключение!"
+        },
+        "checkButton": "Проверить все ответы",
+        "results": {
+          "title": "Правильные ответы:",
+          "answers": [
+            "<strong>б)</strong> Самый маленький LEGO-кирпичик.",
+            "<strong>б)</strong> Ядро.",
+            "<strong>б)</strong> Они решают, какой это атом по фамилии.",
+            "<strong>в)</strong> \"Держатся за руки”, чтобы образовать молекулы.",
+            "<strong>б)</strong> Вода (H₂O).",
+            "<strong>б)</strong> Держать ядро вместе, как объятия."
+          ],
+          "summary": {
+            "perfect": "Поздравляю! Ты эксперт по атомам!",
+            "good": "Молодец! Ты становишься настоящим учёным!",
+            "average": "Продолжай учиться, и ты станешь великим учёным!"
+          }
+        }
+      },
+      "storia-scienziati": {
+        "title": "Машина времени: История атома",
+        "intro": "Открытие атома было долгим и фантастическим охотой за сокровищами, полной поворотов и блестящих умов. Вот основные вехи!",
+        "scientists": {
+          "democrito": {
+            "name": "Интуиция: Демокрит (около 400 г. до н.э.)",
+            "period": "Древняя Греция",
+            "description": [
+              "<strong>Кто он был:</strong> Греческий философ, своего рода древний детектив мысли.",
+              "<strong>Его идея:</strong> Он представил, что всё состоит из крошечных <strong>НЕДЕЛИМЫХ</strong> частиц, которые назвал \"атомами”. У него не было доказательств, только огромная интуиция! Это был <strong>первый шаг</strong>."
+            ]
+          },
+          "dalton": {
+            "name": "Отеец современной теории: Джон Дальтон (1803)",
+            "period": "Англия, 1803",
+            "description": [
+              "<strong>Кто он был:</strong> Английский учитель, который любил проводить эксперименты.",
+              "<strong>Его открытие:</strong> С помощью химических экспериментов он понял, что атомы действительно существуют и что у разных элементов — разные атомы. Именно он сказал: \"Всё состоит из атомов, они — настоящие главные герои!”. Это был <strong>второй, более уверенный шаг</strong>."
+            ]
+          },
+          "thomson": {
+            "name": "Сюрприз: Дж. Дж. Томсон (1897)",
+            "period": "Англия, 1897",
+            "description": [
+              "<strong>Кто он был:</strong> Любопытный учёный, изучавший электричество.",
+              "<strong>Его открытие:</strong> Он обнаружил, что внутри атома есть ещё более мелкие частицы с отрицательным зарядом — <strong>ЭЛЕКТРОНЫ</strong>! Это означало, что атом <strong>НЕ</strong> неделим, а имеет части. Его открытие стало <strong>третьим шагом, который всё изменил</strong>. Он представил атом как \"пудинг с изюмом”, где электроны — это изюминки."
+            ]
+          },
+          "rutherford": {
+            "name": "Ядро в центре: Эрнест Резерфорд (1911)",
+            "period": "Новая Зеландия/Англия, 1911",
+            "description": [
+              "<strong>Кто он был:</strong> Учёный с гениальным экспериментом.",
+              "<strong>Его открытие:</strong> Он стрелял микроскопическими частицами в золотую фольгу. Он ожидал, что все пролетят, как пуля сквозь облако. Вместо этого некоторые отскочили! Он воскликнул: \"Это как будто я выстрелил из пушки в носовой платок, а пуля вернулась обратно!”. Он понял, что в центре должен быть маленький, плотный и положительный <strong>НУКЛЕОН</strong>. Это было <strong>революционное открытие</strong>!"
+            ]
+          },
+          "bohr": {
+            "name": "Миниатюрная Солнечная Система: Нильс Бор (1913)",
+            "period": "Дания, 1913",
+            "description": [
+              "<strong>Кто он был:</strong> Блестящий датский учёный, работавший с Резерфордом.",
+              "<strong>Его идея:</strong> Он сказал: \"Модель Резерфорда нестабильна!”. Он предложил, что электроны не летают где попало, а движутся по <strong>точным орбитам</strong>, как планеты вокруг Солнца. Эта простая и ясная модель — та, которую мы используем и сегодня, чтобы объяснить основы. Это был <strong>шаг к большей ясности</strong>."
+            ]
+          },
+          "quantistica": {
+            "name": "Странный мир: Квантовая механика (1920-е)",
+            "period": "Европа, 1920-е",
+            "description": [
+              "<strong>Кто они были:</strong> Группа молодых и смелых учёных, таких как Гейзенберг и Шрёдингер.",
+              "<strong>Их открытие:</strong> Они заглянули ещё глубже и обнаружили, что в крошечном мире атомов правила... странные! Электроны — не шарики, а ведут себя как <strong>волны</strong> и как <strong>частицы</strong>. Они не находятся в точке, а \"размыты” в <strong>облаке вероятности</strong>. Это как будто энергичный ребёнок перестал быть ребёнком, а стал волшебной тенью, которая может быть в тысяче мест сада одновременно! Это было <strong>открытие нового и фантастического мира</strong>, который мы изучаем до сих пор."
+            ]
+          }
+        },
+        "conclusion": "Это долгое приключение учит нас, что наука создаётся множеством людей, которые, кусочек за кусочком, вместе строят замок знаний. А кто знает, какие открытия сделаете ВЫ в будущем!"
+      },
+      "footer": {
+        "line1": "Урок об атомах — для учеников 5-го класса начальной школы",
+        "line2": "Дизайн оптимизирован для учеников с ОНР и ЗПР",
+        "line3": "🌍 Многоязычная версия с компактным меню"
+      },
+      "voiceButtons": {
+        "play": "🔊",
+        "stop": "⏹️",
+        "playTitle": "Слушать этот раздел",
+        "stopTitle": "Остановить воспроизведение"
+      }
+    },
+    "zh": {
+      "page": {
+        "title": "万物的隐形积木！原子",
+        "subtitle": "给年轻科学家的互动课"
+      },
+      "languageSelector": {
+        "title": "🌍 选择语言",
+        "browserHint": "💡 <strong>提示:</strong> 为了在所有语言中获得最佳语音体验，请使用 Google Chrome"
+      },
+      "sections": {
+        "introduzione": {
+          "title": "你好，执行任务的科学家们！",
+          "content": [
+            "今天我们谈论整个宇宙中最微小和最强大的秘密。它小到我们看不见，但它就像一个<strong>隐形的超级英雄</strong>，支撑着我们周围的一切！我们要谈谈<strong>原子</strong>。",
+            "想象一下，你需要建造一个巨大的乐高城堡。你从哪里开始？从<strong>积木</strong>开始，对吧？嗯，原子是<strong>存在的最小积木</strong>，用来建造……嗯，一切！你的铅笔，你呼吸的空气，你最喜欢的冰淇淋，甚至你自己！你是由数十亿数十亿的这些隐形积木构成的。"
+          ]
+        },
+        "struttura-atomo": {
+          "title": "原子是由什么组成的？一个小家庭",
+          "intro": "虽然它非常小，但原子内部有一个完整的世界！把它想象成一个巨大的<strong>篮球</strong>（这就是整个原子家庭）。",
+          "subsections": {
+            "nucleo": {
+              "title": "原子核：家的中心",
+              "content": "在篮球的正中心有一个非常小的点，像针尖一样。这就是<strong>原子核</strong>。它是原子的<strong>一家之主</strong>。它很重，总是在中心，几乎不动。就像坐在沙发上的爸爸妈妈，正注视着一切。"
+            },
+            "protoni": {
+              "title": "质子：带着“姓名标签”的父母",
+              "content": "原子核内部有<strong>质子</strong>。质子非常重要，因为它们决定了<strong>这是什么类型的原子</strong>。它们就像<strong>家庭的姓氏</strong>。如果一个家庭的姓氏是“氧”，每个人都知道它是空气家族。如果姓氏是“碳”，那就是你铅笔中木材的家族。质子的数量告诉我们原子的姓氏。"
+            },
+            "elettroni": {
+              "title": "电子：在花园里玩耍的精力充沛的孩子们",
+              "content": "在原子核周围，非常远的地方，有<strong>电子</strong>。它们非常轻，移动得非常快，就像精力充沛的孩子们围着房子跑！与微小的原子核相比，它们的花园巨大。它们有一个重要的工作：当原子靠近时，电子会“手拉手”来建立连接，就像你牵着朋友的手围成一个圈一样。"
+            },
+            "neutroni": {
+              "title": "中子：像“超级”父母一样帮助家庭团结在一起",
+              "content": "在原子核内部，与质子一起，有<strong>中子</strong>。它们的名字意思是“中性”，也就是说它们不偏向任何一方。想象一下，质子（都带正电荷）会互相排斥，就像你试图把两个磁铁的同一极靠近一样。中子就像<strong>拥抱</strong>一样，带来和平并保持原子核团结，防止质子分开。"
+            }
+          }
+        },
+        "superpoteri-atomi": {
+          "title": "原子的超能力",
+          "intro": "每个原子家庭都有自己的个性和超能力！",
+          "subsections": {
+            "leggero-pesante": {
+              "title": "超能力1：轻或重",
+              "content": "有些原子家庭小而轻，比如“氢”家族（所有中最小的！）。其他的则巨大而沉重，比如“铀”家族。这就是羽毛和字典之间的区别！重量取决于原子核中有多少“家庭成员”（质子和中子）。"
+            },
+            "attrarsi-respingersi": {
+              "title": "超能力2：吸引或排斥",
+              "content": "还记得电子，那些精力充沛的孩子们吗？它们带有负电荷。原子核中的质子带有正电荷。",
+              "metafora": "<strong>磁铁的比喻：</strong>就像你有磁铁一样！两个质子（++），就像磁铁的两个相同极，<strong>互相排斥</strong>。一个质子（+）和一个电子（-），就像相反的极，<strong>互相吸引</strong>。这就是电子不会逃跑的原因：它们被原子核“吸引”！"
+            },
+            "unirsi-molecole": {
+              "title": "超能力3：结合形成分子",
+              "content": "一个单独的原子就像公园里一个孤独的孩子。但当它遇到其他原子，也许是另一个家庭的，它们可以结合在一起！电子“手拉手”，形成被称为<strong>分子</strong>的超级强大的群体。",
+              "metafora": "<strong>乐高积木的比喻：</strong>",
+              "legoExamples": [
+                "<strong>氧</strong>原子（O）是一个红色的乐高积木。",
+                "<strong>氢</strong>原子（H）是一个白色的乐高积木。",
+                "如果你拿<strong>1个红色积木（O）</strong>和<strong>2个白色积木（H）</strong>并把它们连接起来，你会得到什么？<strong>H₂O</strong>……这是一个<strong>水分子</strong>！雨滴就是这样形成的。"
+              ]
+            }
+          }
+        },
+        "video": {
+          "title": "原子！一个4分钟解释一切的视频",
+          "clickHint": "点击图片观看YouTube上“Facciamo Scienze”的视频"
+        },
+        "periodica": {
+          "title": "但是有多少种原子呢？",
+          "content": [
+            "元素周期表是原子“家族”的列表，它向我们展示了118种不同的积木（元素）。用这118种积木，以不同的方式组合，你可以构建世界上存在的一切，从云到星星，从你的铅笔到你的身体！",
+            "元素周期表就像宇宙中存在的所有元素的贴纸相册，从呼吸的氧气到珠宝中的黄金。每个元素都有自己的小盒子，里面有一个符号和一个数字，告诉我们它是由什么组成的。把它们按顺序排列，就向我们展示了它们之间是如何“关联”的！"
+          ],
+          "button": "🔍 探索互动元素周期表！",
+          "buttonHint": "点击这里查看所有元素，还有游戏和趣闻！"
+        },
+        "attivita-pratica": {
+          "title": "实践活动：用橡皮泥做一个原子！",
+          "materials": "<strong>材料：</strong>三种不同颜色的橡皮泥（例如红色、蓝色、绿色）和一张纸板。",
+          "steps": [
+            "<strong>选择你的“原子姓氏”</strong>：今天我们将构建一个<strong>氧</strong>原子，它有8个质子。",
+            "<strong>创建原子核</strong>：拿红色和蓝色的橡皮泥。做8个红色小球（质子）和8个蓝色小球（中子）。把它们全部混合在一起，形成一个沉重的原子核。把它粘在纸板的中心。",
+            "<strong>添加电子</strong>：拿绿色橡皮泥。做8个更小的绿色小球（电子）。把它们粘在纸板上，围绕原子核形成一个大的圆圈（一个“环”）。"
+          ],
+          "conclusion": "完成了！你刚刚创建了自己的氧原子。"
+        }
+      },
+      "quiz": {
+        "title": "测验：你是原子专家吗？",
+        "questions": {
+          "1": {
+            "text": "1. 原子就像……",
+            "options": [
+              "a) 一座大沙堡。",
+              "b) 万物中最小的乐高积木。",
+              "c) 一个满是东西的超市。"
+            ]
+          },
+          "2": {
+            "text": "2. 谁是一直待在原子中心的“一家之主”？",
+            "options": [
+              "a) 电子",
+              "b) 原子核",
+              "c) 中子"
+            ]
+          },
+          "3": {
+            "text": "3. 质子很重要，因为……",
+            "options": [
+              "a) 它们围着原子核跑得飞快。",
+              "b) 它们决定了原子家庭的“姓氏”。",
+              "c) 它们轻如羽毛。"
+            ]
+          },
+          "4": {
+            "text": "4. 当原子结合时，电子会做什么？",
+            "options": [
+              "a) 它们躲在原子核里。",
+              "b) 它们把所有其他原子推开。",
+              "c) 它们“手拉手”形成分子。"
+            ]
+          },
+          "5": {
+            "text": "5. 如果我连接一个红色积木（氧）和两个白色积木（氢），我会得到什么？",
+            "options": [
+              "a) 空气",
+              "b) 水（H₂O）",
+              "c) 木头"
+            ]
+          },
+          "6": {
+            "text": "6. 中子的作用是……",
+            "options": [
+              "a) 像顽皮的孩子一样发脾气。",
+              "b) 像拥抱一样把原子核团结在一起。",
+              "c) 决定原子的姓氏。"
+            ]
+          }
+        },
+        "feedback": {
+          "correct": "太棒了！答案正确！你是一个真正的科学家！",
+          "incorrect": "别担心！再试一次，学习是一次冒险！"
+        },
+        "checkButton": "检查所有答案",
+        "results": {
+          "title": "正确答案：",
+          "answers": [
+            "<strong>b)</strong> 万物中最小的乐高积木。",
+            "<strong>b)</strong> 原子核。",
+            "<strong>b)</strong> 它们决定了原子家庭的“姓氏”。",
+            "<strong>c)</strong> 它们“手拉手”形成分子。",
+            "<strong>b)</strong> 水（H₂O）。",
+            "<strong>b)</strong> 像拥抱一样把原子核团结在一起。"
+          ],
+          "summary": {
+            "perfect": "恭喜你！你是原子专家！",
+            "good": "干得好！你正在成为一名真正的科学家！",
+            "average": "继续学习，你会成为一名伟大的科学家！"
+          }
+        }
+      },
+      "storia-scienziati": {
+        "title": "时光机：原子的历史",
+        "intro": "原子的发现是一场漫长而精彩的寻宝之旅，充满了转折和杰出的头脑。以下是主要阶段！",
+        "scientists": {
+          "democrito": {
+            "name": "直觉：德谟克利特（约公元前400年）",
+            "period": "古希腊",
+            "description": [
+              "<strong>他是谁：</strong>一位希腊哲学家，有点像古代的思想侦探。",
+              "<strong>他的想法：</strong>他想象一切都是由微小的<strong>不可分割</strong>的粒子组成的，他称之为“原子”。他没有证据，只有巨大的直觉！这是<strong>第一步</strong>。"
+            ]
+          },
+          "dalton": {
+            "name": "现代理论之父：约翰·道尔顿（1803年）",
+            "period": "英格兰，1803年",
+            "description": [
+              "<strong>他是谁：</strong>一位喜欢做实验的英国老师。",
+              "<strong>他的发现：</strong>通过化学实验，他明白了原子确实存在，不同元素有不同的原子。正是他说：“一切都是由原子组成的，它们才是真正的主角！”这是<strong>第二步</strong>，更加确定。"
+            ]
+          },
+          "thomson": {
+            "name": "惊喜：J.J. 汤姆森（1897年）",
+            "period": "英格兰，1897年",
+            "description": [
+              "<strong>他是谁：</strong>一位好奇的科学家，研究电。",
+              "<strong>他的发现：</strong>他发现原子内部还有更小的带负电的粒子：<strong>电子</strong>！这意味着原子<strong>不是</strong>不可分割的，而是有部分的。他的发现是<strong>改变一切的第三步</strong>。他把原子想象成一个“葡萄干布丁”，电子就像撒在里面的葡萄干。"
+            ]
+          },
+          "rutherford": {
+            "name": "中心的原子核：欧内斯特·卢瑟福（1911年）",
+            "period": "新西兰/英格兰，1911年",
+            "description": [
+              "<strong>他是谁：</strong>一位有着天才实验的科学家。",
+              "<strong>他的发现：</strong>他向金箔发射微观粒子。他原以为它们都会穿过，就像子弹穿过云层。相反，有些反弹了！他喊道：“这就像我用大炮射向一块手帕，而炮弹却反弹回来击中了我！”他明白中心必须有一个小的、致密的、带正电的<strong>原子核</strong>。这是一个<strong>革命性的发现</strong>！"
+            ]
+          },
+          "bohr": {
+            "name": "微型太阳系：尼尔斯·玻尔（1913年）",
+            "period": "丹麦，1913年",
+            "description": [
+              "<strong>他是谁：</strong>一位与卢瑟福共事的杰出丹麦科学家。",
+              "<strong>他的想法：</strong>他说：“卢瑟福的模型不稳定！”他提出电子不会到处飞，而是在<strong>精确的轨道上</strong>，就像围绕太阳运行的行星一样。这个简单清晰的模型我们今天仍在使用来解释基础知识。这是<strong>让一切更清晰的步骤</strong>。"
+            ]
+          },
+          "quantistica": {
+            "name": "奇怪的世界：量子力学（20世纪20年代）",
+            "period": "欧洲，20世纪20年代",
+            "description": [
+              "<strong>他们是谁：</strong>一群年轻而勇敢的科学家，如海森堡和薛定谔。",
+              "<strong>他们的发现：</strong>他们更深入地探索，发现在原子的微小世界里，规则是……奇怪的！电子不是小球，而是表现得像<strong>波</strong>又像<strong>粒子</strong>。它们不在一个确切的点，而是“非物质化”在一个<strong>概率云</strong>中。就好像那个精力充沛的孩子不再是一个孩子，而是一个神奇的影子，可以同时出现在花园的一千个地方！这是<strong>通向一个崭新而奇妙世界的开端</strong>，我们今天仍在研究它。"
+            ]
+          }
+        },
+        "conclusion": "这段漫长的冒险告诉我们，科学是由许多人共同一点一点地建造知识城堡的过程。谁知道你们将来会发现什么呢！"
+      },
+      "footer": {
+        "line1": "原子课程——为小学五年级学生制作",
+        "line2": "为DSA和BES学生优化的设计",
+        "line3": "🌍 带紧凑菜单的多语言版本"
+      },
+      "voiceButtons": {
+        "play": "🔊",
+        "stop": "⏹️",
+        "playTitle": "收听本节",
+        "stopTitle": "停止收听"
+      }
+    },
+    "ar": {
+      "page": {
+        "title": "اللبنة الخفية لكل شيء! الذرة",
+        "subtitle": "درسة تفاعلية لعلماء شباب"
+      },
+      "languageSelector": {
+        "title": "🌍 اختر اللغة",
+        "browserHint": "💡 <strong>نصيحة:</strong> للحصول على أفضل تجربة صوتية بجميع اللغات، استخدم Google Chrome"
+      },
+      "sections": {
+        "introduzione": {
+          "title": "مرحبًا علماء في مهمة!",
+          "content": [
+            "اليوم نتحدث عن أصغر وأقوى سر في الكون كله. إنه صغير جدًا لدرجة أننا لا نستطيع رؤيته، لكنه مثل <strong>بطل خارق خفي</strong> يمسك بكل ما حولنا! سنتحدث عن <strong>الذرة</strong>.",
+            "تخيل أنك تحتاج لبناء قلعة عملاقة من LEGO. من أين تبدأ؟ من <strong>اللبنات</strong>، أليس كذلك؟ الحقيقة أن الذرة هي <strong>أصغر لبنة موجودة</strong> لبناء... حسنًا، كل شيء! قلمك، الهواء الذي تتنفسه، آيس كريمك المفضل، وحتى أنت نفسك! أنت مكوّن من مليارات المليارات من هذه اللبنات الخفية."
+          ]
+        },
+        "struttura-atomo": {
+          "title": "من ماذا تُصنع الذرة؟ عائلة صغيرة",
+          "intro": "رغم أنها صغيرة جدًا، داخل الذرة عالم كامل! تخيلها كـ <strong>كرة سلة</strong> عملاقة (هذه هي عائلة الذرة بالكامل).",
+          "subsections": {
+            "nucleo": {
+              "title": "النواة: قلب المنزل",
+              "content": "في منتصف الكرة توجد نقطة صغيرة جدًا، مثل رأس دبوس. هذه هي <strong>النواة</strong>. إنها <strong>رب الأسرة</strong> في الذرة. ثقيلة، دائمًا في المنتصف، ولا تتحرك تقريبًا. مثل الأب أو الأم الجالسين على الأريكة، يراقبان كل شيء."
+            },
+            "protoni": {
+              "title": "البروتونات: الوالدان مع \"بطاقة الاسم\"",
+              "content": "داخل النواة توجد <strong>البروتونات</strong>. البروتونات مهمة جدًا لأنها تقرر <strong>ما نوع هذه الذرة</strong>. إنها مثل <strong>لقب العائلة</strong>. إذا كان اسم العائلة \"أكسجين\"، فالجميع يعلم أنها عائلة الهواء. إذا كان \"كربون\"، فهي عائلة خشب قلمك. عدد البروتونات يخبرنا بلقب الذرة."
+            },
+            "elettroni": {
+              "title": "الإلكترونات: الأطفال المفعمون بالطاقة يلعبون في الحديقة",
+              "content": "حول النواة، بعيدًا جدًا، توجد <strong>الإلكترونات</strong>. إنها خفيفة جدًا وتتحرك بسرعة كبيرة، مثل أطفال مليئين بالطاقة يركضون حول المنزل! حديقتهم ضخمة مقارنة بالنواة الصغيرة. لديهم عمل مهم: عندما تقترب الذرات، تُمسك الإلكترونات \"بأيدي بعضها\" لتكوين روابط، مثلما تمسك بيد صديق لتُكوّن دائرة."
+            },
+            "neutroni": {
+              "title": "النيوترونات: الوالدان \"السوبر\" اللذان يساعدان في إبقاء العائلة معًا",
+              "content": "في النواة، مع البروتونات، توجد <strong>النيوترونات</strong>. اسمها يعني \"محايد\"، أي لا تأخذ جانبًا. تخيل أن البروتونات (التي تحمل شحنة موجبة) تتنافر مثلما عندما تحاول تقريب مغناطيسين من نفس القطب. النيوترونات مثل <strong>العناق</strong> التي تُهدّئ وتبقي النواة متحدة، مما يمنع البروتونات من الابتعاد."
+            }
+          }
+        },
+        "superpoteri-atomi": {
+          "title": "القوى الخارقة للذرات",
+          "intro": "كل عائلة-ذرة لها طابعها وقوتها الخارقة الخاصة!",
+          "subsections": {
+            "leggero-pesante": {
+              "title": "قوة خارقة 1: أن تكون خفيفًا أو ثقيلًا",
+              "content": "بعض عائلات الذرات صغيرة وخفيفة، مثل عائلة \"الهيدروجين” (وهي الأصغر على الإطلاق!). أخرى ضخمة وثقيلة، مثل عائلة \"اليورانيوم”. الفرق كالفرق بين ريشة وقاموس! الوزن يعتمد على عدد \"أفراد العائلة” (البروتونات والنيوترونات) في النواة."
+            },
+            "attrarsi-respingersi": {
+              "title": "قوة خارقة 2: التجاذب أو التنافر",
+              "content": "تتذكر الإلكترونات، الأطفال المفعمين بالطاقة؟ لديهم شحنة كهربائية سالبة. البروتونات في النواة لها شحنة موجبة.",
+              "metafora": "<strong>استعارة المغانط:</strong> كأنك تمتلك مغناطيس! بروتونان (++)، مثل قطبين متشابهين في المغناطيس، <strong>يتنافران</strong>. بروتون (+) وإلكترون (-)، مثل القطبين المتعاكسين، <strong>يتجاذبان</strong>. لهذا السبب لا تهرب الإلكترونات: إنها \"مُجذَبة\" نحو النواة!"
+            },
+            "unirsi-molecole": {
+              "title": "قوة خارقة 3: الاتحاد لتكوين الجزيئات",
+              "content": "ذرة وحدها مثل طفل وحيد في الحديقة. لكن عندما تلتقي بذرات أخرى، ربما من عائلة أخرى، يمكن أن تتحد! الإلكترونات \"تمسك بأيدي بعضها\" وتُكوّن مجموعات قوية تُسمى <strong>الجزيئات</strong>.",
+              "metafora": "<strong>استعارة مكعبات LEGO:</strong>",
+              "legoExamples": [
+                "ذرة <strong>الأكسجين</strong> (O) هي مكعب أحمر.",
+                "ذرة <strong>الهيدروجين</strong> (H) هي مكعب أبيض.",
+                "إذا أخذتَ <strong>مكعبًا أحمر (O)</strong> و<strong>مكعبين أبيضين (H)</strong> ووصلتهما، ماذا تحصل؟ <strong>H₂O</strong>... وهي <strong>جزيئة ماء</strong>! هكذا تتكون قطرة مطر."
+              ]
+            }
+          }
+        },
+        "video": {
+          "title": "الذرات! فيديو يشرح كل شيء في 4 دقائق",
+          "clickHint": "انقر على الصورة لمشاهدة فيديو \"Facciamo Scienze\" على YouTube"
+        },
+        "periodica": {
+          "title": "لكن كم عدد الذرات الموجودة؟",
+          "content": [
+            "الجدول الدوري هو قائمة \"عائلات\" الذرات، يُظهر لنا 118 لبنة مختلفة (العناصر). بهذه اللبنات الـ118، وبمزجها بطرق مختلفة، يمكن بناء كل ما يوجد في العالم، من الغيوم إلى النجوم، من قلمك إلى جسمك!",
+            "الجدول الدوري كأنه ألبوم ملصقات لكل العناصر الموجودة في الكون، من الأكسجين الذي نتنفسه إلى الذهب في الحلي. لكل عنصر صندوقه الخاص برمز ورقم يخبراننا بكيفية تكوّنه. وعند ترتيبهم، يُظهر لنا كيف \"تتقارب قرابتهم”!"
+          ],
+          "button": "🔍 استكشف الجدول الدوري التفاعلي!",
+          "buttonHint": "انقر هنا لرؤية كل العناصر مع الألعاب والحقائق الممتعة!"
+        },
+        "attivita-pratica": {
+          "title": "نشاط عملي: لنبني ذرة من الصلصال!",
+          "materials": "<strong>المواد:</strong> صلصال بثلاث ألوان مختلفة (مثلاً أحمر، أزرق، أخضر) وقطعة من الكرتون.",
+          "steps": [
+            "<strong>اختر \"لقب-ذرتك\"</strong>: اليوم سنبني ذرة <strong>الأكسجين</strong>، التي تحتوي على 8 بروتونات.",
+            "<strong>اصنع النواة</strong>: خذ الصلصال الأحمر والأزرق. اصنع 8 كرات حمراء (البروتونات) و8 زرقاء (النيوترونات). اعجنهم معًا لتكوين نواة ثقيلة واحدة. ثبّتها في منتصف الكرتون.",
+            "<strong>أضف الإلكترونات</strong>: خذ الصلصال الأخضر. اصنع 8 كرات خضراء أصغر (الإلكترونات). ثبّتها على الكرتون على شكل دائرة كبيرة (\"حلقة\") حول النواة."
+          ],
+          "conclusion": "تم! لقد صنعت للتو ذرة أكسجين خاصة بك."
+        }
+      },
+      "quiz": {
+        "title": "اختبار: هل أنت خبير في الذرات؟",
+        "questions": {
+          "1": {
+            "text": "1. الذرة تشبه...",
+            "options": [
+              "أ) قلعة رملية كبيرة.",
+              "ب) أصغر لبنة LEGO على الإطلاق.",
+              "ج) سوبرماركت مليء بالأشياء."
+            ]
+          },
+          "2": {
+            "text": "2. من هو \"رب الأسرة\" الذي يبقى دائمًا في مركز الذرة؟",
+            "options": [
+              "أ) الإلكترونات",
+              "ب) النواة",
+              "ج) النيوترونات"
+            ]
+          },
+          "3": {
+            "text": "3. البروتونات مهمة لأن...",
+            "options": [
+              "أ) تركض بسرعة حول النواة.",
+              "ب) تقرر \"لقب\" عائلة-الذرة.",
+              "ج) خفيفة مثل الريشة."
+            ]
+          },
+          "4": {
+            "text": "4. ماذا تفعل الإلكترونات عندما تتحد الذرات؟",
+            "options": [
+              "أ) تختبئ في النواة.",
+              "ب) تدفع كل الذرات الأخرى بعيدًا.",
+              "ج) \"تمسك بالأيدي\" لتكوين الجزيئات."
+            ]
+          },
+          "5": {
+            "text": "5. إذا وحدت مكعبًا أحمر (أكسجين) واثنين أبيضين (هيدروجين)، ماذا أحصل؟",
+            "options": [
+              "أ) هواء",
+              "ب) ماء (H₂O)",
+              "ج) خشب"
+            ]
+          },
+          "6": {
+            "text": "6. النيوترونات مفيدة لـ...",
+            "options": [
+              "أ) التمرد مثل الأطفال المفعمين بالطاقة.",
+              "ب) إبقاء النواة متحدة، مثل العناق.",
+              "ج) تحديد لقب الذرة."
+            ]
+          }
+        },
+        "feedback": {
+          "correct": "أحسنت! إجابة صحيحة! أنت عالم حقيقي!",
+          "incorrect": "لا تقلق! حاول مجددًا، التعلم مغامرة!"
+        },
+        "checkButton": "تحقق من كل الإجابات",
+        "results": {
+          "title": "الإجابات الصحيحة:",
+          "answers": [
+            "<strong>ب)</strong> أصغر لبنة LEGO على الإطلاق.",
+            "<strong>ب)</strong> النواة.",
+            "<strong>ب)</strong> تقرر \"لقب\" عائلة-الذرة.",
+            "<strong>ج)</strong> \"تمسك بالأيدي\" لتكوين الجزيئات.",
+            "<strong>ب)</strong> ماء (H₂O).",
+            "<strong>ب)</strong> إبقاء النواة متحدة، مثل العناق."
+          ],
+          "summary": {
+            "perfect": "تهانينا! أنت خبير في الذرات!",
+            "good": "أحسنت! أنت تصبح عالمًا حقيقيًا!",
+            "average": "واصل الدراسة، ستصبح عالمًا عظيمًا!"
+          }
+        }
+      },
+      "storia-scienziati": {
+        "title": "آلة الزمن: قصة الذرة",
+        "intro": "اكتشاف الذرة كان رحلة طويلة ورائعة للبحث عن الكنز، مليئة بالمفاجآت والعقول البارعة. إليك المحطات الرئيسية!",
+        "scientists": {
+          "democrito": {
+            "name": "الحدس: ديموقريطس (حوالى 400 ق.م)",
+            "period": "اليونان القديمة",
+            "description": [
+              "<strong>من كان:</strong> فيلسوف يوناني، نوعًا ما مثل محقق أفكار قديم.",
+              "<strong>فكرته:</strong> تخيل أن كل شيء مصنوع من جزيئات <strong>غير قابلة للتجزئة</strong>، أطلق عليها اسم \"ذرات”. لم يكن لديه دليل، فقط حدس عظيم! كانت هذه هي <strong>الخطوة الأولى</strong>."
+            ]
+          },
+          "dalton": {
+            "name": "أبو النظرية الحديثة: جون دالتون (1803)",
+            "period": "إنجلترا، 1803",
+            "description": [
+              "<strong>من كان:</strong> معلم إنجليزي أحب إجراء التجارب.",
+              "<strong>اكتشافه:</strong> من خلال تجارب كيميائية، فهم أن الذرات موجودة حقًا، وأن العناصر المختلفة لها ذرات مختلفة. كان هو من قال: \"كل شيء مصنوع من الذرات، إنها البطل الحقيقي!\". كانت هذه <strong>الخطوة الثانية، الأكثر أمانًا</strong>."
+            ]
+          },
+          "thomson": {
+            "name": "المفاجأة: ج. ج. تومسون (1897)",
+            "period": "إنجلترا، 1897",
+            "description": [
+              "<strong>من كان:</strong> عالم فضولي كان يدرس الكهرباء.",
+              "<strong>اكتشافه:</strong> اكتشف أن داخل الذرة توجد جزيئات أصغر حجمًا وذات شحنة سالبة: <strong>الإلكترونات</strong>! كان هذا يعني أن الذرة <strong>ليست</strong> غير قابلة للتجزئة، بل لها أجزاء. كان اكتشافه <strong>الخطوة الثالثة التي غيّرت كل شيء</strong>. تخيل الذرة كـ\"الهريس بالزبيب\" مع الإلكترونات كزبيب مبعثر بداخلها."
+            ]
+          },
+          "rutherford": {
+            "name": "النواة في المركز: إرنست رذرفورد (1911)",
+            "period": "نيوزيلندا/إنجلترا، 1911",
+            "description": [
+              "<strong>من كان:</strong> عالم لديه تجربة عبقرية.",
+              "<strong>اكتشافه:</strong> أطلق جسيمات مجهرية على صفيحة ذهبية. كان يتوقع أن تمر جميعها، كرصاصة تخترق سحابة. لكن بعضها ارتدّ! صرخ: \"كأنني أطلقت مدفعًا على منديل وعادت الرصاصة إليّ!”. فهم أنه لا بد من وجود <strong>نواة</strong> صغيرة وكثيفة وموجبة في المركز. كان <strong>اكتشافًا ثوريًا</strong>!"
+            ]
+          },
+          "bohr": {
+            "name": "النظام الشمسي المصغّر: نيلز بور (1913)",
+            "period": "الدنمارك، 1913",
+            "description": [
+              "<strong>من كان:</strong> عالم دنماركي بارع عمل مع رذرفورد.",
+              "<strong>فكرته:</strong> قال: \"نموذج رذرفورد غير مستقر!\". اقترح أن الإلكترونات لا تطير في أي مكان، بل تتحرك في <strong>مدارات محددة</strong>، مثل الكواكب حول الشمس. هذا النموذج، البسيط والواضح، هو ما نستخدمه اليوم لشرح الأساسيات. كانت <strong>خطوة لجعل كل شيء أوضح</strong>."
+            ]
+          },
+          "quantistica": {
+            "name": "العالم الغريب: ميكانيكا الكم (عشرينيات القرن العشرين)",
+            "period": "أوروبا، عشرينيات القرن العشرين",
+            "description": [
+              "<strong>من كانوا:</strong> مجموعة من العلماء الشباب والأشجع مثل هايزنبرغ وشرودنغر.",
+              "<strong>اكتشافهم:</strong> ذهبوا أعمق واكتشفوا أن في العالم الصغير للذرات، القواعد... غريبة! الإلكترونات ليست كرات، بل تتصرف كـ<strong>أمواج</strong> وكـ<strong>جسيمات</strong>. لا توجد في نقطة محددة، بل \"تتجسد" في <strong>سحابة احتمالية</strong>. كأن الطفل المفعم بالطاقة لم يعد طفلًا، بل ظلًا سحريًا يمكن أن يكون في ألف مكان في الحديقة في آنٍ واحد! كانت <strong>البداية لعالم جديد ورائع</strong> ما زلنا ندرسه حتى اليوم."
+            ]
+          }
+        },
+        "conclusion": "هذه المغامرة الطويلة تعلمنا أن العلم يصنعه كثير من الناس يبنون معًا، قطعة قطعة، قلعة المعرفة. ومن يدري ما هي الاكتشافات التي ستقومون بها أنتم في المستقبل!"
+      },
+      "footer": {
+        "line1": "درس الذرات - مُعدّ لطلاب الصف الخامس الابتدائي",
+        "line2": "تصميم مُحسّن لطلاب DSA وBES",
+        "line3": "🌍 نسخة متعددة اللغات مع قائمة مضغوطة"
+      },
+      "voiceButtons": {
+        "play": "🔊",
+        "stop": "⏹️",
+        "playTitle": "استمع لهذا القسم",
+        "stopTitle": "أوقف الاستماع"
+      }
+    }
+  }
+}
