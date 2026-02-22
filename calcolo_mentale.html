@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+<head>
+  <meta charset="utf-8"/>
+  <title>Calcolo mentale - Maestro Luciano</title>
+  <style>
+    /* STILI GENERALI */
+    body {
+      margin: 0;
+      background: linear-gradient(90deg, #1b5e20, #a5d6a7);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      overflow: auto;
+    }
+
+    .hindi, .devanagari { font-family: 'Segoe UI', 'Nirmala UI', 'Mangal', 'Kokila', 'Utsaah', sans-serif; }
+    .arabic { font-family: 'Segoe UI', 'Traditional Arabic', 'Amiri', 'Scheherazade', sans-serif; }
+    .chinese { font-family: 'Segoe UI', 'Microsoft YaHei', 'SimHei', sans-serif; }
+
+    #stage {
+      position: relative;
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin: 6px 0;
+      font-size: 1.8em;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* ---------- SCHERMATE ---------- */
+    .screen {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #screen1 { display: flex; }
+    #screen2 { display: none; }
+    #screen3 { display: none; }
+
+    /* QUADRATO NERO TRASPARENTE (benvenuto) - larghezza uguale al menu lingue */
+    .welcome-box {
+      background: rgba(0,0,0,0.75);
+      border-radius: 30px;
+      padding: 30px 20px;
+      margin: 30px auto;
+      width: 100%;
+      max-width: 700px;
+      box-sizing: border-box;
+      color: white;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    .welcome-message {
+      font-size: 1.8em;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    #welcome-name {
+      font-size: 1.5em;
+      padding: 12px 20px;
+      border: 3px solid #0288d1;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 350px;
+      margin-bottom: 25px;
+    }
+
+    #start-btn {
+      font-size: 1.8em;
+      padding: 15px 40px;
+      background: #f57c00;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: 0.2s;
+    }
+    #start-btn:hover { background: #e65100; transform: scale(1.05); }
+
+    /* ---------- NUOVO LAYOUT SECONDA SCHERMATA ---------- */
+    /* Contenitore flessibile per i primi 3 blocchi (punteggio, operazione, difficoltà) */
+    .top-row-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      gap: 15px;
+      margin: 10px auto;
+      width: 100%;
+    }
+
+    /* Stile comune per i tre blocchi: stessa altezza, stesso look */
+    .top-row-item {
+      background: rgba(255,255,255,0.9);
+      border-radius: 30px;          /* stessa forma */
+      padding: 8px 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      min-height: 60px;            /* stessa altezza minima */
+      box-sizing: border-box;
+    }
+
+    /* Rimuovo gli stili precedenti che davano sfondo e dimensioni individuali */
+    #player-section, .settings-row {
+      background: transparent;     /* lo sfondo viene da .top-row-item */
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      width: auto;
+      margin: 0;
+    }
+
+    /* Mantengo i layout interni dei singoli componenti */
+    .score-board {
+      background: #e1f5fe;
+      padding: 6px 16px;
+      border-radius: 30px;
+      color: #01579b;
+      font-weight: bold;
+      font-size: 1.1em;
+      border: 2px solid #0288d1;
+      display: inline-flex;
+      gap: 15px;
+    }
+
+    .settings-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .settings-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .settings-label {
+      font-weight: bold;
+      color: #1b5e20;
+      font-size: 1.1em;
+    }
+
+    /* Checkbox per cambio/prestito */
+    .difficulty-check {
+      display: flex;
+      gap: 20px;
+    }
+
+    .difficulty-check label {
+      background: white;
+      padding: 6px 12px;
+      border-radius: 25px;
+      border: 1px solid #0288d1;
+      cursor: pointer;
+      font-size: 0.95em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Selettore cifre */
+    #digit-selector {
+      margin: 5px auto;
+      padding: 8px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 15px;
+      width: fit-content;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .digit-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .digit-btn {
+      padding: 8px 16px;
+      border: 2px solid #0288d1;
+      border-radius: 12px;
+      background: white;
+      color: #01579b;
+      cursor: pointer;
+      font-size: 1.1em;
+      font-weight: bold;
+      min-width: 50px;
+    }
+    .digit-btn.active {
+      background: #0288d1;
+      color: white;
+    }
+
+    /* Area quiz */
+    #quiz-container {
+      background: rgba(255,255,255,0.9);
+      border-radius: 25px;
+      padding: 18px;
+      margin: 8px auto;
+      width: 92%;
+      max-width: 1000px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .operation-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    #operation {
+      font-size: 2.8em;
+      font-weight: bold;
+      color: #01579b;
+      text-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+    }
+
+    #speak-btn {
+      font-size: 2em;
+      padding: 0 10px;
+      background: none;
+      border: 2px solid #0288d1;
+      border-radius: 50%;
+      background: white;
+      color: #01579b;
+      cursor: pointer;
+      width: 60px;
+      height: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .decomp-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+
+    .decomp-item {
+      background: #e1f5fe;
+      padding: 10px 16px;
+      border-radius: 20px;
+      border: 2px solid #0288d1;
+      color: #01579b;
+    }
+
+    #answer-area {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    #answer-input {
+      font-size: 1.8em;
+      width: 150px;
+      padding: 6px 12px;
+      border: 3px solid #0288d1;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    #check-btn {
+      font-size: 1.5em;
+      padding: 8px 25px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    #check-btn:hover { background: #1b5e20; transform: scale(1.05); }
+
+    #feedback {
+      font-size: 1.3em;
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 15px;
+      background: #fff9c4;
+      color: #bf360c;
+      font-weight: bold;
+    }
+
+    #new-problem-btn {
+      font-size: 1.3em;
+      padding: 10px 22px;
+      background: #f57c00;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      margin: 10px auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Pulsanti aggiuntivi */
+    #controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 10px 0 15px;
+    }
+
+    .control-btn {
+      font-size: 2em;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 50%;
+      background: #0288d1;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    #help-btn {
+      font-size: 1.5em;
+      padding: 12px 30px;
+      background: #6a1b9a;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      margin: 15px auto 5px;
+      cursor: pointer;
+    }
+
+    /* ---------- MENU LINGUA STATICO (SENZA SCROLL ORIZZONTALE) ---------- */
+    #language-selector, #language-selector2 {
+      margin: 20px auto;
+      padding: 15px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 700px;
+      box-sizing: border-box;
+      border: 2px solid #e8f5e9;
+    }
+
+    #language-buttons, #language-buttons2 {
+      display: flex;
+      flex-wrap: wrap;            /* I pulsanti vanno a capo se necessario */
+      justify-content: center;    /* Centrati orizzontalmente */
+      gap: 8px;
+      margin-top: 8px;
+      white-space: normal;       /* Testo normale */
+      overflow-x: visible;       /* Nessuno scroll */
+    }
+
+    .lang-btn {
+      padding: 6px 12px;         /* Leggermente più grandi per comfort */
+      border: 2px solid #5d8a82;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      color: #1b5e20;
+      cursor: pointer;
+      font-size: 0.9em;
+      font-weight: 600;
+      flex: 0 0 auto;           /* Non si allargano/stringono */
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      color: #fff;
+    }
+
+    [dir="rtl"] { text-align: right; }
+    .browser-warning { font-size: 0.8em; color: #666; }
+
+    /* ---------- SCHERMATA AIUTO (screen3) ---------- */
+    #screen3 {
+      background: rgba(0,0,0,0.8);
+      border-radius: 30px;
+      padding: 30px;
+      color: white;
+      max-width: 800px;
+      margin: 20px auto;
+      text-align: left;
+    }
+    #screen3 h2 {
+      color: #ffb74d;
+      text-align: center;
+      font-size: 2em;
+    }
+    #screen3 .help-content {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 20px;
+      margin: 20px 0;
+      line-height: 1.8;
+    }
+    #screen3 button {
+      font-size: 1.5em;
+      padding: 12px 30px;
+      background: #f57c00;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    #screen3 .listen-help {
+      background: #0288d1;
+    }
+  </style>
+</head>
+<body>
+<div id="stage">
+  <!-- ========== SCHERMATA 1: BENVENUTO ========== -->
+  <div id="screen1" class="screen">
+    <div class="welcome-box">
+      <div class="welcome-message" id="welcome-message">Sai fare i calcoli a mente?<br>scrivi il tuo nome e premi Iniziamo!</div>
+      <input type="text" id="welcome-name" placeholder="Il tuo nome" value="" autofocus>
+      <button id="start-btn">🚀 Iniziamo</button>
+    </div>
+    <!-- Selettore lingua (identico a screen2) -->
+    <div id="language-selector">
+      <div style="font-size: 1.2em; margin-bottom: 8px; font-weight: bold; color: #1b5e20;">🌍 Lingua / Language</div>
+      <div id="language-buttons"></div>
+      <div class="browser-warning">💡 Chrome offre la migliore sintesi vocale</div>
+    </div>
+  </div>
+
+  <!-- ========== SCHERMATA 2: QUIZ ========== -->
+  <div id="screen2" class="screen">
+    <h1 id="main-title">Calcolo mentale con maestro Luciano</h1>
+
+    <!-- WRAPPER: i primi tre div sulla stessa riga -->
+    <div class="top-row-wrapper">
+      <!-- Punteggio -->
+      <div id="player-section" class="top-row-item">
+        <div class="score-board">
+          <span class="score-item">🎯 <span id="score-points">0</span> pt</span>
+          <span class="score-item">📋 <span id="total-answers">0</span></span>
+          <span class="score-item">✅ <span id="correct-answers">0</span></span>
+          <span class="score-item">❌ <span id="wrong-answers">0</span></span>
+        </div>
+      </div>
+
+      <!-- RIGA SCELTA OPERAZIONE (ADDIZIONE / SOTTRAZIONE) -->
+      <div class="settings-row top-row-item" id="operation-row">
+        <div class="settings-group">
+          <span class="settings-label" id="operation-label">🧮 Operazione:</span>
+          <div class="radio-group" id="operation-choices">
+            <label><input type="radio" name="operation" value="add" checked> ➕ Addizione</label>
+            <label><input type="radio" name="operation" value="sub"> ➖ Sottrazione</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGA DIFFICOLTÀ: CAMBIO E PRESTITO -->
+      <div class="settings-row top-row-item" id="difficulty-row">
+        <div class="settings-group">
+          <span class="settings-label" id="diff-label">⚙ Difficoltà:</span>
+          <div class="difficulty-check">
+            <label>
+              <input type="checkbox" id="carry-checkbox"> 
+              <span id="carry-label">➕ Con cambio</span>
+            </label>
+            <label>
+              <input type="checkbox" id="borrow-checkbox"> 
+              <span id="borrow-label">➖ Con prestito</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div> <!-- fine top-row-wrapper -->
+
+    <!-- Selettore numero di cifre -->
+    <div id="digit-selector">
+      <div style="font-size: 1.2em; font-weight: bold; color: #1b5e20;" id="digit-label">🔢 Scegli il numero di cifre</div>
+      <div class="digit-buttons" id="digit-buttons">
+        <button class="digit-btn active" data-digits="1">1</button>
+        <button class="digit-btn" data-digits="2">2</button>
+        <button class="digit-btn" data-digits="3">3</button>
+        <button class="digit-btn" data-digits="4">4</button>
+        <button class="digit-btn" data-digits="5">5</button>
+        <button class="digit-btn" data-digits="6">6</button>
+      </div>
+    </div>
+
+    <!-- Area principale del quiz -->
+    <div id="quiz-container">
+      <div class="operation-wrapper">
+        <span id="operation">12 + 34 = ?</span>
+        <button id="speak-btn" title="Ascolta il problema">🔊</button>
+      </div>
+      <div class="decomp-box" id="decomp-box">
+        <div class="decomp-item" id="decomp1">12 = 1da + 2u</div>
+        <div class="decomp-item" id="decomp2">34 = 3da + 4u</div>
+      </div>
+      <div id="answer-area">
+        <input type="number" id="answer-input" placeholder="?" value="">
+        <button id="check-btn">✅ Verifica</button>
+      </div>
+      <div id="feedback">🧠 Inserisci il risultato e verifica!</div>
+      <button id="new-problem-btn">🔄 Nuova operazione</button>
+    </div>
+
+    <!-- Pulsante Aiuto -->
+    <button id="help-btn">❓ Aiuto</button>
+
+    <!-- Selettore lingua (identico a screen1) -->
+    <div id="language-selector2">
+      <div style="font-size: 1.2em; margin-bottom: 8px; font-weight: bold; color: #1b5e20;">🌍 Lingua / Language</div>
+      <div id="language-buttons2"></div>
+      <div class="browser-warning">💡 Chrome offre la migliore sintesi vocale</div>
+    </div>
+  </div>
+
+  <!-- ========== SCHERMATA 3: AIUTO ========== -->
+  <div id="screen3" class="screen">
+    <h2 id="help-title">🧠 Tecniche di calcolo mentale</h2>
+    <div class="help-content" id="help-text">
+      <p><strong>Addizione:</strong> Per sommare numeri a più cifre, puoi scomporli in unità, decine, centinaia... e sommare separatamente. Esempio: 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83. Se c'è un cambio, ricordati di aggiungerlo alla colonna successiva.</p>
+      <p><strong>Sottrazione:</strong> Per sottrarre, puoi usare due strategie. Se non serve il prestito, scomponi i numeri: esempio 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31. Se invece serve il prestito, applica la proprietà invariantiva: aggiungi lo stesso numero a entrambi i termini per ottenere un calcolo più semplice. Esempio: 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26.</p>
+    </div>
+    <div>
+      <button class="listen-help" id="listen-help-btn">🔊 Ascolta spiegazione</button>
+      <button id="back-to-quiz-btn">🔁 Ricominciamo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ---------- STATO GLOBALE ----------
+  let currentLang = 'it';
+  let playing = true;
+  let currentDigits = 1;                 // default 1
+  let currentProblem = { num1: 1, num2: 2, op: '+', result: 3 };
+  let playerName = "Studente";
+  let score = 0, totalAnswers = 0, correctCount = 0, wrongCount = 0;
+
+  // OPERAZIONE CORRENTE ('add' o 'sub')
+  let currentOperation = 'add';
+
+  // STATO CHECKBOX DIFFICOLTÀ
+  let carryEnabled = false;               // default false
+  let borrowEnabled = false;              // default false
+
+  // ---------- TRADUZIONI COMPLETE (11 LINGUE) ----------
+  const translations = {
+    it: {
+      title: "Calcolo mentale con maestro Luciano",
+      digitLabel: "🔢 Scegli il numero di cifre",
+      newProblem: "🔄 Nuova operazione",
+      check: "✅ Verifica",
+      operationLabel: "🧮 Operazione:",
+      addOp: "➕ Addizione",
+      subOp: "➖ Sottrazione",
+      diffLabel: "⚙ Difficoltà:",
+      diffCarry: "➕ Con cambio",
+      diffBorrow: "➖ Con prestito",
+      correct: "✅ Corretto!",
+      incorrect: "❌ Sbagliato",
+      answerIs: "Il risultato è",
+      feedbackCorrect: "Ottimo, {nome}! Continua così!",
+      feedbackIncorrect: "Riprova, {nome}! Continua ad allenarti!",
+      units: "u", tens: "da", hundreds: "h", thousands: "k",
+      tenThousands: "dk", hundredThousands: "hk",
+      direction: "ltr",
+      welcomeMsg: "Sai fare i calcoli a mente?<br>scrivi il tuo nome e premi Iniziamo!",
+      startBtn: "🚀 Iniziamo",
+      helpBtn: "❓ Aiuto",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? 'più' : 'meno'} ${n2} uguale a ?`,
+      // Aiuto
+      helpTitle: "🧠 Tecniche di calcolo mentale",
+      helpText: "<p><strong>Addizione:</strong> Per sommare numeri a più cifre, puoi scomporli in unità, decine, centinaia... e sommare separatamente. Esempio: 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83. Se c'è un cambio, ricordati di aggiungerlo alla colonna successiva.</p><p><strong>Sottrazione:</strong> Per sottrarre, puoi usare due strategie. Se non serve il prestito, scomponi i numeri: esempio 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31. Se invece serve il prestito, applica la proprietà invariantiva: aggiungi lo stesso numero a entrambi i termini per ottenere un calcolo più semplice. Esempio: 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26.</p>",
+      listenHelpBtn: "🔊 Ascolta spiegazione",
+      backToQuizBtn: "🔁 Ricominciamo"
+    },
+    en: {
+      title: "Mental Math with Maestro Luciano",
+      digitLabel: "🔢 Choose number of digits",
+      newProblem: "🔄 New operation",
+      check: "✅ Check",
+      operationLabel: "🧮 Operation:",
+      addOp: "➕ Addition",
+      subOp: "➖ Subtraction",
+      diffLabel: "⚙ Difficulty:",
+      diffCarry: "➕ With carry",
+      diffBorrow: "➖ With borrow",
+      correct: "✅ Correct!",
+      incorrect: "❌ Incorrect",
+      answerIs: "The answer is",
+      feedbackCorrect: "Great, {nome}! Keep it up!",
+      feedbackIncorrect: "Try again, {nome}! Keep practicing!",
+      units: "u", tens: "t", hundreds: "h", thousands: "k",
+      tenThousands: "tk", hundredThousands: "hk",
+      direction: "ltr",
+      welcomeMsg: "Can you do mental math?<br>enter your name and press Start!",
+      startBtn: "🚀 Start",
+      helpBtn: "❓ Help",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? 'plus' : 'minus'} ${n2} equals ?`,
+      helpTitle: "🧠 Mental Math Techniques",
+      helpText: "<p><strong>Addition:</strong> To add multi-digit numbers, you can break them into units, tens, hundreds... and add separately. Example: 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83. If there is a carry, remember to add it to the next column.</p><p><strong>Subtraction:</strong> For subtraction, you can use two strategies. If no borrowing is needed, decompose the numbers: example 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31. If borrowing is needed, use the invariant property: add the same number to both terms to get a simpler calculation. Example: 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26.</p>",
+      listenHelpBtn: "🔊 Listen to explanation",
+      backToQuizBtn: "🔁 Back to quiz"
+    },
+    fr: {
+      title: "Calcul mental avec Maestro Luciano",
+      digitLabel: "🔢 Choisis le nombre de chiffres",
+      newProblem: "🔄 Nouvelle opération",
+      check: "✅ Vérifier",
+      operationLabel: "🧮 Opération:",
+      addOp: "➕ Addition",
+      subOp: "➖ Soustraction",
+      diffLabel: "⚙ Difficulté:",
+      diffCarry: "➕ Avec retenue",
+      diffBorrow: "➖ Avec emprunt",
+      correct: "✅ Correct!",
+      incorrect: "❌ Faux",
+      answerIs: "La réponse est",
+      feedbackCorrect: "Excellent, {nome}! Continue comme ça!",
+      feedbackIncorrect: "Essaie encore, {nome}! Continue à t'entraîner!",
+      units: "u", tens: "d", hundreds: "c", thousands: "m",
+      tenThousands: "dm", hundredThousands: "cm",
+      direction: "ltr",
+      welcomeMsg: "Sais-tu calculer mentalement?<br>entre ton nom et appuie sur Commencer!",
+      startBtn: "🚀 Commencer",
+      helpBtn: "❓ Aide",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? 'plus' : 'moins'} ${n2} égale ?`,
+      helpTitle: "🧠 Techniques de calcul mental",
+      helpText: "<p><strong>Addition :</strong> Pour additionner des nombres à plusieurs chiffres, décompose-les en unités, dizaines, centaines... et additionne séparément. Exemple : 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83. S'il y a une retenue, n'oublie pas de l'ajouter à la colonne suivante.</p><p><strong>Soustraction :</strong> Pour soustraire, tu peux utiliser deux stratégies. Si aucun emprunt n'est nécessaire, décompose les nombres : exemple 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31. Si un emprunt est nécessaire, applique la propriété d'invariance : ajoute le même nombre aux deux termes pour obtenir un calcul plus simple. Exemple : 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26.</p>",
+      listenHelpBtn: "🔊 Écouter l'explication",
+      backToQuizBtn: "🔁 Retour au quiz"
+    },
+    de: {
+      title: "Kopfrechnen mit Maestro Luciano",
+      digitLabel: "🔢 Wähle die Anzahl der Ziffern",
+      newProblem: "🔄 Neue Aufgabe",
+      check: "✅ Prüfen",
+      operationLabel: "🧮 Operation:",
+      addOp: "➕ Addition",
+      subOp: "➖ Subtraktion",
+      diffLabel: "⚙ Schwierigkeit:",
+      diffCarry: "➕ Mit Übertrag",
+      diffBorrow: "➖ Mit Borgen",
+      correct: "✅ Richtig!",
+      incorrect: "❌ Falsch",
+      answerIs: "Das Ergebnis ist",
+      feedbackCorrect: "Großartig, {nome}! Weiter so!",
+      feedbackIncorrect: "Versuche es noch einmal, {nome}! Übe weiter!",
+      units: "E", tens: "Z", hundreds: "H", thousands: "T",
+      tenThousands: "ZT", hundredThousands: "HT",
+      direction: "ltr",
+      welcomeMsg: "Kannst du Kopfrechnen?<br>Gib deinen Namen ein und drücke Los!",
+      startBtn: "🚀 Los",
+      helpBtn: "❓ Hilfe",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? 'plus' : 'minus'} ${n2} ergibt ?`,
+      helpTitle: "🧠 Kopfrechentechniken",
+      helpText: "<p><strong>Addition:</strong> Um mehrstellige Zahlen zu addieren, zerlege sie in Einer, Zehner, Hunderter ... und addiere getrennt. Beispiel: 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83. Bei einem Übertrag füge ihn zur nächsten Spalte hinzu.</p><p><strong>Subtraktion:</strong> Für die Subtraktion kannst du zwei Strategien nutzen. Wenn kein Borgen nötig ist, zerlege die Zahlen: Beispiel 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31. Wenn Borgen nötig ist, wende die Invarianzeigenschaft an: addiere die gleiche Zahl zu beiden Termen, um eine einfachere Rechnung zu erhalten. Beispiel: 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26.</p>",
+      listenHelpBtn: "🔊 Erklärung anhören",
+      backToQuizBtn: "🔁 Zurück zum Quiz"
+    },
+    es: {
+      title: "Cálculo mental con Maestro Luciano",
+      digitLabel: "🔢 Elige el número de cifras",
+      newProblem: "🔄 Nueva operación",
+      check: "✅ Comprobar",
+      operationLabel: "🧮 Operación:",
+      addOp: "➕ Suma",
+      subOp: "➖ Resta",
+      diffLabel: "⚙ Dificultad:",
+      diffCarry: "➕ Con llevada",
+      diffBorrow: "➖ Con préstamo",
+      correct: "✅ ¡Correcto!",
+      incorrect: "❌ Incorrecto",
+      answerIs: "El resultado es",
+      feedbackCorrect: "¡Genial, {nome}! ¡Sigue así!",
+      feedbackIncorrect: "¡Inténtalo de nuevo, {nome}! ¡Sigue practicando!",
+      units: "u", tens: "d", hundreds: "c", thousands: "m",
+      tenThousands: "dm", hundredThousands: "cm",
+      direction: "ltr",
+      welcomeMsg: "¿Sabes hacer cálculos mentales?<br>¡Escribe tu nombre y presiona Comenzar!",
+      startBtn: "🚀 Comenzar",
+      helpBtn: "❓ Ayuda",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? 'más' : 'menos'} ${n2} es igual a ?`,
+      helpTitle: "🧠 Técnicas de cálculo mental",
+      helpText: "<p><strong>Suma:</strong> Para sumar números de varias cifras, puedes descomponerlos en unidades, decenas, centenas... y sumar por separado. Ejemplo: 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83. Si hay una llevada, recuerda añadirla a la siguiente columna.</p><p><strong>Resta:</strong> Para restar, puedes usar dos estrategias. Si no se necesita préstamo, descompón los números: ejemplo 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31. Si se necesita préstamo, aplica la propiedad de invarianza: suma el mismo número a ambos términos para obtener un cálculo más simple. Ejemplo: 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26.</p>",
+      listenHelpBtn: "🔊 Escuchar explicación",
+      backToQuizBtn: "🔁 Volver al quiz"
+    },
+    pt: {
+      title: "Cálculo mental com Maestro Luciano",
+      digitLabel: "🔢 Escolha o número de dígitos",
+      newProblem: "🔄 Nova operação",
+      check: "✅ Verificar",
+      operationLabel: "🧮 Operação:",
+      addOp: "➕ Adição",
+      subOp: "➖ Subtração",
+      diffLabel: "⚙ Dificuldade:",
+      diffCarry: "➕ Com transporte",
+      diffBorrow: "➖ Com empréstimo",
+      correct: "✅ Correto!",
+      incorrect: "❌ Incorreto",
+      answerIs: "O resultado é",
+      feedbackCorrect: "Ótimo, {nome}! Continue assim!",
+      feedbackIncorrect: "Tente novamente, {nome}! Continue praticando!",
+      units: "u", tens: "d", hundreds: "c", thousands: "m",
+      tenThousands: "dm", hundredThousands: "cm",
+      direction: "ltr",
+      welcomeMsg: "Sabes fazer cálculos mentais?<br>Escreve o teu nome e pressiona Começar!",
+      startBtn: "🚀 Começar",
+      helpBtn: "❓ Ajuda",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? 'mais' : 'menos'} ${n2} é igual a ?`,
+      helpTitle: "🧠 Técnicas de cálculo mental",
+      helpText: "<p><strong>Adição:</strong> Para somar números com vários dígitos, podes decompô-los em unidades, dezenas, centenas... e somar separadamente. Exemplo: 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83. Se houver transporte, lembra-te de o adicionar à coluna seguinte.</p><p><strong>Subtração:</strong> Para subtrair, podes usar duas estratégias. Se não for necessário empréstimo, decompõe os números: exemplo 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31. Se for necessário empréstimo, aplica a propriedade invariante: adiciona o mesmo número a ambos os termos para obter um cálculo mais simples. Exemplo: 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26.</p>",
+      listenHelpBtn: "🔊 Ouvir explicação",
+      backToQuizBtn: "🔁 Voltar ao quiz"
+    },
+    fil: {
+      title: "Mental na Pagkukulang kasama si Maestro Luciano",
+      digitLabel: "🔢 Piliin ang bilang ng mga digit",
+      newProblem: "🔄 Bagong operasyon",
+      check: "✅ Suriin",
+      operationLabel: "🧮 Operasyon:",
+      addOp: "➕ Pagdaragdag",
+      subOp: "➖ Pagbabawas",
+      diffLabel: "⚙ Antas ng kahirapan:",
+      diffCarry: "➕ May dala",
+      diffBorrow: "➖ May hiram",
+      correct: "✅ Tama!",
+      incorrect: "❌ Mali",
+      answerIs: "Ang sagot ay",
+      feedbackCorrect: "Magaling, {nome}! Patuloy lang!",
+      feedbackIncorrect: "Subukan muli, {nome}! Magpraktis pa!",
+      units: "y", tens: "s", hundreds: "d", thousands: "l",
+      tenThousands: "sl", hundredThousands: "dl",
+      direction: "ltr",
+      welcomeMsg: "Kaya mo bang magkalkula sa isip?<br>Ilagay ang iyong pangalan at pindutin ang Simulan!",
+      startBtn: "🚀 Simulan",
+      helpBtn: "❓ Tulong",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? 'dagdagan ng' : 'bawasan ng'} ${n2} ay katumbas ng ?`,
+      helpTitle: "🧠 Mga Teknik sa Mental na Pagkukulang",
+      helpText: "<p><strong>Pagdaragdag:</strong> Upang magdagdag ng mga numerong may maraming digit, maaari mong hatiin ang mga ito sa mga yunit, sampu, daan... at idagdag nang hiwalay. Halimbawa: 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83. Kung may dala, tandaan na idagdag ito sa susunod na hanay.</p><p><strong>Pagbabawas:</strong> Para sa pagbabawas, maaari kang gumamit ng dalawang estratehiya. Kung hindi kailangan ng hiram, hatiin ang mga numero: halimbawa 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31. Kung kailangan ng hiram, gamitin ang invariant na katangian: idagdag ang parehong numero sa parehong termino upang makakuha ng mas simpleng pagkalkula. Halimbawa: 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26.</p>",
+      listenHelpBtn: "🔊 Pakinggan ang paliwanag",
+      backToQuizBtn: "🔁 Bumalik sa quiz"
+    },
+    hi: {
+      title: "मास्ट्रो लुसियानो के साथ मानसिक गणित",
+      digitLabel: "🔢 अंकों की संख्या चुनें",
+      newProblem: "🔄 नया सवाल",
+      check: "✅ जाँच करें",
+      operationLabel: "🧮 संक्रिया:",
+      addOp: "➕ जोड़",
+      subOp: "➖ घटाव",
+      diffLabel: "⚙ कठिनाई:",
+      diffCarry: "➕ कैरी के साथ",
+      diffBorrow: "➖ उधार के साथ",
+      correct: "✅ सही!",
+      incorrect: "❌ गलत",
+      answerIs: "परिणाम है",
+      feedbackCorrect: "बहुत बढ़िया, {nome}! ऐसे ही करते रहो!",
+      feedbackIncorrect: "फिर से प्रयास करें, {nome}! अभ्यास करते रहो!",
+      units: "इ", tens: "द", hundreds: "स", thousands: "ह",
+      tenThousands: "दह", hundredThousands: "लाख",
+      direction: "ltr",
+      welcomeMsg: "क्या आप मानसिक गणित कर सकते हैं?<br>अपना नाम लिखें और शुरू करें दबाएँ!",
+      startBtn: "🚀 शुरू करें",
+      helpBtn: "❓ सहायता",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? 'जमा' : 'घटा'} ${n2} बराबर ?`,
+      helpTitle: "🧠 मानसिक गणित की तकनीकें",
+      helpText: "<p><strong>जोड़:</strong> बहु-अंकीय संख्याओं को जोड़ने के लिए, आप उन्हें इकाई, दहाई, सैकड़ा... में तोड़ सकते हैं और अलग-अलग जोड़ सकते हैं। उदाहरण: 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83। यदि कैरी है, तो इसे अगले कॉलम में जोड़ना याद रखें।</p><p><strong>घटाव:</strong> घटाने के लिए, आप दो रणनीतियों का उपयोग कर सकते हैं। यदि उधार की आवश्यकता नहीं है, तो संख्याओं को तोड़ें: उदाहरण 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31। यदि उधार की आवश्यकता है, तो अपरिवर्तनीय गुण लागू करें: सरल गणना प्राप्त करने के लिए दोनों पदों में समान संख्या जोड़ें। उदाहरण: 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26।</p>",
+      listenHelpBtn: "🔊 स्पष्टीकरण सुनें",
+      backToQuizBtn: "🔁 क्विज़ पर वापस जाएँ"
+    },
+    ru: {
+      title: "Устный счёт с маэстро Лучано",
+      digitLabel: "🔢 Выберите количество цифр",
+      newProblem: "🔄 Новая операция",
+      check: "✅ Проверить",
+      operationLabel: "🧮 Операция:",
+      addOp: "➕ Сложение",
+      subOp: "➖ Вычитание",
+      diffLabel: "⚙ Сложность:",
+      diffCarry: "➕ С переносом",
+      diffBorrow: "➖ С заимствованием",
+      correct: "✅ Правильно!",
+      incorrect: "❌ Неправильно",
+      answerIs: "Результат:",
+      feedbackCorrect: "Отлично, {nome}! Так держать!",
+      feedbackIncorrect: "Попробуй снова, {nome}! Продолжай тренироваться!",
+      units: "ед", tens: "дес", hundreds: "сот", thousands: "тыс",
+      tenThousands: "дес.тыс", hundredThousands: "сот.тыс",
+      direction: "ltr",
+      welcomeMsg: "Умеешь ли ты считать в уме?<br>Введи своё имя и нажми Начать!",
+      startBtn: "🚀 Начать",
+      helpBtn: "❓ Помощь",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? 'плюс' : 'минус'} ${n2} равно ?`,
+      helpTitle: "🧠 Техники устного счёта",
+      helpText: "<p><strong>Сложение:</strong> Чтобы сложить многозначные числа, разложи их на единицы, десятки, сотни... и складывай отдельно. Пример: 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83. Если есть перенос, не забудь добавить его в следующий разряд.</p><p><strong>Вычитание:</strong> Для вычитания можно использовать две стратегии. Если заимствование не нужно, разложи числа: пример 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31. Если нужно заимствование, примени свойство инвариантности: добавь одно и то же число к обоим членам, чтобы получить более простое вычисление. Пример: 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26.</p>",
+      listenHelpBtn: "🔊 Слушать объяснение",
+      backToQuizBtn: "🔁 Вернуться к викторине"
+    },
+    zh: {
+      title: "与卢西亚诺老师一起心算",
+      digitLabel: "🔢 选择数字位数",
+      newProblem: "🔄 新题目",
+      check: "✅ 检查",
+      operationLabel: "🧮 运算：",
+      addOp: "➕ 加法",
+      subOp: "➖ 减法",
+      diffLabel: "⚙ 难度：",
+      diffCarry: "➕ 有进位",
+      diffBorrow: "➖ 有借位",
+      correct: "✅ 正确！",
+      incorrect: "❌ 错误",
+      answerIs: "答案是",
+      feedbackCorrect: "太棒了，{nome}！继续加油！",
+      feedbackIncorrect: "再试一次，{nome}！继续练习！",
+      units: "个", tens: "十", hundreds: "百", thousands: "千",
+      tenThousands: "万", hundredThousands: "十万",
+      direction: "ltr",
+      welcomeMsg: "你会心算吗？<br>输入你的名字并按开始！",
+      startBtn: "🚀 开始",
+      helpBtn: "❓ 帮助",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? '加' : '减'} ${n2} 等于几？`,
+      helpTitle: "🧠 心算技巧",
+      helpText: "<p><strong>加法：</strong>要加多位数字，可以将它们拆分为个位、十位、百位……然后分别相加。例如：45 + 38 = (40+30) + (5+8) = 70 + 13 = 83。如果有进位，记得加到下一列。</p><p><strong>减法：</strong>对于减法，你可以使用两种策略。如果不需要借位，拆分数字：例如 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31。如果需要借位，应用不变性性质：在两个数上加同一个数，得到更简单的计算。例如：54 - 28 = (54+2) - (28+2) → 56 - 30 = 26。</p>",
+      listenHelpBtn: "🔊 听解释",
+      backToQuizBtn: "🔁 返回测验"
+    },
+    ar: {
+      title: "الحساب الذهني مع المعلم لوتشيانو",
+      digitLabel: "🔢 اختر عدد الأرقام",
+      newProblem: "🔄 عملية جديدة",
+      check: "✅ تحقق",
+      operationLabel: "🧮 العملية:",
+      addOp: "➕ جمع",
+      subOp: "➖ طرح",
+      diffLabel: "⚙ الصعوبة:",
+      diffCarry: "➕ مع حمل",
+      diffBorrow: "➖ مع استلاف",
+      correct: "✅ صحيح!",
+      incorrect: "❌ خطأ",
+      answerIs: "النتيجة هي",
+      feedbackCorrect: "رائع، {nome}! استمر هكذا!",
+      feedbackIncorrect: "حاول مرة أخرى، {nome}! استمر في التدريب!",
+      units: "أ", tens: "ع", hundreds: "م", thousands: "آ",
+      tenThousands: "ع آ", hundredThousands: "م آ",
+      direction: "rtl",
+      welcomeMsg: "هل تستطيع الحساب الذهني؟<br>اكتب اسمك واضغط ابدأ!",
+      startBtn: "🚀 ابدأ",
+      helpBtn: "❓ مساعدة",
+      speakProblem: (n1, n2, op) => `${n1} ${op === '+' ? 'زائد' : 'ناقص'} ${n2} يساوي ؟`,
+      helpTitle: "🧠 تقنيات الحساب الذهني",
+      helpText: "<p><strong>الجمع:</strong> لجمع أرقام متعددة الخانات، يمكنك تفكيكها إلى آحاد، عشرات، مئات... وجمع كل جزء على حدة. مثال: 45 + 38 = (40+30) + (5+8) = 70 + 13 = 83. إذا كان هناك حمل، تذكر إضافته إلى الخانة التالية.</p><p><strong>الطرح:</strong> للطرح، يمكنك استخدام استراتيجيتين. إذا لم يكن هناك حاجة للاستلاف، فقم بتفكيك الأرقام: مثال 54 - 23 = (50-20) + (4-3) = 30 + 1 = 31. أما إذا كان هناك استلاف، فطبق خاصية الثبات: أضف نفس الرقم إلى كلا الحدين للحصول على عملية حسابية أبسط. مثال: 54 - 28 = (54+2) - (28+2) → 56 - 30 = 26.</p>",
+      listenHelpBtn: "🔊 استمع إلى الشرح",
+      backToQuizBtn: "🔁 العودة إلى الاختبار"
+    }
+  };
+
+  // Mappa codici lingua per sintesi vocale
+  const langCodes = {
+    en: 'en-US', it: 'it-IT', fr: 'fr-FR', de: 'de-DE', es: 'es-ES',
+    pt: 'pt-PT', fil: 'fil-PH', hi: 'hi-IN', ru: 'ru-RU', zh: 'zh-CN', ar: 'ar-SA'
+  };
+
+  // ---------- FUNZIONI DI SUPPORTO ----------
+  function randomNumber(digits) {
+    if (digits === 1) return Math.floor(Math.random() * 10);
+    const min = Math.pow(10, digits-1);
+    const max = Math.pow(10, digits) - 1;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  // ADDIZIONI CON / SENZA CAMBIO (riporto)
+  function generaAddizioneConRiporto(digits) {
+    let num1, num2;
+    do {
+      num1 = randomNumber(digits);
+      num2 = randomNumber(digits);
+    } while (!haRiporto(num1, num2));
+    return { num1, num2, op: '+', result: num1 + num2 };
+  }
+
+  function generaAddizioneSenzaRiporto(digits) {
+    let num1, num2;
+    do {
+      num1 = randomNumber(digits);
+      num2 = randomNumber(digits);
+    } while (haRiporto(num1, num2));
+    return { num1, num2, op: '+', result: num1 + num2 };
+  }
+
+  function haRiporto(a, b) {
+    while (a > 0 || b > 0) {
+      if ((a % 10) + (b % 10) >= 10) return true;
+      a = Math.floor(a / 10);
+      b = Math.floor(b / 10);
+    }
+    return false;
+  }
+
+  // SOTTRAZIONI CON / SENZA PRESTITO
+  function generaSottrazioneConPrestito(digits) {
+    let num1, num2;
+    do {
+      num1 = randomNumber(digits);
+      num2 = randomNumber(digits);
+      if (num1 < num2) [num1, num2] = [num2, num1];
+    } while (!haPrestito(num1, num2));
+    return { num1, num2, op: '-', result: num1 - num2 };
+  }
+
+  function generaSottrazioneSenzaPrestito(digits) {
+    let num1, num2;
+    do {
+      num1 = randomNumber(digits);
+      num2 = randomNumber(digits);
+      if (num1 < num2) [num1, num2] = [num2, num1];
+    } while (haPrestito(num1, num2));
+    return { num1, num2, op: '-', result: num1 - num2 };
+  }
+
+  function haPrestito(a, b) {
+    let borrow = 0;
+    while (a > 0 || b > 0) {
+      let da = (a % 10) - borrow;
+      let db = b % 10;
+      if (da < db) return true;
+      borrow = 0;
+      a = Math.floor(a / 10);
+      b = Math.floor(b / 10);
+    }
+    return false;
+  }
+
+  // Genera problema in base a operazione e flag difficoltà
+  function generaProblema() {
+    if (currentOperation === 'add') {
+      if (carryEnabled) {
+        currentProblem = generaAddizioneConRiporto(currentDigits);
+      } else {
+        currentProblem = generaAddizioneSenzaRiporto(currentDigits);
+      }
+    } else { // sub
+      if (borrowEnabled) {
+        currentProblem = generaSottrazioneConPrestito(currentDigits);
+      } else {
+        currentProblem = generaSottrazioneSenzaPrestito(currentDigits);
+      }
+    }
+    aggiornaQuizUI();
+    if (playing) parlaProblema();
+    document.getElementById('answer-input').focus();
+  }
+
+  // ---------- FORMATTAZIONE SCOMPOSIZIONE ----------
+  function formatDecomposition(num) {
+    const t = translations[currentLang];
+    if (num === 0) return '0' + t.units;
+    let str = num + ' = ';
+    let parts = [];
+    let n = num;
+    let hk = Math.floor(n / 100000); if (hk > 0) { parts.push(hk + t.hundredThousands); n %= 100000; }
+    let dk = Math.floor(n / 10000); if (dk > 0) { parts.push(dk + t.tenThousands); n %= 10000; }
+    let k = Math.floor(n / 1000); if (k > 0) { parts.push(k + t.thousands); n %= 1000; }
+    let h = Math.floor(n / 100); if (h > 0) { parts.push(h + t.hundreds); n %= 100; }
+    let da = Math.floor(n / 10); if (da > 0) { parts.push(da + t.tens); n %= 10; }
+    let u = n; if (u > 0) parts.push(u + t.units);
+    if (parts.length === 0) parts.push('0' + t.units);
+    str += parts.join(' + ');
+    return str;
+  }
+
+  // ---------- AGGIORNA INTERFACCIA QUIZ ----------
+  function aggiornaQuizUI() {
+    const t = translations[currentLang];
+    document.getElementById('main-title').textContent = t.title;
+    document.getElementById('digit-label').textContent = t.digitLabel;
+    document.getElementById('new-problem-btn').textContent = t.newProblem;
+    document.getElementById('check-btn').innerHTML = '✅ ' + t.check.replace(/✅/g,'').trim();
+    
+    document.getElementById('operation-label').textContent = t.operationLabel;
+    // Aggiorna i testi dei radio button senza ricreare gli input (mantiene i listener)
+    const opRadios = document.querySelectorAll('#operation-choices label');
+    if (opRadios.length >= 2) {
+      const radioAdd = opRadios[0].querySelector('input[value="add"]');
+      const radioSub = opRadios[1].querySelector('input[value="sub"]');
+      if (radioAdd && radioSub) {
+        radioAdd.checked = (currentOperation === 'add');
+        radioSub.checked = (currentOperation === 'sub');
+        let textNodeAdd = radioAdd.nextSibling;
+        if (textNodeAdd && textNodeAdd.nodeType === 3) textNodeAdd.textContent = ' ' + t.addOp;
+        else opRadios[0].append(' ' + t.addOp);
+        let textNodeSub = radioSub.nextSibling;
+        if (textNodeSub && textNodeSub.nodeType === 3) textNodeSub.textContent = ' ' + t.subOp;
+        else opRadios[1].append(' ' + t.subOp);
+      }
+    }
+
+    document.getElementById('diff-label').textContent = t.diffLabel;
+    document.getElementById('carry-label').textContent = t.diffCarry;
+    document.getElementById('borrow-label').textContent = t.diffBorrow;
+    document.getElementById('carry-checkbox').checked = carryEnabled;
+    document.getElementById('borrow-checkbox').checked = borrowEnabled;
+
+    const welcomeMsgEl = document.getElementById('welcome-message');
+    if (welcomeMsgEl) welcomeMsgEl.innerHTML = t.welcomeMsg;
+    const startBtn = document.getElementById('start-btn');
+    if (startBtn) startBtn.textContent = t.startBtn;
+    const helpBtn = document.getElementById('help-btn');
+    if (helpBtn) helpBtn.textContent = t.helpBtn;
+
+    let p = currentProblem;
+    document.getElementById('operation').textContent = `${p.num1} ${p.op} ${p.num2} = ?`;
+    document.getElementById('decomp1').textContent = formatDecomposition(p.num1);
+    document.getElementById('decomp2').textContent = formatDecomposition(p.num2);
+    document.getElementById('answer-input').value = '';
+    document.getElementById('feedback').innerHTML = '🧠 ' + (t.correct || '') + '...';
+    document.body.setAttribute('dir', t.direction);
+    document.getElementById('stage').setAttribute('dir', t.direction);
+  }
+
+  // ---------- AGGIORNA SCHERMATA AIUTO ----------
+  function aggiornaHelpUI() {
+    const t = translations[currentLang];
+    document.getElementById('help-title').textContent = t.helpTitle;
+    document.getElementById('help-text').innerHTML = t.helpText;
+    document.getElementById('listen-help-btn').innerHTML = '🔊 ' + t.listenHelpBtn.replace(/🔊/g,'').trim();
+    document.getElementById('back-to-quiz-btn').innerHTML = '🔁 ' + t.backToQuizBtn.replace(/🔁/g,'').trim();
+  }
+
+  // ---------- PUNTEGGIO ----------
+  function aggiornaPunteggio(isCorrect) {
+    totalAnswers++;
+    if (isCorrect) { score++; correctCount++; }
+    else { score = Math.max(score - 1, 0); wrongCount++; }
+    document.getElementById('score-points').textContent = score;
+    document.getElementById('total-answers').textContent = totalAnswers;
+    document.getElementById('correct-answers').textContent = correctCount;
+    document.getElementById('wrong-answers').textContent = wrongCount;
+  }
+
+  // ---------- CONTROLLA RISPOSTA + FEEDBACK VOCALE ----------
+  function controllaRisposta() {
+    const t = translations[currentLang];
+    const answer = parseInt(document.getElementById('answer-input').value);
+    const feedback = document.getElementById('feedback');
+    let isCorrect = false;
+    if (!isNaN(answer) && answer === currentProblem.result) {
+      isCorrect = true;
+      aggiornaPunteggio(true);
+      feedback.innerHTML = '🎉 ' + t.correct + ' ' + formatDecomposition(currentProblem.result);
+      let msg = new SpeechSynthesisUtterance(t.feedbackCorrect.replace('{nome}', playerName));
+      msg.lang = langCodes[currentLang];
+      speechSynthesis.cancel();
+      speechSynthesis.speak(msg);
+    } else {
+      aggiornaPunteggio(false);
+      feedback.innerHTML = '❌ ' + t.incorrect + '. ' + t.answerIs + ' ' + currentProblem.result + ' = ' + formatDecomposition(currentProblem.result);
+      let msg = new SpeechSynthesisUtterance(t.feedbackIncorrect.replace('{nome}', playerName));
+      msg.lang = langCodes[currentLang];
+      speechSynthesis.cancel();
+      speechSynthesis.speak(msg);
+    }
+    document.getElementById('answer-input').focus();
+  }
+
+  // ---------- SINTESI PROBLEMA ----------
+  function parlaProblema() {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const t = translations[currentLang];
+    let testo = t.speakProblem(currentProblem.num1, currentProblem.num2, currentProblem.op);
+    const msg = new SpeechSynthesisUtterance(testo);
+    msg.lang = langCodes[currentLang] || 'it-IT';
+    msg.rate = 0.85;
+    speechSynthesis.speak(msg);
+  }
+
+  // ---------- SINTESI AIUTO (con sostituzioni) ----------
+  function parlaAiuto() {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    let testo = document.getElementById('help-text').innerText;
+    testo = testo.replace(/-/g, 'meno');
+    testo = testo.replace(/→|->/g, 'quindi');
+    const msg = new SpeechSynthesisUtterance(testo);
+    msg.lang = langCodes[currentLang] || 'it-IT';
+    msg.rate = 0.9;
+    speechSynthesis.speak(msg);
+  }
+
+  // ---------- GESTIONE LINGUA ----------
+  function cambiaLingua(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.lang === lang) btn.classList.add('active');
+    });
+    aggiornaQuizUI();
+    aggiornaHelpUI();  // aggiorna anche la schermata di aiuto
+  }
+
+  // Popola i menu lingua
+  function creaMenuLingua() {
+    const lingue = [
+      { code: 'en', name: 'English' }, { code: 'it', name: 'Italiano' }, { code: 'fr', name: 'Français' },
+      { code: 'de', name: 'Deutsch' }, { code: 'es', name: 'Español' }, { code: 'pt', name: 'Português' },
+      { code: 'fil', name: 'Filipino' }, { code: 'hi', name: 'हिन्दी', class: 'hindi' },
+      { code: 'ru', name: 'Русский' }, { code: 'zh', name: '中文', class: 'chinese' },
+      { code: 'ar', name: 'العربية', class: 'arabic' }
+    ];
+    const contenitore1 = document.getElementById('language-buttons');
+    const contenitore2 = document.getElementById('language-buttons2');
+    if (!contenitore1 || !contenitore2) return;
+    contenitore1.innerHTML = ''; contenitore2.innerHTML = '';
+    lingue.forEach(l => {
+      const btn1 = document.createElement('button');
+      const btn2 = document.createElement('button');
+      btn1.className = btn2.className = 'lang-btn' + (l.class ? ' ' + l.class : '');
+      btn1.dataset.lang = btn2.dataset.lang = l.code;
+      btn1.textContent = btn2.textContent = l.name;
+      btn1.onclick = () => cambiaLingua(l.code);
+      btn2.onclick = () => cambiaLingua(l.code);
+      contenitore1.appendChild(btn1);
+      contenitore2.appendChild(btn2);
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      if (btn.dataset.lang === 'it') btn.classList.add('active');
+    });
+  }
+
+  // ---------- EVENTI E INIZIALIZZAZIONE ----------
+  window.onload = function() {
+    creaMenuLingua();
+
+    // Gestione input nome con invio
+    document.getElementById('welcome-name').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        document.getElementById('start-btn').click();
+      }
+    });
+    document.getElementById('welcome-name').addEventListener('input', function(e) {
+      playerName = e.target.value.trim() || "Studente";
+    });
+
+    document.getElementById('start-btn').addEventListener('click', function() {
+      playerName = document.getElementById('welcome-name').value.trim() || "Studente";
+      document.getElementById('screen1').style.display = 'none';
+      document.getElementById('screen2').style.display = 'flex';
+      // Impostazioni di default
+      currentDigits = 1;
+      carryEnabled = false;
+      borrowEnabled = false;
+      currentOperation = 'add';
+      document.querySelector('input[name="operation"][value="add"]').checked = true;
+      document.getElementById('carry-checkbox').checked = false;
+      document.getElementById('borrow-checkbox').checked = false;
+      document.querySelectorAll('.digit-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('.digit-btn[data-digits="1"]').classList.add('active');
+      generaProblema();
+      document.getElementById('answer-input').focus();
+    });
+
+    // Usa la delega per i radio button (evita perdita listener dopo cambio lingua)
+    document.getElementById('operation-choices').addEventListener('change', function(e) {
+      if (e.target.name === 'operation') {
+        currentOperation = e.target.value;
+        generaProblema();
+      }
+    });
+
+    document.getElementById('carry-checkbox').addEventListener('change', function(e) {
+      carryEnabled = e.target.checked;
+      if (currentOperation === 'add') {
+        generaProblema();
+      } else {
+        document.getElementById('answer-input').focus();
+      }
+    });
+
+    document.getElementById('borrow-checkbox').addEventListener('change', function(e) {
+      borrowEnabled = e.target.checked;
+      if (currentOperation === 'sub') {
+        generaProblema();
+      } else {
+        document.getElementById('answer-input').focus();
+      }
+    });
+
+    document.querySelectorAll('.digit-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.digit-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentDigits = parseInt(this.dataset.digits);
+        generaProblema();
+      });
+    });
+
+    // Nuova operazione rispetta l'operazione corrente
+    document.getElementById('new-problem-btn').addEventListener('click', function() {
+      generaProblema();
+    });
+
+    document.getElementById('check-btn').addEventListener('click', controllaRisposta);
+    document.getElementById('answer-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') controllaRisposta();
+    });
+
+    document.getElementById('speak-btn').addEventListener('click', parlaProblema);
+
+    // Gestione pulsante Aiuto: mostra screen3
+    document.getElementById('help-btn').addEventListener('click', function() {
+      document.getElementById('screen2').style.display = 'none';
+      document.getElementById('screen3').style.display = 'flex';
+    });
+
+    // Pulsanti screen3
+    document.getElementById('listen-help-btn').addEventListener('click', parlaAiuto);
+    document.getElementById('back-to-quiz-btn').addEventListener('click', function() {
+      document.getElementById('screen3').style.display = 'none';
+      document.getElementById('screen2').style.display = 'flex';
+      document.getElementById('answer-input').focus();
+    });
+
+    cambiaLingua('it');
+  };
+</script>
+</body>
+</html>
