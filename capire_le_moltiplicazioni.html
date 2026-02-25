@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moltiplicazioni animate · Maestro Luciano</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Verdana', 'Arial', 'Helvetica', 'Comic Sans MS', 'Chalkboard', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top left, #1a3f2f, #0e261a);
+            padding: 0.8rem;
+        }
+
+        .card {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(10, 35, 25, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 2.5rem 2.5rem 1.8rem 1.8rem;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.1);
+            padding: 1.5rem 1.5rem 2rem;
+            border: 1px solid rgba(180, 230, 200, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #f2e9d0;
+            text-shadow: 0 4px 8px #031016;
+            margin-bottom: 0.5rem;
+        }
+
+        .sottotitolo {
+            text-align: center;
+            color: #c0e0d0;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px dashed #4f7b6a;
+            padding-bottom: 0.6rem;
+        }
+
+        .fattori-panel {
+            background: rgba(20, 50, 35, 0.7);
+            border-radius: 2.5rem;
+            padding: 1.4rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 1.5rem;
+            border: 1px solid #2f6b4f;
+            box-shadow: inset 0 0 10px #07130c;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .input-group label {
+            color: #e0f0e0;
+            font-size: 1.3rem;
+            font-weight: 400;
+            background: #1c4b3a;
+            padding: 0.2rem 1rem;
+            border-radius: 2.5rem;
+            letter-spacing: 0.5px;
+            box-shadow: inset 0 2px 5px #0a2a1a;
+        }
+
+        .input-group input {
+            background: #1a3e2e;
+            border: 2px solid #5a8f6e;
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+            font-size: 1.6rem;
+            width: 90px;
+            text-align: center;
+            color: #f5efdc;
+            font-weight: 600;
+            outline: none;
+            transition: 0.2s;
+            box-shadow: 0 5px 0 #0b2a1a;
+        }
+
+        .input-group input:focus {
+            border-color: #c8c87c;
+            background: #1f4f3a;
+            box-shadow: 0 5px 0 #3a6b4f;
+        }
+
+        .btn-genera {
+            background: #568f6e;
+            border: none;
+            padding: 0.8rem 2.2rem;
+            border-radius: 2.5rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0e2a1a;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #1d553d, 0 4px 12px #6bb28a;
+            transition: 0.07s ease-out;
+            border: 1px solid #b2ecd0;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-genera:hover {
+            background: #6eaf84;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #1d553d, 0 6px 18px #7bd2a0;
+        }
+
+        .btn-genera:active {
+            transform: translateY(5px);
+            box-shadow: 0 1px 0 #1d553d;
+        }
+
+        .visual-container {
+            background: rgba(10, 40, 25, 0.6);
+            border-radius: 3rem;
+            padding: 1.5rem 1rem;
+            margin: 1.5rem 0 1rem;
+            border: 2px dashed #3d7b66;
+            min-height: 180px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem 1rem;
+            box-shadow: inset 0 0 20px #052010;
+            transition: all 0.2s;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        /* stile per i gruppi di palline (schieramenti / gruppi analogici) */
+        .gruppo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(230, 250, 220, 0.03);
+            border-radius: 2rem;
+            padding: 0.8rem 0.8rem 0.5rem;
+            border: 1px solid rgba(170, 240, 190, 0.25);
+            backdrop-filter: blur(4px);
+            transition: transform 0.2s, opacity 0.6s, transform 0.6s; /* durata raddoppiata */
+            will-change: opacity, transform;
+        }
+
+        .gruppo:hover {
+            transform: scale(1.01);
+            border-color: rgba(220, 250, 150, 0.5);
+        }
+
+        .gruppo.exit {
+            opacity: 0 !important;
+            transform: scale(0.5) !important;
+            transition: opacity 0.6s, transform 0.6s; /* durata raddoppiata */
+            pointer-events: none;
+        }
+
+        .bortolato-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.4rem;
+        }
+
+        .riga-superiore {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .blocco-cinque {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(28px, 1fr));
+            gap: 0.3rem;
+            max-width: 160px;
+        }
+
+        .riga-residui {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(28px, 1fr));
+            gap: 0.3rem;
+            max-width: 160px;
+            margin-left: 0;
+        }
+
+        .pallina {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #fffde7, #eba834 80%, #9b7e5e);
+            box-shadow: 0 6px 8px -4px rgba(0,0,0,0.5), 0 0 0 2px rgba(255, 255, 200, 0.3);
+            transition: all 0.1s;
+        }
+
+        /* barra dei pulsanti di modalità */
+        .modalita-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 0.5rem 0 1.5rem;
+        }
+
+        .btn-modalita {
+            background: #2f5f4a;
+            border: 2px solid #5b9e7a;
+            padding: 0.6rem 1.4rem;
+            border-radius: 3rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #f0ecd0;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #1d3e2e;
+            transition: 0.06s ease-out;
+            letter-spacing: 0.3px;
+            flex: 0 1 auto;
+        }
+
+        .btn-modalita.attivo {
+            background: #a5d6b0;
+            border-color: #f9e47a;
+            color: #052010;
+            box-shadow: 0 4px 0 #4e8a6a;
+            transform: translateY(-2px);
+        }
+
+        .btn-modalita:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #1d3e2e;
+        }
+
+        /* stile per canvas (incroci) */
+        canvas.incroci-canvas {
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            background: #102f20;
+            border-radius: 2rem;
+            box-shadow: inset 0 0 10px #041a0c;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* stile per addizione ripetuta animata */
+        .addizione-animata {
+            font-size: clamp(2.2rem, 12vw, 5rem);
+            font-weight: bold;
+            color: #faf3cf;
+            text-align: center;
+            white-space: nowrap;
+            padding: 0.5rem 1rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 3rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px #b8d5a0;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            gap: 0.2rem;
+        }
+
+        .addizione-animata span {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out; /* durata raddoppiata */
+            display: inline-block;
+        }
+
+        .addizione-animata span.revealed {
+            opacity: 1;
+        }
+
+        /* stile per linea dei numeri animata */
+        .linea-numeri-container {
+            width: 100%;
+            padding: 1.5rem calc(0.5rem + 10px); /* allungato di 20px totale (10px per lato) */
+            background: #1f4638;
+            border-radius: 4rem;
+            box-shadow: inset 0 2px 8px #031a0c;
+            position: relative;
+        }
+
+        .linea-numeri-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 0 auto; /* centra il wrapper */
+        }
+
+        .linea-tratto {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: #c0e6b0;
+            transform: translateY(-50%);
+            z-index: 1;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 1.2s ease; /* durata raddoppiata (era 0.6s) */
+            box-shadow: 0 0 8px #a0d0a0;
+        }
+
+        .linea-tratto.revealed {
+            opacity: 1;
+        }
+
+        .marcatori {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .marcatore {
+            background: #25553e;
+            border-radius: 50%;
+            width: 2.8rem;
+            height: 2.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fbffd5;
+            border: 3px solid #ecc45a;
+            box-shadow: 0 0 0 2px #15422e;
+            margin: 0 -0.2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out; /* leggermente più lento per uniformità */
+        }
+
+        .marcatore.zero {
+            background: #1f6040;
+        }
+
+        .marcatore.revealed {
+            opacity: 1;
+        }
+
+        .risultato-area {
+            background: #14382ac9;
+            border-radius: 3.5rem;
+            padding: 1.4rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            border: 1px solid #5b9e7a;
+            margin-top: 0.5rem;
+        }
+
+        .risultato-box {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .risultato-box label {
+            font-size: 1.6rem;
+            color: #f5e8cf;
+            background: #225e44;
+            padding: 0.2rem 1.2rem;
+            border-radius: 3rem;
+        }
+
+        .risultato-box input {
+            background: #123a2a;
+            border: 3px solid #5e9e7a;
+            border-radius: 3rem;
+            padding: 0.6rem 1.2rem;
+            font-size: 2rem;
+            width: 130px;
+            text-align: center;
+            color: #fcf2d7;
+            font-weight: 700;
+            outline: none;
+            box-shadow: 0 5px 0 #022010;
+        }
+
+        .risultato-box input:focus {
+            border-color: #f0e27b;
+        }
+
+        .btn-verifica {
+            background: #77b28c;
+            border: none;
+            font-size: 1.7rem;
+            padding: 0.7rem 2rem;
+            border-radius: 3rem;
+            font-weight: bold;
+            color: #112a1e;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #2b684a;
+            transition: 0.06s;
+            border: 1px solid #c1fad4;
+        }
+
+        .btn-verifica:active {
+            transform: translateY(5px);
+            box-shadow: 0 1px 0 #2b684a;
+        }
+
+        .feedback {
+            margin-top: 1.4rem;
+            background: #1f5540;
+            border-radius: 4rem;
+            padding: 1rem 1.8rem;
+            font-size: 1.7rem;
+            text-align: center;
+            color: #fef7e6;
+            min-height: 4.2rem;
+            border-left: 8px solid #c0b06b;
+            box-shadow: inset 0 2px 6px #053020;
+            font-weight: 500;
+        }
+
+        .feedback small {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .nota {
+            margin-top: 0.8rem;
+            text-align: center;
+            color: #aac0b0;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1><span style="color: red;">✖️</span> Gioco delle moltiplicazioni <span style="color: red;">✖️</span></h1>
+    <div class="sottotitolo">guarda, conta e scopri il risultato · Maestro Luciano</div>
+
+    <div class="fattori-panel">
+        <div class="input-group">
+            <label for="fattore1">Primo fattore</label>
+            <input type="number" id="fattore1" min="0" max="12" value="0" step="1">
+        </div>
+        <span style="color:#d0f0e0; font-size:2.5rem; font-weight:200;">✕</span>
+        <div class="input-group">
+            <label for="fattore2">Secondo fattore</label>
+            <input type="number" id="fattore2" min="0" max="12" value="1" step="1">
+        </div>
+        <button class="btn-genera" id="creaBtn">Crea gruppi</button>
+    </div>
+
+    <div id="visualContainer" class="visual-container"></div>
+
+    <!-- PULSANTI MODALITÀ -->
+    <div class="modalita-bar">
+        <button class="btn-modalita attivo" id="modeSchieramenti">Gruppi analogici</button>
+        <button class="btn-modalita" id="modeIncroci">Incroci</button>
+        <button class="btn-modalita" id="modeAddizione">Addizione ripetuta</button>
+        <button class="btn-modalita" id="modeLinea">Linea dei numeri</button>
+    </div>
+
+    <div class="risultato-area">
+        <div class="risultato-box">
+            <label for="risultatoInput">👉 risultato</label>
+            <input type="number" id="risultatoInput" placeholder="?" min="0" step="1" value="">
+        </div>
+        <button class="btn-verifica" id="verificaBtn">Verifica</button>
+    </div>
+
+    <div id="feedbackDiv" class="feedback">
+        <span>✨ Inserisci i fattori e premi INVIO nel secondo campo ✨</span>
+    </div>
+    <div class="nota">↵ INVIO: passa al campo successivo o genera gruppi</div>
+</div>
+
+<script>
+(function() {
+    const fattore1Input = document.getElementById('fattore1');
+    const fattore2Input = document.getElementById('fattore2');
+    const creaBtn = document.getElementById('creaBtn');
+    const visualContainer = document.getElementById('visualContainer');
+    const risultatoInput = document.getElementById('risultatoInput');
+    const verificaBtn = document.getElementById('verificaBtn');
+    const feedbackDiv = document.getElementById('feedbackDiv');
+
+    const modeSchieramentiBtn = document.getElementById('modeSchieramenti');
+    const modeIncrociBtn = document.getElementById('modeIncroci');
+    const modeAddizioneBtn = document.getElementById('modeAddizione');
+    const modeLineaBtn = document.getElementById('modeLinea');
+
+    let currentFattore1 = 0;
+    let currentFattore2 = 1;
+    let currentProdotto = 0;
+    let currentMode = 'schieramenti'; 
+
+    // Gestione timer animazioni
+    let animationTimeouts = [];
+    function clearAnimationTimeouts() {
+        animationTimeouts.forEach(clearTimeout);
+        animationTimeouts = [];
+    }
+
+    // ------------------ SINTESI VOCALE ------------------
+    function parla(testo) {
+        if (!window.speechSynthesis) return;
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(testo);
+        utterance.lang = 'it-IT';
+        utterance.rate = 0.95;
+        utterance.pitch = 1.2;
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // ------------------ FUNZIONI PER GRUPPI ANALOGICI ------------------
+    function creaGruppoBortolato(numPalline, tonalita) {
+        const gruppoDiv = document.createElement('div');
+        gruppoDiv.className = 'gruppo';
+
+        const container = document.createElement('div');
+        container.className = 'bortolato-container';
+
+        const hue = tonalita !== undefined ? tonalita : 0;
+        const coloreBase = `hsl(${hue}, 70%, 70%)`;
+
+        const creaPallina = () => {
+            const ball = document.createElement('div');
+            ball.className = 'pallina';
+            ball.style.background = `radial-gradient(circle at 35% 30%, #fffde7, ${coloreBase} 80%, #9b7e5e)`;
+            return ball;
+        };
+
+        if (numPalline <= 5) {
+            const blocco = document.createElement('div');
+            blocco.className = 'blocco-cinque';
+            for (let i = 0; i < numPalline; i++) blocco.appendChild(creaPallina());
+            container.appendChild(blocco);
+        } else if (numPalline <= 10) {
+            const blocco1 = document.createElement('div');
+            blocco1.className = 'blocco-cinque';
+            for (let i = 0; i < 5; i++) blocco1.appendChild(creaPallina());
+            container.appendChild(blocco1);
+            const residui = numPalline - 5;
+            if (residui > 0) {
+                const blocco2 = document.createElement('div');
+                blocco2.className = 'riga-residui';
+                for (let i = 0; i < residui; i++) blocco2.appendChild(creaPallina());
+                container.appendChild(blocco2);
+            }
+        } else {
+            const rigaSup = document.createElement('div');
+            rigaSup.className = 'riga-superiore';
+            const bloccoSx = document.createElement('div');
+            bloccoSx.className = 'blocco-cinque';
+            for (let i = 0; i < 5; i++) bloccoSx.appendChild(creaPallina());
+            rigaSup.appendChild(bloccoSx);
+            const bloccoDx = document.createElement('div');
+            bloccoDx.className = 'blocco-cinque';
+            for (let i = 0; i < 5; i++) bloccoDx.appendChild(creaPallina());
+            rigaSup.appendChild(bloccoDx);
+            container.appendChild(rigaSup);
+            const residui = numPalline - 10;
+            if (residui > 0) {
+                const rigaResidui = document.createElement('div');
+                rigaResidui.className = 'riga-residui';
+                for (let i = 0; i < residui; i++) rigaResidui.appendChild(creaPallina());
+                container.appendChild(rigaResidui);
+            }
+        }
+        gruppoDiv.appendChild(container);
+        const groupLabel = document.createElement('span');
+        groupLabel.style.fontSize = '0.1px';
+        groupLabel.style.opacity = '0';
+        groupLabel.textContent = `Gruppo di ${numPalline} palline`;
+        gruppoDiv.appendChild(groupLabel);
+        return gruppoDiv;
+    }
+
+    function rimuoviGruppiConAnimazione(callback) {
+        const gruppi = document.querySelectorAll('.gruppo');
+        if (gruppi.length === 0) { callback(); return; }
+        let rimasti = gruppi.length;
+        const fallbackTimer = setTimeout(() => {
+            visualContainer.innerHTML = '';
+            callback();
+        }, 1000); // raddoppiato per sicurezza
+        gruppi.forEach(g => {
+            g.classList.add('exit');
+            g.addEventListener('transitionend', function onEnd() {
+                g.removeEventListener('transitionend', onEnd);
+                rimasti--;
+                if (rimasti === 0) {
+                    clearTimeout(fallbackTimer);
+                    visualContainer.innerHTML = '';
+                    callback();
+                }
+            }, { once: true });
+        });
+    }
+
+    function creaGruppiConAnimazione(f1, f2) {
+        if (f1 === 0 || f2 === 0) return;
+        for (let gruppoIdx = 0; gruppoIdx < f2; gruppoIdx++) {
+            const hue = (gruppoIdx * 45 + 180) % 360;
+            const gruppoDiv = creaGruppoBortolato(f1, hue);
+            gruppoDiv.style.opacity = '0';
+            gruppoDiv.style.transform = 'scale(0.5)';
+            visualContainer.appendChild(gruppoDiv);
+        }
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.gruppo').forEach(g => {
+                    g.style.transition = 'opacity 0.6s, transform 0.6s'; // durata raddoppiata
+                    g.style.opacity = '1';
+                    g.style.transform = 'scale(1)';
+                });
+            });
+        });
+    }
+
+    // ------------------ FUNZIONI ANIMATE PER LE ALTRE MODALITÀ ------------------
+    // ***** MODALITÀ INCROCI (modificata: linee orizzontali da sinistra a destra) *****
+    function renderIncrociAnimato(f1, f2) {
+        if (f1 === 0 || f2 === 0) {
+            visualContainer.innerHTML = '<div style="color:#ccc; font-size:1.8rem;">⛔ Nessuna linea da mostrare</div>';
+            return;
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.className = 'incroci-canvas';
+        const containerWidth = visualContainer.clientWidth - 40;
+        const size = Math.min(containerWidth, 550);
+        canvas.width = size;
+        canvas.height = size * 0.7;
+        visualContainer.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+
+        const margine = 40;
+        const larghezza = canvas.width - margine * 2;
+        const altezza = canvas.height - margine * 2;
+
+        // Posizioni dei punti (incroci)
+        const hPos = []; // y delle linee orizzontali
+        for (let i = 0; i < f1; i++) {
+            hPos.push(margine + (i / (f1 - 1 || 1)) * altezza);
+        }
+        const vPos = []; // x delle linee verticali
+        for (let j = 0; j < f2; j++) {
+            vPos.push(margine + (j / (f2 - 1 || 1)) * larghezza);
+        }
+
+        const estensione = 20; // quanto far "spuntare" le linee oltre il rettangolo
+        const minX = Math.min(...vPos);
+        const maxX = Math.max(...vPos);
+        const minY = Math.min(...hPos);
+        const maxY = Math.max(...hPos);
+
+        // Funzioni di disegno
+        function drawLine(x1, y1, x2, y2, color = '#c8e6c0', width = 3) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = width;
+            ctx.stroke();
+        }
+
+        function drawDot(x, y) {
+            ctx.beginPath();
+            ctx.arc(x, y, 8, 0, 2 * Math.PI);
+            ctx.fillStyle = '#ff4d4d';
+            ctx.shadowColor = '#ffaaaa';
+            ctx.shadowBlur = 8;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        // Pulisce e prepara lo sfondo
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const passi = 10; // numero di step per ogni linea (scorrimento)
+        const delayBase = 600; // raddoppiato (era 300)
+        const delayDot = 240;   // raddoppiato (era 120)
+
+        let tempoTotale = 0;
+
+        // ANIMAZIONE LINEE ORIZZONTALI (scorrono da sinistra a destra)
+        for (let i = 0; i < f1; i++) {
+            const y = hPos[i];
+            const xStart = minX - estensione;
+            const xEnd = maxX + estensione;
+            const lunghezza = xEnd - xStart;
+
+            for (let s = 1; s <= passi; s++) {
+                const progress = s / passi;
+                const xParziale = xStart + progress * lunghezza; // da sinistra verso destra
+                animationTimeouts.push(setTimeout(() => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    // Ridisegna tutte le linee orizzontali già completate (fino a i-1) per intero
+                    for (let k = 0; k < i; k++) {
+                        drawLine(minX - estensione, hPos[k], maxX + estensione, hPos[k]);
+                    }
+                    // Disegna la linea corrente parziale
+                    drawLine(xStart, y, xParziale, y);
+                }, tempoTotale + (s - 1) * (delayBase / passi)));
+            }
+            // Alla fine, dopo l'ultimo step, la linea è completa. Aggiungiamo un timeout per disegnarla intera.
+            animationTimeouts.push(setTimeout(() => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // Ridisegna tutte le orizzontali fino a i compresa
+                for (let k = 0; k <= i; k++) {
+                    drawLine(minX - estensione, hPos[k], maxX + estensione, hPos[k]);
+                }
+            }, tempoTotale + delayBase));
+            tempoTotale += delayBase;
+        }
+
+        // ANIMAZIONE LINEE VERTICALI (scorrono dall'alto verso il basso)
+        const inizioVerticali = tempoTotale;
+        for (let j = 0; j < f2; j++) {
+            const x = vPos[j];
+            const yStart = minY - estensione;
+            const yEnd = maxY + estensione;
+            const lunghezza = yEnd - yStart;
+
+            for (let s = 1; s <= passi; s++) {
+                const progress = s / passi;
+                const yParziale = yStart + progress * lunghezza; // dall'alto verso il basso
+                animationTimeouts.push(setTimeout(() => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    // Ridisegna tutte le orizzontali (complete)
+                    for (let k = 0; k < f1; k++) {
+                        drawLine(minX - estensione, hPos[k], maxX + estensione, hPos[k]);
+                    }
+                    // Ridisegna tutte le verticali già completate (fino a j-1) per intero
+                    for (let k = 0; k < j; k++) {
+                        drawLine(vPos[k], minY - estensione, vPos[k], maxY + estensione);
+                    }
+                    // Disegna la linea verticale corrente parziale
+                    drawLine(x, yStart, x, yParziale);
+                }, inizioVerticali + j * delayBase + (s - 1) * (delayBase / passi)));
+            }
+            // Linea completa
+            animationTimeouts.push(setTimeout(() => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let k = 0; k < f1; k++) {
+                    drawLine(minX - estensione, hPos[k], maxX + estensione, hPos[k]);
+                }
+                for (let k = 0; k <= j; k++) {
+                    drawLine(vPos[k], minY - estensione, vPos[k], maxY + estensione);
+                }
+            }, inizioVerticali + j * delayBase + delayBase));
+            tempoTotale += delayBase;
+        }
+
+        // ANIMAZIONE PALLINI (in ordine di lettura)
+        let dotCounter = 0;
+        for (let i = 0; i < f1; i++) {
+            for (let j = 0; j < f2; j++) {
+                animationTimeouts.push(setTimeout(() => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    // Ridisegna tutte le linee
+                    for (let k = 0; k < f1; k++) {
+                        drawLine(minX - estensione, hPos[k], maxX + estensione, hPos[k]);
+                    }
+                    for (let k = 0; k < f2; k++) {
+                        drawLine(vPos[k], minY - estensione, vPos[k], maxY + estensione);
+                    }
+                    // Disegna tutti i pallini fino all'indice corrente
+                    let count = 0;
+                    for (let ii = 0; ii < f1; ii++) {
+                        for (let jj = 0; jj < f2; jj++) {
+                            if (count <= dotCounter) {
+                                drawDot(vPos[jj], hPos[ii]);
+                            }
+                            count++;
+                        }
+                    }
+                    dotCounter++;
+                }, tempoTotale + dotCounter * delayDot));
+            }
+        }
+    }
+
+    // ***** MODALITÀ ADDIZIONE RIPETUTA (con adattamento automatico della dimensione) *****
+    function renderAddizioneAnimata(f1, f2) {
+        if (f1 === 0 || f2 === 0) {
+            visualContainer.innerHTML = '<div class="addizione-animata"><span style="opacity:1;">0 = 0</span></div>';
+            return;
+        }
+        const container = document.createElement('div');
+        container.className = 'addizione-animata';
+        const parti = [];
+        for (let i = 0; i < f2; i++) {
+            parti.push(f1);
+            if (i < f2 - 1) parti.push('+');
+        }
+        parti.push('=');
+        parti.push('?');
+        parti.forEach((p, idx) => {
+            const span = document.createElement('span');
+            span.textContent = p;
+            container.appendChild(span);
+        });
+        visualContainer.appendChild(container);
+
+        const spans = container.querySelectorAll('span');
+        spans.forEach((span, index) => {
+            animationTimeouts.push(setTimeout(() => {
+                span.classList.add('revealed');
+            }, index * 500)); // raddoppiato (era 250)
+        });
+
+        // Adatta la dimensione del carattere per far stare tutto su una riga centrata
+        setTimeout(() => {
+            const containerWidth = visualContainer.clientWidth - 40; // margine
+            let currentFontSize = parseFloat(window.getComputedStyle(container).fontSize);
+            // Misura la larghezza totale degli span
+            const measureWidth = () => {
+                let totalWidth = 0;
+                spans.forEach(span => {
+                    totalWidth += span.offsetWidth;
+                });
+                return totalWidth;
+            };
+            let totalWidth = measureWidth();
+            // Se la larghezza supera il contenitore, riduci il font-size
+            if (totalWidth > containerWidth) {
+                const ratio = containerWidth / totalWidth;
+                const newFontSize = currentFontSize * ratio * 0.95; // un po' di margine
+                container.style.fontSize = newFontSize + 'px';
+            }
+        }, 100); // piccolo ritardo per permettere il rendering
+    }
+
+    function renderLineaNumeriAnimata(f1, f2) {
+        if (f1 === 0 || f2 === 0) {
+            visualContainer.innerHTML = '<div style="color:#ccc; font-size:2rem;">0</div>';
+            return;
+        }
+        const prodotto = f1 * f2;
+        const passi = [];
+        for (let i = 0; i <= f2; i++) {
+            passi.push(i * f1);
+        }
+
+        const container = document.createElement('div');
+        container.className = 'linea-numeri-container';
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'linea-numeri-wrapper';
+
+        const lineaTratto = document.createElement('div');
+        lineaTratto.className = 'linea-tratto';
+        wrapper.appendChild(lineaTratto);
+
+        const marcatoriDiv = document.createElement('div');
+        marcatoriDiv.className = 'marcatori';
+
+        passi.forEach(val => {
+            const marcatore = document.createElement('div');
+            marcatore.className = 'marcatore' + (val === 0 ? ' zero' : '');
+            marcatore.textContent = val;
+            marcatoriDiv.appendChild(marcatore);
+        });
+
+        wrapper.appendChild(marcatoriDiv);
+        container.appendChild(wrapper);
+        visualContainer.appendChild(container);
+
+        // animazioni: prima la linea
+        animationTimeouts.push(setTimeout(() => {
+            lineaTratto.classList.add('revealed');
+        }, 400)); // raddoppiato (era 200)
+
+        // poi i marcatori uno dopo l'altro
+        const markers = marcatoriDiv.querySelectorAll('.marcatore');
+        markers.forEach((m, idx) => {
+            animationTimeouts.push(setTimeout(() => {
+                m.classList.add('revealed');
+            }, 1000 + idx * 400)); // raddoppiato (era 500 + idx*200)
+        });
+    }
+
+    // ------------------ FUNZIONE PRINCIPALE DI GENERAZIONE ------------------
+    function generaSecondoModo() {
+        clearAnimationTimeouts();
+
+        let f1 = parseInt(fattore1Input.value, 10);
+        let f2 = parseInt(fattore2Input.value, 10);
+
+        if (isNaN(f1) || f1 < 0) f1 = 0;
+        if (isNaN(f2) || f2 < 0) f2 = 0;
+        if (f1 > 12) f1 = 12;
+        if (f2 > 12) f2 = 12;
+
+        fattore1Input.value = f1;
+        fattore2Input.value = f2;
+
+        currentFattore1 = f1;
+        currentFattore2 = f2;
+        currentProdotto = f1 * f2;
+
+        visualContainer.innerHTML = '';
+
+        if (currentMode === 'schieramenti') {
+            if (f1 === 0 || f2 === 0) {
+                feedbackDiv.innerHTML = '🟢 Nessun gruppo da mostrare. Inserisci numeri positivi.';
+            } else {
+                creaGruppiConAnimazione(f1, f2);
+                feedbackDiv.innerHTML = `🟢 ${f2} gruppi da ${f1} palline. Scrivi il totale.`;
+            }
+        } else if (currentMode === 'incroci') {
+            renderIncrociAnimato(f1, f2);
+            feedbackDiv.innerHTML = `🟢 Incroci: ${f1} × ${f2}`;
+        } else if (currentMode === 'addizione') {
+            renderAddizioneAnimata(f1, f2);
+            feedbackDiv.innerHTML = `🟢 Addizione ripetuta: ${f1} × ${f2}`;
+        } else if (currentMode === 'linea') {
+            renderLineaNumeriAnimata(f1, f2);
+            feedbackDiv.innerHTML = `🟢 Linea dei numeri: ${f1} × ${f2}`;
+        }
+
+        risultatoInput.value = '';
+    }
+
+    // ------------------ CAMBIO MODALITÀ ------------------
+    function cambiaModalità(mode) {
+        if (mode === currentMode) return;
+        clearAnimationTimeouts();
+        currentMode = mode;
+        setActiveModeButton(mode);
+        generaSecondoModo();
+    }
+
+    function setActiveModeButton(mode) {
+        [modeSchieramentiBtn, modeIncrociBtn, modeAddizioneBtn, modeLineaBtn].forEach(btn => btn.classList.remove('attivo'));
+        if (mode === 'schieramenti') modeSchieramentiBtn.classList.add('attivo');
+        else if (mode === 'incroci') modeIncrociBtn.classList.add('attivo');
+        else if (mode === 'addizione') modeAddizioneBtn.classList.add('attivo');
+        else if (mode === 'linea') modeLineaBtn.classList.add('attivo');
+    }
+
+    // ------------------ VERIFICA RISULTATO (con nuove frasi) ------------------
+    function verificaRisultato() {
+        const valoreInserito = parseInt(risultatoInput.value, 10);
+        if (isNaN(valoreInserito)) {
+            feedbackDiv.innerHTML = '❓ Scrivi un numero, poi premi INVIO ❓';
+            parla('Scrivi un numero nel campo risultato');
+            return;
+        }
+
+        const prodotto = currentFattore1 * currentFattore2;
+
+        if (valoreInserito === prodotto) {
+            const ok = [
+                'Ottimo!', 'Eccellente!', 'Straordinario!', 'Supercarifragilistichespiralidoso!',
+                'Perfetto!', 'Che precisione!', 'Fantastico!', 'Complimenti!',
+                'Meraviglioso!', 'Hai centrato il risultato!',
+                'La forza scorre copiosa in te!', 'Ottimo! Verso l\'infinito ed oltre!'
+            ];
+            const scelto = ok[Math.floor(Math.random() * ok.length)];
+            feedbackDiv.innerHTML = `✅ ${scelto}   ${currentFattore1} ✕ ${currentFattore2} = ${prodotto}`;
+            parla(scelto + ' ' + currentFattore1 + ' per ' + currentFattore2 + ' fa ' + prodotto);
+        } else {
+            const ko = [
+                'Non demordere!', 'Riprova con fiducia!', 'Quasi, riprova!',
+                'Puoi farcela!', 'Forza, guarda bene!', 'Non ti preoccupare, esercitati ancora!',
+                'Un altro tentativo!', 'Osserva i gruppi con calma.', 'Coraggio!',
+                'Ogni errore insegna qualcosa.',
+                'La mia tartaruga ci azzecca meglio!', 'Concentrati di più Cippalippa', 'Non temere, un giorno sarai eccezionale!'
+            ];
+            const scelto = ko[Math.floor(Math.random() * ko.length)];
+            feedbackDiv.innerHTML = `🔁 ${scelto} (hai scritto ${valoreInserito})`;
+            parla(scelto);
+        }
+        fattore1Input.focus();
+        fattore1Input.select();
+    }
+
+    // ------------------ EVENT LISTENERS ------------------
+    creaBtn.addEventListener('click', function() {
+        generaSecondoModo();
+        if (currentMode === 'schieramenti') risultatoInput.focus();
+    });
+
+    verificaBtn.addEventListener('click', verificaRisultato);
+
+    risultatoInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            verificaRisultato();
+        }
+    });
+
+    fattore1Input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            fattore2Input.focus();
+            fattore2Input.select();
+        }
+    });
+
+    fattore2Input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            generaSecondoModo();
+            if (currentMode === 'schieramenti') risultatoInput.focus();
+        }
+    });
+
+    fattore1Input.addEventListener('change', function() {
+        let v = parseInt(this.value, 10);
+        if (isNaN(v) || v < 0) this.value = 0;
+        if (this.value > 12) this.value = 12;
+    });
+    fattore2Input.addEventListener('change', function() {
+        let v = parseInt(this.value, 10);
+        if (isNaN(v) || v < 0) this.value = 0;
+        if (this.value > 12) this.value = 12;
+    });
+
+    modeSchieramentiBtn.addEventListener('click', () => cambiaModalità('schieramenti'));
+    modeIncrociBtn.addEventListener('click', () => cambiaModalità('incroci'));
+    modeAddizioneBtn.addEventListener('click', () => cambiaModalità('addizione'));
+    modeLineaBtn.addEventListener('click', () => cambiaModalità('linea'));
+
+    // Inizializzazione
+    window.addEventListener('DOMContentLoaded', () => {
+        fattore1Input.value = 0;
+        fattore2Input.value = 1;
+        currentFattore1 = 0;
+        currentFattore2 = 1;
+        currentProdotto = 0;
+        currentMode = 'schieramenti';
+        setActiveModeButton('schieramenti');
+        visualContainer.innerHTML = '';
+        feedbackDiv.innerHTML = '✨ Inserisci i fattori e premi INVIO nel secondo campo ✨';
+        fattore1Input.focus();
+        fattore1Input.select();
+    });
+})();
+</script>
+</body>
+</html>
