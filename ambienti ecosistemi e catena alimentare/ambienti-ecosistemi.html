@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La grande avventura della natura! Ambienti e catene alimentari</title>
+    <style>
+        /* Reset e stili base – Tonalità verdi scuro - CONTAINER INGRANDITO */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1e4a2f;
+            --secondary: #2e7d5e;
+            --accent: #d4a017;
+            --light: #f1f9e6;
+            --dark: #0f2a1b;
+            --success: #3c9e6b;
+            --gradient-start: #0f2a1b;
+            --gradient-end: #1e4a2f;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', 'OpenDyslexic', sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            min-height: 100vh;
+            padding: 20px;
+            font-size: 1.6rem;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background-color: rgba(15, 42, 27, 0.85);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            padding: 30px 35px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 35px 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: var(--light);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.7rem;
+            color: var(--light);
+            opacity: 0.95;
+        }
+        
+        #language-selector {
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            width: 100%;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        #language-selector-title {
+            font-size: 1.7rem;
+            margin-bottom: 18px;
+            font-weight: bold;
+            color: var(--light);
+            text-align: center;
+        }
+        
+        .language-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .language-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .lang-btn {
+            padding: 12px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            font-weight: 600;
+            min-width: 95px;
+            max-width: 170px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            font-family: inherit;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            border-color: var(--light);
+        }
+        
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: var(--light);
+            transform: translateY(-1px);
+        }
+        
+        .hindi { font-family: 'Segoe UI', 'Nirmala UI', 'Mangal', 'Kokila', sans-serif; }
+        .chinese { font-family: 'Segoe UI', 'Microsoft YaHei', 'SimHei', sans-serif; }
+        
+        .browser-warning {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 15px auto 0;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+            display: block;
+            text-align: center;
+        }
+        
+        section {
+            background: rgba(30, 74, 47, 0.75);
+            border-radius: 18px;
+            padding: 35px 30px;
+            margin-bottom: 35px;
+            border-left: 6px solid var(--secondary);
+            position: relative;
+        }
+        
+        h2 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 2.6rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2:before {
+            content: "🌿";
+            color: var(--accent);
+            font-size: 3rem;
+            margin-right: 15px;
+        }
+        
+        h3 {
+            color: var(--success);
+            margin: 20px 0 15px;
+            font-size: 2.2rem;
+        }
+        
+        p, li {
+            font-size: 1.6rem;
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        
+        ul, ol { margin-left: 30px; margin-bottom: 20px; }
+        
+        .voice-controls {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .voice-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            font-size: 1.8rem;
+        }
+        
+        .voice-btn.stop { background: var(--accent); }
+        .voice-btn.active { animation: pulse 1.5s infinite; }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .section-image {
+            width: 100%;
+            margin: 30px 0;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+        }
+        
+        .section-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .section-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 48px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            background: rgba(0,0,0,0.6);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .lightbox-close:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .activity { background: rgba(60, 158, 107, 0.2); border-left-color: var(--success); }
+        .quiz-container { background: rgba(212, 160, 23, 0.15); border-left-color: var(--accent); }
+        
+        .quiz-question { margin-bottom: 25px; padding: 20px; background: rgba(255,255,255,0.08); border-radius: 15px; }
+        .quiz-options { margin-top: 15px; display: flex; flex-direction: column; gap: 12px; }
+        .quiz-option {
+            display: block;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            font-size: 1.5rem;
+            border-left: 4px solid transparent;
+        }
+        .quiz-option:hover { background: rgba(255,255,255,0.22); transform: translateX(5px); }
+        .quiz-option.correct { background: rgba(60, 158, 107, 0.4); border-left: 4px solid var(--success); }
+        .quiz-option.incorrect { background: rgba(212, 160, 23, 0.4); border-left: 4px solid var(--accent); }
+        .quiz-feedback { margin-top: 18px; padding: 14px; border-radius: 14px; display: none; font-weight: bold; font-size: 1.5rem; }
+        .quiz-feedback.correct { background: rgba(60, 158, 107, 0.3); color: #b3ffcf; border-left: 4px solid var(--success); }
+        .quiz-feedback.incorrect { background: rgba(212, 160, 23, 0.3); color: #ffdf9c; border-left: 4px solid var(--accent); }
+        .quiz-results { margin-top: 25px; padding: 20px; background: rgba(46, 125, 94, 0.25); border-radius: 16px; display: none; font-size: 1.4rem; }
+        
+        .scientist-timeline { position: relative; margin: 35px 0; }
+        .scientist-timeline:before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: var(--secondary);
+        }
+        .scientist {
+            position: relative;
+            margin-bottom: 35px;
+            padding-left: 60px;
+        }
+        .scientist:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--light);
+        }
+        .scientist h4 { color: var(--secondary); margin-bottom: 6px; font-size: 1.9rem; }
+        .scientist h4 a { color: var(--secondary); text-decoration: none; border-bottom: 1px dotted var(--secondary); transition: all 0.3s ease; }
+        .scientist h4 a:hover { color: var(--light); border-bottom: 1px solid var(--light); }
+        .scientist-period { font-style: italic; color: var(--success); margin-bottom: 10px; font-size: 1.4rem; }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin: 25px 0;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.3rem;
+        }
+        
+        @media (max-width: 768px) {
+            body { font-size: 1.4rem; }
+            .container { padding: 20px 18px; max-width: 100%; }
+            h1 { font-size: 2.4rem; }
+            h2 { font-size: 2rem; }
+            section { padding: 25px 18px; }
+            .voice-btn { width: 48px; height: 48px; font-size: 1.5rem; }
+            .quiz-option { font-size: 1.3rem; padding: 10px 14px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1 data-translate-key="page.title">🌳 La grande avventura della natura! Ambienti e catene alimentari.</h1>
+        <p class="subtitle" data-translate-key="page.subtitle">Una favola a fumetti per giovani esploratori.</p>
+    </header>
+
+    <div id="language-selector">
+        <div id="language-selector-title" data-translate-key="languageSelector.title">🌍 Seleziona lingua.</div>
+        <div class="language-rows">
+            <div class="language-row">
+                <button class="lang-btn active" data-lang="it">Italiano</button>
+                <button class="lang-btn" data-lang="en">English</button>
+                <button class="lang-btn" data-lang="fr">Français</button>
+                <button class="lang-btn" data-lang="ar">العربية</button>
+                <button class="lang-btn" data-lang="es">Español</button>
+            </div>
+            <div class="language-row">
+                <button class="lang-btn" data-lang="pt">Português</button>
+                <button class="lang-btn" data-lang="fil">Filippino</button>
+                <button class="lang-btn hindi" data-lang="hi">हिन्दी</button>
+                <button class="lang-btn" data-lang="ru">Русский</button>
+                <button class="lang-btn chinese" data-lang="zh">中文</button>
+            </div>
+        </div>
+        <div class="browser-warning" data-translate-key="languageSelector.browserHint">
+            💡 <strong>Suggerimento:</strong> Per ascoltare le storie in tutte le lingue, usa Google Chrome.
+        </div>
+    </div>
+
+    <main>
+        <!-- Immagine benvenuto -->
+        <div class="section-image">
+            <img src="immagini/riccio-e-amici.png" alt="Riccio Riccardo e i suoi amici animali nella foresta">
+        </div>
+
+        <!-- INTRODUZIONE -->
+        <section id="introduzione">
+            <div class="voice-controls">
+                <button class="voice-btn start" title="Ascolta questa sezione">🔊</button>
+                <button class="voice-btn stop" title="Ferma l'ascolto" style="display: none;">⏹️</button>
+            </div>
+            <h2 data-translate-key="sections.introduzione.title">Ciao! Ti presento Riccardo il Riccio.</h2>
+            <p data-translate-key="sections.introduzione.content.0">Nella grande foresta di Verdeluna vive Riccardo, un riccio curioso. Una mattina Gino il Gufo gli consegna una misteriosa mappa che mostra quattro ambienti: la foresta, il deserto, il mare e la montagna. «Ogni luogo nasconde un segreto sulla catena del cibo» dice Gino. Riccardo decide subito di partire all’avventura con i suoi amici: Lella Lepre e Fulvo Scoiattolo. Pronto a unirti a loro?</p>
+            <p data-translate-key="sections.introduzione.content.1">In ogni tappa incontreranno nuovi animali e scopriranno come funziona l’equilibrio della natura. Sarà un viaggio indimenticabile!</p>
+        </section>
+
+        <div class="section-image">
+            <img src="immagini/ambienti-naturali.png" alt="Disegno che mostra foresta, deserto, mare e montagna">
+        </div>
+
+        <!-- AMBIENTI -->
+        <section id="ambienti">
+            <div class="voice-controls"><button class="voice-btn start">🔊</button><button class="voice-btn stop" style="display: none;">⏹️</button></div>
+            <h2 data-translate-key="sections.ambienti.title">Le case della natura: gli habitat.</h2>
+            <p data-translate-key="sections.ambienti.intro">La mappa di Gino mostra quattro case speciali, gli Habitat, cioè gli ambienti che troviamo sulla Terra. Riccardo e la sua squadra le visiteranno una per una. Ecco cosa scopriranno:</p>
+            <ul>
+                <li data-translate-key="sections.ambienti.foresta"><strong>Foresta:</strong> tanti alberi, umida e piena di nascondigli. Qui vivono Riccardo, Lella e Fulvo. Incontreranno anche scoiattoli e cervi.</li>
+                <li data-translate-key="sections.ambienti.deserto"><strong>Deserto:</strong> molto caldo di giorno e freddo di notte, con poca acqua. Abitato da cammelli, volpi del deserto e lucertole.</li>
+                <li data-translate-key="sections.ambienti.mare"><strong>Mare:</strong> acqua salata, onde e pesci colorati. La casa di Delfino Dino e di tante creature marine.</li>
+                <li data-translate-key="sections.ambienti.montagna"><strong>Montagna:</strong> alta, rocciosa, con aria fresca e neve. Qui vivono stambecchi, aquile e marmotte.</li>
+            </ul>
+            <p data-translate-key="sections.ambienti.conclusion">Ogni ambiente ha il suo <strong>clima</strong> (caldo, freddo, secco, umido) e le sue <strong>piante speciali</strong>. Durante il viaggio, i nostri amici impareranno a conoscere le catene alimentari di ogni luogo.</p>
+        </section>
+
+        <div class="section-image">
+            <img src="immagini/ecosistema.png" alt="Un prato con animali, piante, sole, acqua e terra">
+        </div>
+
+        <!-- ECOSISTEMA -->
+        <section id="ecosistema">
+            <div class="voice-controls"><button class="voice-btn start">🔊</button><button class="voice-btn stop" style="display: none;">⏹️</button></div>
+            <h2 data-translate-key="sections.ecosistema.title">Cos'è un ecosistema? Una squadra!</h2>
+            <p data-translate-key="sections.ecosistema.content.0">Un ecosistema è come una grande squadra dove tutti sono importanti. Ci sono i <strong>viventi</strong> (animali, piante, funghi) e i <strong>non viventi</strong> (sole, acqua, terra, aria).</p>
+            <p data-translate-key="sections.ecosistema.content.1">Mentre Riccardo e i suoi amici attraversano la foresta, notano che il sole scalda, la pioggia bagna le piante, gli alberi producono ghiande e i ricci si nutrono di insetti. «Tutto è in equilibrio!» esclama Lella. «Se un pezzo manca, la squadra soffre» aggiunge Gino dall’alto.</p>
+            <h3 data-translate-key="sections.ecosistema.subtitle">I legami nell'ecosistema.</h3>
+            <p data-translate-key="sections.ecosistema.legani">Le piante hanno bisogno del sole per crescere. Gli erbivori mangiano le piante. I carnivori mangiano gli erbivori. I funghi e i batteri riciclano le foglie secche. È un meraviglioso <strong>cerchio della vita</strong>. «Senza i decompositori, il terreno sarebbe pieno di foglie morte!» spiega Fulvo.</p>
+        </section>
+
+        <!-- VIDEO ECOSISTEMI -->
+        <section id="video-ecosistema">
+            <div class="voice-controls"><button class="voice-btn start">🔊</button><button class="voice-btn stop" style="display: none;">⏹️</button></div>
+            <h2 data-translate-key="sections.video-ecosistema.title">Guarda il video per capire cosa siano gli ecosistemi!</h2>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="https://www.youtube.com/watch?v=ahWSwTfIZOA&autoplay=1" target="_blank" class="section-image" style="display: block; text-decoration: none;">
+                    <img src="immagini/video-natura.png" alt="Anteprima del video sugli ecosistemi">
+                </a>
+                <p style="margin-top: 15px; font-size: 1.2rem; opacity: 0.8;" data-translate-key="sections.video-ecosistema.clickHint">Clicca sull'immagine per guardare un video sugli ecosistemi (YouTube)</p>
+            </div>
+        </section>
+
+        <div class="section-image">
+            <img src="immagini/catena-alimentare.png" alt="Esempio di catena alimentare: sole → erba → coniglio → volpe → funghi">
+        </div>
+
+        <!-- CATENA ALIMENTARE -->
+        <section id="catena">
+            <div class="voice-controls"><button class="voice-btn start">🔊</button><button class="voice-btn stop" style="display: none;">⏹️</button></div>
+            <h2 data-translate-key="sections.catena.title">Chi mangia chi? La catena alimentare.</h2>
+            <p data-translate-key="sections.catena.intro">«Immaginate una collana di anelli» dice Gino. «Ogni anello è un essere vivente che mangia quello prima di lui. Ecco i protagonisti che incontreremo nel viaggio»:</p>
+            <ul>
+                <li data-translate-key="sections.catena.produttori"><strong>Produttori:</strong> le piante. Usano la luce del sole per produrre cibo (foglie, frutti).</li>
+                <li data-translate-key="sections.catena.consumatoriPrimari"><strong>Consumatori primari:</strong> gli erbivori come Lella Lepre, che mangiano le piante.</li>
+                <li data-translate-key="sections.catena.consumatoriSecondari"><strong>Consumatori secondari:</strong> i carnivori come la volpe, che mangiano gli erbivori.</li>
+                <li data-translate-key="sections.catena.decompositori"><strong>Decompositori:</strong> funghi e lombrichi, che trasformano i resti in nutrimento per la terra.</li>
+            </ul>
+            <p data-translate-key="sections.catena.esempio">Esempio: Il sole dà energia all’erba (produttore). Il coniglio mangia l’erba (consumatore primario). La volpe mangia il coniglio (consumatore secondario). Quando la volpe muore, i funghi la decompongono e i sali minerali tornano alla terra. «È così che la natura si rinnova!» esclama Riccardo.</p>
+        </section>
+
+        <section id="video">
+            <div class="voice-controls"><button class="voice-btn start">🔊</button><button class="voice-btn stop" style="display: none;">⏹️</button></div>
+            <h2 data-translate-key="sections.video.title">Guarda il video sulle catene alimentari.</h2>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="https://www.youtube.com/watch?v=WkBHA8a5sNM&autoplay=1" target="_blank" class="section-image" style="display: block; text-decoration: none;">
+                    <img src="immagini/video-catena.png" alt="Anteprima del video sulla natura">
+                </a>
+                <p style="margin-top: 15px; font-size: 1.2rem; opacity: 0.8;" data-translate-key="sections.video.clickHint">Clicca sull'immagine per guardare un video sulle catene alimentari (YouTube)</p>
+            </div>
+        </section>
+
+        <div class="section-image">
+            <img src="immagini/disegna-catena.png" alt="Bambino che disegna una catena alimentare">
+        </div>
+
+        <section id="attivita-pratica" class="activity">
+            <div class="voice-controls"><button class="voice-btn start">🔊</button><button class="voice-btn stop" style="display: none;">⏹️</button></div>
+            <h2 data-translate-key="sections.attivita-pratica.title">Attività: costruisci la tua catena alimentare.</h2>
+            <p data-translate-key="sections.attivita-pratica.materials"><strong>Materiale:</strong> foglio bianco, matite colorate, forbici e colla (se vuoi ritagliare figure).</p>
+            <ol>
+                <li data-translate-key="sections.attivita-pratica.steps.0"><strong>Scegli un ambiente:</strong> foresta, deserto, mare o montagna.</li>
+                <li data-translate-key="sections.attivita-pratica.steps.1"><strong>Disegna il sole</strong> e una pianta (produttore).</li>
+                <li data-translate-key="sections.attivita-pratica.steps.2"><strong>Aggiungi un erbivoro</strong> che mangia la pianta.</li>
+                <li data-translate-key="sections.attivita-pratica.steps.3"><strong>Aggiungi un carnivoro</strong> che mangia l'erbivoro.</li>
+                <li data-translate-key="sections.attivita-pratica.steps.4"><strong>Disegna i decompositori</strong> (funghi, lombrichi) che rimettono i nutrienti nel suolo.</li>
+            </ol>
+            <p data-translate-key="sections.attivita-pratica.conclusion">Bravo! Hai creato un vero ecosistema in miniatura. Mostralo ai tuoi compagni!</p>
+        </section>
+
+        <div class="section-image">
+            <img src="immagini/esploratori.png" alt="Ritratto di Darwin, Humboldt, Goodall e Carson">
+        </div>
+
+        <section id="storia-esploratori">
+            <div class="voice-controls"><button class="voice-btn start">🔊</button><button class="voice-btn stop" style="display: none;">⏹️</button></div>
+            <h2 data-translate-key="storia-esploratori.title">I grandi esploratori della natura.</h2>
+            <p data-translate-key="storia-esploratori.intro">Anche gli esseri umani hanno viaggiato e studiato per capire gli ecosistemi. Ecco alcuni scienziati famosi che hanno scoperto cose meravigliose:</p>
+            <div class="scientist-timeline">
+                <div class="scientist"><h4><a href="https://it.wikipedia.org/wiki/Alexander_von_Humboldt" target="_blank" data-translate-key="storia-esploratori.humboldt.name">Alexander von Humboldt (1769-1859).</a></h4><p class="scientist-period" data-translate-key="storia-esploratori.humboldt.period">Esploratore tedesco.</p><p data-translate-key="storia-esploratori.humboldt.description">Viaggiò in Sudamerica e scoprì come piante e animali sono collegati tra loro e con il clima. Inventò l'idea di ecosistema!</p></div>
+                <div class="scientist"><h4><a href="https://it.wikipedia.org/wiki/Charles_Darwin" target="_blank" data-translate-key="storia-esploratori.darwin.name">Charles Darwin (1809-1882).</a></h4><p class="scientist-period" data-translate-key="storia-esploratori.darwin.period">Naturalista inglese.</p><p data-translate-key="storia-esploratori.darwin.description">Con il suo viaggio sul brigantino Beagle, osservò migliaia di specie e capì l'importanza della catena alimentare e dell'equilibrio naturale.</p></div>
+                <div class="scientist"><h4><a href="https://it.wikipedia.org/wiki/Jane_Goodall" target="_blank" data-translate-key="storia-esploratori.goodall.name">Jane Goodall (1934-).</a></h4><p class="scientist-period" data-translate-key="storia-esploratori.goodall.period">Primatologa inglese.</p><p data-translate-key="storia-esploratori.goodall.description">Ha vissuto con gli scimpanzé in Tanzania e ci ha insegnato che sono intelligenti, usano strumenti e hanno emozioni. Una vera amica degli animali!</p></div>
+                <div class="scientist"><h4><a href="https://it.wikipedia.org/wiki/Rachel_Carson" target="_blank" data-translate-key="storia-esploratori.carson.name">Rachel Carson (1907-1964).</a></h4><p class="scientist-period" data-translate-key="storia-esploratori.carson.period">Biologa e ambientalista americana.</p><p data-translate-key="storia-esploratori.carson.description">Con il suo libro "Primavera silenziosa" ha svegliato il mondo sui pericoli dell'inquinamento e ha protetto la natura per sempre.</p></div>
+                <div class="scientist"><h4><a href="https://it.wikipedia.org/wiki/David_Attenborough" target="_blank" data-translate-key="storia-esploratori.attenborough.name">David Attenborough (1926-).</a></h4><p class="scientist-period" data-translate-key="storia-esploratori.attenborough.period">Naturalista e divulgatore inglese.</p><p data-translate-key="storia-esploratori.attenborough.description">Con i suoi documentari ha mostrato a milioni di bambini la bellezza della Terra e l'importanza di rispettare ogni essere vivente.</p></div>
+            </div>
+            <p data-translate-key="storia-esploratori.conclusion">Grazie a loro oggi conosciamo meglio la nostra meravigliosa Terra. Chissà, forse un giorno anche tu farai una grande scoperta!</p>
+        </section>
+
+        <div class="section-image">
+            <img src="immagini/quiz-natura.png" alt="Quiz a tema natura">
+        </div>
+
+        <!-- 20 quiz (hardcoded) -->
+        <div id="quiz-container-wrapper">
+            <!-- Qui verranno posizionati i 20 quiz statici -->
+        </div>
+    </main>
+
+    <footer>
+        <p data-translate-key="footer.line1">Lezione sugli ambienti naturali – per bambini di terza primaria.</p>
+        <p data-translate-key="footer.line2">Testo semplificato per DSA e BES – con sintesi vocale.</p>
+        <p style="margin-top: 10px; font-size: 1.1rem;" data-translate-key="footer.line3">🌍 Versione multilingue con menu compatto e quiz con risposte casuali.</p>
+    </footer>
+</div>
+
+<script>
+// ==================== TRADUZIONI ====================
+// ITALIANO (versione originale)
+const itTranslations = {
+    page: { title: "🌳 La grande avventura della natura! Ambienti e catene alimentari.", subtitle: "Una favola a fumetti per giovani esploratori." },
+    languageSelector: { title: "🌍 Seleziona lingua.", browserHint: "💡 Suggerimento: per ascoltare le storie in tutte le lingue, usa Google Chrome." },
+    sections: {
+        introduzione: { title: "Ciao! Ti presento Riccardo il Riccio.", content: ["Nella grande foresta di Verdeluna vive Riccardo, un riccio curioso. Una mattina Gino il Gufo gli consegna una misteriosa mappa che mostra quattro ambienti: la foresta, il deserto, il mare e la montagna. «Ogni luogo nasconde un segreto sulla catena del cibo» dice Gino. Riccardo decide subito di partire all’avventura con i suoi amici: Lella Lepre e Fulvo Scoiattolo. Pronto a unirti a loro?","In ogni tappa incontreranno nuovi animali e scopriranno come funziona l’equilibrio della natura. Sarà un viaggio indimenticabile!"] },
+        ambienti: { title: "Le case della natura: gli habitat.", intro: "La mappa di Gino mostra quattro case speciali, gli Habitat, cioè gli ambienti che troviamo sulla Terra. Riccardo e la sua squadra le visiteranno una per una. Ecco cosa scopriranno:", foresta: "<strong>Foresta:</strong> tanti alberi, umida e piena di nascondigli. Qui vivono Riccardo, Lella e Fulvo. Incontreranno anche scoiattoli e cervi.", deserto: "<strong>Deserto:</strong> molto caldo di giorno e freddo di notte, con poca acqua. Abitato da cammelli, volpi del deserto e lucertole.", mare: "<strong>Mare:</strong> acqua salata, onde e pesci colorati. La casa di Delfino Dino e di tante creature marine.", montagna: "<strong>Montagna:</strong> alta, rocciosa, con aria fresca e neve. Qui vivono stambecchi, aquile e marmotte.", conclusion: "Ogni ambiente ha il suo <strong>clima</strong> (caldo, freddo, secco, umido) e le sue <strong>piante speciali</strong>. Durante il viaggio, i nostri amici impareranno a conoscere le catene alimentari di ogni luogo." },
+        ecosistema: { title: "Cos'è un ecosistema? Una squadra!", content: ["Un ecosistema è come una grande squadra dove tutti sono importanti. Ci sono i <strong>viventi</strong> (animali, piante, funghi) e i <strong>non viventi</strong> (sole, acqua, terra, aria).","Mentre Riccardo e i suoi amici attraversano la foresta, notano che il sole scalda, la pioggia bagna le piante, gli alberi producono ghiande e i ricci si nutrono di insetti. «Tutto è in equilibrio!» esclama Lella. «Se un pezzo manca, la squadra soffre» aggiunge Gino dall’alto."], subtitle: "I legami nell'ecosistema.", legani: "Le piante hanno bisogno del sole per crescere. Gli erbivori mangiano le piante. I carnivori mangiano gli erbivori. I funghi e i batteri riciclano le foglie secche. È un meraviglioso <strong>cerchio della vita</strong>. «Senza i decompositori, il terreno sarebbe pieno di foglie morte!» spiega Fulvo." },
+        catena: { title: "Chi mangia chi? La catena alimentare.", intro: "«Immaginate una collana di anelli» dice Gino. «Ogni anello è un essere vivente che mangia quello prima di lui. Ecco i protagonisti che incontreremo nel viaggio»:", produttori: "<strong>Produttori:</strong> le piante. Usano la luce del sole per produrre cibo (foglie, frutti).", consumatoriPrimari: "<strong>Consumatori primari:</strong> gli erbivori come Lella Lepre, che mangiano le piante.", consumatoriSecondari: "<strong>Consumatori secondari:</strong> i carnivori come la volpe, che mangiano gli erbivori.", decompositori: "<strong>Decompositori:</strong> funghi e lombrichi, che trasformano i resti in nutrimento per la terra.", esempio: "Esempio: Il sole dà energia all’erba (produttore). Il coniglio mangia l’erba (consumatore primario). La volpe mangia il coniglio (consumatore secondario). Quando la volpe muore, i funghi la decompongono e i sali minerali tornano alla terra. «È così che la natura si rinnova!» esclama Riccardo." },
+        video: { title: "Guarda il video sulle catene alimentari.", clickHint: "Clicca sull'immagine per guardare un video sulle catene alimentari (YouTube)" },
+        "video-ecosistema": { title: "Guarda il video per capire cosa siano gli ecosistemi!", clickHint: "Clicca sull'immagine per guardare un video sugli ecosistemi (YouTube)" },
+        "attivita-pratica": { title: "Attività: costruisci la tua catena alimentare.", materials: "<strong>Materiale:</strong> foglio bianco, matite colorate, forbici e colla (se vuoi ritagliare figure).", steps: ["<strong>Scegli un ambiente:</strong> foresta, deserto, mare o montagna.","<strong>Disegna il sole</strong> e una pianta (produttore).","<strong>Aggiungi un erbivoro</strong> che mangia la pianta.","<strong>Aggiungi un carnivoro</strong> che mangia l'erbivoro.","<strong>Disegna i decompositori</strong> (funghi, lombrichi) che rimettono i nutrienti nel suolo."], conclusion: "Bravo! Hai creato un vero ecosistema in miniatura. Mostralo ai tuoi compagni!" }
+    },
+    quiz: {
+        title: "Quiz: Sei un esploratore esperto?",
+        questions: {
+            1: { text: "1. Chi è il produttore nella catena alimentare?", options: ["L'erba", "La volpe", "Il fungo"], correct: 0 },
+            2: { text: "2. In quale ambiente c'è poca acqua e fa molto caldo di giorno?", options: ["Foresta", "Deserto", "Mare"], correct: 1 },
+            3: { text: "3. Cosa fanno i decompositori (come i funghi)?", options: ["Mangiano le piante vive", "Cacciano gli erbivori", "Riciclano i resti e aiutano la terra"], correct: 2 },
+            4: { text: "4. Quale animale è un consumatore primario (erbivoro)?", options: ["Coniglio", "Leone", "Aquila"], correct: 0 },
+            5: { text: "5. Cosa sono il sole, l'acqua e la roccia in un ecosistema?", options: ["Componenti viventi", "Componenti non viventi", "Consumatori"], correct: 1 },
+            6: { text: "6. Cosa succede se in una foresta spariscono tutte le piante?", options: ["Gli erbivori diventano carnivori", "Non cambia niente", "Gli erbivori non hanno cibo e muoiono"], correct: 2 },
+            7: { text: "7. Quale di questi è un carnivoro?", options: ["Leone", "Mucca", "Cavallo"], correct: 0 },
+            8: { text: "8. Dove vivono la maggior parte dei pesci?", options: ["Deserto", "Mare", "Montagna"], correct: 1 },
+            9: { text: "9. Cosa mangia un erbivoro?", options: ["Piante", "Altri animali", "Funghi"], correct: 0 },
+            10: { text: "10. Quale di questi è un decompositore?", options: ["Fungo", "Aquila", "Delfino"], correct: 0 },
+            11: { text: "11. In quale ambiente c'è molta neve?", options: ["Foresta", "Montagna", "Mare"], correct: 1 },
+            12: { text: "12. Come si chiama la scienziata che ha studiato gli scimpanzé?", options: ["Jane Goodall", "Marie Curie", "Rita Levi-Montalcini"], correct: 0 },
+            13: { text: "13. Cosa producono le piante grazie al sole?", options: ["Cibo (ossigeno e zuccheri)", "Acqua", "Terra"], correct: 0 },
+            14: { text: "14. Quale di questi è un ambiente d'acqua dolce?", options: ["Oceano", "Fiume", "Mare"], correct: 1 },
+            15: { text: "15. Chi mangia i consumatori primari?", options: ["Consumatori secondari (carnivori)", "Produttori", "Decompositori"], correct: 0 },
+            16: { text: "16. Cosa sono i lombrichi?", options: ["Decompositori", "Consumatori primari", "Produttori"], correct: 0 },
+            17: { text: "17. In quale ambiente vive il cammello?", options: ["Deserto", "Foresta", "Montagna"], correct: 0 },
+            18: { text: "18. Cosa fa l'acqua per le piante?", options: ["Le aiuta a crescere", "Le secca", "Le mangia"], correct: 0 },
+            19: { text: "19. Chi ha scritto libri per proteggere la natura dall'inquinamento?", options: ["Rachel Carson", "Albert Einstein", "Galileo Galilei"], correct: 0 },
+            20: { text: "20. Quale animale è un consumatore secondario?", options: ["Coniglio", "Volpe", "Cavallo"], correct: 1 }
+        },
+        results: { answers: ["L'erba", "Deserto", "Riciclano i resti", "Coniglio", "Componenti non viventi", "Gli erbivori non hanno cibo", "Leone", "Mare", "Piante", "Fungo", "Montagna", "Jane Goodall", "Cibo (ossigeno e zuccheri)", "Fiume", "Consumatori secondari", "Decompositori", "Deserto", "Le aiuta a crescere", "Rachel Carson", "Volpe"] },
+        feedback: { correct: ["Bravo!", "Ottimo!", "Perfetto!"], incorrect: ["Riprova!", "Non è giusto, ma non mollare!"] },
+        checkButton: "Controlla tutte le risposte"
+    },
+    "storia-esploratori": { title: "I grandi esploratori della natura.", intro: "Anche gli esseri umani hanno viaggiato e studiato per capire gli ecosistemi. Ecco alcuni scienziati famosi che hanno scoperto cose meravigliose:", humboldt: { name: "Alexander von Humboldt (1769-1859).", period: "Esploratore tedesco.", description: "Viaggiò in Sudamerica e scoprì come piante e animali sono collegati tra loro e con il clima. Inventò l'idea di ecosistema!" }, darwin: { name: "Charles Darwin (1809-1882).", period: "Naturalista inglese.", description: "Con il suo viaggio sul brigantino Beagle, osservò migliaia di specie e capì l'importanza della catena alimentare e dell'equilibrio naturale." }, goodall: { name: "Jane Goodall (1934-).", period: "Primatologa inglese.", description: "Ha vissuto con gli scimpanzé in Tanzania e ci ha insegnato che sono intelligenti, usano strumenti e hanno emozioni. Una vera amica degli animali!" }, carson: { name: "Rachel Carson (1907-1964).", period: "Biologa e ambientalista americana.", description: "Con il suo libro 'Primavera silenziosa' ha svegliato il mondo sui pericoli dell'inquinamento e ha protetto la natura per sempre." }, attenborough: { name: "David Attenborough (1926-).", period: "Naturalista e divulgatore inglese.", description: "Con i suoi documentari ha mostrato a milioni di bambini la bellezza della Terra e l'importanza di rispettare ogni essere vivente." }, conclusion: "Grazie a loro oggi conosciamo meglio la nostra meravigliosa Terra. Chissà, forse un giorno anche tu farai una grande scoperta!" },
+    footer: { line1: "Lezione sugli ambienti naturali – per bambini di terza primaria.", line2: "Testo semplificato per DSA e BES – con sintesi vocale.", line3: "🌍 Versione multilingue con menu compatto e quiz con risposte casuali." },
+    voiceButtons: { play: "🔊", stop: "⏹️", playTitle: "Ascolta questa sezione", stopTitle: "Ferma l'ascolto" }
+};
+
+// INGLESE COMPLETO (traduzione semplice e corretta)
+const enTranslations = {
+    page: { title: "🌳 The Great Nature Adventure! Habitats and Food Chains.", subtitle: "A comic-style tale for young explorers." },
+    languageSelector: { title: "🌍 Select language.", browserHint: "💡 Tip: Use Google Chrome to listen to the stories in any language." },
+    sections: {
+        introduzione: { title: "Hi! Meet Riccardo the Hedgehog.", content: ["In the great forest of Verdeluna lives Riccardo, a curious hedgehog. One morning, Gino the Owl gives him a mysterious map showing four habitats: the forest, the desert, the sea, and the mountains. 'Each place hides a secret about the food chain,' says Gino. Riccardo decides to start the adventure with his friends: Lella the Hare and Fulvo the Squirrel. Are you ready to join them?","At each stop they will meet new animals and discover how nature's balance works. It will be an unforgettable journey!"] },
+        ambienti: { title: "Nature's homes: the habitats.", intro: "Gino's map shows four special homes, the habitats we find on Earth. Riccardo and his team will visit them one by one. Here's what they will discover:", foresta: "<strong>Forest:</strong> many trees, humid and full of hiding places. Riccardo, Lella and Fulvo live here. They will also meet squirrels and deer.", deserto: "<strong>Desert:</strong> very hot during the day and cold at night, with little water. Home to camels, desert foxes and lizards.", mare: "<strong>Sea:</strong> salty water, waves and colorful fish. Home to Dino the Dolphin and many sea creatures.", montagna: "<strong>Mountains:</strong> high, rocky, with fresh air and snow. Here live ibex, eagles and marmots.", conclusion: "Each habitat has its own <strong>climate</strong> (hot, cold, dry, wet) and its <strong>special plants</strong>. During the journey, our friends will learn about the food chains of each place." },
+        ecosistema: { title: "What is an ecosystem? A team!", content: ["An ecosystem is like a big team where everyone is important. There are <strong>living things</strong> (animals, plants, fungi) and <strong>non-living things</strong> (sun, water, soil, air).","As Riccardo and his friends walk through the forest, they notice the sun warms, rain waters the plants, trees make acorns, and hedgehogs eat insects. 'Everything is in balance!' exclaims Lella. 'If one piece is missing, the team suffers,' adds Gino from above."], subtitle: "The links in an ecosystem.", legani: "Plants need sunlight to grow. Herbivores eat plants. Carnivores eat herbivores. Fungi and bacteria recycle dry leaves. It is a wonderful <strong>circle of life</strong>. 'Without decomposers, the ground would be full of dead leaves!' explains Fulvo." },
+        catena: { title: "Who eats whom? The food chain.", intro: "'Imagine a necklace of rings,' says Gino. 'Each ring is a living thing that eats the one before it. Here are the main characters we will meet on the journey':", produttori: "<strong>Producers:</strong> plants. They use sunlight to make food (leaves, fruits).", consumatoriPrimari: "<strong>Primary consumers:</strong> herbivores like Lella the Hare, who eat plants.", consumatoriSecondari: "<strong>Secondary consumers:</strong> carnivores like the fox, who eat herbivores.", decompositori: "<strong>Decomposers:</strong> fungi and earthworms, which turn remains into nutrients for the soil.", esempio: "Example: The sun gives energy to grass (producer). The rabbit eats the grass (primary consumer). The fox eats the rabbit (secondary consumer). When the fox dies, fungi decompose it and minerals go back to the soil. 'That's how nature renews itself!' exclaims Riccardo." },
+        video: { title: "Watch the video about food chains.", clickHint: "Click the image to watch a video about food chains (YouTube)" },
+        "video-ecosistema": { title: "Watch the video to understand ecosystems!", clickHint: "Click the image to watch a video about ecosystems (YouTube)" },
+        "attivita-pratica": { title: "Activity: build your own food chain.", materials: "<strong>Materials:</strong> white paper, colored pencils, scissors and glue (if you want to cut out pictures).", steps: ["<strong>Choose a habitat:</strong> forest, desert, sea or mountains.","<strong>Draw the sun</strong> and a plant (producer).","<strong>Add a herbivore</strong> that eats the plant.","<strong>Add a carnivore</strong> that eats the herbivore.","<strong>Draw decomposers</strong> (mushrooms, earthworms) that return nutrients to the soil."], conclusion: "Great! You created a real mini-ecosystem. Show it to your classmates!" }
+    },
+    quiz: {
+        title: "Quiz: Are you an expert explorer?",
+        questions: {
+            1: { text: "1. Who is the producer in the food chain?", options: ["Grass", "Fox", "Mushroom"], correct: 0 },
+            2: { text: "2. In which habitat is there little water and very hot days?", options: ["Forest", "Desert", "Sea"], correct: 1 },
+            3: { text: "3. What do decomposers (like fungi) do?", options: ["Eat living plants", "Hunt herbivores", "Recycle remains and help the soil"], correct: 2 },
+            4: { text: "4. Which animal is a primary consumer (herbivore)?", options: ["Rabbit", "Lion", "Eagle"], correct: 0 },
+            5: { text: "5. What are the sun, water and rock in an ecosystem?", options: ["Living components", "Non-living components", "Consumers"], correct: 1 },
+            6: { text: "6. What happens if all plants disappear from a forest?", options: ["Herbivores become carnivores", "Nothing changes", "Herbivores have no food and die"], correct: 2 },
+            7: { text: "7. Which of these is a carnivore?", options: ["Lion", "Cow", "Horse"], correct: 0 },
+            8: { text: "8. Where do most fish live?", options: ["Desert", "Sea", "Mountains"], correct: 1 },
+            9: { text: "9. What does a herbivore eat?", options: ["Plants", "Other animals", "Fungi"], correct: 0 },
+            10: { text: "10. Which of these is a decomposer?", options: ["Mushroom", "Eagle", "Dolphin"], correct: 0 },
+            11: { text: "11. In which habitat is there a lot of snow?", options: ["Forest", "Mountains", "Sea"], correct: 1 },
+            12: { text: "12. What is the name of the scientist who studied chimpanzees?", options: ["Jane Goodall", "Marie Curie", "Rita Levi-Montalcini"], correct: 0 },
+            13: { text: "13. What do plants make using sunlight?", options: ["Food (oxygen and sugars)", "Water", "Soil"], correct: 0 },
+            14: { text: "14. Which of these is a freshwater habitat?", options: ["Ocean", "River", "Sea"], correct: 1 },
+            15: { text: "15. Who eats primary consumers?", options: ["Secondary consumers (carnivores)", "Producers", "Decomposers"], correct: 0 },
+            16: { text: "16. What are earthworms?", options: ["Decomposers", "Primary consumers", "Producers"], correct: 0 },
+            17: { text: "17. In which habitat does the camel live?", options: ["Desert", "Forest", "Mountains"], correct: 0 },
+            18: { text: "18. What does water do for plants?", options: ["Helps them grow", "Dries them", "Eats them"], correct: 0 },
+            19: { text: "19. Who wrote books to protect nature from pollution?", options: ["Rachel Carson", "Albert Einstein", "Galileo Galilei"], correct: 0 },
+            20: { text: "20. Which animal is a secondary consumer?", options: ["Rabbit", "Fox", "Horse"], correct: 1 }
+        },
+        results: { answers: ["Grass", "Desert", "Recycle remains", "Rabbit", "Non-living components", "Herbivores have no food", "Lion", "Sea", "Plants", "Mushroom", "Mountains", "Jane Goodall", "Food (oxygen and sugars)", "River", "Secondary consumers", "Decomposers", "Desert", "Helps them grow", "Rachel Carson", "Fox"] },
+        feedback: { correct: ["Well done!", "Great!", "Perfect!"], incorrect: ["Try again!", "Not right, but don't give up!"] },
+        checkButton: "Check all answers"
+    },
+    "storia-esploratori": { title: "Great nature explorers.", intro: "Humans have also traveled and studied to understand ecosystems. Here are some famous scientists who made wonderful discoveries:", humboldt: { name: "Alexander von Humboldt (1769-1859).", period: "German explorer.", description: "He traveled in South America and discovered how plants and animals are connected to each other and to the climate. He invented the idea of the ecosystem!" }, darwin: { name: "Charles Darwin (1809-1882).", period: "English naturalist.", description: "On his voyage on the Beagle, he observed thousands of species and understood the importance of the food chain and natural balance." }, goodall: { name: "Jane Goodall (1934-).", period: "English primatologist.", description: "She lived with chimpanzees in Tanzania and taught us that they are intelligent, use tools, and have emotions. A true friend of animals!" }, carson: { name: "Rachel Carson (1907-1964).", period: "American biologist and environmentalist.", description: "With her book 'Silent Spring' she woke up the world to the dangers of pollution and protected nature forever." }, attenborough: { name: "David Attenborough (1926-).", period: "English naturalist and broadcaster.", description: "With his documentaries he showed millions of children the beauty of the Earth and the importance of respecting every living creature." }, conclusion: "Thanks to them, we now know our wonderful Earth better. Who knows, maybe one day you will make a great discovery too!" },
+    footer: { line1: "Lesson on natural habitats – for third grade children.", line2: "Simplified text for DSA and BES – with text-to-speech.", line3: "🌍 Multilingual version with compact menu and randomized quiz answers." },
+    voiceButtons: { play: "🔊", stop: "⏹️", playTitle: "Listen to this section", stopTitle: "Stop listening" }
+};
+
+// Funzione per creare segnaposto per le altre lingue (mantenuta)
+function makePlaceholderLang(baseLang, langCode) {
+    const placeholder = JSON.parse(JSON.stringify(baseLang));
+    const marker = `[TRADUZIONE NECESSARIA - ${langCode.toUpperCase()}]`;
+    for (let key in placeholder) {
+        if (typeof placeholder[key] === 'object') {
+            for (let sub in placeholder[key]) {
+                if (typeof placeholder[key][sub] === 'string') {
+                    placeholder[key][sub] = marker + " " + placeholder[key][sub];
+                } else if (Array.isArray(placeholder[key][sub])) {
+                    placeholder[key][sub] = placeholder[key][sub].map(item => marker + " " + item);
+                } else if (typeof placeholder[key][sub] === 'object') {
+                    for (let deep in placeholder[key][sub]) {
+                        if (typeof placeholder[key][sub][deep] === 'string')
+                            placeholder[key][sub][deep] = marker + " " + placeholder[key][sub][deep];
+                    }
+                }
+            }
+        } else if (typeof placeholder[key] === 'string') {
+            placeholder[key] = marker + " " + placeholder[key];
+        }
+    }
+    return placeholder;
+}
+
+const translations = {
+    it: itTranslations,
+    en: enTranslations,
+    fr: {
+  page: {
+    title: "🌳 La grande aventure de la nature ! Milieux et chaînes alimentaires.",
+    subtitle: "Un conte en bande dessinée pour les jeunes explorateurs."
+  },
+  languageSelector: {
+    title: "🌍 Sélectionnez la langue.",
+    browserHint: "💡 Astuce : pour écouter les histoires dans toutes les langues, utilisez Google Chrome."
+  },
+  sections: {
+    introduzione: {
+      title: "Bonjour ! Je te présente Riccardo le Hérisson.",
+      content: [
+        "Dans la grande forêt de Verdelune vit Riccardo, un hérisson curieux. Un matin, Gino le Hibou lui remet une mystérieuse carte qui montre quatre milieux : la forêt, le désert, la mer et la montagne. « Chaque endroit cache un secret sur la chaîne alimentaire » dit Gino. Riccardo décide aussitôt de partir à l'aventure avec ses amis : Lella la Lièvre et Fulvo l'Écureuil. Prêt à les rejoindre ?",
+        "À chaque étape, ils rencontreront de nouveaux animaux et découvriront comment fonctionne l'équilibre de la nature. Ce sera un voyage inoubliable !"
+      ]
+    },
+    ambienti: {
+      title: "Les maisons de la nature : les habitats.",
+      intro: "La carte de Gino montre quatre maisons spéciales, les Habitats, c'est-à-dire les milieux que l'on trouve sur Terre. Riccardo et son équipe les visiteront une par une. Voici ce qu'ils découvriront :",
+      foresta: "<strong>Forêt :</strong> beaucoup d'arbres, humide et pleine de cachettes. Riccardo, Lella et Fulvo y vivent. Ils rencontreront aussi des écureuils et des cerfs.",
+      deserto: "<strong>Désert :</strong> très chaud le jour et froid la nuit, avec peu d'eau. Habité par des chameaux, des renards du désert et des lézards.",
+      mare: "<strong>Mer :</strong> eau salée, vagues et poissons colorés. La maison de Dino le Dauphin et de nombreuses créatures marines.",
+      montagna: "<strong>Montagne :</strong> haute, rocheuse, avec de l'air frais et de la neige. Y vivent des bouquetins, des aigles et des marmottes.",
+      conclusion: "Chaque milieu a son <strong>climat</strong> (chaud, froid, sec, humide) et ses <strong>plantes spéciales</strong>. Pendant le voyage, nos amis apprendront à connaître les chaînes alimentaires de chaque lieu."
+    },
+    ecosistema: {
+      title: "Qu'est-ce qu'un écosystème ? Une équipe !",
+      content: [
+        "Un écosystème, c'est comme une grande équipe où tout le monde est important. Il y a les <strong>êtres vivants</strong> (animaux, plantes, champignons) et les <strong>éléments non vivants</strong> (soleil, eau, terre, air).",
+        "Pendant que Riccardo et ses amis traversent la forêt, ils remarquent que le soleil réchauffe, la pluie arrose les plantes, les arbres produisent des glands et les hérissons se nourrissent d'insectes. « Tout est en équilibre ! » s'exclame Lella. « Si une pièce manque, l'équipe souffre » ajoute Gino d'en haut."
+      ],
+      subtitle: "Les liens dans l'écosystème.",
+      legani: "Les plantes ont besoin du soleil pour pousser. Les herbivores mangent les plantes. Les carnivores mangent les herbivores. Les champignons et les bactéries recyclent les feuilles mortes. C'est un merveilleux <strong>cercle de la vie</strong>. « Sans les décomposeurs, le sol serait rempli de feuilles mortes ! » explique Fulvo."
+    },
+    catena: {
+      title: "Qui mange qui ? La chaîne alimentaire.",
+      intro: "« Imaginez un collier d'anneaux » dit Gino. « Chaque anneau est un être vivant qui mange celui qui le précède. Voici les protagonistes que nous rencontrerons pendant le voyage » :",
+      produttori: "<strong>Producteurs :</strong> les plantes. Elles utilisent la lumière du soleil pour produire de la nourriture (feuilles, fruits).",
+      consumatoriPrimari: "<strong>Consommateurs primaires :</strong> les herbivores comme Lella la Lièvre, qui mangent les plantes.",
+      consumatoriSecondari: "<strong>Consommateurs secondaires :</strong> les carnivores comme le renard, qui mangent les herbivores.",
+      decompositori: "<strong>Décomposeurs :</strong> les champignons et les vers de terre, qui transforment les restes en nutriments pour le sol.",
+      esempio: "Exemple : Le soleil donne de l'énergie à l'herbe (producteur). Le lapin mange l'herbe (consommateur primaire). Le renard mange le lapin (consommateur secondaire). Quand le renard meurt, les champignons le décomposent et les sels minéraux retournent à la terre. « C'est ainsi que la nature se renouvelle ! » s'exclame Riccardo."
+    },
+    video: {
+      title: "Regarde la vidéo sur les chaînes alimentaires.",
+      clickHint: "Clique sur l'image pour regarder une vidéo sur les chaînes alimentaires (YouTube)"
+    },
+    "video-ecosistema": {
+      title: "Regarde la vidéo pour comprendre ce que sont les écosystèmes !",
+      clickHint: "Clique sur l'image pour regarder une vidéo sur les écosystèmes (YouTube)"
+    },
+    "attivita-pratica": {
+      title: "Activité : construis ta propre chaîne alimentaire.",
+      materials: "<strong>Matériel :</strong> une feuille blanche, des crayons de couleur, des ciseaux et de la colle (si tu veux découper des images).",
+      steps: [
+        "<strong>Choisis un milieu :</strong> forêt, désert, mer ou montagne.",
+        "<strong>Dessine le soleil</strong> et une plante (producteur).",
+        "<strong>Ajoute un herbivore</strong> qui mange la plante.",
+        "<strong>Ajoute un carnivore</strong> qui mange l'herbivore.",
+        "<strong>Dessine les décomposeurs</strong> (champignons, vers de terre) qui remettent les nutriments dans le sol."
+      ],
+      conclusion: "Bravo ! Tu as créé un véritable mini-écosystème. Montre-le à tes camarades !"
+    }
+  },
+  quiz: {
+    title: "Quiz : Es-tu un explorateur expert ?",
+    questions: {
+      1: { text: "1. Qui est le producteur dans la chaîne alimentaire ?", options: ["L'herbe", "Le renard", "Le champignon"], correct: 0 },
+      2: { text: "2. Dans quel milieu y a-t-il peu d'eau et fait-il très chaud le jour ?", options: ["Forêt", "Désert", "Mer"], correct: 1 },
+      3: { text: "3. Que font les décomposeurs (comme les champignons) ?", options: ["Ils mangent les plantes vivantes", "Ils chassent les herbivores", "Ils recyclent les restes et aident le sol"], correct: 2 },
+      4: { text: "4. Quel animal est un consommateur primaire (herbivore) ?", options: ["Lapin", "Lion", "Aigle"], correct: 0 },
+      5: { text: "5. Que sont le soleil, l'eau et la roche dans un écosystème ?", options: ["Éléments vivants", "Éléments non vivants", "Consommateurs"], correct: 1 },
+      6: { text: "6. Que se passe-t-il si toutes les plantes disparaissent d'une forêt ?", options: ["Les herbivores deviennent carnivores", "Rien ne change", "Les herbivores n'ont plus de nourriture et meurent"], correct: 2 },
+      7: { text: "7. Lequel de ces animaux est un carnivore ?", options: ["Lion", "Vache", "Cheval"], correct: 0 },
+      8: { text: "8. Où vivent la plupart des poissons ?", options: ["Désert", "Mer", "Montagne"], correct: 1 },
+      9: { text: "9. Que mange un herbivore ?", options: ["Des plantes", "D'autres animaux", "Des champignons"], correct: 0 },
+      10: { text: "10. Lequel de ces éléments est un décomposeur ?", options: ["Champignon", "Aigle", "Dauphin"], correct: 0 },
+      11: { text: "11. Dans quel milieu y a-t-il beaucoup de neige ?", options: ["Forêt", "Montagne", "Mer"], correct: 1 },
+      12: { text: "12. Comment s'appelle la scientifique qui a étudié les chimpanzés ?", options: ["Jane Goodall", "Marie Curie", "Rita Levi-Montalcini"], correct: 0 },
+      13: { text: "13. Que fabriquent les plantes grâce au soleil ?", options: ["De la nourriture (oxygène et sucres)", "De l'eau", "De la terre"], correct: 0 },
+      14: { text: "14. Lequel de ces milieux est un milieu d'eau douce ?", options: ["Océan", "Rivière", "Mer"], correct: 1 },
+      15: { text: "15. Qui mange les consommateurs primaires ?", options: ["Les consommateurs secondaires (carnivores)", "Les producteurs", "Les décomposeurs"], correct: 0 },
+      16: { text: "16. Que sont les vers de terre ?", options: ["Décomposeurs", "Consommateurs primaires", "Producteurs"], correct: 0 },
+      17: { text: "17. Dans quel milieu vit le chameau ?", options: ["Désert", "Forêt", "Montagne"], correct: 0 },
+      18: { text: "18. Que fait l'eau pour les plantes ?", options: ["Elle les aide à pousser", "Elle les dessèche", "Elle les mange"], correct: 0 },
+      19: { text: "19. Qui a écrit des livres pour protéger la nature de la pollution ?", options: ["Rachel Carson", "Albert Einstein", "Galileo Galilei"], correct: 0 },
+      20: { text: "20. Quel animal est un consommateur secondaire ?", options: ["Lapin", "Renard", "Cheval"], correct: 1 }
+    },
+    results: {
+      answers: [
+        "L'herbe", "Désert", "Recyclent les restes", "Lapin", "Éléments non vivants",
+        "Les herbivores n'ont plus de nourriture", "Lion", "Mer", "Plantes", "Champignon",
+        "Montagne", "Jane Goodall", "Nourriture (oxygène et sucres)", "Rivière",
+        "Consommateurs secondaires", "Décomposeurs", "Désert", "Les aide à pousser",
+        "Rachel Carson", "Renard"
+      ]
+    },
+    feedback: {
+      correct: ["Bien joué !", "Excellent !", "Parfait !"],
+      incorrect: ["Réessaie !", "Ce n'est pas juste, mais n'abandonne pas !"]
+    },
+    checkButton: "Vérifier toutes les réponses"
+  },
+  "storia-esploratori": {
+    title: "Les grands explorateurs de la nature.",
+    intro: "Les êtres humains aussi ont voyagé et étudié pour comprendre les écosystèmes. Voici quelques scientifiques célèbres qui ont fait des découvertes merveilleuses :",
+    humboldt: {
+      name: "Alexander von Humboldt (1769-1859).",
+      period: "Explorateur allemand.",
+      description: "Il a voyagé en Amérique du Sud et a découvert comment les plantes et les animaux sont liés entre eux et avec le climat. Il a inventé l'idée d'écosystème !"
+    },
+    darwin: {
+      name: "Charles Darwin (1809-1882).",
+      period: "Naturaliste anglais.",
+      description: "Lors de son voyage à bord du Beagle, il a observé des milliers d'espèces et a compris l'importance de la chaîne alimentaire et de l'équilibre naturel."
+    },
+    goodall: {
+      name: "Jane Goodall (1934-).",
+      period: "Primatologue anglaise.",
+      description: "Elle a vécu avec les chimpanzés en Tanzanie et nous a appris qu'ils sont intelligents, qu'ils utilisent des outils et qu'ils ont des émotions. Une véritable amie des animaux !"
+    },
+    carson: {
+      name: "Rachel Carson (1907-1964).",
+      period: "Biologiste et écologiste américaine.",
+      description: "Avec son livre « Printemps silencieux », elle a réveillé le monde sur les dangers de la pollution et a protégé la nature pour toujours."
+    },
+    attenborough: {
+      name: "David Attenborough (1926-).",
+      period: "Naturaliste et vulgarisateur anglais.",
+      description: "Avec ses documentaires, il a montré à des millions d'enfants la beauté de la Terre et l'importance de respecter chaque être vivant."
+    },
+    conclusion: "Grâce à eux, nous connaissons mieux notre merveilleuse Terre aujourd'hui. Qui sait, un jour peut-être toi aussi feras-tu une grande découverte !"
+  },
+  footer: {
+    line1: "Leçon sur les milieux naturels – pour les enfants de CE2.",
+    line2: "Texte simplifié pour les DYS et BES – avec synthèse vocale.",
+    line3: "🌍 Version multilingue avec menu compact et réponses de quiz aléatoires."
+  },
+  voiceButtons: {
+    play: "🔊",
+    stop: "⏹️",
+    playTitle: "Écouter cette section",
+    stopTitle: "Arrêter l'écoute"
+  }
+},
+    es: {
+  page: {
+    title: "🌳 ¡La gran aventura de la naturaleza! Ambientes y cadenas alimentarias.",
+    subtitle: "Un cuento en cómic para jóvenes exploradores."
+  },
+  languageSelector: {
+    title: "🌍 Selecciona idioma.",
+    browserHint: "💡 Consejo: para escuchar las historias en todos los idiomas, usa Google Chrome."
+  },
+  sections: {
+    introduzione: {
+      title: "¡Hola! Te presento a Ricardo el Erizo.",
+      content: [
+        "En el gran bosque de Verdeluna vive Ricardo, un erizo curioso. Una mañana, Gino el Búho le entrega un misterioso mapa que muestra cuatro ambientes: el bosque, el desierto, el mar y la montaña. «Cada lugar esconde un secreto sobre la cadena alimentaria» dice Gino. Ricardo decide emprender la aventura con sus amigos: Lela la Liebre y Fulvo la Ardilla. ¿Listo para unirte a ellos?",
+        "En cada parada conocerán nuevos animales y descubrirán cómo funciona el equilibrio de la naturaleza. ¡Será un viaje inolvidable!"
+      ]
+    },
+    ambienti: {
+      title: "Las casas de la naturaleza: los hábitats.",
+      intro: "El mapa de Gino muestra cuatro casas especiales, los Hábitats, es decir, los ambientes que encontramos en la Tierra. Ricardo y su equipo las visitarán una por una. Esto es lo que descubrirán:",
+      foresta: "<strong>Bosque:</strong> muchos árboles, húmedo y lleno de escondites. Aquí viven Ricardo, Lela y Fulvo. También encontrarán ardillas y ciervos.",
+      deserto: "<strong>Desierto:</strong> muy caluroso de día y frío de noche, con poca agua. Habitado por camellos, zorros del desierto y lagartijas.",
+      mare: "<strong>Mar:</strong> agua salada, olas y peces de colores. El hogar de Dino el Delfín y muchas criaturas marinas.",
+      montagna: "<strong>Montaña:</strong> alta, rocosa, con aire fresco y nieve. Aquí viven íbices, águilas y marmotas.",
+      conclusion: "Cada ambiente tiene su <strong>clima</strong> (caluroso, frío, seco, húmedo) y sus <strong>plantas especiales</strong>. Durante el viaje, nuestros amigos aprenderán las cadenas alimentarias de cada lugar."
+    },
+    ecosistema: {
+      title: "¿Qué es un ecosistema? ¡Un equipo!",
+      content: [
+        "Un ecosistema es como un gran equipo donde todos son importantes. Están los <strong>seres vivos</strong> (animales, plantas, hongos) y los <strong>elementos no vivos</strong> (sol, agua, tierra, aire).",
+        "Mientras Ricardo y sus amigos cruzan el bosque, notan que el sol calienta, la lluvia riega las plantas, los árboles producen bellotas y los erizos se alimentan de insectos. «¡Todo está en equilibrio!» exclama Lela. «Si falta una pieza, el equipo sufre» añade Gino desde lo alto."
+      ],
+      subtitle: "Los vínculos en el ecosistema.",
+      legani: "Las plantas necesitan el sol para crecer. Los herbívoros comen plantas. Los carnívoros comen herbívoros. Los hongos y las bacterias reciclan las hojas secas. Es un maravilloso <strong>círculo de la vida</strong>. «¡Sin los descomponedores, el suelo estaría lleno de hojas muertas!» explica Fulvo."
+    },
+    catena: {
+      title: "¿Quién se come a quién? La cadena alimentaria.",
+      intro: "«Imagina un collar de anillos» dice Gino. «Cada anillo es un ser vivo que se come al que está antes. Estos son los protagonistas que encontraremos en el viaje»:",
+      produttori: "<strong>Productores:</strong> las plantas. Usan la luz del sol para producir alimento (hojas, frutos).",
+      consumatoriPrimari: "<strong>Consumidores primarios:</strong> los herbívoros como Lela la Liebre, que comen plantas.",
+      consumatoriSecondari: "<strong>Consumidores secundarios:</strong> los carnívoros como el zorro, que comen herbívoros.",
+      decompositori: "<strong>Descomponedores:</strong> hongos y lombrices, que transforman los restos en nutrientes para la tierra.",
+      esempio: "Ejemplo: El sol da energía a la hierba (productor). El conejo se come la hierba (consumidor primario). El zorro se come al conejo (consumidor secundario). Cuando el zorro muere, los hongos lo descomponen y los minerales vuelven a la tierra. «¡Así se renueva la naturaleza!» exclama Ricardo."
+    },
+    video: {
+      title: "Mira el vídeo sobre las cadenas alimentarias.",
+      clickHint: "Haz clic en la imagen para ver un vídeo sobre las cadenas alimentarias (YouTube)"
+    },
+    "video-ecosistema": {
+      title: "¡Mira el vídeo para entender qué son los ecosistemas!",
+      clickHint: "Haz clic en la imagen para ver un vídeo sobre los ecosistemas (YouTube)"
+    },
+    "attivita-pratica": {
+      title: "Actividad: construye tu propia cadena alimentaria.",
+      materials: "<strong>Material:</strong> hoja blanca, lápices de colores, tijeras y pegamento (si quieres recortar figuras).",
+      steps: [
+        "<strong>Elige un ambiente:</strong> bosque, desierto, mar o montaña.",
+        "<strong>Dibuja el sol</strong> y una planta (productor).",
+        "<strong>Añade un herbívoro</strong> que se come la planta.",
+        "<strong>Añade un carnívoro</strong> que se come al herbívoro.",
+        "<strong>Dibuja los descomponedores</strong> (hongos, lombrices) que devuelven los nutrientes al suelo."
+      ],
+      conclusion: "¡Bien! Has creado un verdadero mini ecosistema. ¡Muéstraselo a tus compañeros!"
+    }
+  },
+  quiz: {
+    title: "Quiz: ¿Eres un explorador experto?",
+    questions: {
+      1: { text: "1. ¿Quién es el productor en la cadena alimentaria?", options: ["La hierba", "El zorro", "El hongo"], correct: 0 },
+      2: { text: "2. ¿En qué ambiente hay poca agua y hace mucho calor durante el día?", options: ["Bosque", "Desierto", "Mar"], correct: 1 },
+      3: { text: "3. ¿Qué hacen los descomponedores (como los hongos)?", options: ["Comen plantas vivas", "Cazan herbívoros", "Reciclan los restos y ayudan al suelo"], correct: 2 },
+      4: { text: "4. ¿Qué animal es un consumidor primario (herbívoro)?", options: ["Conejo", "León", "Águila"], correct: 0 },
+      5: { text: "5. ¿Qué son el sol, el agua y la roca en un ecosistema?", options: ["Componentes vivos", "Componentes no vivos", "Consumidores"], correct: 1 },
+      6: { text: "6. ¿Qué sucede si en un bosque desaparecen todas las plantas?", options: ["Los herbívoros se vuelven carnívoros", "No cambia nada", "Los herbívoros no tienen comida y mueren"], correct: 2 },
+      7: { text: "7. ¿Cuál de estos es un carnívoro?", options: ["León", "Vaca", "Caballo"], correct: 0 },
+      8: { text: "8. ¿Dónde viven la mayoría de los peces?", options: ["Desierto", "Mar", "Montaña"], correct: 1 },
+      9: { text: "9. ¿Qué come un herbívoro?", options: ["Plantas", "Otros animales", "Hongos"], correct: 0 },
+      10: { text: "10. ¿Cuál de estos es un descomponedor?", options: ["Hongo", "Águila", "Delfín"], correct: 0 },
+      11: { text: "11. ¿En qué ambiente hay mucha nieve?", options: ["Bosque", "Montaña", "Mar"], correct: 1 },
+      12: { text: "12. ¿Cómo se llama la científica que estudió los chimpancés?", options: ["Jane Goodall", "Marie Curie", "Rita Levi-Montalcini"], correct: 0 },
+      13: { text: "13. ¿Qué producen las plantas gracias al sol?", options: ["Alimento (oxígeno y azúcares)", "Agua", "Tierra"], correct: 0 },
+      14: { text: "14. ¿Cuál de estos es un ambiente de agua dulce?", options: ["Océano", "Río", "Mar"], correct: 1 },
+      15: { text: "15. ¿Quién se come a los consumidores primarios?", options: ["Consumidores secundarios (carnívoros)", "Productores", "Descomponedores"], correct: 0 },
+      16: { text: "16. ¿Qué son las lombrices de tierra?", options: ["Descomponedores", "Consumidores primarios", "Productores"], correct: 0 },
+      17: { text: "17. ¿En qué ambiente vive el camello?", options: ["Desierto", "Bosque", "Montaña"], correct: 0 },
+      18: { text: "18. ¿Qué hace el agua por las plantas?", options: ["Las ayuda a crecer", "Las seca", "Se las come"], correct: 0 },
+      19: { text: "19. ¿Quién escribió libros para proteger la naturaleza de la contaminación?", options: ["Rachel Carson", "Albert Einstein", "Galileo Galilei"], correct: 0 },
+      20: { text: "20. ¿Qué animal es un consumidor secundario?", options: ["Conejo", "Zorro", "Caballo"], correct: 1 }
+    },
+    results: {
+      answers: [
+        "La hierba", "Desierto", "Reciclan los restos", "Conejo", "Componentes no vivos",
+        "Los herbívoros no tienen comida", "León", "Mar", "Plantas", "Hongo",
+        "Montaña", "Jane Goodall", "Alimento (oxígeno y azúcares)", "Río",
+        "Consumidores secundarios", "Descomponedores", "Desierto", "Las ayuda a crecer",
+        "Rachel Carson", "Zorro"
+      ]
+    },
+    feedback: {
+      correct: ["¡Bien hecho!", "¡Excelente!", "¡Perfecto!"],
+      incorrect: ["¡Inténtalo de nuevo!", "No es correcto, ¡pero no te rindas!"]
+    },
+    checkButton: "Comprobar todas las respuestas"
+  },
+  "storia-esploratori": {
+    title: "Los grandes exploradores de la naturaleza.",
+    intro: "Los seres humanos también han viajado y estudiado para entender los ecosistemas. Aquí hay algunos científicos famosos que hicieron descubrimientos maravillosos:",
+    humboldt: {
+      name: "Alexander von Humboldt (1769-1859).",
+      period: "Explorador alemán.",
+      description: "Viajó por Sudamérica y descubrió cómo las plantas y los animales están conectados entre sí y con el clima. ¡Inventó la idea de ecosistema!"
+    },
+    darwin: {
+      name: "Charles Darwin (1809-1882).",
+      period: "Naturalista inglés.",
+      description: "Con su viaje en el bergantín Beagle, observó miles de especies y comprendió la importancia de la cadena alimentaria y el equilibrio natural."
+    },
+    goodall: {
+      name: "Jane Goodall (1934-).",
+      period: "Primatóloga inglesa.",
+      description: "Vivió con los chimpancés en Tanzania y nos enseñó que son inteligentes, usan herramientas y tienen emociones. ¡Una verdadera amiga de los animales!"
+    },
+    carson: {
+      name: "Rachel Carson (1907-1964).",
+      period: "Bióloga y ambientalista estadounidense.",
+      description: "Con su libro 'Primavera silenciosa' despertó al mundo sobre los peligros de la contaminación y protegió la naturaleza para siempre."
+    },
+    attenborough: {
+      name: "David Attenborough (1926-).",
+      period: "Naturalista y divulgador inglés.",
+      description: "Con sus documentales mostró a millones de niños la belleza de la Tierra y la importancia de respetar a cada ser vivo."
+    },
+    conclusion: "Gracias a ellos hoy conocemos mejor nuestra maravillosa Tierra. ¡Quién sabe, quizás algún día tú también hagas un gran descubrimiento!"
+  },
+  footer: {
+    line1: "Lección sobre ambientes naturales – para niños de tercero de primaria.",
+    line2: "Texto simplificado para DSA y BES – con síntesis de voz.",
+    line3: "🌍 Versión multilingüe con menú compacto y respuestas de quiz aleatorias."
+  },
+  voiceButtons: {
+    play: "🔊",
+    stop: "⏹️",
+    playTitle: "Escuchar esta sección",
+    stopTitle: "Detener la escucha"
+  }
+},
+    pt: {
+  page: {
+    title: "🌳 A grande aventura da natureza! Ambientes e cadeias alimentares.",
+    subtitle: "Um conto em banda desenhada para jovens exploradores."
+  },
+  languageSelector: {
+    title: "🌍 Selecione o idioma.",
+    browserHint: "💡 Dica: para ouvir as histórias em todos os idiomas, use o Google Chrome."
+  },
+  sections: {
+    introduzione: {
+      title: "Olá! Apresento-te o Ricardo, o Ouriço.",
+      content: [
+        "Na grande floresta de Verdeluna vive Ricardo, um ouriço curioso. Numa manhã, Gino o Mocho entrega-lhe um misterioso mapa que mostra quatro ambientes: a floresta, o deserto, o mar e a montanha. «Cada lugar esconde um segredo sobre a cadeia alimentar» diz Gino. Ricardo decide partir imediatamente em aventura com os seus amigos: Lela a Lebre e Fulvo o Esquilo. Pronto para te juntares a eles?",
+        "Em cada etapa, encontrarão novos animais e descobrirão como funciona o equilíbrio da natureza. Será uma viagem inesquecível!"
+      ]
+    },
+    ambienti: {
+      title: "As casas da natureza: os habitats.",
+      intro: "O mapa de Gino mostra quatro casas especiais, os Habitats, ou seja, os ambientes que encontramos na Terra. Ricardo e a sua equipa vão visitá-las uma a uma. Eis o que descobrirão:",
+      foresta: "<strong>Floresta:</strong> muitas árvores, húmida e cheia de esconderijos. Aqui vivem Ricardo, Lela e Fulvo. Encontrarão também esquilos e veados.",
+      deserto: "<strong>Deserto:</strong> muito quente durante o dia e frio à noite, com pouca água. Habitado por camelos, raposas-do-deserto e lagartos.",
+      mare: "<strong>Mar:</strong> água salgada, ondas e peixes coloridos. A casa do Dino o Golfinho e de muitas criaturas marinhas.",
+      montagna: "<strong>Montanha:</strong> alta, rochosa, com ar fresco e neve. Aqui vivem íbex, águias e marmotas.",
+      conclusion: "Cada ambiente tem o seu <strong>clima</strong> (quente, frio, seco, húmido) e as suas <strong>plantas especiais</strong>. Durante a viagem, os nossos amigos aprenderão as cadeias alimentares de cada lugar."
+    },
+    ecosistema: {
+      title: "O que é um ecossistema? Uma equipa!",
+      content: [
+        "Um ecossistema é como uma grande equipa onde todos são importantes. Existem os <strong>seres vivos</strong> (animais, plantas, fungos) e os <strong>elementos não vivos</strong> (sol, água, terra, ar).",
+        "Enquanto Ricardo e os seus amigos atravessam a floresta, notam que o sol aquece, a chuva rega as plantas, as árvores produzem bolotas e os ouriços se alimentam de insetos. «Tudo está em equilíbrio!» exclama Lela. «Se faltar uma peça, a equipa sofre» acrescenta Gino lá do alto."
+      ],
+      subtitle: "As ligações no ecossistema.",
+      legani: "As plantas precisam do sol para crescer. Os herbívoros comem plantas. Os carnívoros comem herbívoros. Os fungos e as bactérias reciclam as folhas secas. É um maravilhoso <strong>ciclo da vida</strong>. «Sem os decompositores, o solo estaria cheio de folhas mortas!» explica Fulvo."
+    },
+    catena: {
+      title: "Quem come quem? A cadeia alimentar.",
+      intro: "«Imaginem um colar de elos» diz Gino. «Cada elo é um ser vivo que come o que está antes dele. Eis os protagonistas que encontraremos na viagem»:",
+      produttori: "<strong>Produtores:</strong> as plantas. Usam a luz do sol para produzir alimento (folhas, frutos).",
+      consumatoriPrimari: "<strong>Consumidores primários:</strong> os herbívoros como a Lela Lebre, que comem plantas.",
+      consumatoriSecondari: "<strong>Consumidores secundários:</strong> os carnívoros como a raposa, que comem herbívoros.",
+      decompositori: "<strong>Decompositores:</strong> fungos e minhocas, que transformam os restos em nutrientes para o solo.",
+      esempio: "Exemplo: O sol dá energia à erva (produtor). O coelho come a erva (consumidor primário). A raposa come o coelho (consumidor secundário). Quando a raposa morre, os fungos decompõem-na e os minerais voltam ao solo. «É assim que a natureza se renova!» exclama Ricardo."
+    },
+    video: {
+      title: "Vê o vídeo sobre as cadeias alimentares.",
+      clickHint: "Clica na imagem para ver um vídeo sobre as cadeias alimentares (YouTube)"
+    },
+    "video-ecosistema": {
+      title: "Vê o vídeo para entender o que são os ecossistemas!",
+      clickHint: "Clica na imagem para ver um vídeo sobre os ecossistemas (YouTube)"
+    },
+    "attivita-pratica": {
+      title: "Atividade: constrói a tua própria cadeia alimentar.",
+      materials: "<strong>Material:</strong> folha branca, lápis de cor, tesoura e cola (se quiseres recortar figuras).",
+      steps: [
+        "<strong>Escolhe um ambiente:</strong> floresta, deserto, mar ou montanha.",
+        "<strong>Desenha o sol</strong> e uma planta (produtor).",
+        "<strong>Adiciona um herbívoro</strong> que come a planta.",
+        "<strong>Adiciona um carnívoro</strong> que come o herbívoro.",
+        "<strong>Desenha os decompositores</strong> (fungos, minhocas) que devolvem os nutrientes ao solo."
+      ],
+      conclusion: "Muito bem! Criaste um verdadeiro mini-ecossistema. Mostra-o aos teus colegas!"
+    }
+  },
+  quiz: {
+    title: "Quiz: És um explorador especialista?",
+    questions: {
+      1: { text: "1. Quem é o produtor na cadeia alimentar?", options: ["A erva", "A raposa", "O fungo"], correct: 0 },
+      2: { text: "2. Em que ambiente há pouca água e faz muito calor durante o dia?", options: ["Floresta", "Deserto", "Mar"], correct: 1 },
+      3: { text: "3. O que fazem os decompositores (como os fungos)?", options: ["Comem plantas vivas", "Caçam herbívoros", "Reciclam os restos e ajudam o solo"], correct: 2 },
+      4: { text: "4. Que animal é um consumidor primário (herbívoro)?", options: ["Coelho", "Leão", "Águia"], correct: 0 },
+      5: { text: "5. O que são o sol, a água e a rocha num ecossistema?", options: ["Componentes vivos", "Componentes não vivos", "Consumidores"], correct: 1 },
+      6: { text: "6. O que acontece se numa floresta desaparecerem todas as plantas?", options: ["Os herbívoros tornam-se carnívoros", "Nada muda", "Os herbívoros ficam sem comida e morrem"], correct: 2 },
+      7: { text: "7. Qual destes é um carnívoro?", options: ["Leão", "Vaca", "Cavalo"], correct: 0 },
+      8: { text: "8. Onde vivem a maioria dos peixes?", options: ["Deserto", "Mar", "Montanha"], correct: 1 },
+      9: { text: "9. O que come um herbívoro?", options: ["Plantas", "Outros animais", "Fungos"], correct: 0 },
+      10: { text: "10. Qual destes é um decompositor?", options: ["Fungo", "Águia", "Golfinho"], correct: 0 },
+      11: { text: "11. Em que ambiente há muita neve?", options: ["Floresta", "Montanha", "Mar"], correct: 1 },
+      12: { text: "12. Como se chama a cientista que estudou os chimpanzés?", options: ["Jane Goodall", "Marie Curie", "Rita Levi-Montalcini"], correct: 0 },
+      13: { text: "13. O que as plantas produzem graças ao sol?", options: ["Alimento (oxigénio e açúcares)", "Água", "Terra"], correct: 0 },
+      14: { text: "14. Qual destes é um ambiente de água doce?", options: ["Oceano", "Rio", "Mar"], correct: 1 },
+      15: { text: "15. Quem come os consumidores primários?", options: ["Consumidores secundários (carnívoros)", "Produtores", "Decompositores"], correct: 0 },
+      16: { text: "16. O que são as minhocas?", options: ["Decompositores", "Consumidores primários", "Produtores"], correct: 0 },
+      17: { text: "17. Em que ambiente vive o camelo?", options: ["Deserto", "Floresta", "Montanha"], correct: 0 },
+      18: { text: "18. O que a água faz pelas plantas?", options: ["Ajuda-as a crescer", "Secá-las", "Comê-las"], correct: 0 },
+      19: { text: "19. Quem escreveu livros para proteger a natureza da poluição?", options: ["Rachel Carson", "Albert Einstein", "Galileu Galilei"], correct: 0 },
+      20: { text: "20. Que animal é um consumidor secundário?", options: ["Coelho", "Raposa", "Cavalo"], correct: 1 }
+    },
+    results: {
+      answers: [
+        "A erva", "Deserto", "Reciclam os restos", "Coelho", "Componentes não vivos",
+        "Os herbívoros ficam sem comida", "Leão", "Mar", "Plantas", "Fungo",
+        "Montanha", "Jane Goodall", "Alimento (oxigénio e açúcares)", "Rio",
+        "Consumidores secundários", "Decompositores", "Deserto", "Ajuda-as a crescer",
+        "Rachel Carson", "Raposa"
+      ]
+    },
+    feedback: {
+      correct: ["Bom trabalho!", "Excelente!", "Perfeito!"],
+      incorrect: ["Tenta outra vez!", "Não está certo, mas não desistas!"]
+    },
+    checkButton: "Verificar todas as respostas"
+  },
+  "storia-esploratori": {
+    title: "Os grandes exploradores da natureza.",
+    intro: "Os seres humanos também viajaram e estudaram para compreender os ecossistemas. Aqui estão alguns cientistas famosos que fizeram descobertas maravilhosas:",
+    humboldt: {
+      name: "Alexander von Humboldt (1769-1859).",
+      period: "Explorador alemão.",
+      description: "Viajou pela América do Sul e descobriu como plantas e animais estão ligados entre si e com o clima. Inventou a ideia de ecossistema!"
+    },
+    darwin: {
+      name: "Charles Darwin (1809-1882).",
+      period: "Naturalista inglês.",
+      description: "Com a sua viagem no brigue Beagle, observou milhares de espécies e compreendeu a importância da cadeia alimentar e do equilíbrio natural."
+    },
+    goodall: {
+      name: "Jane Goodall (1934-).",
+      period: "Primatologista inglesa.",
+      description: "Viveu com os chimpanzés na Tanzânia e ensinou-nos que são inteligentes, usam ferramentas e têm emoções. Uma verdadeira amiga dos animais!"
+    },
+    carson: {
+      name: "Rachel Carson (1907-1964).",
+      period: "Bióloga e ambientalista americana.",
+      description: "Com o seu livro 'Primavera Silenciosa' alertou o mundo para os perigos da poluição e protegeu a natureza para sempre."
+    },
+    attenborough: {
+      name: "David Attenborough (1926-).",
+      period: "Naturalista e divulgador inglês.",
+      description: "Com os seus documentários mostrou a milhões de crianças a beleza da Terra e a importância de respeitar cada ser vivo."
+    },
+    conclusion: "Graças a eles hoje conhecemos melhor a nossa maravilhosa Terra. Quem sabe, talvez um dia também tu faças uma grande descoberta!"
+  },
+  footer: {
+    line1: "Lição sobre ambientes naturais – para crianças do 3.º ano do ensino básico.",
+    line2: "Texto simplificado para DSA e BES – com síntese de voz.",
+    line3: "🌍 Versão multilingue com menu compacto e respostas de quiz aleatórias."
+  },
+  voiceButtons: {
+    play: "🔊",
+    stop: "⏹️",
+    playTitle: "Ouvir esta secção",
+    stopTitle: "Parar a audição"
+  }
+},
+    hi: {
+  page: {
+    title: "🌳 प्रकृति का महान साहसिक अभियान! पर्यावरण और खाद्य श्रृंखलाएँ।",
+    subtitle: "युवा खोजकर्ताओं के लिए एक कॉमिक शैली की कहानी।"
+  },
+  languageSelector: {
+    title: "🌍 भाषा चुनें।",
+    browserHint: "💡 सुझाव: सभी भाषाओं में कहानियाँ सुनने के लिए, Google Chrome का उपयोग करें।"
+  },
+  sections: {
+    introduzione: {
+      title: "नमस्ते! मैं तुम्हें रिकार्डो हाथी से मिलवाता हूँ।",
+      content: [
+        "वर्डेलुना के बड़े जंगल में रिकार्डो नाम का एक जिज्ञासु हाथी रहता है। एक सुबह, गिनो उल्लू उसे एक रहस्यमय नक्शा देता है जिसमें चार वातावरण दिखते हैं: जंगल, रेगिस्तान, समुद्र और पहाड़। «हर जगह खाद्य श्रृंखला का एक रहस्य छिपा है» गिनो कहता है। रिकार्डो तुरंत अपने दोस्तों के साथ साहसिक यात्रा पर निकलने का फैसला करता है: लेला खरगोश और फुल्वो गिलहरी। क्या तुम उनके साथ जुड़ने को तैयार हो?",
+        "हर पड़ाव पर वे नए जानवरों से मिलेंगे और पता लगाएंगे कि प्रकृति का संतुलन कैसे काम करता है। यह एक अविस्मरणीय यात्रा होगी!"
+      ]
+    },
+    ambienti: {
+      title: "प्रकृति के घर: आवास।",
+      intro: "गिनो का नक्शा चार विशेष घर दिखाता है, जिन्हें आवास कहा जाता है, यानी वे वातावरण जो हम पृथ्वी पर पाते हैं। रिकार्डो और उसकी टीम एक-एक करके उनका दौरा करेंगे। यहाँ वे क्या खोजेंगे:",
+      foresta: "<strong>जंगल:</strong> बहुत सारे पेड़, नम और छिपने की जगहों से भरा। यहाँ रिकार्डो, लेला और फुल्वो रहते हैं। वे गिलहरियों और हिरणों से भी मिलेंगे।",
+      deserto: "<strong>रेगिस्तान:</strong> दिन में बहुत गर्म और रात में ठंडा, पानी कम। ऊँट, रेगिस्तानी लोमड़ियाँ और छिपकलियाँ यहाँ रहती हैं।",
+      mare: "<strong>समुद्र:</strong> खारा पानी, लहरें और रंगीन मछलियाँ। डॉल्फ़िन डीनो और कई समुद्री जीवों का घर।",
+      montagna: "<strong>पहाड़:</strong> ऊँचा, चट्टानी, ताज़ी हवा और बर्फ। यहाँ आइबेक्स, चील और मर्मोट रहते हैं।",
+      conclusion: "प्रत्येक वातावरण का अपना <strong>जलवायु</strong> (गर्म, ठंडा, शुष्क, आर्द्र) और अपने <strong>विशेष पौधे</strong> होते हैं। यात्रा के दौरान, हमारे दोस्त हर जगह की खाद्य श्रृंखलाओं को जानेंगे।"
+    },
+    ecosistema: {
+      title: "पारितंत्र क्या है? एक टीम!",
+      content: [
+        "पारितंत्र एक बड़ी टीम की तरह है जहाँ सभी महत्वपूर्ण हैं। इसमें <strong>जीवित चीज़ें</strong> (जानवर, पौधे, कवक) और <strong>निर्जीव चीज़ें</strong> (सूर्य, पानी, मिट्टी, वायु) होती हैं।",
+        "जब रिकार्डो और उसके दोस्त जंगल से गुज़रते हैं, तो वे देखते हैं कि सूरज गर्मी देता है, बारिश पौधों को सींचती है, पेड़ बलूत के फल पैदा करते हैं और हाथी कीड़े खाते हैं। «सब कुछ संतुलन में है!» लेला चिल्लाती है। «अगर एक टुकड़ा गायब हो जाए, तो टीम को कष्ट होता है» ऊपर से गिनो कहता है।"
+      ],
+      subtitle: "पारितंत्र में संबंध।",
+      legani: "पौधों को बढ़ने के लिए सूरज की ज़रूरत होती है। शाकाहारी पौधे खाते हैं। मांसाहारी शाकाहारी खाते हैं। कवक और बैक्टीरिया सूखी पत्तियों का पुनर्चक्रण करते हैं। यह एक अद्भुत <strong>जीवन चक्र</strong> है। «अपघटकों के बिना, ज़मीन मृत पत्तियों से भरी होगी!» फुल्वो बताता है।"
+    },
+    catena: {
+      title: "कौन किसे खाता है? खाद्य श्रृंखला।",
+      intro: "«एक हार के छल्लों की कल्पना करो» गिनो कहता है। «हर छल्ला एक जीवित प्राणी है जो उससे पहले वाले को खाता है। ये वे मुख्य पात्र हैं जिनसे हम यात्रा में मिलेंगे»:",
+      produttori: "<strong>उत्पादक:</strong> पौधे। वे भोजन (पत्तियाँ, फल) बनाने के लिए सूर्य के प्रकाश का उपयोग करते हैं।",
+      consumatoriPrimari: "<strong>प्राथमिक उपभोक्ता:</strong> शाकाहारी जैसे लेला खरगोश, जो पौधे खाते हैं।",
+      consumatoriSecondari: "<strong>द्वितीयक उपभोक्ता:</strong> मांसाहारी जैसे लोमड़ी, जो शाकाहारी खाते हैं।",
+      decompositori: "<strong>अपघटक:</strong> कवक और केंचुए, जो अवशेषों को मिट्टी के पोषक तत्वों में बदलते हैं।",
+      esempio: "उदाहरण: सूरज घास को ऊर्जा देता है (उत्पादक)। खरगोश घास खाता है (प्राथमिक उपभोक्ता)। लोमड़ी खरगोश को खाती है (द्वितीयक उपभोक्ता)। जब लोमड़ी मर जाती है, तो कवक उसे अपघटित कर देते हैं और खनिज मिट्टी में लौट आते हैं। «प्रकृति इसी तरह नवीनीकृत होती है!» रिकार्डो चिल्लाता है।"
+    },
+    video: {
+      title: "खाद्य श्रृंखलाओं पर वीडियो देखें।",
+      clickHint: "खाद्य श्रृंखलाओं पर वीडियो देखने के लिए छवि पर क्लिक करें (YouTube)"
+    },
+    "video-ecosistema": {
+      title: "पारितंत्रों को समझने के लिए वीडियो देखें!",
+      clickHint: "पारितंत्रों पर वीडियो देखने के लिए छवि पर क्लिक करें (YouTube)"
+    },
+    "attivita-pratica": {
+      title: "गतिविधि: अपनी खुद की खाद्य श्रृंखला बनाएँ।",
+      materials: "<strong>सामग्री:</strong> सफ़ेद कागज़, रंगीन पेंसिलें, कैंची और गोंद (यदि आप चित्र काटना चाहते हैं)।",
+      steps: [
+        "<strong>एक वातावरण चुनें:</strong> जंगल, रेगिस्तान, समुद्र या पहाड़।",
+        "<strong>सूरज</strong> और एक पौधा (उत्पादक) बनाएँ।",
+        "<strong>एक शाकाहारी जोड़ें</strong> जो पौधा खाता है।",
+        "<strong>एक मांसाहारी जोड़ें</strong> जो शाकाहारी को खाता है।",
+        "<strong>अपघटक बनाएँ</strong> (कवक, केंचुए) जो पोषक तत्वों को मिट्टी में वापस लौटाते हैं।"
+      ],
+      conclusion: "बहुत बढ़िया! आपने एक वास्तविक लघु-पारितंत्र बना लिया। इसे अपने सहपाठियों को दिखाएँ!"
+    }
+  },
+  quiz: {
+    title: "प्रश्नोत्तरी: क्या आप एक विशेषज्ञ खोजकर्ता हैं?",
+    questions: {
+      1: { text: "1. खाद्य श्रृंखला में उत्पादक कौन है?", options: ["घास", "लोमड़ी", "कवक"], correct: 0 },
+      2: { text: "2. किस वातावरण में पानी कम है और दिन में बहुत गर्मी होती है?", options: ["जंगल", "रेगिस्तान", "समुद्र"], correct: 1 },
+      3: { text: "3. अपघटक (जैसे कवक) क्या करते हैं?", options: ["जीवित पौधे खाते हैं", "शाकाहारियों का शिकार करते हैं", "अवशेषों का पुनर्चक्रण करते हैं और मिट्टी की मदद करते हैं"], correct: 2 },
+      4: { text: "4. कौन सा जानवर प्राथमिक उपभोक्ता (शाकाहारी) है?", options: ["खरगोश", "शेर", "चील"], correct: 0 },
+      5: { text: "5. पारितंत्र में सूर्य, पानी और चट्टान क्या हैं?", options: ["जीवित घटक", "निर्जीव घटक", "उपभोक्ता"], correct: 1 },
+      6: { text: "6. यदि जंगल से सभी पौधे गायब हो जाएँ तो क्या होगा?", options: ["शाकाहारी मांसाहारी बन जाते हैं", "कुछ नहीं बदलता", "शाकाहारियों के पास भोजन नहीं रहता और वे मर जाते हैं"], correct: 2 },
+      7: { text: "7. इनमें से कौन मांसाहारी है?", options: ["शेर", "गाय", "घोड़ा"], correct: 0 },
+      8: { text: "8. अधिकांश मछलियाँ कहाँ रहती हैं?", options: ["रेगिस्तान", "समुद्र", "पहाड़"], correct: 1 },
+      9: { text: "9. शाकाहारी क्या खाता है?", options: ["पौधे", "अन्य जानवर", "कवक"], correct: 0 },
+      10: { text: "10. इनमें से कौन अपघटक है?", options: ["कवक", "चील", "डॉल्फ़िन"], correct: 0 },
+      11: { text: "11. किस वातावरण में बहुत अधिक बर्फ होती है?", options: ["जंगल", "पहाड़", "समुद्र"], correct: 1 },
+      12: { text: "12. उस वैज्ञानिक का क्या नाम है जिसने चिंपांज़ी का अध्ययन किया?", options: ["जेन गुडॉल", "मैरी क्यूरी", "रीता लेवी-मोंटालसिनी"], correct: 0 },
+      13: { text: "13. पौधे सूर्य के प्रकाश से क्या बनाते हैं?", options: ["भोजन (ऑक्सीजन और शर्करा)", "पानी", "मिट्टी"], correct: 0 },
+      14: { text: "14. इनमें से कौन सा मीठे पानी का वातावरण है?", options: ["महासागर", "नदी", "समुद्र"], correct: 1 },
+      15: { text: "15. प्राथमिक उपभोक्ताओं को कौन खाता है?", options: ["द्वितीयक उपभोक्ता (मांसाहारी)", "उत्पादक", "अपघटक"], correct: 0 },
+      16: { text: "16. केंचुए क्या हैं?", options: ["अपघटक", "प्राथमिक उपभोक्ता", "उत्पादक"], correct: 0 },
+      17: { text: "17. ऊँट किस वातावरण में रहता है?", options: ["रेगिस्तान", "जंगल", "पहाड़"], correct: 0 },
+      18: { text: "18. पानी पौधों के लिए क्या करता है?", options: ["उन्हें बढ़ने में मदद करता है", "उन्हें सुखाता है", "उन्हें खाता है"], correct: 0 },
+      19: { text: "19. किसने प्रदूषण से प्रकृति की रक्षा के लिए पुस्तकें लिखीं?", options: ["रैचल कार्सन", "अल्बर्ट आइंस्टीन", "गैलीलियो गैलिली"], correct: 0 },
+      20: { text: "20. कौन सा जानवर द्वितीयक उपभोक्ता है?", options: ["खरगोश", "लोमड़ी", "घोड़ा"], correct: 1 }
+    },
+    results: {
+      answers: [
+        "घास", "रेगिस्तान", "अवशेषों का पुनर्चक्रण करते हैं", "खरगोश", "निर्जीव घटक",
+        "शाकाहारियों के पास भोजन नहीं रहता", "शेर", "समुद्र", "पौधे", "कवक",
+        "पहाड़", "जेन गुडॉल", "भोजन (ऑक्सीजन और शर्करा)", "नदी",
+        "द्वितीयक उपभोक्ता", "अपघटक", "रेगिस्तान", "उन्हें बढ़ने में मदद करता है",
+        "रैचल कार्सन", "लोमड़ी"
+      ]
+    },
+    feedback: {
+      correct: ["बहुत अच्छा!", "शानदार!", "सही!"],
+      incorrect: ["फिर से कोशिश करें!", "गलत है, लेकिन हार मत मानो!"]
+    },
+    checkButton: "सभी उत्तर जाँचें"
+  },
+  "storia-esploratori": {
+    title: "प्रकृति के महान खोजकर्ता।",
+    intro: "मनुष्यों ने भी पारितंत्रों को समझने के लिए यात्रा की और अध्ययन किया। यहाँ कुछ प्रसिद्ध वैज्ञानिक हैं जिन्होंने अद्भुत खोजें कीं:",
+    humboldt: {
+      name: "अलेक्जेंडर वॉन हम्बोल्ट (1769-1859)।",
+      period: "जर्मन खोजकर्ता।",
+      description: "उन्होंने दक्षिण अमेरिका की यात्रा की और खोजा कि पौधे और जानवर एक-दूसरे से और जलवायु से कैसे जुड़े हैं। उन्होंने पारितंत्र का विचार गढ़ा!"
+    },
+    darwin: {
+      name: "चार्ल्स डार्विन (1809-1882)।",
+      period: "अंग्रेज प्रकृतिवादी।",
+      description: "बीगल जहाज़ पर अपनी यात्रा में, उन्होंने हजारों प्रजातियों का अवलोकन किया और खाद्य श्रृंखला तथा प्राकृतिक संतुलन के महत्व को समझा।"
+    },
+    goodall: {
+      name: "जेन गुडॉल (1934-वर्तमान)।",
+      period: "अंग्रेज प्राइमैटोलॉजिस्ट।",
+      description: "उन्होंने तंजानिया में चिंपांज़ी के साथ रहकर हमें सिखाया कि वे बुद्धिमान हैं, उपकरणों का उपयोग करते हैं और उनमें भावनाएँ होती हैं। जानवरों की सच्ची मित्र!"
+    },
+    carson: {
+      name: "रैचल कार्सन (1907-1964)।",
+      period: "अमेरिकी जीवविज्ञानी और पर्यावरणविद्।",
+      description: "अपनी पुस्तक 'साइलेंट स्प्रिंग' से उन्होंने दुनिया को प्रदूषण के खतरों के प्रति जगाया और हमेशा के लिए प्रकृति की रक्षा की।"
+    },
+    attenborough: {
+      name: "डेविड एटनबरो (1926-वर्तमान)।",
+      period: "अंग्रेज प्रकृतिवादी और प्रसारक।",
+      description: "अपनी वृत्तचित्रों से उन्होंने लाखों बच्चों को पृथ्वी की सुंदरता और हर जीवित प्राणी का सम्मान करने के महत्व को दिखाया।"
+    },
+    conclusion: "उनके कारण आज हम अपनी अद्भुत पृथ्वी को बेहतर जानते हैं। कौन जाने, शायद एक दिन तुम भी एक महान खोज करो!"
+  },
+  footer: {
+    line1: "प्राकृतिक वातावरण पर पाठ – तीसरी कक्षा के बच्चों के लिए।",
+    line2: "डीएसए और बीईएस के लिए सरलीकृत पाठ – वाक् संश्लेषण के साथ।",
+    line3: "🌍 कॉम्पैक्ट मेनू और यादृच्छिक प्रश्नोत्तरी उत्तरों के साथ बहुभाषी संस्करण।"
+  },
+  voiceButtons: {
+    play: "🔊",
+    stop: "⏹️",
+    playTitle: "इस अनुभाग को सुनें",
+    stopTitle: "सुनना बंद करें"
+  }
+},
+    ru: {
+  page: {
+    title: "🌳 Большое приключение природы! Среды обитания и пищевые цепи.",
+    subtitle: "Сказка в комиксах для юных исследователей."
+  },
+  languageSelector: {
+    title: "🌍 Выберите язык.",
+    browserHint: "💡 Совет: чтобы слушать истории на всех языках, используйте Google Chrome."
+  },
+  sections: {
+    introduzione: {
+      title: "Привет! Познакомься с Риккардо Ёжиком.",
+      content: [
+        "В большом лесу Верделуна живёт Риккардо, любопытный ёжик. Однажды утром Джино Филин вручает ему таинственную карту, на которой показаны четыре среды обитания: лес, пустыня, море и горы. «Каждое место скрывает секрет о пищевой цепи», — говорит Джино. Риккардо решает отправиться в приключение со своими друзьями: Леллой Зайчихой и Фульво Белкой. Готов присоединиться к ним?",
+        "На каждой остановке они встретят новых животных и узнают, как работает равновесие природы. Это будет незабываемое путешествие!"
+      ]
+    },
+    ambienti: {
+      title: "Дома природы: места обитания.",
+      intro: "Карта Джино показывает четыре особых дома — места обитания, то есть среды, которые мы находим на Земле. Риккардо и его команда посетят их одно за другим. Вот что они узнают:",
+      foresta: "<strong>Лес:</strong> много деревьев, влажный и полный укрытий. Здесь живут Риккардо, Лелла и Фульво. Они также встретят белок и оленей.",
+      deserto: "<strong>Пустыня:</strong> очень жарко днём и холодно ночью, мало воды. Обитают верблюды, пустынные лисы и ящерицы.",
+      mare: "<strong>Море:</strong> солёная вода, волны и разноцветные рыбы. Дом Дельфина Дино и множества морских существ.",
+      montagna: "<strong>Горы:</strong> высокие, скалистые, со свежим воздухом и снегом. Здесь живут козероги, орлы и сурки.",
+      conclusion: "У каждой среды есть свой <strong>климат</strong> (жаркий, холодный, сухой, влажный) и свои <strong>особые растения</strong>. Во время путешествия наши друзья узнают о пищевых цепях каждого места."
+    },
+    ecosistema: {
+      title: "Что такое экосистема? Команда!",
+      content: [
+        "Экосистема похожа на большую команду, где каждый важен. В ней есть <strong>живые существа</strong> (животные, растения, грибы) и <strong>неживые элементы</strong> (солнце, вода, земля, воздух).",
+        "Когда Риккардо и его друзья идут по лесу, они замечают, что солнце согревает, дождь поливает растения, деревья производят жёлуди, а ёжики питаются насекомыми. «Всё в равновесии!» — восклицает Лелла. «Если не хватает одной детали, команда страдает», — добавляет Джино сверху."
+      ],
+      subtitle: "Связи в экосистеме.",
+      legani: "Растениям нужен солнечный свет для роста. Травоядные едят растения. Хищники едят травоядных. Грибы и бактерии перерабатывают сухие листья. Это замечательный <strong>круг жизни</strong>. «Без редуцентов земля была бы полна мёртвых листьев!» — объясняет Фульво."
+    },
+    catena: {
+      title: "Кто кого ест? Пищевая цепь.",
+      intro: "«Представьте ожерелье из звеньев», — говорит Джино. «Каждое звено — живое существо, которое поедает предыдущее. Вот главные герои, которых мы встретим в путешествии»:",
+      produttori: "<strong>Продуценты:</strong> растения. Они используют солнечный свет для производства пищи (листьев, плодов).",
+      consumatoriPrimari: "<strong>Первичные консументы:</strong> травоядные, такие как Лелла Зайчиха, которые едят растения.",
+      consumatoriSecondari: "<strong>Вторичные консументы:</strong> хищники, такие как лиса, которые едят травоядных.",
+      decompositori: "<strong>Редуценты:</strong> грибы и дождевые черви, которые превращают остатки в питательные вещества для почвы.",
+      esempio: "Пример: Солнце даёт энергию траве (продуцент). Заяц ест траву (первичный консумент). Лиса ест зайца (вторичный консумент). Когда лиса умирает, грибы разлагают её, и минералы возвращаются в почву. «Вот как природа обновляется!» — восклицает Риккардо."
+    },
+    video: {
+      title: "Посмотрите видео о пищевых цепях.",
+      clickHint: "Нажмите на изображение, чтобы посмотреть видео о пищевых цепях (YouTube)"
+    },
+    "video-ecosistema": {
+      title: "Посмотрите видео, чтобы понять, что такое экосистемы!",
+      clickHint: "Нажмите на изображение, чтобы посмотреть видео об экосистемах (YouTube)"
+    },
+    "attivita-pratica": {
+      title: "Задание: построй свою собственную пищевую цепь.",
+      materials: "<strong>Материалы:</strong> белый лист, цветные карандаши, ножницы и клей (если хочешь вырезать фигурки).",
+      steps: [
+        "<strong>Выбери среду:</strong> лес, пустыня, море или горы.",
+        "<strong>Нарисуй солнце</strong> и растение (продуцент).",
+        "<strong>Добавь травоядное</strong>, которое ест растение.",
+        "<strong>Добавь хищника</strong>, который ест травоядное.",
+        "<strong>Нарисуй редуцентов</strong> (грибы, дождевые черви), которые возвращают питательные вещества в почву."
+      ],
+      conclusion: "Отлично! Ты создал настоящую мини-экосистему. Покажи её одноклассникам!"
+    }
+  },
+  quiz: {
+    title: "Викторина: Ты опытный исследователь?",
+    questions: {
+      1: { text: "1. Кто является продуцентом в пищевой цепи?", options: ["Трава", "Лиса", "Гриб"], correct: 0 },
+      2: { text: "2. В какой среде мало воды и днём очень жарко?", options: ["Лес", "Пустыня", "Море"], correct: 1 },
+      3: { text: "3. Что делают редуценты (например, грибы)?", options: ["Едят живые растения", "Охотятся на травоядных", "Перерабатывают остатки и помогают почве"], correct: 2 },
+      4: { text: "4. Какое животное является первичным консументом (травоядным)?", options: ["Заяц", "Лев", "Орёл"], correct: 0 },
+      5: { text: "5. Что такое солнце, вода и камень в экосистеме?", options: ["Живые компоненты", "Неживые компоненты", "Консументы"], correct: 1 },
+      6: { text: "6. Что произойдёт, если в лесу исчезнут все растения?", options: ["Травоядные станут хищниками", "Ничего не изменится", "У травоядных не будет еды, и они умрут"], correct: 2 },
+      7: { text: "7. Кто из этих животных является хищником?", options: ["Лев", "Корова", "Лошадь"], correct: 0 },
+      8: { text: "8. Где живёт большинство рыб?", options: ["Пустыня", "Море", "Горы"], correct: 1 },
+      9: { text: "9. Что ест травоядное?", options: ["Растения", "Других животных", "Грибы"], correct: 0 },
+      10: { text: "10. Кто из них является редуцентом?", options: ["Гриб", "Орёл", "Дельфин"], correct: 0 },
+      11: { text: "11. В какой среде много снега?", options: ["Лес", "Горы", "Море"], correct: 1 },
+      12: { text: "12. Как зовут учёную, которая изучала шимпанзе?", options: ["Джейн Гудолл", "Мари Кюри", "Рита Леви-Монтальчини"], correct: 0 },
+      13: { text: "13. Что растения производят с помощью солнечного света?", options: ["Пищу (кислород и сахара)", "Воду", "Почву"], correct: 0 },
+      14: { text: "14. Какая из этих сред является пресноводной?", options: ["Океан", "Река", "Море"], correct: 1 },
+      15: { text: "15. Кто ест первичных консументов?", options: ["Вторичные консументы (хищники)", "Продуценты", "Редуценты"], correct: 0 },
+      16: { text: "16. Что такое дождевые черви?", options: ["Редуценты", "Первичные консументы", "Продуценты"], correct: 0 },
+      17: { text: "17. В какой среде обитает верблюд?", options: ["Пустыня", "Лес", "Горы"], correct: 0 },
+      18: { text: "18. Что вода делает для растений?", options: ["Помогает им расти", "Сушит их", "Ест их"], correct: 0 },
+      19: { text: "19. Кто написал книги, чтобы защитить природу от загрязнения?", options: ["Рейчел Карсон", "Альберт Эйнштейн", "Галилео Галилей"], correct: 0 },
+      20: { text: "20. Какое животное является вторичным консументом?", options: ["Заяц", "Лиса", "Лошадь"], correct: 1 }
+    },
+    results: {
+      answers: [
+        "Трава", "Пустыня", "Перерабатывают остатки", "Заяц", "Неживые компоненты",
+        "У травоядных не будет еды", "Лев", "Море", "Растения", "Гриб",
+        "Горы", "Джейн Гудолл", "Пищу (кислород и сахара)", "Река",
+        "Вторичные консументы", "Редуценты", "Пустыня", "Помогает им расти",
+        "Рейчел Карсон", "Лиса"
+      ]
+    },
+    feedback: {
+      correct: ["Отлично!", "Замечательно!", "Верно!"],
+      incorrect: ["Попробуй ещё раз!", "Неверно, но не сдавайся!"]
+    },
+    checkButton: "Проверить все ответы"
+  },
+  "storia-esploratori": {
+    title: "Великие исследователи природы.",
+    intro: "Люди тоже путешествовали и изучали, чтобы понять экосистемы. Вот несколько знаменитых учёных, которые сделали удивительные открытия:",
+    humboldt: {
+      name: "Александр фон Гумбольдт (1769-1859).",
+      period: "Немецкий исследователь.",
+      description: "Он путешествовал по Южной Америке и обнаружил, как растения и животные связаны друг с другом и с климатом. Он придумал понятие экосистемы!"
+    },
+    darwin: {
+      name: "Чарльз Дарвин (1809-1882).",
+      period: "Английский натуралист.",
+      description: "Во время своего путешествия на бриге «Бигль» он наблюдал тысячи видов и понял важность пищевой цепи и природного равновесия."
+    },
+    goodall: {
+      name: "Джейн Гудолл (1934-).",
+      period: "Английский приматолог.",
+      description: "Она жила с шимпанзе в Танзании и показала нам, что они умны, используют инструменты и имеют эмоции. Настоящий друг животных!"
+    },
+    carson: {
+      name: "Рейчел Карсон (1907-1964).",
+      period: "Американский биолог и эколог.",
+      description: "Своей книгой «Безмолвная весна» она пробудила мир к опасностям загрязнения и навсегда защитила природу."
+    },
+    attenborough: {
+      name: "Дэвид Аттенборо (1926-).",
+      period: "Английский натуралист и телеведущий.",
+      description: "Своими документальными фильмами он показал миллионам детей красоту Земли и важность уважения к каждому живому существу."
+    },
+    conclusion: "Благодаря им мы сегодня лучше знаем нашу чудесную Землю. Кто знает, может быть, однажды ты тоже сделаешь великое открытие!"
+  },
+  footer: {
+    line1: "Урок о природных средах – для детей третьего класса начальной школы.",
+    line2: "Упрощённый текст для детей с дислексией и особыми образовательными потребностями – с синтезом речи.",
+    line3: "🌍 Многоязычная версия с компактным меню и случайными ответами в викторине."
+  },
+  voiceButtons: {
+    play: "🔊",
+    stop: "⏹️",
+    playTitle: "Прослушать этот раздел",
+    stopTitle: "Остановить воспроизведение"
+  }
+},
+    zh: {
+  page: {
+    title: "🌳 大自然的伟大冒险！环境与食物链。",
+    subtitle: "给年轻探险家的漫画童话。"
+  },
+  languageSelector: {
+    title: "🌍 选择语言。",
+    browserHint: "💡 提示：要收听所有语言的故事，请使用 Google Chrome 浏览器。"
+  },
+  sections: {
+    introduzione: {
+      title: "你好！我向你介绍小刺猬里卡多。",
+      content: [
+        "在维尔德卢纳大森林里住着一只好奇的小刺猬里卡多。一天早上，猫头鹰吉诺给了他一张神秘的地图，地图上显示了四种环境：森林、沙漠、海洋和山脉。「每个地方都隐藏着一个关于食物链的秘密。」吉诺说。里卡多决定和朋友们一起出发去冒险：莱拉兔子和富尔沃松鼠。你准备好加入他们了吗？",
+        "每到一站，他们都会遇到新的动物，并发现大自然的平衡是如何运作的。这将是一次难忘的旅程！"
+      ]
+    },
+    ambienti: {
+      title: "大自然的家：栖息地。",
+      intro: "吉诺的地图展示了四个特殊的家，也就是我们在地球上找到的环境。里卡多和他的团队将逐一参观它们。以下是他们将要发现的：",
+      foresta: "<strong>森林：</strong> 树木繁多，潮湿且充满藏身之处。里卡多、莱拉和富尔沃住在这里。他们还会遇到松鼠和鹿。",
+      deserto: "<strong>沙漠：</strong> 白天非常炎热，夜晚寒冷，水源稀少。居住着骆驼、沙漠狐和蜥蜴。",
+      mare: "<strong>海洋：</strong> 咸水、波浪和色彩斑斓的鱼。海豚迪诺和许多海洋生物的家园。",
+      montagna: "<strong>山脉：</strong> 高耸、岩石遍布，空气清新，有雪。这里生活着羱羊、鹰和旱獭。",
+      conclusion: "每个环境都有自己的<strong>气候</strong>（热、冷、干燥、潮湿）和<strong>特殊植物</strong>。在旅途中，我们的朋友们将了解每个地方的食物链。"
+    },
+    ecosistema: {
+      title: "什么是生态系统？一个团队！",
+      content: [
+        "生态系统就像一个大家庭，每个人都很重要。它包括<strong>生物</strong>（动物、植物、真菌）和<strong>非生物</strong>（太阳、水、土壤、空气）。",
+        "当里卡多和他的朋友们穿过森林时，他们注意到太阳带来温暖，雨水浇灌植物，树木结出橡果，刺猬以昆虫为食。「一切都在平衡之中！」莱拉喊道。「如果缺少一部分，整个团队就会受苦。」吉诺从高处补充道。"
+      ],
+      subtitle: "生态系统中的联系。",
+      legani: "植物需要阳光才能生长。食草动物吃植物。食肉动物吃食草动物。真菌和细菌回收枯叶。这是一个美妙的<strong>生命循环</strong>。「没有分解者，地面将布满枯叶！」富尔沃解释道。"
+    },
+    catena: {
+      title: "谁吃谁？食物链。",
+      intro: "「想象一条项链的环扣，」吉诺说。「每个环扣是一个生物，它吃掉前面的那个。以下是我们将在旅途中遇到的主要角色」：",
+      produttori: "<strong>生产者：</strong> 植物。它们利用阳光制造食物（叶子、果实）。",
+      consumatoriPrimari: "<strong>初级消费者：</strong> 食草动物，比如莱拉兔子，它们吃植物。",
+      consumatoriSecondari: "<strong>次级消费者：</strong> 食肉动物，比如狐狸，它们吃食草动物。",
+      decompositori: "<strong>分解者：</strong> 真菌和蚯蚓，它们将残骸转化为土壤的养分。",
+      esempio: "例子：太阳为草提供能量（生产者）。兔子吃草（初级消费者）。狐狸吃兔子（次级消费者）。当狐狸死后，真菌将其分解，矿物质回到土壤中。「大自然就是这样更新的！」里卡多欢呼道。"
+    },
+    video: {
+      title: "观看关于食物链的视频。",
+      clickHint: "点击图片观看关于食物链的视频（YouTube）"
+    },
+    "video-ecosistema": {
+      title: "观看视频，了解什么是生态系统！",
+      clickHint: "点击图片观看关于生态系统的视频（YouTube）"
+    },
+    "attivita-pratica": {
+      title: "活动：构建你自己的食物链。",
+      materials: "<strong>材料：</strong> 白纸、彩色铅笔、剪刀和胶水（如果你想剪贴图形）。",
+      steps: [
+        "<strong>选择一种环境：</strong> 森林、沙漠、海洋或山脉。",
+        "<strong>画上太阳</strong> 和一株植物（生产者）。",
+        "<strong>添加一种食草动物</strong>，它吃植物。",
+        "<strong>添加一种食肉动物</strong>，它吃食草动物。",
+        "<strong>画上分解者</strong>（真菌、蚯蚓），它们将养分归还土壤。"
+      ],
+      conclusion: "太棒了！你创建了一个真正的微型生态系统。把它展示给你的同学吧！"
+    }
+  },
+  quiz: {
+    title: "小测验：你是专家探险家吗？",
+    questions: {
+      1: { text: "1. 谁是食物链中的生产者？", options: ["草", "狐狸", "蘑菇"], correct: 0 },
+      2: { text: "2. 哪种环境中水很少，白天非常炎热？", options: ["森林", "沙漠", "海洋"], correct: 1 },
+      3: { text: "3. 分解者（如真菌）做什么？", options: ["吃活的植物", "捕食食草动物", "回收残骸并帮助土壤"], correct: 2 },
+      4: { text: "4. 哪种动物是初级消费者（食草动物）？", options: ["兔子", "狮子", "鹰"], correct: 0 },
+      5: { text: "5. 在生态系统中，太阳、水和岩石是什么？", options: ["生物成分", "非生物成分", "消费者"], correct: 1 },
+      6: { text: "6. 如果森林中的所有植物都消失了，会发生什么？", options: ["食草动物变成食肉动物", "什么都不会改变", "食草动物没有食物并死亡"], correct: 2 },
+      7: { text: "7. 以下哪种是食肉动物？", options: ["狮子", "牛", "马"], correct: 0 },
+      8: { text: "8. 大多数鱼生活在哪里？", options: ["沙漠", "海洋", "山脉"], correct: 1 },
+      9: { text: "9. 食草动物吃什么？", options: ["植物", "其他动物", "真菌"], correct: 0 },
+      10: { text: "10. 以下哪种是分解者？", options: ["蘑菇", "鹰", "海豚"], correct: 0 },
+      11: { text: "11. 哪种环境中雪很多？", options: ["森林", "山脉", "海洋"], correct: 1 },
+      12: { text: "12. 研究黑猩猩的科学家叫什么名字？", options: ["珍·古道尔", "玛丽·居里", "丽塔·莱维-蒙塔尔奇尼"], correct: 0 },
+      13: { text: "13. 植物利用阳光制造什么？", options: ["食物（氧气和糖）", "水", "土壤"], correct: 0 },
+      14: { text: "14. 以下哪种是淡水环境？", options: ["大洋", "河流", "海洋"], correct: 1 },
+      15: { text: "15. 谁吃初级消费者？", options: ["次级消费者（食肉动物）", "生产者", "分解者"], correct: 0 },
+      16: { text: "16. 蚯蚓是什么？", options: ["分解者", "初级消费者", "生产者"], correct: 0 },
+      17: { text: "17. 骆驼生活在哪种环境中？", options: ["沙漠", "森林", "山脉"], correct: 0 },
+      18: { text: "18. 水对植物有什么作用？", options: ["帮助它们生长", "使它们干燥", "吃掉它们"], correct: 0 },
+      19: { text: "19. 谁写了书籍来保护自然免受污染？", options: ["蕾切尔·卡森", "阿尔伯特·爱因斯坦", "伽利略·伽利莱"], correct: 0 },
+      20: { text: "20. 哪种动物是次级消费者？", options: ["兔子", "狐狸", "马"], correct: 1 }
+    },
+    results: {
+      answers: [
+        "草", "沙漠", "回收残骸", "兔子", "非生物成分",
+        "食草动物没有食物", "狮子", "海洋", "植物", "蘑菇",
+        "山脉", "珍·古道尔", "食物（氧气和糖）", "河流",
+        "次级消费者", "分解者", "沙漠", "帮助它们生长",
+        "蕾切尔·卡森", "狐狸"
+      ]
+    },
+    feedback: {
+      correct: ["做得好！", "太棒了！", "正确！"],
+      incorrect: ["再试一次！", "不对，但别放弃！"]
+    },
+    checkButton: "检查所有答案"
+  },
+  "storia-esploratori": {
+    title: "伟大的自然探索者。",
+    intro: "人类也曾旅行和研究，以了解生态系统。以下是一些做出了奇妙发现的著名科学家：",
+    humboldt: {
+      name: "亚历山大·冯·洪堡（1769-1859）。",
+      period: "德国探险家。",
+      description: "他游历南美洲，发现了植物和动物如何相互联系以及与气候的联系。他提出了生态系统的概念！"
+    },
+    darwin: {
+      name: "查尔斯·达尔文（1809-1882）。",
+      period: "英国博物学家。",
+      description: "在贝格尔号军舰的航行中，他观察了数千个物种，并理解了食物链和自然平衡的重要性。"
+    },
+    goodall: {
+      name: "珍·古道尔（1934-）。",
+      period: "英国灵长类学家。",
+      description: "她在坦桑尼亚与黑猩猩生活在一起，告诉我们它们很聪明，会使用工具，并且有情感。动物真正的朋友！"
+    },
+    carson: {
+      name: "蕾切尔·卡森（1907-1964）。",
+      period: "美国生物学家和环保主义者。",
+      description: "她的书《寂静的春天》唤醒了世界对污染危险的意识，并永远保护了自然。"
+    },
+    attenborough: {
+      name: "大卫·爱登堡（1926-）。",
+      period: "英国博物学家和电视主持人。",
+      description: "他的纪录片向数百万儿童展示了地球的美丽以及尊重每一个生物的重要性。"
+    },
+    conclusion: "多亏了他们，我们今天才能更好地了解我们美妙的地球。谁知道呢，也许有一天你也会做出伟大的发现！"
+  },
+  footer: {
+    line1: "关于自然环境的课程 – 适用于小学三年级学生。",
+    line2: "为阅读障碍和特殊教育需求学生简化的文本 – 配有语音合成。",
+    line3: "🌍 多语言版本，带有紧凑菜单和随机测验答案。"
+  },
+  voiceButtons: {
+    play: "🔊",
+    stop: "⏹️",
+    playTitle: "收听本节内容",
+    stopTitle: "停止收听"
+  }
+},
+    ar: {
+  page: {
+    title: "🌳 مغامرة الطبيعة الكبرى! البيئات والسلاسل الغذائية.",
+    subtitle: "حكاية مصورة للمستكشفين الصغار."
+  },
+  languageSelector: {
+    title: "🌍 اختر اللغة.",
+    browserHint: "💡 نصيحة: لسماع القصص بجميع اللغات، استخدم متصفح Google Chrome."
+  },
+  sections: {
+    introduzione: {
+      title: "مرحباً! أقدم لك ريكاردو القنفذ.",
+      content: [
+        "في غابة فيرديلونا الكبيرة يعيش ريكاردو، قنفذ فضولي. ذات صباح، يسلمه جينو البومة خريطة غامضة تظهر أربع بيئات: الغابة، الصحراء، البحر والجبل. «كل مكان يخفي سراً عن السلسلة الغذائية» يقول جينو. يقرر ريكاردو الانطلاق في المغامرة مع أصدقائه: ليلا الأرنب وفولفو السنجاب. هل أنت مستعد للانضمام إليهم؟",
+        "في كل محطة سيلتقون بحيوانات جديدة ويكتشفون كيف يعمل توازن الطبيعة. ستكون رحلة لا تنسى!"
+      ]
+    },
+    ambienti: {
+      title: "منازل الطبيعة: الموائل.",
+      intro: "تظهر خريطة جينو أربعة منازل خاصة، هي الموائل، أي البيئات التي نجدها على الأرض. سيزورها ريكاردو وفريقه واحدة تلو الأخرى. إليك ما سيكتشفونه:",
+      foresta: "<strong>الغابة:</strong> أشجار كثيرة، رطبة ومليئة بالمخابئ. يعيش هنا ريكاردو وليلا وفولفو. سيلتقون أيضاً بالسناجب والغزلان.",
+      deserto: "<strong>الصحراء:</strong> حارة جداً نهاراً وباردة ليلاً، مع قلة الماء. يسكنها الجمال وثعالب الصحراء والسحالي.",
+      mare: "<strong>البحر:</strong> ماء مالح، أمواج وأسماك ملونة. موطن دينو الدلفين والعديد من الكائنات البحرية.",
+      montagna: "<strong>الجبل:</strong> مرتفع، صخري، بهواء منعش وثلج. تعيش هنا الوعول والنسور والمرموط.",
+      conclusion: "لكل بيئة <strong>مناخها</strong> (حار، بارد، جاف، رطب) و<strong>نباتاتها الخاصة</strong>. أثناء الرحلة، سيتعلم أصدقاؤنا السلاسل الغذائية لكل مكان."
+    },
+    ecosistema: {
+      title: "ما هو النظام البيئي؟ فريق!",
+      content: [
+        "النظام البيئي يشبه فريقاً كبيراً حيث الجميع مهم. فيه <strong>الكائنات الحية</strong> (الحيوانات، النباتات، الفطريات) و<strong>الأشياء غير الحية</strong> (الشمس، الماء، التربة، الهواء).",
+        "بينما يعبر ريكاردو وأصدقاؤه الغابة، يلاحظون أن الشمس تدفئ، المطر يسقي النباتات، الأشجار تنتج الجوز، والقنافذ تتغذى على الحشرات. «كل شيء في توازن!» تصرخ ليلا. «إذا فقدت قطعة، يعاني الفريق» يضيف جينو من الأعلى."
+      ],
+      subtitle: "الروابط في النظام البيئي.",
+      legani: "تحتاج النباتات إلى الشمس لتنمو. الحيوانات العاشبة تأكل النباتات. الحيوانات اللاحمة تأكل العاشبة. الفطريات والبكتيريا تعيد تدوير الأوراق الجافة. إنها <strong>دورة الحياة</strong> الرائعة. «بدون المحللات، ستكون الأرض مليئة بالأوراق الميتة!» يشرح فولفو."
+    },
+    catena: {
+      title: "من يأكل من؟ السلسلة الغذائية.",
+      intro: "«تخيلوا عقداً من الحلقات» يقول جينو. «كل حلقة هي كائن حي يأكل الذي قبلها. هؤلاء هم الأبطال الذين سنلتقي بهم في الرحلة»:",
+      produttori: "<strong>المنتجات:</strong> النباتات. تستخدم ضوء الشمس لصنع الغذاء (أوراق، ثمار).",
+      consumatoriPrimari: "<strong>المستهلكات الأولية:</strong> الحيوانات العاشبة مثل ليلا الأرنب، التي تأكل النباتات.",
+      consumatoriSecondari: "<strong>المستهلكات الثانوية:</strong> الحيوانات اللاحمة مثل الثعلب، التي تأكل العاشبة.",
+      decompositori: "<strong>المحللات:</strong> الفطريات وديدان الأرض، التي تحول البقايا إلى مغذيات للتربة.",
+      esempio: "مثال: الشمس تعطي الطاقة للعشب (منتج). الأرنب يأكل العشب (مستهلك أولي). الثعلب يأكل الأرنب (مستهلك ثانوي). عندما يموت الثعلب، تحلله الفطريات وتعود المعادن إلى التربة. «هكذا تتجدد الطبيعة!» يهتف ريكاردو."
+    },
+    video: {
+      title: "شاهد الفيديو عن السلاسل الغذائية.",
+      clickHint: "انقر على الصورة لمشاهدة فيديو عن السلاسل الغذائية (YouTube)"
+    },
+    "video-ecosistema": {
+      title: "شاهد الفيديو لتفهم ما هي النظم البيئية!",
+      clickHint: "انقر على الصورة لمشاهدة فيديو عن النظم البيئية (YouTube)"
+    },
+    "attivita-pratica": {
+      title: "نشاط: اصنع سلسلتك الغذائية الخاصة.",
+      materials: "<strong>المواد:</strong> ورقة بيضاء، أقلام تلوين، مقص وصمغ (إذا أردت قص الصور).",
+      steps: [
+        "<strong>اختر بيئة:</strong> غابة، صحراء، بحر أو جبل.",
+        "<strong>ارسم الشمس</strong> ونباتاً (منتج).",
+        "<strong>أضف حيواناً عاشباً</strong> يأكل النبات.",
+        "<strong>أضف حيواناً لاحماً</strong> يأكل العاشب.",
+        "<strong>ارسم المحللات</strong> (فطريات، ديدان أرض) التي تعيد المغذيات إلى التربة."
+      ],
+      conclusion: "أحسنت! لقد أنشأت نظاماً بيئياً مصغراً حقيقياً. أظهره لزملائك!"
+    }
+  },
+  quiz: {
+    title: "اختبار: هل أنت مستكشف خبير؟",
+    questions: {
+      1: { text: "1. من هو المنتج في السلسلة الغذائية؟", options: ["العشب", "الثعلب", "الفطر"], correct: 0 },
+      2: { text: "2. في أي بيئة يوجد القليل من الماء والجو حار جداً نهاراً؟", options: ["الغابة", "الصحراء", "البحر"], correct: 1 },
+      3: { text: "3. ماذا تفعل المحللات (مثل الفطريات)؟", options: ["تأكل النباتات الحية", "تصطاد العاشبات", "تعيد تدوير البقايا وتساعد التربة"], correct: 2 },
+      4: { text: "4. أي حيوان هو مستهلك أولي (عاشب)؟", options: ["أرنب", "أسد", "نسر"], correct: 0 },
+      5: { text: "5. ما هي الشمس والماء والصخر في النظام البيئي؟", options: ["مكونات حية", "مكونات غير حية", "مستهلكات"], correct: 1 },
+      6: { text: "6. ماذا يحدث إذا اختفت كل النباتات من الغابة؟", options: ["تصبح العاشبات لاحمة", "لا شيء يتغير", "العاشبات لا تجد طعاماً وتموت"], correct: 2 },
+      7: { text: "7. أي من هذه حيوانات لاحمة؟", options: ["أسد", "بقرة", "حصان"], correct: 0 },
+      8: { text: "8. أين تعيش معظم الأسماك؟", options: ["الصحراء", "البحر", "الجبل"], correct: 1 },
+      9: { text: "9. ماذا يأكل العاشب؟", options: ["نباتات", "حيوانات أخرى", "فطريات"], correct: 0 },
+      10: { text: "10. أي من هذه محللات؟", options: ["فطر", "نسر", "دلفين"], correct: 0 },
+      11: { text: "11. في أي بيئة يوجد الكثير من الثلج؟", options: ["الغابة", "الجبل", "البحر"], correct: 1 },
+      12: { text: "12. ما اسم العالمة التي درست الشمبانزي؟", options: ["جين جودال", "ماري كوري", "ريتا ليفي مونتالسيني"], correct: 0 },
+      13: { text: "13. ماذا تصنع النباتات بفضل الشمس؟", options: ["طعام (أكسجين وسكريات)", "ماء", "تربة"], correct: 0 },
+      14: { text: "14. أي من هذه بيئة مياه عذبة؟", options: ["محيط", "نهر", "بحر"], correct: 1 },
+      15: { text: "15. من يأكل المستهلكات الأولية؟", options: ["المستهلكات الثانوية (اللواحم)", "المنتجات", "المحللات"], correct: 0 },
+      16: { text: "16. ما هي ديدان الأرض؟", options: ["محللات", "مستهلكات أولية", "منتجات"], correct: 0 },
+      17: { text: "17. في أي بيئة يعيش الجمل؟", options: ["الصحراء", "الغابة", "الجبل"], correct: 0 },
+      18: { text: "18. ماذا يفعل الماء للنباتات؟", options: ["يساعدها على النمو", "يجففها", "يأكلها"], correct: 0 },
+      19: { text: "19. من كتب كتباً لحماية الطبيعة من التلوث؟", options: ["ريتشل كارسون", "ألبرت أينشتاين", "غاليليو غاليلي"], correct: 0 },
+      20: { text: "20. أي حيوان هو مستهلك ثانوي؟", options: ["أرنب", "ثعلب", "حصان"], correct: 1 }
+    },
+    results: {
+      answers: [
+        "العشب", "الصحراء", "تعيد تدوير البقايا", "أرنب", "مكونات غير حية",
+        "العاشبات لا تجد طعاماً", "أسد", "البحر", "نباتات", "فطر",
+        "الجبل", "جين جودال", "طعام (أكسجين وسكريات)", "نهر",
+        "المستهلكات الثانوية", "محللات", "الصحراء", "يساعدها على النمو",
+        "ريتشل كارسون", "ثعلب"
+      ]
+    },
+    feedback: {
+      correct: ["أحسنت!", "ممتاز!", "صحيح!"],
+      incorrect: ["حاول مرة أخرى!", "غير صحيح، لكن لا تيأس!"]
+    },
+    checkButton: "التحقق من جميع الإجابات"
+  },
+  "storia-esploratori": {
+    title: "المستكشفون الكبار للطبيعة.",
+    intro: "لقد سافر البشر أيضاً ودرسوا لفهم النظم البيئية. إليك بعض العلماء المشهورين الذين قاموا باكتشافات رائعة:",
+    humboldt: {
+      name: "ألكسندر فون هومبولت (1769-1859).",
+      period: "مستكشف ألماني.",
+      description: "سافر في أمريكا الجنوبية واكتشف كيف ترتبط النباتات والحيوانات ببعضها وبالمناخ. اخترع فكرة النظام البيئي!"
+    },
+    darwin: {
+      name: "تشارلز داروين (1809-1882).",
+      period: "عالم طبيعة إنجليزي.",
+      description: "في رحلته على متن سفينة البيغل، لاحظ آلاف الأنواع وفهم أهمية السلسلة الغذائية والتوازن الطبيعي."
+    },
+    goodall: {
+      name: "جين جودال (1934-).",
+      period: "عالمة رئيسيات إنجليزية.",
+      description: "عاشت مع الشمبانزي في تنزانيا وعلمتنا أنهم أذكياء، يستخدمون الأدوات ولديهم مشاعر. صديقة حقيقية للحيوانات!"
+    },
+    carson: {
+      name: "ريتشل كارسون (1907-1964).",
+      period: "عالمة أحياء وبيئة أمريكية.",
+      description: "بكتابها 'الربيع الصامت' أيقظت العالم على مخاطر التلوث وحمت الطبيعة إلى الأبد."
+    },
+    attenborough: {
+      name: "ديفيد أتينبورو (1926-).",
+      period: "عالم طبيعة ومذيع إنجليزي.",
+      description: "بأفلامه الوثائقية أظهر لملايين الأطفال جمال الأرض وأهمية احترام كل كائن حي."
+    },
+    conclusion: "بفضلهم نعرف اليوم أرضنا الرائعة بشكل أفضل. من يدري، ربما يوماً ما ستقوم أنت أيضاً باكتشاف عظيم!"
+  },
+  footer: {
+    line1: "درس عن البيئات الطبيعية – للأطفال في الصف الثالث الابتدائي.",
+    line2: "نص مبسط لذوي صعوبات التعلم والاحتياجات الخاصة – مع تركيب صوتي.",
+    line3: "🌍 نسخة متعددة اللغات مع قائمة مدمجة وإجابات اختبار عشوائية."
+  },
+  voiceButtons: {
+    play: "🔊",
+    stop: "⏹️",
+    playTitle: "استمع إلى هذا القسم",
+    stopTitle: "إيقاف الاستماع"
+  }
+},
+    fil: {
+  page: {
+    title: "🌳 Ang malaking pakikipagsapalaran ng kalikasan! Mga kapaligiran at food chain.",
+    subtitle: "Isang kuwentong komiks para sa batang explorer."
+  },
+  languageSelector: {
+    title: "🌍 Pumili ng wika.",
+    browserHint: "💡 Pahiwatig: Upang pakinggan ang mga kuwento sa lahat ng wika, gamitin ang Google Chrome."
+  },
+  sections: {
+    introduzione: {
+      title: "Kumusta! Ipakikilala ko sa iyo si Ricardo ang Hedgehog.",
+      content: [
+        "Sa malaking kagubatan ng Verdeluna nakatira si Ricardo, isang mausisang hedgehog. Isang umaga, binigyan siya ni Gino ang Kuwago ng isang mahiwagang mapa na nagpapakita ng apat na kapaligiran: ang kagubatan, ang disyerto, ang dagat, at ang bundok. «Bawat lugar ay nagtatago ng lihim tungkol sa food chain» sabi ni Gino. Nagpasya si Ricardo na magsimula ng pakikipagsapalaran kasama ang kanyang mga kaibigan: si Lella ang Liyebre at si Fulvo ang Ardilya. Handa ka bang sumama sa kanila?",
+        "Sa bawat paghinto, makakatagpo sila ng mga bagong hayop at matutuklasan kung paano gumagana ang balanse ng kalikasan. Ito ay isang di-malilimutang paglalakbay!"
+      ]
+    },
+    ambienti: {
+      title: "Mga tahanan ng kalikasan: mga habitat.",
+      intro: "Ang mapa ni Gino ay nagpapakita ng apat na espesyal na tahanan, ang mga Habitat, ang mga kapaligirang matatagpuan sa Earth. Dadalawin sila nina Ricardo at ng kanyang pangkat nang paisa-isa. Narito ang kanilang matutuklasan:",
+      foresta: "<strong>Kagubatan:</strong> maraming puno, basa at puno ng taguan. Dito nakatira sina Ricardo, Lella at Fulvo. Makakatagpo rin sila ng mga ardilya at usa.",
+      deserto: "<strong>Disyerto:</strong> napakainit sa araw at malamig sa gabi, kaunti ang tubig. Tinatahanan ng mga kamelyo, disyertong soro, at butiki.",
+      mare: "<strong>Dagat:</strong> maalat na tubig, alon, at makukulay na isda. Tahanan ni Dino ang Dolphin at ng maraming nilalang sa dagat.",
+      montagna: "<strong>Bundok:</strong> mataas, mabato, may sariwang hangin at niyebe. Dito nakatira ang mga ibex, agila, at marmot.",
+      conclusion: "Bawat kapaligiran ay may sariling <strong>klima</strong> (mainit, malamig, tuyo, basa) at sariling <strong>espesyal na halaman</strong>. Sa paglalakbay, matututunan ng ating mga kaibigan ang mga food chain ng bawat lugar."
+    },
+    ecosistema: {
+      title: "Ano ang ecosystem? Isang pangkat!",
+      content: [
+        "Ang ecosystem ay parang isang malaking pangkat kung saan lahat ay mahalaga. May mga <strong>buhay na bagay</strong> (hayop, halaman, fungi) at <strong>di-buhay na bagay</strong> (araw, tubig, lupa, hangin).",
+        "Habang tumatawid sina Ricardo at ang kanyang mga kaibigan sa kagubatan, napansin nila na nagpapainit ang araw, dinidiligan ng ulan ang mga halaman, gumagawa ng acorn ang mga puno, at kumakain ng insekto ang mga hedgehog. «Lahat ay nasa balanse!» bulalas ni Lella. «Kung may isang pirasong nawawala, naghihirap ang pangkat» dagdag ni Gino mula sa itaas."
+      ],
+      subtitle: "Ang mga ugnayan sa ecosystem.",
+      legani: "Kailangan ng mga halaman ang araw upang lumaki. Ang mga herbivore ay kumakain ng halaman. Ang mga carnivore ay kumakain ng herbivore. Ang fungi at bacteria ay nagre-recycle ng mga tuyong dahon. Ito ay isang kahanga-hangang <strong>siklo ng buhay</strong>. «Kung walang decomposer, ang lupa ay mapupuno ng mga patay na dahon!» paliwanag ni Fulvo."
+    },
+    catena: {
+      title: "Sino ang kumakain kanino? Ang food chain.",
+      intro: "«Isipin ninyo ang isang kuwintas ng mga singsing» sabi ni Gino. «Ang bawat singsing ay isang buhay na nilalang na kumakain ng nauna rito. Narito ang mga pangunahing tauhang makakasalamuha natin sa paglalakbay»:",
+      produttori: "<strong>Producer:</strong> ang mga halaman. Ginagamit nila ang liwanag ng araw upang makagawa ng pagkain (dahon, prutas).",
+      consumatoriPrimari: "<strong>Pangunahing konsyumer:</strong> ang mga herbivore tulad ni Lella ang Liyebre, na kumakain ng halaman.",
+      consumatoriSecondari: "<strong>Pangalawang konsyumer:</strong> ang mga carnivore tulad ng soro, na kumakain ng herbivore.",
+      decompositori: "<strong>Decomposer:</strong> fungi at bulate, na nagpapalit ng mga labi sa sustansya para sa lupa.",
+      esempio: "Halimbawa: Ang araw ay nagbibigay ng enerhiya sa damo (producer). Ang kuneho ay kumakain ng damo (pangunahing konsyumer). Ang soro ay kumakain ng kuneho (pangalawang konsyumer). Kapag namatay ang soro, nabubulok ito ng fungi at bumabalik sa lupa ang mga mineral. «Ganyan nagpapanibago ang kalikasan!» bulalas ni Ricardo."
+    },
+    video: {
+      title: "Panoorin ang video tungkol sa mga food chain.",
+      clickHint: "I-click ang larawan upang manood ng video tungkol sa mga food chain (YouTube)"
+    },
+    "video-ecosistema": {
+      title: "Panoorin ang video upang maunawaan kung ano ang mga ecosystem!",
+      clickHint: "I-click ang larawan upang manood ng video tungkol sa mga ecosystem (YouTube)"
+    },
+    "attivita-pratica": {
+      title: "Aktibidad: buuin ang sarili mong food chain.",
+      materials: "<strong>Materyales:</strong> puting papel, mga krayola o kulay, gunting at pandikit (kung gusto mong maggupit ng mga larawan).",
+      steps: [
+        "<strong>Pumili ng kapaligiran:</strong> kagubatan, disyerto, dagat o bundok.",
+        "<strong>Iguhit ang araw</strong> at isang halaman (producer).",
+        "<strong>Magdagdag ng herbivore</strong> na kumakain ng halaman.",
+        "<strong>Magdagdag ng carnivore</strong> na kumakain ng herbivore.",
+        "<strong>Iguhit ang mga decomposer</strong> (fungi, bulate) na nagbabalik ng sustansya sa lupa."
+      ],
+      conclusion: "Mahusay! Nakagawa ka ng isang tunay na mini-ecosystem. Ipakita ito sa iyong mga kaklase!"
+    }
+  },
+  quiz: {
+    title: "Pagsusulit: Ikaw ba ay isang dalubhasang explorer?",
+    questions: {
+      1: { text: "1. Sino ang producer sa food chain?", options: ["Damo", "Soro", "Fungus"], correct: 0 },
+      2: { text: "2. Saang kapaligiran may kaunting tubig at napakainit sa araw?", options: ["Kagubatan", "Disyerto", "Dagat"], correct: 1 },
+      3: { text: "3. Ano ang ginagawa ng mga decomposer (tulad ng fungi)?", options: ["Kumakain ng buhay na halaman", "Nanghuhuli ng herbivore", "Nagre-recycle ng mga labi at tumutulong sa lupa"], correct: 2 },
+      4: { text: "4. Aling hayop ang pangunahing konsyumer (herbivore)?", options: ["Kuneho", "Leon", "Agila"], correct: 0 },
+      5: { text: "5. Ano ang araw, tubig at bato sa isang ecosystem?", options: ["Buhay na bahagi", "Di-buhay na bahagi", "Mga konsyumer"], correct: 1 },
+      6: { text: "6. Ano ang mangyayari kung mawala ang lahat ng halaman sa kagubatan?", options: ["Magiging carnivore ang herbivore", "Walang magbabago", "Walang pagkain ang herbivore at mamamatay sila"], correct: 2 },
+      7: { text: "7. Alin sa mga ito ang carnivore?", options: ["Leon", "Baka", "Kabayo"], correct: 0 },
+      8: { text: "8. Saan nakatira ang karamihan ng isda?", options: ["Disyerto", "Dagat", "Bundok"], correct: 1 },
+      9: { text: "9. Ano ang kinakain ng herbivore?", options: ["Halaman", "Ibang hayop", "Fungi"], correct: 0 },
+      10: { text: "10. Alin sa mga ito ang decomposer?", options: ["Fungus", "Agila", "Dolphin"], correct: 0 },
+      11: { text: "11. Saang kapaligiran maraming niyebe?", options: ["Kagubatan", "Bundok", "Dagat"], correct: 1 },
+      12: { text: "12. Ano ang pangalan ng siyentipikong nag-aral ng chimpanzee?", options: ["Jane Goodall", "Marie Curie", "Rita Levi-Montalcini"], correct: 0 },
+      13: { text: "13. Ano ang ginagawa ng mga halaman salamat sa araw?", options: ["Pagkain (oxygen at asukal)", "Tubig", "Lupa"], correct: 0 },
+      14: { text: "14. Alin sa mga ito ang isang freshwater na kapaligiran?", options: ["Karagatan", "Ilog", "Dagat"], correct: 1 },
+      15: { text: "15. Sino ang kumakain ng pangunahing konsyumer?", options: ["Pangalawang konsyumer (carnivore)", "Producer", "Decomposer"], correct: 0 },
+      16: { text: "16. Ano ang mga bulate?", options: ["Decomposer", "Pangunahing konsyumer", "Producer"], correct: 0 },
+      17: { text: "17. Saang kapaligiran nakatira ang kamelyo?", options: ["Disyerto", "Kagubatan", "Bundok"], correct: 0 },
+      18: { text: "18. Ano ang ginagawa ng tubig para sa mga halaman?", options: ["Tinutulungan silang lumaki", "Pinapatuyo sila", "Kinakain sila"], correct: 0 },
+      19: { text: "19. Sino ang sumulat ng mga libro upang protektahan ang kalikasan mula sa polusyon?", options: ["Rachel Carson", "Albert Einstein", "Galileo Galilei"], correct: 0 },
+      20: { text: "20. Aling hayop ang pangalawang konsyumer?", options: ["Kuneho", "Soro", "Kabayo"], correct: 1 }
+    },
+    results: {
+      answers: [
+        "Damo", "Disyerto", "Nagre-recycle ng mga labi", "Kuneho", "Di-buhay na bahagi",
+        "Walang pagkain ang herbivore", "Leon", "Dagat", "Halaman", "Fungus",
+        "Bundok", "Jane Goodall", "Pagkain (oxygen at asukal)", "Ilog",
+        "Pangalawang konsyumer", "Decomposer", "Disyerto", "Tinutulungan silang lumaki",
+        "Rachel Carson", "Soro"
+      ]
+    },
+    feedback: {
+      correct: ["Magaling!", "Napakahusay!", "Tama!"],
+      incorrect: ["Subukan muli!", "Hindi tama, pero huwag sumuko!"]
+    },
+    checkButton: "Suriin lahat ng sagot"
+  },
+  "storia-esploratori": {
+    title: "Ang mga dakilang explorer ng kalikasan.",
+    intro: "Ang mga tao ay naglakbay at nag-aral din upang maunawaan ang mga ecosystem. Narito ang ilang sikat na siyentipiko na gumawa ng kamangha-manghang mga tuklas:",
+    humboldt: {
+      name: "Alexander von Humboldt (1769-1859).",
+      period: "Aleman na explorer.",
+      description: "Naglakbay siya sa Timog Amerika at natuklasan kung paano magkakaugnay ang mga halaman at hayop sa isa't isa at sa klima. Siya ang nag-imbento ng ideya ng ecosystem!"
+    },
+    darwin: {
+      name: "Charles Darwin (1809-1882).",
+      period: "Ingles na naturalista.",
+      description: "Sa kanyang paglalakbay sa barkong Beagle, naobserbahan niya ang libu-libong species at naunawaan ang kahalagahan ng food chain at natural na balanse."
+    },
+    goodall: {
+      name: "Jane Goodall (1934-).",
+      period: "Ingles na primatologist.",
+      description: "Nanirahan siya kasama ang mga chimpanzee sa Tanzania at itinuro sa atin na sila ay matalino, gumagamit ng kasangkapan, at may emosyon. Isang tunay na kaibigan ng mga hayop!"
+    },
+    carson: {
+      name: "Rachel Carson (1907-1964).",
+      period: "Amerikanang biologist at environmentalist.",
+      description: "Sa kanyang aklat na 'Silent Spring' ginising niya ang mundo sa mga panganib ng polusyon at pinrotektahan ang kalikasan magpakailanman."
+    },
+    attenborough: {
+      name: "David Attenborough (1926-).",
+      period: "Ingles na naturalista at tagapagbalita.",
+      description: "Sa kanyang mga dokumentaryo ipinakita niya sa milyun-milyong bata ang kagandahan ng Daigdig at ang kahalagahan ng paggalang sa bawat buhay na nilalang."
+    },
+    conclusion: "Salamat sa kanila, mas kilala natin ngayon ang ating kahanga-hangang Daigdig. Sino ang nakakaalam, marahil balang araw ikaw din ay makagawa ng isang malaking tuklas!"
+  },
+  footer: {
+    line1: "Aralin tungkol sa mga likas na kapaligiran – para sa mga bata sa ikatlong baitang.",
+    line2: "Pinadaling teksto para sa DSA at BES – may text-to-speech.",
+    line3: "🌍 Multilingual na bersyon na may compact na menu at random na sagot sa pagsusulit."
+  },
+  voiceButtons: {
+    play: "🔊",
+    stop: "⏹️",
+    playTitle: "Pakinggan ang seksyong ito",
+    stopTitle: "Itigil ang pakikinig"
+  }
+},
+};
+
+// ========== GLOBALI ==========
+let currentLang = 'it';
+let currentUtterance = null;
+
+function stopSpeaking() { if(window.speechSynthesis) window.speechSynthesis.cancel(); currentUtterance = null; }
+
+function speak(text, lang) {
+    if(!window.speechSynthesis) return;
+    stopSpeaking();
+    let utterance = new SpeechSynthesisUtterance(text);
+    let ttsCode = { it:'it-IT', en:'en-US', fr:'fr-FR', es:'es-ES', pt:'pt-BR', hi:'hi-IN', ru:'ru-RU', zh:'zh-CN', ar:'ar-SA', fil:'fil-PH' }[lang] || 'it-IT';
+    utterance.lang = ttsCode;
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+    currentUtterance = utterance;
+}
+
+// funzione per ottenere feedback casuale dalla lingua corrente
+function getRandomFeedback(isCorrect, lang) {
+    const t = translations[lang] || translations.it;
+    const feedbackArr = isCorrect ? t.quiz.feedback.correct : t.quiz.feedback.incorrect;
+    if (!feedbackArr || feedbackArr.length === 0) {
+        return isCorrect ? "✅ Correct!" : "❌ Try again!";
+    }
+    const randomIndex = Math.floor(Math.random() * feedbackArr.length);
+    return feedbackArr[randomIndex];
+}
+
+function randomizeQuizOptions(lang) {
+    const qData = translations[lang]?.quiz?.questions;
+    if(!qData) return;
+    for(let i=1;i<=20;i++) {
+        let section = document.getElementById(`quiz-${i}`);
+        if(!section) continue;
+        const question = qData[i];
+        if(!question) continue;
+        const correctAnswerText = question.options[question.correct];
+        let shuffled = [...question.options];
+        for(let j=shuffled.length-1;j>0;j--){ let k=Math.floor(Math.random()*(j+1)); [shuffled[j],shuffled[k]]=[shuffled[k],shuffled[j]]; }
+        const optionsDiv = section.querySelector('.quiz-options');
+        optionsDiv.innerHTML = '';
+        shuffled.forEach(opt => {
+            let span = document.createElement('span');
+            span.className = 'quiz-option';
+            span.innerText = opt;
+            span.setAttribute('data-correct', opt === correctAnswerText ? 'true' : 'false');
+            optionsDiv.appendChild(span);
+        });
+        const pStrong = section.querySelector('.quiz-question p strong');
+        if(pStrong) pStrong.innerText = question.text;
+    }
+}
+
+function translatePage(lang) {
+    const t = translations[lang] || translations.it;
+    document.querySelectorAll('[data-translate-key]').forEach(el => {
+        let keys = el.getAttribute('data-translate-key').split('.');
+        let val = t;
+        for(let k of keys) if(val && val[k]) val = val[k]; else break;
+        if(typeof val === 'string') el.innerHTML = val;
+    });
+    document.body.setAttribute('dir', (lang==='ar'?'rtl':'ltr'));
+    randomizeQuizOptions(lang);
+}
+
+// Crea i 20 quiz statici nel wrapper
+window.addEventListener('DOMContentLoaded', () => {
+    let wrapper = document.getElementById('quiz-container-wrapper');
+    if(wrapper.children.length===0) {
+        for(let i=1;i<=20;i++) {
+            let sec = document.createElement('section');
+            sec.id = `quiz-${i}`;
+            sec.className = 'quiz-container';
+            sec.innerHTML = `<div class="voice-controls"><button class="voice-btn start">🔊</button><button class="voice-btn stop" style="display:none;">⏹️</button></div><h2 data-translate-key="quiz.title">Quiz (${i}/20)</h2><div class="quiz-question"><p><strong></strong></p><div class="quiz-options"></div><div class="quiz-feedback"></div></div>`;
+            wrapper.appendChild(sec);
+        }
+    }
+    translatePage('it');
+    attachGlobalEvents();
+});
+
+function attachGlobalEvents() {
+    // Lightbox immagini (escludi quelle dentro link youtube)
+    document.querySelectorAll('.section-image img').forEach(img => {
+        let parentLink = img.closest('a');
+        if(parentLink && parentLink.href && parentLink.href.includes('youtube.com')) return;
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            let containerImg = img.closest('.section-image');
+            let nextSection = containerImg ? containerImg.nextElementSibling : null;
+            while(nextSection && nextSection.tagName !== 'SECTION') nextSection = nextSection.nextElementSibling;
+            let textToRead = '';
+            if(nextSection) {
+                let clone = nextSection.cloneNode(true);
+                clone.querySelectorAll('.voice-controls').forEach(el => el.remove());
+                textToRead = clone.innerText.replace(/\s+/g,' ').trim();
+            }
+            // Lightbox
+            let lb = document.createElement('div');
+            lb.className = 'lightbox';
+            let lbImg = document.createElement('img');
+            lbImg.src = img.src;
+            let closeBtn = document.createElement('div');
+            closeBtn.className = 'lightbox-close';
+            closeBtn.innerHTML = '✕';
+            lb.appendChild(lbImg);
+            lb.appendChild(closeBtn);
+            document.body.appendChild(lb);
+            if(textToRead) speak(textToRead, currentLang);
+            const closeLightbox = () => { stopSpeaking(); lb.remove(); };
+            lb.addEventListener('click', closeLightbox);
+            closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+        });
+    });
+
+    // Pulsanti voce (delega)
+    document.body.addEventListener('click', (e) => {
+        if(e.target.classList.contains('voice-btn') && e.target.classList.contains('start')) {
+            let section = e.target.closest('section');
+            if(section) {
+                let clone = section.cloneNode(true);
+                clone.querySelectorAll('.voice-controls').forEach(el => el.remove());
+                let text = clone.innerText.replace(/\s+/g,' ').trim();
+                if(text) speak(text, currentLang);
+                let stopBtn = section.querySelector('.voice-btn.stop');
+                if(stopBtn) { e.target.style.display = 'none'; stopBtn.style.display = 'flex'; }
+            }
+        }
+        if(e.target.classList.contains('voice-btn') && e.target.classList.contains('stop')) {
+            stopSpeaking();
+            let section = e.target.closest('section');
+            if(section) {
+                let startBtn = section.querySelector('.voice-btn.start');
+                if(startBtn) { e.target.style.display = 'none'; startBtn.style.display = 'flex'; }
+            }
+        }
+        if(e.target.classList.contains('quiz-option')) {
+            let opt = e.target;
+            let qDiv = opt.closest('.quiz-question');
+            let fbDiv = qDiv.querySelector('.quiz-feedback');
+            let isCorrect = opt.getAttribute('data-correct') === 'true';
+            qDiv.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct','incorrect'));
+            opt.classList.add(isCorrect ? 'correct' : 'incorrect');
+            // Usa il feedback tradotto nella lingua corrente
+            const feedbackText = getRandomFeedback(isCorrect, currentLang);
+            fbDiv.textContent = feedbackText;
+            fbDiv.className = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+            fbDiv.style.display = 'block';
+            // Leggi ad alta voce il feedback nella lingua corrente
+            speak(feedbackText, currentLang);
+        }
+    });
+
+    document.getElementById('check-answers')?.addEventListener('click', () => {
+        let resultsList = document.getElementById('quiz-results-list');
+        if(!resultsList) return;
+        resultsList.innerHTML = '';
+        let answers = translations[currentLang]?.quiz?.results?.answers || [];
+        answers.forEach((ans,i) => { let li = document.createElement('li'); li.textContent = `${i+1}. ${ans}`; resultsList.appendChild(li); });
+        document.getElementById('quiz-results').style.display = 'block';
+    });
+}
+
+// Language buttons
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentLang = this.dataset.lang;
+        translatePage(currentLang);
+    });
+});
+</script>
+</body>
+</html>
