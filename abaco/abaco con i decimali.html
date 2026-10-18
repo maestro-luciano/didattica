@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abaco digitale interattivo di Maestro Luciano - Imparare i numeri giocando, con decimali">
+    <meta name="theme-color" content="#0a1f14">
+    <title>L'abaco di maestro Luciano</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            height: 100vh; display: flex; flex-direction: column; align-items: center;
+            background: linear-gradient(135deg, #0a1f14 0%, #14342a 50%, #1e4d38 100%);
+            overflow: hidden; position: relative; color: #ecf0f1; padding-bottom: 80px;
+        }
+        #fractal-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; }
+        h1 {
+            color: #ecf0f1; margin: 10px 0 5px 0; font-size: clamp(1.44rem, 4vw, 1.76rem);
+            font-weight: bold; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .instructions {
+            background: rgba(20, 52, 42, 0.9); padding: 10px; border-radius: 10px; margin: 5px 20px;
+            text-align: center; color: #ecf0f1; font-size: clamp(1rem, 2.5vw, 1.1rem);
+            max-width: 600px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .language-selector {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10, 31, 20, 0.95); padding: 10px; border-radius: 15px 15px 0 0;
+            margin-bottom: 0; width: 100%; text-align: center; box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 5px;
+        }
+        .lang-btn {
+            padding: 8px 12px; margin: 0 2px; font-size: clamp(0.7rem, 2vw, 0.8rem);
+            background: rgba(20, 52, 42, 0.8); color: #ecf0f1; border: 1px solid #52b788;
+            border-radius: 5px; cursor: pointer; transition: all 0.3s ease;
+        }
+        .lang-btn:hover, .lang-btn.active { background: #3498db; border-color: #3498db; }
+        .main-container {
+            display: flex; width: 100%; max-width: 1400px; margin: 0 auto; padding: 5px 15px;
+            gap: 20px; align-items: flex-start; flex: 1; overflow: hidden;
+        }
+        .left-panel { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .right-panel {
+            flex: 1; display: flex; flex-direction: column; align-items: center;
+            justify-content: flex-start; overflow-y: auto; max-height: calc(100vh - 180px);
+        }
+        #abacus-container {
+            background: rgba(10, 31, 20, 0.95); border-radius: 20px; border: 3px solid #52b788;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); padding: 15px; margin: 10px auto;
+            z-index: 10; max-width: 100%; width: 100%; overflow-x: auto;
+        }
+        #abacus {
+            display: flex; justify-content: center; gap: 22px; margin-bottom: 15px;
+            flex-wrap: nowrap; align-items: flex-end; min-width: max-content;
+        }
+        .column { display: flex; flex-direction: column; align-items: center; min-width: 62px; }
+        .rod {
+            width: 10px; height: 380px;
+            background: linear-gradient(to right, #95a5a6, #bdc3c7, #95a5a6);
+            position: relative; border-radius: 5px; box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+        .balls-container {
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column-reverse; gap: 5px; padding: 12px 0;
+        }
+        .ball {
+            width: 38px; height: 38px; border-radius: 50%; transition: all 0.5s ease;
+            cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border: 2px solid rgba(255,255,255,0.5);
+            opacity: 0; transform: scale(0);
+        }
+        .ball.visible { opacity: 1; transform: scale(1); animation: fallDown 0.5s ease-out; }
+        .ball:not(.visible) { pointer-events: none; }
+        @keyframes fallDown {
+            0% { transform: translateY(-300px) scale(0.5); opacity: 0; }
+            70% { transform: translateY(10px) scale(1.05); }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        .ball.unit        { background: radial-gradient(circle at 30% 30%, #3498db, #2980b9); }
+        .ball.ten         { background: radial-gradient(circle at 30% 30%, #e74c3c, #c0392b); }
+        .ball.hundred     { background: radial-gradient(circle at 30% 30%, #27ae60, #229954); }
+        .ball.thousand    { background: radial-gradient(circle at 30% 30%, #ecf0f1, #bdc3c7); }
+        .ball.tenth       { background: radial-gradient(circle at 30% 30%, #9b59b6, #8e44ad); }
+        .ball.hundredth   { background: radial-gradient(circle at 30% 30%, #f39c12, #e67e22); }
+        .ball.thousandth  { background: radial-gradient(circle at 30% 30%, #e91e63, #c2185b); }
+        .column-label {
+            margin-top: 15px; font-weight: bold; color: #ecf0f1; font-size: 15px;
+            text-align: center; background: rgba(20, 52, 42, 0.8); padding: 6px 10px;
+            border-radius: 20px; border: 2px solid #52b788; width: 100px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .decimal-separator {
+            align-self: flex-end; font-size: 4.5rem; font-weight: bold; color: #f39c12;
+            line-height: 1; margin-bottom: 55px; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            min-width: 26px; text-align: center; user-select: none;
+        }
+        #number-display {
+            text-align: center; margin: 8px 0; padding: 8px; background: rgba(20, 52, 42, 0.35);
+            border-radius: 15px; border: 2px solid #3498db; width: 100%;
+        }
+        #current-number {
+            font-size: clamp(2rem, 7vw, 2.8rem); font-weight: bold; color: #ecf0f1;
+            margin-bottom: 5px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); word-break: break-all;
+        }
+        #number-breakdown { font-size: clamp(0.85rem, 2vw, 1rem); color: #bdc3c7; line-height: 1.4; }
+        #input-form { display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+        #number-input {
+            padding: 7px 14px; font-size: clamp(1rem, 2.5vw, 1.2rem); border: 3px solid #3498db;
+            border-radius: 15px; width: 220px; background: #0a1f14; color: #ecf0f1;
+            text-align: center; font-weight: bold; transition: all 0.3s ease;
+        }
+        #number-input:focus { outline: none; border-color: #2980b9; box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.3); transform: scale(1.05); }
+        #number-input::placeholder { color: #7f8c8d; }
+        button {
+            padding: 7px 14px; font-size: clamp(0.85rem, 2vw, 1rem);
+            background: linear-gradient(135deg, #3498db, #2980b9); color: white; border: none;
+            border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4); font-weight: bold;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        button:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(52, 152, 219, 0.6); }
+        button:active { transform: translateY(-1px); }
+        #voice-controls { text-align: center; margin-top: 8px; }
+        #voice-button {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            font-size: clamp(0.8rem, 1.8vw, 0.95rem); padding: 6px 12px;
+        }
+        #voice-button:hover { box-shadow: 0 8px 25px rgba(39, 174, 96, 0.6); }
+
+        /* ============ MODIFICA: pulsanti-pallina su UNA SOLA RIGA ============ */
+        .ball-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 4px;
+            margin: 8px 0;
+            flex-wrap: nowrap;            /* niente a capo */
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;             /* su schermi molto stretti scorre */
+            padding-bottom: 4px;
+        }
+        .ball-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex: 0 0 auto;               /* impedisce la compressione/rottura */
+            min-width: 0;
+        }
+        .ball-btn {
+            width: 38px; height: 38px;    /* leggermente più piccoli per stare in riga */
+            border-radius: 50%; border: 2px solid white;
+            cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); position: relative;
+        }
+        .ball-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+        .ball-btn.blue    { background: radial-gradient(circle at 30% 30%, #3498db, #2980b9); }
+        .ball-btn.red     { background: radial-gradient(circle at 30% 30%, #e74c3c, #c0392b); }
+        .ball-btn.green   { background: radial-gradient(circle at 30% 30%, #27ae60, #229954); }
+        .ball-btn.white   { background: radial-gradient(circle at 30% 30%, #ecf0f1, #bdc3c7); }
+        .ball-btn.purple  { background: radial-gradient(circle at 30% 30%, #9b59b6, #8e44ad); }
+        .ball-btn.orange  { background: radial-gradient(circle at 30% 30%, #f39c12, #e67e22); }
+        .ball-btn.pink    { background: radial-gradient(circle at 30% 30%, #e91e63, #c2185b); }
+        .ball-count { font-size: 15px; font-weight: bold; color: #ecf0f1; min-width: 22px; text-align: center; }
+        .ball-label {
+            font-size: 9px; color: #bdc3c7; font-weight: bold; width: 50px; height: 18px;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+        }
+        /* ==================================================================== */
+
+        .quick-numbers { display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+        .quick-btn {
+            padding: 6px 10px; font-size: clamp(0.8rem, 2vw, 1rem);
+            background: linear-gradient(135deg, #f39c12, #e67e22); color: white;
+            border: none; border-radius: 10px; cursor: pointer; transition: all 0.3s ease; font-weight: bold;
+        }
+        .quick-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(243, 156, 18, 0.6); }
+        .trash-zone {
+            width: 70px; height: 70px; background: rgba(231, 76, 60, 0.3); border: 3px dashed #e74c3c;
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 26px; color: #e74c3c; margin: 12px auto; transition: all 0.3s ease; cursor: pointer;
+        }
+        .trash-zone.drag-over { background: rgba(231, 76, 60, 0.5); transform: scale(1.1); }
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0,0,0,0); border: 0;
+        }
+        .number-words-container {
+            background: rgba(10, 31, 20, 0.95); border-radius: 15px; padding: 8px;
+            margin: 8px 0; width: 100%; border: 2px solid #52b788;
+        }
+        .number-words-title {
+            font-size: 0.9rem; color: #ecf0f1; margin-bottom: 4px; text-align: center;
+            font-weight: bold; width: 100%; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .number-word-text {
+            font-size: 1.05rem; color: #52b788; text-align: center; font-weight: bold;
+            padding: 5px; background: rgba(20, 52, 42, 0.6); border-radius: 8px;
+            min-height: 38px; display: flex; align-items: center; justify-content: center;
+        }
+        #number-decomposition {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem) !important; color: #f39c12 !important;
+            margin-top: 6px !important; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        @media (max-width: 900px) {
+            #abacus { gap: 12px; }
+            .column { min-width: 50px; }
+            .column-label { width: 84px; font-size: 13px; height: 36px; padding: 4px 6px; }
+            .ball { width: 32px; height: 32px; }
+            .rod { height: 320px; }
+            .decimal-separator { font-size: 3.4rem; margin-bottom: 48px; }
+            .ball-btn { width: 34px; height: 34px; }
+            .ball-label { width: 46px; font-size: 8px; }
+            .ball-count { font-size: 13px; }
+        }
+        @media (max-width: 768px) {
+            .main-container { flex-direction: column; gap: 12px; padding: 5px 10px; }
+            h1 { font-size: clamp(1.5rem, 4vw, 1.8rem); margin: 10px 5px; }
+            .instructions { font-size: clamp(0.9rem, 2vw, 1rem); margin: 5px; }
+            #abacus-container { padding: 10px; width: 95%; }
+            #abacus { gap: 6px; }
+            .column { min-width: 42px; }
+            .ball { width: 28px; height: 28px; }
+            .rod { height: 260px; }
+            .column-label { width: 64px; font-size: 11px; height: 32px; padding: 4px 4px; }
+            .decimal-separator { font-size: 2.6rem; margin-bottom: 40px; }
+            .ball-btn { width: 30px; height: 30px; }
+            .ball-label { width: 42px; font-size: 8px; }
+            .ball-count { font-size: 12px; }
+            .trash-zone { width: 60px; height: 60px; font-size: 24px; }
+            .right-panel { max-height: calc(100vh - 220px); }
+            .language-selector { padding: 8px; }
+            .lang-btn { padding: 6px 8px; font-size: clamp(0.6rem, 1.8vw, 0.7rem); }
+            #current-number { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+            #number-breakdown { font-size: clamp(0.8rem, 2vw, 0.95rem); }
+            #number-input { font-size: clamp(1rem, 2.5vw, 1.2rem); width: 190px; }
+            button { font-size: clamp(0.85rem, 2vw, 1rem); }
+            #number-decomposition { font-size: clamp(0.85rem, 2.5vw, 1.05rem) !important; }
+        }
+    </style>
+</head>
+<body>
+    <svg id="fractal-bg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <filter id="fractalFilter">
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="4" result="turbulence" seed="1"/>
+                <feColorMatrix in="turbulence" type="saturate" values="0"/>
+            </filter>
+        </defs>
+        <rect width="100%" height="100%" filter="url(#fractalFilter)" opacity="0.3" fill="#0a1f14"/>
+    </svg>
+
+    <h1 id="main-title">L'abaco di maestro Luciano</h1>
+
+    <div class="instructions" id="instructions">
+        🎯 Inserisci un numero da 0 a 9999,999 e guarda come si muovono le palline sull'abaco!
+    </div>
+
+    <div class="main-container">
+        <div class="left-panel">
+            <div id="abacus-container">
+                <div id="abacus">
+                    <div class="column">
+                        <div class="rod"><div class="balls-container" id="thousands"></div></div>
+                        <div class="column-label" id="label-thousands">Migliaia</div>
+                    </div>
+                    <div class="column">
+                        <div class="rod"><div class="balls-container" id="hundreds"></div></div>
+                        <div class="column-label" id="label-hundreds">Centinaia</div>
+                    </div>
+                    <div class="column">
+                        <div class="rod"><div class="balls-container" id="tens"></div></div>
+                        <div class="column-label" id="label-tens">Decine</div>
+                    </div>
+                    <div class="column">
+                        <div class="rod"><div class="balls-container" id="units"></div></div>
+                        <div class="column-label" id="label-units">Unità</div>
+                    </div>
+                    <div class="decimal-separator" id="decimal-separator">,</div>
+                    <div class="column">
+                        <div class="rod"><div class="balls-container" id="tenths"></div></div>
+                        <div class="column-label" id="label-tenths">Decimi</div>
+                    </div>
+                    <div class="column">
+                        <div class="rod"><div class="balls-container" id="hundredths"></div></div>
+                        <div class="column-label" id="label-hundredths">Centesimi</div>
+                    </div>
+                    <div class="column">
+                        <div class="rod"><div class="balls-container" id="thousandths"></div></div>
+                        <div class="column-label" id="label-thousandths">Millesimi</div>
+                    </div>
+                </div>
+
+                <div class="trash-zone" id="trash-zone" title="Cestino per rimuovere palline">🗑️</div>
+
+                <div class="quick-numbers">
+                    <button type="button" class="quick-btn" onclick="quickNumber(0)">0</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(0.5)">0,5</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(10)">10</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(50)">50</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(100)">100</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(500)">500</button>
+                    <button type="button" class="quick-btn" onclick="quickNumber(1000)">1000</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div id="number-display">
+                <div id="current-number">0</div>
+                <div id="number-breakdown">Zero unità</div>
+                <div id="number-decomposition">0</div>
+            </div>
+
+            <div class="number-words-container">
+                <div class="number-words-title" id="number-words-title">Numero in lettere</div>
+                <div class="number-word-text" id="number-word-current">zero</div>
+            </div>
+
+            <div class="ball-buttons">
+                <div class="ball-button">
+                    <div class="ball-btn white" data-color="thousand" data-value="1000" role="button" tabindex="0" aria-label="Aggiungi una migliaia"></div>
+                    <div class="ball-count" id="thousand-count">0</div>
+                    <div class="ball-label" id="label-thousand">Migliaia</div>
+                </div>
+                <div class="ball-button">
+                    <div class="ball-btn green" data-color="hundred" data-value="100" role="button" tabindex="0" aria-label="Aggiungi una centinaia"></div>
+                    <div class="ball-count" id="hundred-count">0</div>
+                    <div class="ball-label" id="label-hundred">Centinaia</div>
+                </div>
+                <div class="ball-button">
+                    <div class="ball-btn red" data-color="ten" data-value="10" role="button" tabindex="0" aria-label="Aggiungi una decina"></div>
+                    <div class="ball-count" id="ten-count">0</div>
+                    <div class="ball-label" id="label-ten">Decine</div>
+                </div>
+                <div class="ball-button">
+                    <div class="ball-btn blue" data-color="unit" data-value="1" role="button" tabindex="0" aria-label="Aggiungi una unità"></div>
+                    <div class="ball-count" id="unit-count">0</div>
+                    <div class="ball-label" id="label-unit">Unità</div>
+                </div>
+                <div class="ball-button">
+                    <div class="ball-btn purple" data-color="tenth" data-value="0.1" role="button" tabindex="0" aria-label="Aggiungi un decimo"></div>
+                    <div class="ball-count" id="tenth-count">0</div>
+                    <div class="ball-label" id="label-tenth">Decimi</div>
+                </div>
+                <div class="ball-button">
+                    <div class="ball-btn orange" data-color="hundredth" data-value="0.01" role="button" tabindex="0" aria-label="Aggiungi un centesimo"></div>
+                    <div class="ball-count" id="hundredth-count">0</div>
+                    <div class="ball-label" id="label-hundredth">Centesimi</div>
+                </div>
+                <div class="ball-button">
+                    <div class="ball-btn pink" data-color="thousandth" data-value="0.001" role="button" tabindex="0" aria-label="Aggiungi un millesimo"></div>
+                    <div class="ball-count" id="thousandth-count">0</div>
+                    <div class="ball-label" id="label-thousandth">Millesimi</div>
+                </div>
+            </div>
+
+            <form id="input-form" novalidate>
+                <label for="number-input" class="sr-only">Inserisci un numero da 0 a 9999,999</label>
+                <input type="text" inputmode="decimal" id="number-input" placeholder="Scrivi un numero" autocomplete="off">
+                <button type="submit" id="submit-btn">Mostra sull'abaco</button>
+            </form>
+
+            <div id="voice-controls">
+                <button id="voice-button" type="button" aria-label="Ascolta il numero pronunciato">🔊 <span id="voice-text">Ascolta il numero</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="language-selector">
+        <button class="lang-btn active" data-lang="it">🇮🇹 IT</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+        <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
+        <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
+        <button class="lang-btn" data-lang="pt">🇵🇹 PT</button>
+        <button class="lang-btn" data-lang="zh">🇨🇳 ZH</button>
+        <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
+        <button class="lang-btn" data-lang="hi">🇮🇳 HI</button>
+    </div>
+
+    <script>
+        /* =========================================================================
+           STATO GLOBALE
+           Il numero è memorizzato in millesimi interi (0 .. 9.999.999).
+           Es. 1234,567  ->  1234567
+           ========================================================================= */
+        const synth = window.speechSynthesis;
+        let currentNumberThousandths = 0;
+        let currentLanguage = 'it';
+
+        const COLUMNS = ['thousand','hundred','ten','unit','tenth','hundredth','thousandth'];
+        const COLUMN_TO_CONTAINER = {
+            thousand: 'thousands',  hundred: 'hundreds', ten: 'tens',      unit: 'units',
+            tenth: 'tenths',        hundredth: 'hundredths', thousandth: 'thousandths'
+        };
+        const PLACE_VALUES = {
+            thousand: 1000000, hundred: 100000, ten: 10000, unit: 1000,
+            tenth: 100,        hundredth: 10,   thousandth: 1
+        };
+
+        /* =========================================================================
+           TRADUZIONI
+           ========================================================================= */
+        const translations = {
+            it: {
+                title: "L'abaco di maestro Luciano",
+                instructions: "🎯 Inserisci un numero da 0 a 9999,999 e guarda come si muovono le palline sull'abaco!",
+                thousands: "Migliaia", hundreds: "Centinaia", tens: "Decine", units: "Unità",
+                tenths: "Decimi", hundredths: "Centesimi", thousandths: "Millesimi",
+                thousand: "Migliaia", hundred: "Centinaia", ten: "Decine", unit: "Unità",
+                tenth: "Decimi", hundredth: "Centesimi", thousandth: "Millesimi",
+                submit: "Mostra sull'abaco", voice: "Ascolta il numero",
+                placeholder: "Scrivi un numero", zero: "Zero", breakdown: "Suddivisione",
+                trash: "Cestino per rimuovere palline", speakLang: 'it-IT',
+                numberInWords: "Numero in lettere",
+                decimalSeparator: ",", decimalWord: "virgola",
+                invalidNumber: "Numero non valido. Inserisci un numero tra 0 e 9999,999."
+            },
+            en: {
+                title: "Master Luciano's Abacus",
+                instructions: "🎯 Enter a number from 0 to 9999.999 and watch the beads move on the abacus!",
+                thousands: "Thousands", hundreds: "Hundreds", tens: "Tens", units: "Units",
+                tenths: "Tenths", hundredths: "Hundredths", thousandths: "Thousandths",
+                thousand: "Thousands", hundred: "Hundreds", ten: "Tens", unit: "Units",
+                tenth: "Tenths", hundredth: "Hundredths", thousandth: "Thousandths",
+                submit: "Show on abacus", voice: "Listen to number",
+                placeholder: "Write a number", zero: "Zero", breakdown: "Breakdown",
+                trash: "Trash to remove beads", speakLang: 'en-US',
+                numberInWords: "Number in words",
+                decimalSeparator: ".", decimalWord: "point",
+                invalidNumber: "Invalid number. Enter a number between 0 and 9999.999."
+            },
+            fr: {
+                title: "L'abaque de Maître Luciano",
+                instructions: "🎯 Entrez un nombre de 0 à 9999,999 et regardez les perles bouger sur l'abaque!",
+                thousands: "Milliers", hundreds: "Centaines", tens: "Dizaines", units: "Unités",
+                tenths: "Dixièmes", hundredths: "Centièmes", thousandths: "Millièmes",
+                thousand: "Milliers", hundred: "Centaines", ten: "Dizaines", unit: "Unités",
+                tenth: "Dixièmes", hundredth: "Centièmes", thousandth: "Millièmes",
+                submit: "Montrer sur l'abaque", voice: "Écouter le nombre",
+                placeholder: "Écrire un nombre", zero: "Zéro", breakdown: "Décomposition",
+                trash: "Poubelle pour enlever les perles", speakLang: 'fr-FR',
+                numberInWords: "Nombre en lettres",
+                decimalSeparator: ",", decimalWord: "virgule",
+                invalidNumber: "Nombre invalide. Entrez un nombre entre 0 et 9999,999."
+            },
+            de: {
+                title: "Meister Lucianos Abakus",
+                instructions: "🎯 Geben Sie eine Zahl von 0 bis 9999,999 ein und sehen Sie, wie sich die Perlen bewegen!",
+                thousands: "Tausende", hundreds: "Hunderte", tens: "Zehner", units: "Einer",
+                tenths: "Zehntel", hundredths: "Hundertstel", thousandths: "Tausendstel",
+                thousand: "Tausende", hundred: "Hunderte", ten: "Zehner", unit: "Einer",
+                tenth: "Zehntel", hundredth: "Hundertstel", thousandth: "Tausendstel",
+                submit: "Auf dem Abakus zeigen", voice: "Zahl anhören",
+                placeholder: "Zahl schreiben", zero: "Null", breakdown: "Aufschlüsselung",
+                trash: "Mülleimer zum Entfernen von Perlen", speakLang: 'de-DE',
+                numberInWords: "Zahl in Worten",
+                decimalSeparator: ",", decimalWord: "Komma",
+                invalidNumber: "Ungültige Zahl. Geben Sie eine Zahl zwischen 0 und 9999,999 ein."
+            },
+            es: {
+                title: "El ábaco de Maestro Luciano",
+                instructions: "🎯 Ingrese un número del 0 al 9999,999 y observe cómo se mueven las cuentas!",
+                thousands: "Miles", hundreds: "Centenas", tens: "Decenas", units: "Unidades",
+                tenths: "Décimos", hundredths: "Centésimos", thousandths: "Milésimos",
+                thousand: "Miles", hundred: "Centenas", ten: "Decenas", unit: "Unidades",
+                tenth: "Décimos", hundredth: "Centésimos", thousandth: "Milésimos",
+                submit: "Mostrar en ábaco", voice: "Escuchar número",
+                placeholder: "Escribir un número", zero: "Cero", breakdown: "Desglose",
+                trash: "Basura para quitar cuentas", speakLang: 'es-ES',
+                numberInWords: "Número en letras",
+                decimalSeparator: ",", decimalWord: "coma",
+                invalidNumber: "Número inválido. Ingrese un número entre 0 y 9999,999."
+            },
+            pt: {
+                title: "O Ábaco do Mestre Luciano",
+                instructions: "🎯 Digite um número de 0 a 9999,999 e veja as bolinhas se moverem no ábaco!",
+                thousands: "Milhares", hundreds: "Centenas", tens: "Dezenas", units: "Unidades",
+                tenths: "Décimos", hundredths: "Centésimos", thousandths: "Milésimos",
+                thousand: "Milhares", hundred: "Centena", ten: "Dezenas", unit: "Unidades",
+                tenth: "Décimos", hundredth: "Centésimos", thousandth: "Milésimos",
+                submit: "Mostrar no ábaco", voice: "Ouvir número",
+                placeholder: "Escreva um número", zero: "Zero", breakdown: "Divisão",
+                trash: "Lixeira para remover bolinhas", speakLang: 'pt-BR',
+                numberInWords: "Número por extenso",
+                decimalSeparator: ",", decimalWord: "vírgula",
+                invalidNumber: "Número inválido. Digite um número entre 0 e 9999,999."
+            },
+            zh: {
+                title: "卢西亚诺老师的算盘",
+                instructions: "🎯 输入0到9999.999之间的数字，看看算盘上的珠子如何移动！",
+                thousands: "千", hundreds: "百", tens: "十", units: "个",
+                tenths: "十分位", hundredths: "百分位", thousandths: "千分位",
+                thousand: "千", hundred: "百", ten: "十", unit: "个",
+                tenth: "十分位", hundredth: "百分位", thousandth: "千分位",
+                submit: "在算盘上显示", voice: "听数字",
+                placeholder: "写数字", zero: "零", breakdown: "分解",
+                trash: "移除珠子的垃圾桶", speakLang: 'zh-CN',
+                numberInWords: "数字文字表示",
+                decimalSeparator: ".", decimalWord: "点",
+                invalidNumber: "无效数字。请输入0到9999.999之间的数字。"
+            },
+            ru: {
+                title: "Абак учителя Лучано",
+                instructions: "🎯 Введите число от 0 до 9999,999 и посмотрите, как двигаются бусины!",
+                thousands: "Тысячи", hundreds: "Сотни", tens: "Десятки", units: "Единицы",
+                tenths: "Десятые", hundredths: "Сотые", thousandths: "Тысячные",
+                thousand: "Тысячи", hundred: "Сотни", ten: "Десятки", unit: "Единицы",
+                tenth: "Десятые", hundredth: "Сотые", thousandth: "Тысячные",
+                submit: "Показать на абаке", voice: "Слушать число",
+                placeholder: "Написать число", zero: "Ноль", breakdown: "Разложение",
+                trash: "Мусор для удаления бусин", speakLang: 'ru-RU',
+                numberInWords: "Число словами",
+                decimalSeparator: ",", decimalWord: "запятая",
+                invalidNumber: "Неверное число. Введите число от 0 до 9999,999."
+            },
+            hi: {
+                title: "उस्ताद लूसियानो की अबेकस",
+                instructions: "🎯 0 से 9999.999 तक कोई संख्या दर्ज करें और देखें कि अबेकस पर मोती कैसे चलते हैं!",
+                thousands: "हजार", hundreds: "सौ", tens: "दहाई", units: "इकाई",
+                tenths: "दशमांश", hundredths: "शतांश", thousandths: "सहसांश",
+                thousand: "हजार", hundred: "सौ", ten: "दहाई", unit: "इकाई",
+                tenth: "दशमांश", hundredth: "शतांश", thousandth: "सहसांश",
+                submit: "अबेकस पर दिखाएं", voice: "संख्या सुनें",
+                placeholder: "संख्या लिखें", zero: "शून्य", breakdown: "विभाजन",
+                trash: "मोती हटाने के लिए कचरा", speakLang: 'hi-IN',
+                numberInWords: "शब्दों में संख्या",
+                decimalSeparator: ".", decimalWord: "दशमलव",
+                invalidNumber: "अमान्य संख्या। 0 और 9999.999 के बीच कोई संख्या दर्ज करें।"
+            }
+        };
+
+        /* =========================================================================
+           NUMERO IN LETTERE
+           La parte decimale viene letta come numero INTERO: gli zeri iniziali
+           vengono letti singolarmente come "zero", il resto come numero.
+             3,45   -> "tre, quarantacinque"
+             76,018 -> "settantasei, zero diciotto"
+             8,009  -> "otto, zero zero nove"
+           Nel testo scritto compare il simbolo separatore ("," in italiano),
+           nella sintesi vocale compare la parola corrispondente ("virgola").
+           ========================================================================= */
+        const digitWordsIt = ['zero','uno','due','tre','quattro','cinque','sei','sette','otto','nove'];
+        const digitWordsEn = ['zero','one','two','three','four','five','six','seven','eight','nine'];
+        const digitWordsFr = ['zéro','un','deux','trois','quatre','cinq','six','sept','huit','neuf'];
+        const digitWordsDe = ['null','eins','zwei','drei','vier','fünf','sechs','sieben','acht','neun'];
+        const digitWordsEs = ['cero','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve'];
+        const digitWordsPt = ['zero','um','dois','três','quatro','cinco','seis','sete','oito','nove'];
+        const digitWordsZh = ['零','一','二','三','四','五','六','七','八','九'];
+        const digitWordsRu = ['ноль','один','два','три','четыре','пять','шесть','семь','восемь','девять'];
+        const digitWordsHi = ['शून्य','एक','दो','तीन','चार','पांच','छह','सात','आठ','नौ'];
+
+        function intToWordsIt(n) {
+            if (n === 0) return 'zero';
+            const units = ['','uno','due','tre','quattro','cinque','sei','sette','otto','nove','dieci','undici','dodici','tredici','quattordici','quindici','sedici','diciassette','diciotto','diciannove'];
+            const tens = ['','','venti','trenta','quaranta','cinquanta','sessanta','settanta','ottanta','novanta'];
+            function below100(num) {
+                if (num < 20) return units[num];
+                const t = Math.floor(num / 10), u = num % 10;
+                let w = tens[t];
+                if (u === 1 || u === 8) w = w.slice(0, -1);
+                if (u > 0) w += units[u];
+                return w;
+            }
+            function below1000(num) {
+                if (num < 100) return below100(num);
+                const h = Math.floor(num / 100), r = num % 100;
+                return (h === 1 ? '' : units[h]) + 'cento' + (r > 0 ? below100(r) : '');
+            }
+            if (n < 1000) return below1000(n);
+            const th = Math.floor(n / 1000), r = n % 1000;
+            return (th === 1 ? 'mille' : below1000(th) + 'mila') + (r > 0 ? below1000(r) : '');
+        }
+
+        function intToWordsEn(n) {
+            if (n === 0) return 'zero';
+            const ones = ['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+            const tens = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+            function below100(num) {
+                if (num < 20) return ones[num];
+                const t = Math.floor(num / 10), u = num % 10;
+                return tens[t] + (u > 0 ? '-' + ones[u] : '');
+            }
+            function below1000(num) {
+                if (num < 100) return below100(num);
+                const h = Math.floor(num / 100), r = num % 100;
+                return ones[h] + ' hundred' + (r > 0 ? ' ' + below100(r) : '');
+            }
+            if (n < 1000) return below1000(n);
+            const th = Math.floor(n / 1000), r = n % 1000;
+            return below1000(th) + ' thousand' + (r > 0 ? ' ' + below1000(r) : '');
+        }
+
+        function intToWordsFr(n) {
+            if (n === 0) return 'zéro';
+            const ones = ['','un','deux','trois','quatre','cinq','six','sept','huit','neuf','dix','onze','douze','treize','quatorze','quinze','seize','dix-sept','dix-huit','dix-neuf'];
+            const tens = ['','','vingt','trente','quarante','cinquante','soixante','','',''];
+            function below100(num) {
+                if (num < 20) return ones[num];
+                const t = Math.floor(num / 10), u = num % 10;
+                if (t === 7) {
+                    const extra = num - 60;
+                    return extra === 11 ? 'soixante et onze' : 'soixante-' + ones[extra];
+                }
+                if (t === 9) return 'quatre-vingt-' + ones[num - 80];
+                if (t === 8) return u === 0 ? 'quatre-vingts' : 'quatre-vingt-' + ones[u];
+                let w = tens[t];
+                if (u === 1) return w + ' et un';
+                if (u > 0) return w + '-' + ones[u];
+                return w;
+            }
+            function below1000(num) {
+                if (num < 100) return below100(num);
+                const h = Math.floor(num / 100), r = num % 100;
+                let w = (h === 1 ? '' : ones[h] + ' ') + 'cent';
+                if (r === 0 && h > 1) w += 's';
+                if (r > 0) w += ' ' + below100(r);
+                return w;
+            }
+            if (n < 1000) return below1000(n);
+            const th = Math.floor(n / 1000), r = n % 1000;
+            return (th === 1 ? '' : below1000(th) + ' ') + 'mille' + (r > 0 ? ' ' + below1000(r) : '');
+        }
+
+        function intToWordsDe(n) {
+            if (n === 0) return 'null';
+            const ones = ['','eins','zwei','drei','vier','fünf','sechs','sieben','acht','neun','zehn','elf','zwölf','dreizehn','vierzehn','fünfzehn','sechzehn','siebzehn','achtzehn','neunzehn'];
+            const tens = ['','','zwanzig','dreißig','vierzig','fünfzig','sechzig','siebzig','achtzig','neunzig'];
+            function below100(num) {
+                if (num < 20) return ones[num];
+                const t = Math.floor(num / 10), u = num % 10;
+                if (u === 0) return tens[t];
+                return (u === 1 ? 'ein' : ones[u]) + 'und' + tens[t];
+            }
+            function below1000(num) {
+                if (num < 100) return below100(num);
+                const h = Math.floor(num / 100), r = num % 100;
+                let w = (h === 1 ? 'ein' : ones[h]) + 'hundert';
+                if (r > 0) w += below100(r);
+                return w;
+            }
+            if (n < 1000) return below1000(n);
+            const th = Math.floor(n / 1000), r = n % 1000;
+            let w = (th === 1 ? 'ein' : below1000(th)) + 'tausend';
+            if (r > 0) w += below1000(r);
+            return w;
+        }
+
+        function intToWordsEs(n) {
+            if (n === 0) return 'cero';
+            const ones = ['','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte','veintiuno','veintidós','veintitrés','veinticuatro','veinticinco','veintiséis','veintisiete','veintiocho','veintinueve'];
+            const tens = ['','','','treinta','cuarenta','cincuenta','sesenta','setenta','ochenta','noventa'];
+            const hundreds = ['','ciento','doscientos','trescientos','cuatrocientos','quinientos','seiscientos','setecientos','ochocientos','novecientos'];
+            function below100(num) {
+                if (num < 30) return ones[num];
+                const t = Math.floor(num / 10), u = num % 10;
+                return u === 0 ? tens[t] : tens[t] + ' y ' + ones[u];
+            }
+            function below1000(num) {
+                if (num < 100) return below100(num);
+                const h = Math.floor(num / 100), r = num % 100;
+                if (h === 1 && r === 0) return 'cien';
+                return hundreds[h] + (r > 0 ? ' ' + below100(r) : '');
+            }
+            if (n < 1000) return below1000(n);
+            const th = Math.floor(n / 1000), r = n % 1000;
+            return (th === 1 ? 'mil' : below1000(th) + ' mil') + (r > 0 ? ' ' + below1000(r) : '');
+        }
+
+        function intToWordsPt(n) {
+            if (n === 0) return 'zero';
+            const ones = ['','um','dois','três','quatro','cinco','seis','sete','oito','nove','dez','onze','doze','treze','quatorze','quinze','dezesseis','dezessete','dezoito','dezenove'];
+            const tens = ['','','vinte','trinta','quarenta','cinquenta','sessenta','setenta','oitenta','noventa'];
+            const hundreds = ['','cento','duzentos','trezentos','quatrocentos','quinhentos','seiscentos','setecentos','oitocentos','novecentos'];
+            function below100(num) {
+                if (num < 20) return ones[num];
+                const t = Math.floor(num / 10), u = num % 10;
+                return u === 0 ? tens[t] : tens[t] + ' e ' + ones[u];
+            }
+            function below1000(num) {
+                if (num < 100) return below100(num);
+                const h = Math.floor(num / 100), r = num % 100;
+                if (h === 1 && r === 0) return 'cem';
+                return hundreds[h] + (r > 0 ? ' e ' + below100(r) : '');
+            }
+            if (n < 1000) return below1000(n);
+            const th = Math.floor(n / 1000), r = n % 1000;
+            return (th === 1 ? 'mil' : below1000(th) + ' mil') + (r > 0 ? ' e ' + below1000(r) : '');
+        }
+
+        function intToWordsZh(n) {
+            if (n === 0) return '零';
+            const digits = ['零','一','二','三','四','五','六','七','八','九'];
+            const units = ['','十','百','千'];
+            const str = String(n);
+            const len = str.length;
+            let result = '';
+            let zeroFlag = false;
+            for (let i = 0; i < len; i++) {
+                const d = parseInt(str[i], 10);
+                const pos = len - 1 - i;
+                if (d === 0) { zeroFlag = true; continue; }
+                if (zeroFlag && result !== '') { result += '零'; zeroFlag = false; }
+                if (pos === 1 && d === 1 && i === 0) {
+                    result += '十';
+                } else {
+                    result += digits[d] + units[pos];
+                }
+            }
+            return result;
+        }
+
+        function intToWordsRu(n) {
+            if (n === 0) return 'ноль';
+            const ones = ['','один','два','три','четыре','пять','шесть','семь','восемь','девять'];
+            const teens = ['десять','одиннадцать','двенадцать','тринадцать','четырнадцать','пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать'];
+            const tens = ['','','двадцать','тридцать','сорок','пятьдесят','шестьдесят','семьдесят','восемьдесят','девяносто'];
+            const hundreds = ['','сто','двести','триста','четыреста','пятьсот','шестьсот','семьсот','восемьсот','девятьсот'];
+            function below100(num) {
+                if (num < 10) return ones[num];
+                if (num < 20) return teens[num - 10];
+                const t = Math.floor(num / 10), u = num % 10;
+                return u === 0 ? tens[t] : tens[t] + ' ' + ones[u];
+            }
+            function below1000(num) {
+                if (num < 100) return below100(num);
+                const h = Math.floor(num / 100), r = num % 100;
+                return hundreds[h] + (r > 0 ? ' ' + below100(r) : '');
+            }
+            function pluralForm(num, forms) {
+                const n100 = num % 100, n10 = num % 10;
+                if (n100 >= 11 && n100 <= 14) return forms[2];
+                if (n10 === 1) return forms[0];
+                if (n10 >= 2 && n10 <= 4) return forms[1];
+                return forms[2];
+            }
+            if (n < 1000) return below1000(n);
+            const th = Math.floor(n / 1000), r = n % 1000;
+            let thWord;
+            if (th === 1) thWord = 'одна тысяча';
+            else if (th === 2) thWord = 'две тысячи';
+            else thWord = below1000(th) + ' ' + pluralForm(th, ['тысяча','тысячи','тысяч']);
+            return thWord + (r > 0 ? ' ' + below1000(r) : '');
+        }
+
+        const hindiNumbers = ['शून्य','एक','दो','तीन','चार','पांच','छह','सात','आठ','नौ','दस','ग्यारह','बारह','तेरह','चौदह','पंद्रह','सोलह','सत्रह','अठारह','उन्नीस','बीस','इक्कीस','बाईस','तेईस','चौबीस','पच्चीस','छब्बीस','सत्ताईस','अट्ठाईस','उनतीस','तीस','इकतीस','बत्तीस','तैंतीस','चौंतीस','पैंतीस','छत्तीस','सैंतीस','अड़तीस','उनतालीस','चालीस','इकतालीस','बयालीस','तैंतालीस','चवालीस','पैंतालीस','छियालीस','सैंतालीस','अड़तालीस','उनचास','पचास','इक्यावन','बावन','तिरपन','चौवन','पचपन','छप्पन','सत्तावन','अट्ठावन','उनसठ','साठ','इकसठ','बासठ','तिरसठ','चौंसठ','पैंसठ','छियासठ','सड़सठ','अड़सठ','उनहत्तर','सत्तर','इकहत्तर','बहत्तर','तिहत्तर','चौहत्तर','पचहत्तर','छिहत्तर','सतहत्तर','अठहत्तर','उनासी','अस्सी','इक्यासी','बयासी','तिरासी','चौरासी','पचासी','छियासी','सत्तासी','अट्ठासी','नवासी','नब्बे','इक्यानवे','बानवे','तिरानवे','चौरानवे','पचानवे','छियानवे','सत्तानवे','अट्ठानवे','निन्यानवे'];
+        function below1000Hi(num) {
+            if (num < 100) return hindiNumbers[num];
+            const h = Math.floor(num / 100), r = num % 100;
+            return hindiNumbers[h] + ' सौ' + (r > 0 ? ' ' + hindiNumbers[r] : '');
+        }
+        function intToWordsHi(n) {
+            if (n === 0) return 'शून्य';
+            if (n < 1000) return below1000Hi(n);
+            const th = Math.floor(n / 1000), r = n % 1000;
+            return below1000Hi(th) + ' हज़ार' + (r > 0 ? ' ' + below1000Hi(r) : '');
+        }
+
+        const INT_WORD_FNS = { it: intToWordsIt, en: intToWordsEn, fr: intToWordsFr, de: intToWordsDe, es: intToWordsEs, pt: intToWordsPt, zh: intToWordsZh, ru: intToWordsRu, hi: intToWordsHi };
+        const DIGIT_WORD_ARRAYS = { it: digitWordsIt, en: digitWordsEn, fr: digitWordsFr, de: digitWordsDe, es: digitWordsEs, pt: digitWordsPt, zh: digitWordsZh, ru: digitWordsRu, hi: digitWordsHi };
+
+        // Lingue in cui le parole del numero non vengono separate da spazi
+        const NO_SPACE_LANGS = { zh: true };
+
+        /* Legge la parte decimale come numero intero, con gli zeri iniziali
+           pronunciati singolarmente.
+           decPart è compreso tra 0 e 999 (millesimi).                        */
+        function decimalPartWords(decPart, lang) {
+            const digitArr = DIGIT_WORD_ARRAYS[lang] || digitWordsIt;
+            const intFn = INT_WORD_FNS[lang] || intToWordsIt;
+            const decStr = String(decPart).padStart(3, '0').replace(/0+$/, '');
+            if (decStr === '') return '';
+            let i = 0;
+            while (i < decStr.length - 1 && decStr[i] === '0') i++;
+            const words = [];
+            for (let k = 0; k < i; k++) words.push(digitArr[0]);
+            const rest = parseInt(decStr.slice(i), 10);
+            if (rest > 0) words.push(intFn(rest));
+            return words.join(NO_SPACE_LANGS[lang] ? '' : ' ');
+        }
+
+        /* mode = 'display'  -> usa il simbolo separatore (es. "tre, quarantacinque")
+           mode = 'speech'   -> usa la parola (es. "tre virgola quarantacinque")   */
+        function numberToWords(thousandths, lang, mode) {
+            const t = translations[lang] || translations.it;
+            const intPart = Math.floor(thousandths / 1000);
+            const decPart = thousandths % 1000;
+            const intFn = INT_WORD_FNS[lang] || intToWordsIt;
+            const intWords = intFn(intPart);
+            const decWords = decimalPartWords(decPart, lang);
+            if (!decWords) return intWords;
+            const sep = NO_SPACE_LANGS[lang] ? '' : ' ';
+            if (mode === 'speech') {
+                return intWords + sep + t.decimalWord + sep + decWords;
+            }
+            return intWords + t.decimalSeparator + sep + decWords;
+        }
+
+        /* =========================================================================
+           LOGICA DELL'ABACO
+           ========================================================================= */
+        function getDigits() {
+            const n = currentNumberThousandths;
+            return {
+                thousandth: n % 10,
+                hundredth: Math.floor(n / 10) % 10,
+                tenth: Math.floor(n / 100) % 10,
+                unit: Math.floor(n / 1000) % 10,
+                ten: Math.floor(n / 10000) % 10,
+                hundred: Math.floor(n / 100000) % 10,
+                thousand: Math.floor(n / 1000000) % 10
+            };
+        }
+
+        function setNumber(thousandths) {
+            currentNumberThousandths = Math.max(0, Math.min(9999999, Math.round(thousandths)));
+            render();
+        }
+
+        function addValue(value) {
+            setNumber(currentNumberThousandths + Math.round(value * 1000));
+        }
+
+        function removeOne(col) {
+            const digits = getDigits();
+            if (digits[col] > 0) {
+                setNumber(currentNumberThousandths - PLACE_VALUES[col]);
+            }
+        }
+
+        function quickNumber(value) {
+            setNumber(Math.round(value * 1000));
+        }
+        window.quickNumber = quickNumber;
+
+        /* =========================================================================
+           RENDERING
+           ========================================================================= */
+        function initBalls() {
+            COLUMNS.forEach(col => {
+                const container = document.getElementById(COLUMN_TO_CONTAINER[col]);
+                container.innerHTML = '';
+                for (let i = 0; i < 9; i++) {
+                    const ball = document.createElement('div');
+                    ball.className = 'ball ' + col;
+                    ball.dataset.column = col;
+                    ball.draggable = true;
+                    ball.addEventListener('dragstart', ev => {
+                        if (!ball.classList.contains('visible')) { ev.preventDefault(); return; }
+                        ev.dataTransfer.setData('text/plain', col);
+                        ev.dataTransfer.effectAllowed = 'move';
+                    });
+                    ball.addEventListener('click', () => {
+                        if (ball.classList.contains('visible')) removeOne(col);
+                    });
+                    container.appendChild(ball);
+                }
+            });
+        }
+
+        function renderAbacus() {
+            const digits = getDigits();
+            COLUMNS.forEach(col => {
+                const balls = document.getElementById(COLUMN_TO_CONTAINER[col]).children;
+                const count = digits[col];
+                for (let i = 0; i < balls.length; i++) {
+                    balls[i].classList.toggle('visible', i < count);
+                }
+            });
+        }
+
+        function getNumberString() {
+            const n = currentNumberThousandths;
+            const intPart = Math.floor(n / 1000);
+            const decPart = n % 1000;
+            const sep = translations[currentLanguage].decimalSeparator;
+            let intStr;
+            try { intStr = intPart.toLocaleString(translations[currentLanguage].speakLang); }
+            catch (e) { intStr = String(intPart); }
+            if (decPart === 0) return intStr;
+            const decStr = String(decPart).padStart(3, '0').replace(/0+$/, '');
+            return intStr + sep + decStr;
+        }
+
+        function updateNumberDisplay() {
+            document.getElementById('current-number').textContent = getNumberString();
+        }
+
+        function updateBallCounts() {
+            const digits = getDigits();
+            COLUMNS.forEach(col => {
+                const el = document.getElementById(col + '-count');
+                if (el) el.textContent = digits[col];
+            });
+        }
+
+        function updateBreakdown() {
+            const t = translations[currentLanguage];
+            const digits = getDigits();
+            const parts = [];
+            COLUMNS.forEach(col => {
+                if (digits[col] > 0) parts.push(digits[col] + ' ' + (t[col] || col).toLowerCase());
+            });
+            const text = parts.length === 0 ? t.zero + ' ' + t.unit.toLowerCase() : parts.join(', ');
+            document.getElementById('number-breakdown').textContent = text;
+        }
+
+        function updateWords() {
+            document.getElementById('number-word-current').textContent =
+                numberToWords(currentNumberThousandths, currentLanguage, 'display');
+        }
+
+        function updateDecomposition() {
+            const d = getDigits();
+            const sep = translations[currentLanguage].decimalSeparator;
+            const parts = [];
+            if (d.thousand > 0) parts.push(String(d.thousand * 1000));
+            if (d.hundred > 0) parts.push(String(d.hundred * 100));
+            if (d.ten > 0) parts.push(String(d.ten * 10));
+            if (d.unit > 0) parts.push(String(d.unit));
+            if (d.tenth > 0) parts.push('0' + sep + d.tenth);
+            if (d.hundredth > 0) parts.push('0' + sep + '0' + d.hundredth);
+            if (d.thousandth > 0) parts.push('0' + sep + '00' + d.thousandth);
+            document.getElementById('number-decomposition').textContent = parts.length ? parts.join(' + ') : '0';
+        }
+
+        function render() {
+            renderAbacus();
+            updateNumberDisplay();
+            updateBallCounts();
+            updateBreakdown();
+            updateWords();
+            updateDecomposition();
+        }
+
+        /* =========================================================================
+           TRADUZIONI DELL'INTERFACCIA
+           ========================================================================= */
+        function updateTranslations() {
+            const t = translations[currentLanguage];
+            document.documentElement.lang = currentLanguage;
+            document.title = t.title;
+            document.getElementById('main-title').textContent = t.title;
+            document.getElementById('instructions').textContent = t.instructions;
+            document.getElementById('label-thousands').textContent = t.thousands;
+            document.getElementById('label-hundreds').textContent = t.hundreds;
+            document.getElementById('label-tens').textContent = t.tens;
+            document.getElementById('label-units').textContent = t.units;
+            document.getElementById('label-tenths').textContent = t.tenths;
+            document.getElementById('label-hundredths').textContent = t.hundredths;
+            document.getElementById('label-thousandths').textContent = t.thousandths;
+            document.getElementById('label-thousand').textContent = t.thousand;
+            document.getElementById('label-hundred').textContent = t.hundred;
+            document.getElementById('label-ten').textContent = t.ten;
+            document.getElementById('label-unit').textContent = t.unit;
+            document.getElementById('label-tenth').textContent = t.tenth;
+            document.getElementById('label-hundredth').textContent = t.hundredth;
+            document.getElementById('label-thousandth').textContent = t.thousandth;
+            document.getElementById('submit-btn').textContent = t.submit;
+            document.getElementById('voice-text').textContent = t.voice;
+            document.getElementById('number-input').placeholder = t.placeholder;
+            document.getElementById('number-input').setAttribute('aria-label', t.placeholder);
+            document.getElementById('number-words-title').textContent = t.numberInWords;
+            document.getElementById('decimal-separator').textContent = t.decimalSeparator;
+            document.getElementById('trash-zone').title = t.trash;
+        }
+
+        function changeLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLanguage = lang;
+            document.querySelectorAll('.lang-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.lang === lang);
+            });
+            updateTranslations();
+            render();
+        }
+        window.changeLanguage = changeLanguage;
+
+        /* =========================================================================
+           SINTESI VOCALE
+           Il testo pronunciato contiene la parola "virgola" (o equivalente)
+           e la parte decimale letta come numero intero.
+           ========================================================================= */
+        function speakNumber() {
+            if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(
+                numberToWords(currentNumberThousandths, currentLanguage, 'speech')
+            );
+            utter.lang = translations[currentLanguage].speakLang;
+            utter.rate = 0.95;
+            synth.speak(utter);
+        }
+
+        /* =========================================================================
+           EVENTI
+           ========================================================================= */
+        function setupEventListeners() {
+            // Pulsanti-pallina (aggiungono valore)
+            document.querySelectorAll('.ball-btn').forEach(btn => {
+                const value = parseFloat(btn.dataset.value);
+                const handler = () => addValue(value);
+                btn.addEventListener('click', handler);
+                btn.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handler();
+                    }
+                });
+            });
+
+            // Form di inserimento
+            document.getElementById('input-form').addEventListener('submit', e => {
+                e.preventDefault();
+                const raw = document.getElementById('number-input').value.trim().replace(',', '.');
+                const val = parseFloat(raw);
+                if (isNaN(val) || val < 0 || val > 9999.999) {
+                    alert(translations[currentLanguage].invalidNumber);
+                    return;
+                }
+                setNumber(Math.round(val * 1000));
+            });
+
+            // Voce
+            document.getElementById('voice-button').addEventListener('click', speakNumber);
+
+            // Cestino: click = azzera tutto, drag&drop = rimuove una pallina
+            const trash = document.getElementById('trash-zone');
+            trash.addEventListener('click', () => setNumber(0));
+            trash.addEventListener('dragover', e => { e.preventDefault(); trash.classList.add('drag-over'); });
+            trash.addEventListener('dragleave', () => trash.classList.remove('drag-over'));
+            trash.addEventListener('drop', e => {
+                e.preventDefault();
+                trash.classList.remove('drag-over');
+                const col = e.dataTransfer.getData('text/plain');
+                if (col) removeOne(col);
+            });
+
+            // Cambio lingua
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => changeLanguage(btn.dataset.lang));
+            });
+        }
+
+        /* =========================================================================
+           AVVIO
+           ========================================================================= */
+        initBalls();
+        setupEventListeners();
+        updateTranslations();
+        render();
+    </script>
+</body>
+</html>
